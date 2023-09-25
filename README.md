@@ -1,4 +1,4 @@
-# Find UNESCO
+# Tripist
 
 ## Introduction
 
@@ -8,7 +8,7 @@ Tripist is an application that will help you plan a trip or training by creating
 
 The project uses Next.js and Prisma. To get the project up and running, you need to:
 
-1. Clone the repository `git clone https://github.com/typodgrafiki/triplist.git`
+1. Clone the repository `git clone https://github.com/typodgrafiki/tripist`
 2. Install the dependencies using `npm install`.
 3. Set up your PostgreSQL database and add the connection string to a `.env` file.
 4. Run the Prisma migrations using `npx prisma migrate dev`.
