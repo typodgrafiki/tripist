@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String
+  surname   String?
+  email     String    @unique
+  password  String
+  image     String?
+  preferences String[]
+  lists     List[]    @relation("UserLists")
+}
+
+model List {
+  id              Int    @id @default(autoincrement())
+  name            String
+  type            String
+  createAt        DateTime @default(now())
+  userId          String
+  user            User   @relation("UserLists", fields: [userId], references: [id])
+  elements        ListItem[]
+  predefined      Boolean   @default(false)
+}
+
+model ListItem {
+  id       Int    @id @default(autoincrement())
+  name     String
+  category String?
+  status   Boolean // "Spakowany" lub "Niespakowany"
+  listId   Int
+  list     List   @relation(fields: [listId], references: [id])
+}
+
+model PredefinedList {
+  id       Int             @id @default(autoincrement())
+  name     String
+  type     String
+  elements PredefinedListItem[]
+}
+
+model PredefinedListItem {
+  id           Int     @id @default(autoincrement())
+  name         String
+  category     String
+  predefListId Int
+  predefList   PredefinedList @relation(fields: [predefListId], references: [id])
+}

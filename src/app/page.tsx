@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import PrismaTest from "@/components/PrismaTest"
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
                     width={142}
                     height={54}
                     alt="Tripist"
+                    priority
                 />
                 <ul className="menu">
                     <li>
@@ -47,12 +49,13 @@ export default function Home() {
                 Hello World in Trip list
                 <p>
                     <a
-                        href="/app"
+                        href="/dashboard"
                         className="btn"
                     >
                         Go to APP
                     </a>
                 </p>
+                <PrismaTest />
             </main>
         </>
     )
