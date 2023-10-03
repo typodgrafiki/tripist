@@ -1,6 +1,6 @@
 import { IncomingHttpHeaders } from "http"
 import { headers } from "next/headers"
-import { NextResponse, NextRequest } from "next/server"
+import { NextResponse } from "next/server"
 import { Webhook, WebhookRequiredHeaders } from "svix"
 // import prisma from "@/lib/db/database"
 import { PrismaClient } from "@prisma/client"
@@ -8,7 +8,7 @@ import { PrismaClient } from "@prisma/client"
 const webhookSecret = process.env.WEBHOOK_SECRET || ""
 const prisma = new PrismaClient()
 
-async function handler(request: NextRequest) {
+async function handler(request: Request) {
     const payload = await request.json()
     const headersList = headers()
     const heads = {
@@ -24,26 +24,29 @@ async function handler(request: NextRequest) {
             JSON.stringify(payload),
             heads as IncomingHttpHeaders & WebhookRequiredHeaders
         ) as Event
+
+        const eventType = evt.type
+        if (eventType === "user.created" || eventType === "user.updated") {
+            const { id, email_addresses, first_name, last_name } = evt.data
+
+            await prisma.user.upsert({
+                where: { id },
+                create: {
+                    id,
+                    email: email_addresses[0].email_address,
+                    name: first_name,
+                    surname: last_name,
+                },
+                update: {
+                    email: email_addresses[0].email_address,
+                },
+            })
+
+            return NextResponse.json({}, { status: 200 })
+        }
     } catch (err) {
         console.error((err as Error).message)
         return NextResponse.json({}, { status: 400 })
-    }
-
-    const eventType = evt.type
-    if (eventType === "user.created" || eventType === "user.updated") {
-        const { id, email_addresses, name } = evt.data
-
-        return await prisma.user.upsert({
-            where: { id },
-            create: {
-                id,
-                email: email_addresses[0].email_address,
-                name: name,
-            },
-            update: {
-                email: email_addresses[0].email_address,
-            },
-        })
     }
 }
 
@@ -51,7 +54,8 @@ type Event = {
     data: {
         id: string
         email_addresses: { id: string; email_address: string }[]
-        name: string
+        first_name: string
+        last_name: string
     }
     object: string
     type: string
