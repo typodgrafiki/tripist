@@ -6,7 +6,7 @@ export default function Home() {
                 <p>
                     <a
                         href="/dashboard"
-                        className="btn"
+                        className="btn btn-default"
                     >
                         Go to APP
                     </a>

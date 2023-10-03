@@ -4,12 +4,31 @@
 
 :root {
     --primary: #4c84ff;
+    --dark: #2c2d32;
+    --bg: #eeeff4;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--dark);
 }
 
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: var(--primary);
-    color: #fff;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 7px;
+}
+
+.btn-default {
+    background-color: transparent;
+    border-color: var(--dark);
+    color: var(--dark);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
 }
