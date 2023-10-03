@@ -16,7 +16,6 @@ model User {
   name      String
   surname   String?
   email     String    @unique
-  password  String
   image     String?
   preferences String[]
   lists     List[]    @relation("UserLists")

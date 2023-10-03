@@ -1,8 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
-import PrismaTest from "@/components/PrismaTest"
 
-export default function Home() {
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
     return (
         <>
             <header className="flex">
@@ -45,18 +48,8 @@ export default function Home() {
                     </Link>
                 </div>
             </header>
-            <main className="mx-4 px-0 text-center">
-                Hello World in Trip list
-                <p>
-                    <a
-                        href="/dashboard"
-                        className="btn"
-                    >
-                        Go to APP
-                    </a>
-                </p>
-                <PrismaTest />
-            </main>
+            {children}
+            <footer>Footer</footer>
         </>
     )
 }
