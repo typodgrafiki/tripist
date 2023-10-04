@@ -1,15 +1,32 @@
-import "@/styles/globals.css"
-import { ClerkProvider, RedirectToSignIn, SignedIn } from "@clerk/nextjs"
-import { AppProps } from "next/app"
+import { SignedIn, SignedOut } from "@clerk/nextjs"
+import Link from "next/link"
 
-function SignBtn({ Component, pageProps }: AppProps) {
+function SignBtn() {
     return (
-        <ClerkProvider {...pageProps}>
+        <div className="flex space-x-4">
             <SignedIn>
-                <div>You are signed in</div>
+                <Link
+                    href="/dashboard"
+                    className="btn btn-primary transition-colors"
+                >
+                    Moje konto
+                </Link>
             </SignedIn>
-            <div>Always visible</div>
-        </ClerkProvider>
+            <SignedOut>
+                <Link
+                    href="/sign-in"
+                    className="btn btn-default transition-colors"
+                >
+                    Zaloguj się
+                </Link>
+                <Link
+                    href="/sign-up"
+                    className="btn btn-primary transition-colors"
+                >
+                    Załóż konto
+                </Link>
+            </SignedOut>
+        </div>
     )
 }
 
