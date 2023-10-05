@@ -1,0 +1,24 @@
+body:after
+{
+    content: url('../../../public/bg-hero.svg');
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    opacity: .7;
+    max-width: 40%;
+    height: auto;
+}
+
+.baner:before
+{
+    content: '';
+    background-image: url('../../../public/bg-hero-dots.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    position: absolute;
+    inset: 0 0px 13% 46%;
+}
