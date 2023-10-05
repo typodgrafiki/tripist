@@ -9,7 +9,7 @@ export default function MarketingLayout({
         <>
             <Header />
             {children}
-            <footer>Footer</footer>
+            <footer className="bg-gray-900 text-white">FOOTER</footer>
         </>
     )
 }

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { SignedOut } from "@clerk/nextjs"
+import "@/assets/styles/homepage.css"
 import hero1 from "@/assets/images/hero1.png"
 import hero2 from "@/assets/images/hero2.jpg"
 
@@ -47,16 +48,56 @@ export default function Home() {
             </div>
 
             <main className="mx-4 px-0">
-                <hgroup className="block text-center">
-                    <h2 className="font-semibold text-4xl">
-                        Intuicyjne tworzenie list
-                    </h2>
-                    <p>
-                        Tworzenie listy przed wyjazdem nigdy nie było tak
-                        proste. Dodaj pozycje za pomocą kilku kliknięć i upewnij
-                        się, że masz wszystko, czego potrzebujesz.
-                    </p>
-                </hgroup>
+                <section>
+                    <hgroup className="block text-center">
+                        <h2 className="font-semibold text-4xl">
+                            Intuicyjne tworzenie list
+                        </h2>
+                        <p>
+                            Tworzenie listy przed wyjazdem nigdy nie było tak
+                            proste. Dodaj pozycje za pomocą kilku kliknięć i
+                            upewnij się, że masz wszystko, czego potrzebujesz.
+                        </p>
+                    </hgroup>
+                    <p>CONTENT</p>
+                </section>
+                <section>
+                    <hgroup className="block text-center">
+                        <h2 className="font-semibold text-4xl">
+                            Korzystaj gdziekolwiek się wybierasz
+                        </h2>
+                        <p>
+                            Bez względu na to, czy pakujesz na tropikalne
+                            wakacje, trening na siłowni czy relaksujący dzień na
+                            basenie - z nami nigdy nic nie zapomnisz.
+                            Gdziekolwiek się wybierasz, zadbaj o idealną listę.
+                            Bo każdy wyjazd i każdy trening zasługują na pełne
+                            przygotowanie.
+                        </p>
+                        <SignedOut>
+                            <Link
+                                href="/sign-up"
+                                className="btn btn-primary transition-colors"
+                            >
+                                Załóż konto
+                            </Link>
+                        </SignedOut>
+                    </hgroup>
+                    <p>CONTENT</p>
+                </section>
+                <section>
+                    <hgroup className="block text-center">
+                        <h2 className="font-semibold text-4xl">
+                            Dostępne zawsze pod ręką
+                        </h2>
+                        <p>
+                            Twoje listy są dostępne zawsze i wszędzie - na
+                            komputerze w domu, tablecie w kawiarni czy
+                            smartfonie w drodze na lotnisko.
+                        </p>
+                    </hgroup>
+                    <p>CONTENT</p>
+                </section>
             </main>
         </>
     )
