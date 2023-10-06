@@ -22,7 +22,8 @@ export default function Home() {
                     </p>
                     <SignedOut>
                         <Link
-                            href="/sign-up"
+                            href="/sign-up/"
+                            // ### TO DO usunac / na koncu linka
                             className="btn btn-primary transition-colors"
                         >
                             Załóż konto
@@ -76,7 +77,8 @@ export default function Home() {
                         </p>
                         <SignedOut>
                             <Link
-                                href="/sign-up"
+                                href="/sign-up/"
+                                // ### TO DO usunac / na koncu linka
                                 className="btn btn-primary transition-colors"
                             >
                                 Załóż konto

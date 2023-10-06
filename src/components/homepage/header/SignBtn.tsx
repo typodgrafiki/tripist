@@ -15,14 +15,14 @@ function SignBtn() {
             <SignedOut>
                 <Link
                     href="/sign-in/"
-                    // ### usunac / na koncu linka
+                    // ### TO DO usunac / na koncu linka
                     className="btn btn-default transition-colors"
                 >
                     Zaloguj się
                 </Link>
                 <Link
                     href="/sign-up/"
-                    // ### usunac / na koncu linka
+                    // ### TO DO usunac / na koncu linka
                     className="btn btn-primary transition-colors"
                 >
                     Załóż konto

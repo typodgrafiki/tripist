@@ -2,11 +2,9 @@ import { IncomingHttpHeaders } from "http"
 import { headers } from "next/headers"
 import { NextResponse } from "next/server"
 import { Webhook, WebhookRequiredHeaders } from "svix"
-// import prisma from "@/lib/db/database"
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/lib/db"
 
 const webhookSecret = process.env.WEBHOOK_SECRET || ""
-const prisma = new PrismaClient()
 
 async function handler(request: Request) {
     const payload = await request.json()

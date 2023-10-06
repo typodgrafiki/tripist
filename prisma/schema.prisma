@@ -22,10 +22,11 @@ model User {
 }
 
 model List {
-  id              Int    @id @default(autoincrement())
+  id              String    @id @default(uuid())
   name            String
-  type            String
+  type            String?
   createAt        DateTime @default(now())
+  url             String
   userId          String
   user            User   @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
@@ -37,7 +38,7 @@ model ListItem {
   name     String
   category String?
   status   Boolean // "Spakowany" lub "Niespakowany"
-  listId   Int
+  listId   String
   list     List   @relation(fields: [listId], references: [id])
 }
 

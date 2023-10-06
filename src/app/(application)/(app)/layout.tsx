@@ -1,7 +1,5 @@
 import React from "react"
-import { UserButton } from "@clerk/nextjs"
-import Image from "next/image"
-import Link from "next/link"
+import AppAside from "@/components/application/AppAside"
 
 export default function BackLayout({
     children,
@@ -9,20 +7,11 @@ export default function BackLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="dashboard flex justify-center items-center">
-            <aside className="w-[20%]">
-                <Link href="/dashboard">
-                    <Image
-                        src="/tripist.svg"
-                        width={97}
-                        height={39}
-                        alt="Tripist"
-                        priority
-                    />
-                </Link>
-                <UserButton afterSignOutUrl="/" />
+        <div className="dashboard flex justify-center p-12 h-screen">
+            <aside className="w-3/12 flex flex-col justify-between">
+                <AppAside />
             </aside>
-            <main className="content flex items-center justify-center w-[80%]">
+            <main className="content flex justify-center w-9/12">
                 {children}
             </main>
         </div>

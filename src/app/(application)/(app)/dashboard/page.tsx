@@ -1,11 +1,13 @@
+import AppHeader from "@/components/application/AppHeader"
+
 export default function Dashboard() {
     return (
         <>
-            <div className="">
-                <h1 className="font-semibold">Witaj w Triplist 🎉</h1>
-                <div className="bg-white p-8 shadow-lg rounded-md">
+            <section className="">
+                <AppHeader title="Witaj w Triplist 🎉" />
+                <div className="bg-white p-10 shadow-lg rounded-md">
                     <div className="text-center">
-                        <p>
+                        <p className="text-slate-700 mb-5">
                             Zauważyliśmy, że Twój panel jest jeszcze pusty. Ale
                             nie martw się, jesteśmy tu, by Ci pomóc zacząć!
                             Stworzenie pierwszej listy rzeczy do zabrania na
@@ -19,7 +21,7 @@ export default function Dashboard() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     )
 }
