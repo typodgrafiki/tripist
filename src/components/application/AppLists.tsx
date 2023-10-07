@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/db"
 import AppListsLi from "./AppListsLi"
@@ -13,6 +12,9 @@ const getLists = async () => {
                 userId: userId,
             },
         })
+
+        // tutaj przenosimy ta funkcje do lib i tam zmieniamy redux dla wyswietlanych elementow
+
         return res
     } catch (error) {
         console.log(error)
@@ -35,15 +37,6 @@ export default async function AppLists() {
                             />
                         </>
                     ))}
-                    {/* {data?.map((element) => (
-                        <>
-                            <li key={element.id}>
-                                <Link href={`/dashboard/${element.url}`}>
-                                    {element.name}
-                                </Link>
-                            </li>
-                        </>
-                    ))} */}
                 </ul>
             </div>
         </>

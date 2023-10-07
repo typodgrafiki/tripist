@@ -1,23 +1,18 @@
-"use client"
-
-import { useRouter } from "next/navigation"
-import { usePathname } from "next/navigation"
-
+import AppContent from "@/components/application/AppContent"
+import AppTitle from "@/components/application/AppTitle"
 export default function Page() {
-    const router = useRouter()
-    const pathname = usePathname()
-
     return (
-        <div>
-            <div className="content">tytuł</div>
-
-            <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => router.push("/dashboard")}
-            >
-                Powrót do dashboard / {pathname}
-            </button>
-        </div>
+        <section className="">
+            <div className="flex justify-between">
+                <AppTitle />
+                <div className="flex gap-2">
+                    <button>Duplikuj</button>
+                    <button>Usuń</button>
+                </div>
+            </div>
+            <div className="bg-white p-10 shadow-lg rounded-md">
+                <AppContent />
+            </div>
+        </section>
     )
 }
