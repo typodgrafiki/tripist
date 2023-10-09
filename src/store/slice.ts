@@ -22,7 +22,11 @@ export const listsSlice = createSlice({
     },
     reducers: {
         setLists: (state, action) => {
-            // return { ...state, ...action.payload }
+            return {
+                ...state,
+                elements: action.payload,
+            }
+            // return (state.elements = action.payload)
         },
     },
 })

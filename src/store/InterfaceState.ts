@@ -5,6 +5,11 @@ interface ListState {
     elements: string[]
 }
 
+interface ListsState {
+    elements: string[]
+}
+
 export interface RootState {
     list: ListState
+    lists: ListsState
 }

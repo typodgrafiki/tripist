@@ -51,7 +51,6 @@ export default function AppListsLi({
             <li className={pathname === thisUrl ? "font-semibold" : ""}>
                 <Link
                     href={thisUrl}
-                    key={thisUrl}
                     onClick={handleClick}
                 >
                     {name}

@@ -1,21 +1,3 @@
-import prisma from "@/lib/db"
-
-export async function showLists(userId: string) {
-    try {
-        if (!userId) return
-
-        const lists = await prisma.list.findMany({
-            where: {
-                userId: userId,
-            },
-        })
-
-        return lists
-    } catch (error) {
-        throw error
-    }
-}
-
 export async function showListDetails(userId: string, listId: string) {
     try {
         if (!userId) return
