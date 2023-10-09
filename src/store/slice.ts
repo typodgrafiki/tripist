@@ -18,7 +18,18 @@ export const listSlice = createSlice({
 export const listsSlice = createSlice({
     name: "lists",
     initialState: {
-        elements: ["lolololo", "ewewerewrr", "weewrewre"],
+        elements: [
+            {
+                id: "lolololo1",
+                name: "nameee1",
+                url: "url1",
+            },
+            {
+                id: "lolololo2",
+                name: "nameee2",
+                url: "url2",
+            },
+        ],
     },
     reducers: {
         setLists: (state, action) => {

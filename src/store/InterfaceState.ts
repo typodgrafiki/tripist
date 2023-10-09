@@ -6,7 +6,13 @@ interface ListState {
 }
 
 interface ListsState {
-    elements: string[]
+    elements: ListsStateEl[]
+}
+
+interface ListsStateEl {
+    id: string
+    name: string
+    url: string
 }
 
 export interface RootState {

@@ -37,13 +37,12 @@ export default function AppLists() {
                 <div className="my-lists">
                     <ul>
                         {lists.map((element) => (
-                            <>
-                                <AppListsLi
-                                    key={element.id}
-                                    name={element.name}
-                                    url={element.url}
-                                />
-                            </>
+                            <AppListsLi
+                                key={element.id}
+                                id={element.id}
+                                name={element.name}
+                                url={element.url}
+                            />
                         ))}
                     </ul>
                 </div>
