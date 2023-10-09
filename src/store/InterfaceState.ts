@@ -1,4 +1,4 @@
-interface TodosState {
+interface ListState {
     id: string
     name: string
     url: string
@@ -6,5 +6,5 @@ interface TodosState {
 }
 
 export interface RootState {
-    todos: TodosState
+    list: ListState
 }

@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import todosReducer from "@/store/slice"
+import { listReducer, listsReducer } from "@/store/slice"
 
 export default configureStore({
     reducer: {
-        todos: todosReducer,
+        list: listReducer,
+        lists: listsReducer,
     },
 })

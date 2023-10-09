@@ -6,7 +6,7 @@ import { RootState } from "@/store/InterfaceState"
 const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default function AppTitle() {
-    const title = useTypedSelector((state) => state.todos.name)
+    const title = useTypedSelector((state) => state.list.name)
 
     return <h1 className="font-semibold text-2xl mb-4">{title}</h1>
 }

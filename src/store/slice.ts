@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-export const todosSlice = createSlice({
-    name: "todos",
+export const listSlice = createSlice({
+    name: "list",
     initialState: {
         id: "",
         name: "Witaj w Triplist 🎉",
@@ -9,23 +9,27 @@ export const todosSlice = createSlice({
         elements: [],
     },
     reducers: {
-        increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            // state.title += 1
+        setList: (state, action) => {
+            return { ...state, ...action.payload }
         },
-        decrement: (state) => {
-            // state.title -= 1
-        },
-        incrementByAmount: (state, action) => {
-            // state.name += action.payload
+    },
+})
+
+export const listsSlice = createSlice({
+    name: "lists",
+    initialState: {
+        elements: ["lolololo", "ewewerewrr", "weewrewre"],
+    },
+    reducers: {
+        setLists: (state, action) => {
+            // return { ...state, ...action.payload }
         },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = todosSlice.actions
+export const { setList } = listSlice.actions
+export const { setLists } = listsSlice.actions
 
-export default todosSlice.reducer
+export const listReducer = listSlice.reducer
+export const listsReducer = listsSlice.reducer

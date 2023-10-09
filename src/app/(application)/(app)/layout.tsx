@@ -13,9 +13,7 @@ export default function BackLayout({
                 <aside className="w-3/12 flex flex-col justify-between">
                     <AppAside />
                 </aside>
-                <main className="content flex justify-center w-9/12">
-                    {children}
-                </main>
+                <main className="content w-9/12">{children}</main>
             </div>
         </StoreProvider>
     )
