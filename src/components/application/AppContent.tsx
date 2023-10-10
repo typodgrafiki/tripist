@@ -22,7 +22,7 @@ export default function AppContent() {
         <>
             {listUrl ? (
                 <>
-                    <div>
+                    <div className="text-gray-600">
                         <ul>
                             {list &&
                                 list.map((element) => (

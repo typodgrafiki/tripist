@@ -1,0 +1,9 @@
+.list-link-active:before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0 auto 0 0;
+    background-color: var(--primary);
+    width: 5px;
+    border-radius: 5px;
+}

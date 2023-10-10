@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { setList } from "@/store/slice"
+import "@/assets/styles/app.css"
 
 export default function AppListsLi({
     name,
@@ -52,9 +53,14 @@ export default function AppListsLi({
 
     return (
         <>
-            <li className={pathname === thisUrl ? "font-semibold" : ""}>
+            <li className="relative">
                 <Link
                     href={thisUrl}
+                    className={
+                        pathname === thisUrl
+                            ? "list-link-active block font-semibold text-gray-900 bg-white rounded-lg px-5 py-2"
+                            : "block px-5 pl-0 py-2 hover:text-gray-900"
+                    }
                     onClick={getData}
                 >
                     {name}

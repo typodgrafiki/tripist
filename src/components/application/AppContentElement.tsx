@@ -8,9 +8,15 @@ export default function AppContentElement({
     done: boolean
 }) {
     return (
-        <li>
-            {name}
-            {done ? " / tak" : " / nie"}
+        <li className="relative">
+            <button>
+                <input
+                    type="checkbox"
+                    checked={done}
+                    className="mr-2"
+                />
+                {name}
+            </button>
         </li>
     )
 }

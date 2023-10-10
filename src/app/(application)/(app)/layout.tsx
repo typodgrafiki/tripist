@@ -9,7 +9,7 @@ export default function BackLayout({
 }) {
     return (
         <StoreProvider>
-            <div className="dashboard flex justify-center p-12 h-screen">
+            <div className="dashboard relative flex justify-center p-12 h-screen">
                 <aside className="w-3/12 flex flex-col justify-between">
                     <AppAside />
                 </aside>

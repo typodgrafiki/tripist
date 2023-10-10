@@ -34,7 +34,7 @@ export default function AppLists() {
     return (
         <>
             {lists ? (
-                <div className="my-lists">
+                <div className="my-lists text-gray-500 pr-7">
                     <ul>
                         {lists.map((element) => (
                             <AppListsLi
@@ -49,6 +49,8 @@ export default function AppLists() {
             ) : (
                 "Brak list"
             )}
+
+            <button className="btn btn-default mt-8">Dodaj listę</button>
         </>
     )
 }

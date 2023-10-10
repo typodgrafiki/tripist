@@ -6,11 +6,10 @@ async function main() {
     // Utworzenie użytkownika
     const user = await prisma.user.create({
         data: {
-            id: "123",
+            id: "user_2WOhzyozYDSlvch9sTqAEcFFxXu",
             name: "John",
             surname: "Doe",
-            email: "john.doe@example.com",
-            // ... inne pola, jeśli są wymagane
+            email: "on024@go2.pl",
         },
     })
 
@@ -20,7 +19,7 @@ async function main() {
             data: {
                 id: `list_xyz_${i + 1}`,
                 name: `List ${i + 1}`,
-                userId: user.id,
+                userId: "user_2WOhzyozYDSlvch9sTqAEcFFxXu",
                 url: `list_xyz_${i + 1}`,
                 // ... inne pola, jeśli są wymagane
             },
