@@ -2,7 +2,15 @@ interface ListState {
     id: string
     name: string
     url: string
-    elements: string[]
+    elements: ListStateEl[]
+}
+
+interface ListStateEl {
+    category: string | null
+    id: number
+    listId: string
+    name: string
+    status: boolean
 }
 
 interface ListsState {

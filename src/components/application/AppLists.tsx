@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import { useEffect } from "react"
 import AppListsLi from "./AppListsLi"
 import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
 import { RootState } from "@/store/InterfaceState"
@@ -14,15 +14,15 @@ export default function AppLists() {
 
     useEffect(() => {
         const getData = async () => {
-            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-            const apiUrl = `${baseUrl}/api/showLists`
-            const res = await fetch(apiUrl)
+            const res = await fetch("/api/showLists")
 
             if (res.ok) {
                 const data = await res.json()
                 dispatch(setLists(data.body))
-                console.log(data.body)
-                // setLists(data.body)
+
+                // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
+
+                // console.log(data.body)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -47,7 +47,7 @@ export default function AppLists() {
                     </ul>
                 </div>
             ) : (
-                "Nie ma list :P"
+                "Brak list"
             )}
         </>
     )

@@ -1,12 +1,10 @@
 "use client"
+
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-
-import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
-import { RootState } from "@/store/InterfaceState"
 import { setList } from "@/store/slice"
-
-const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default function AppListsLi({
     name,
@@ -19,39 +17,45 @@ export default function AppListsLi({
 }) {
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
-
-    const nameList = useTypedSelector((state) => state.list.name)
     const dispatch = useDispatch()
 
-    const listActiveObject = {
-        id: id,
-        name: name,
-        url: url,
-        elements: ["123", "456", "787"],
+    const getData = async () => {
+        const headers = new Headers()
+        headers.append("ListId", id)
+
+        const res = await fetch("/api/showListDetails", {
+            method: "GET",
+            headers: headers,
+        })
+
+        if (res.ok) {
+            const data = await res.json()
+
+            const result = {
+                id: id,
+                name: name,
+                url: url,
+                elements: data.body,
+            }
+
+            dispatch(setList(result))
+        } else {
+            console.error("Błąd pobierania danych")
+        }
     }
 
-    const handleClick = async () => {
-        // if (user && typeof user === "object" && "id" in user) {
-        //     const res = await fetch("/api/showLists")
-        //     const data = await res.json()
-        //     console.dir(data)
-        // } else {
-        //     console.error("Nieprawidłowy użytkownik lub brak 'id'")
-        // }
-        // console.log(listActiveObject)
-        // dispatch(
-        //     setList(listActiveObject)
-        // )
-    }
-
-    // klikniesz w link to zmienia sie store wykorzystujac id
+    useEffect(() => {
+        if (pathname === thisUrl) {
+            getData()
+        }
+    }, [])
 
     return (
         <>
             <li className={pathname === thisUrl ? "font-semibold" : ""}>
                 <Link
                     href={thisUrl}
-                    onClick={handleClick}
+                    onClick={getData}
                 >
                     {name}
                 </Link>

@@ -10,7 +10,17 @@ export const listSlice = createSlice({
     },
     reducers: {
         setList: (state, action) => {
-            return { ...state, ...action.payload }
+            // console.log(action.payload)
+            // return { ...state, ...action.payload }
+            state.name = action.payload.name
+            state.id = action.payload.id
+            state.url = action.payload.url
+            // console.log(action.payload)
+            state.elements = action.payload.elements
+            // return {
+            //     ...state,
+            //     elements: action.payload,
+            // }
         },
     },
 })

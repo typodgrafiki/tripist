@@ -2,14 +2,15 @@
 
 import { useRouter, usePathname, useParams } from "next/navigation"
 // import { listDetails } from "@/lib/listDetails"
-// import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
-// import { RootState } from "@/store/InterfaceState"
+import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
+import { RootState } from "@/store/InterfaceState"
+import AppContentElement from "@/components/application/AppContentElement"
 // import { setList } from "@/store/slice"
 
-// const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default function AppContent() {
-    // const name = useTypedSelector((state) => state.list.name)
+    const list = useTypedSelector((state) => state.list.elements)
     // const dispatch = useDispatch()
 
     // // const router = useRouter()
@@ -17,17 +18,23 @@ export default function AppContent() {
     const params = useParams()
     const listUrl = params.slug
 
-    // const listActiveObject = {
-    //     id: "123123123",
-    //     name: "Tyyyyytle",
-    //     url: "aaaaaaaa",
-    //     elements: ["123", "456", "787"],
-    // }
-
     return (
         <>
             {listUrl ? (
-                "wefew"
+                <>
+                    <div>
+                        <ul>
+                            {list &&
+                                list.map((element) => (
+                                    <AppContentElement
+                                        key={element.id}
+                                        name={element.name}
+                                        done={element.status}
+                                    />
+                                ))}
+                        </ul>
+                    </div>
+                </>
             ) : (
                 <>
                     <div className="text-center">
