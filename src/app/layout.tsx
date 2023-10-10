@@ -1,5 +1,5 @@
 import React from "react"
-import "./globals.css"
+import "@/assets/styles/globals.css"
 import type { Metadata } from "next"
 import { ClerkProvider } from "@clerk/nextjs"
 
@@ -15,7 +15,10 @@ export default function RootLayout({
 }) {
     return (
         <ClerkProvider>
-            <html lang="en">
+            <html
+                lang="en"
+                className="scroll-smooth"
+            >
                 <body>{children}</body>
             </html>
         </ClerkProvider>

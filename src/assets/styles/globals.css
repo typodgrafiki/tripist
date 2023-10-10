@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #467bf0;
+    --dark: #2c2d32;
+    --bg: #eeeff4;
+}
+
+@layer base {
+    html {
+        font-family: "Poppins", system-ui, sans-serif;
+        scroll-behavior: smooth;
+        background-color: var(--bg);
+    }
+
+    body {
+        color: var(--dark);
+        background: linear-gradient(
+            180deg,
+            #e0e7f7 0,
+            rgba(229, 238, 255, 0.262661) 1000px,
+            rgba(229, 236, 255, 0) 1186px
+        );
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 7px;
+    }
+
+    .btn-default {
+        background-color: transparent;
+        border-color: var(--dark);
+        color: var(--dark);
+    }
+
+    .btn-primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+    }
+
+    .btn:is(:hover, :focus, :active) {
+        background-color: var(--dark);
+        border-color: var(--dark);
+        color: #fff;
+    }
+}
