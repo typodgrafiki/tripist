@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client"
-import { v4 as uuidv4 } from "uuid"
 
 const prisma = new PrismaClient()
 
@@ -7,7 +6,7 @@ async function main() {
     // Utworzenie użytkownika
     const user = await prisma.user.create({
         data: {
-            id: uuidv4(),
+            id: "123",
             name: "John",
             surname: "Doe",
             email: "john.doe@example.com",
@@ -19,9 +18,10 @@ async function main() {
     for (let i = 0; i < 10; i++) {
         const list = await prisma.list.create({
             data: {
-                id: uuidv4(),
+                id: `list_xyz_${i + 1}`,
                 name: `List ${i + 1}`,
                 userId: user.id,
+                url: `list_xyz_${i + 1}`,
                 // ... inne pola, jeśli są wymagane
             },
         })
