@@ -11,10 +11,11 @@
 @layer base {
     html {
         font-family: "Poppins", system-ui, sans-serif;
+        scroll-behavior: smooth;
+        background-color: var(--bg);
     }
 
     body {
-        background-color: var(--bg);
         color: var(--dark);
         background: linear-gradient(
             180deg,

@@ -1,24 +1,61 @@
-body:after
-{
-    content: url('../../../public/bg-hero.svg');
+body:before {
+    content: url("../../../public/bg-hero.svg");
     display: block;
     position: fixed;
     right: 0;
     top: 0;
-    z-index: -1;
-    opacity: .7;
+    opacity: 0.7;
     max-width: 40%;
     height: auto;
 }
 
-.baner:before
-{
-    content: '';
-    background-image: url('../../../public/bg-hero-dots.svg');
+.baner:before {
+    content: "";
+    background-image: url("../../../public/bg-hero-dots.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: block;
     position: absolute;
     inset: 0 0px 13% 46%;
+}
+
+.container-md {
+    max-width: calc(1370px + 7rem);
+}
+
+.container-hrgroup {
+    max-width: calc(1100px + 7rem);
+}
+
+.baner {
+    max-width: calc(1536px + 7rem);
+}
+
+.image-plus {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--primary);
+    bottom: -40px;
+    right: 30px;
+}
+
+.image-plus:after,
+.image-plus:before {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -1px);
+    width: 40px;
+}
+
+.image-plus:after {
+    transform: translate(-50%, -1px) rotate(90deg);
 }
