@@ -1,7 +1,8 @@
 import React from "react"
 import AppAside from "@/components/application/AppAside"
 import { AppProvider } from "@/context/AppContext"
-import clientPromise from "@/lib/db"
+import "@/assets/styles/app.css"
+// import clientPromise from "@/lib/db"
 
 export default function BackLayout({
     children,
@@ -20,25 +21,34 @@ export default function BackLayout({
     )
 }
 
-const getServerSideLists = async () => {
-    try {
-        await clientPromise
-        // `await clientPromise` will use the default database passed in the MONGODB_URI
-        // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-        //
-        // `const client = await clientPromise`
-        // `const db = client.db("myDatabase")`
-        //
-        // Then you can execute queries against your database like so:
-        // db.find({}) or any of the MongoDB Node Driver commands
+// const getServerSideLists = async () => {
+//     try {
+//         const client = await clientPromise
+//         // `await clientPromise` will use the default database passed in the MONGODB_URI
+//         // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
+//         //
+//         // `const client = await clientPromise`
+//         // `const db = client.db("myDatabase")`
+//         //
+//         // Then you can execute queries against your database like so:
+//         // db.find({}) or any of the MongoDB Node Driver commands
 
-        return {
-            props: { isConnected: true },
-        }
-    } catch (e) {
-        console.error(e)
-        return {
-            props: { isConnected: false },
-        }
-    }
-}
+//         // await client.db("my_sample").command({ ping: 1 })
+
+//         // await db.find({})
+
+//         // const ("my_sample")
+
+//         console.log("connect")
+
+//         // return {
+//         //     props: { isConnected: true },
+//         // }
+//     } catch (e) {
+//         console.log("not connect")
+//         console.error(e)
+//         // return {
+//         //     props: { isConnected: false },
+//         // }
+//     }
+// }

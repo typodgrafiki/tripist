@@ -1,10 +1,8 @@
 "use client"
 
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import "@/assets/styles/app.css"
 
 export default function AppListsLi({
     name,
@@ -17,7 +15,7 @@ export default function AppListsLi({
 }) {
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const getData = async () => {
         const headers = new Headers()
@@ -38,7 +36,7 @@ export default function AppListsLi({
                 elements: data.body,
             }
 
-            dispatch(setList(result))
+            // dispatch(setList(result))
         } else {
             console.error("Błąd pobierania danych")
         }

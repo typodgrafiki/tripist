@@ -1,17 +1,22 @@
 "use client"
 
+import { useEffect } from "react"
 import { useRouter, usePathname, useParams } from "next/navigation"
 import AppContentElement from "@/components/application/AppContentElement"
 
 export default function AppContent() {
     // const list =
 
-    const params = useParams()
-    const listUrl = params.slug
+    // const params = useParams()
+    // const listUrl = params.slug
+
+    useEffect(() => {
+        console.log("test1")
+    }, [])
 
     return (
         <>
-            {listUrl ? (
+            {/* {list ? (
                 <>
                     <div className="text-gray-600">
                         <ul>
@@ -43,7 +48,7 @@ export default function AppContent() {
                         </button>
                     </div>
                 </>
-            )}
+            )} */}
         </>
     )
 }

@@ -9,17 +9,17 @@ export default function AppLists() {
 
     useEffect(() => {
         const getDataLists = async () => {
-            const res = await fetch("/api/showLists")
+            // const res = await fetch("/api/showLists")
+            // if (res.ok) {
+            //     const data = await res.json()
+            //     // await dispatch(setLists(data.body))
+            //     // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
+            //     console.log(data.body)
+            // } else {
+            //     console.error("Błąd pobierania danych")
+            // }
 
-            if (res.ok) {
-                const data = await res.json()
-                // await dispatch(setLists(data.body))
-                // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
-
-                console.log(data.body)
-            } else {
-                console.error("Błąd pobierania danych")
-            }
+            console.log("t2")
         }
         getDataLists()
     }, [])
