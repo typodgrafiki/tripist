@@ -12,11 +12,7 @@ export async function GET(request: Request) {
                 { status: 401 }
             )
 
-        const lists = await prisma.list.findMany({
-            where: {
-                userId: userId,
-            },
-        })
+        const lists = { id: "123" }
 
         return NextResponse.json({ body: lists }, { status: 200 })
     } catch (error) {

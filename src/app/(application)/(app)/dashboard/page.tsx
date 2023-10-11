@@ -6,7 +6,7 @@ export default function Dashboard() {
         <>
             <AppTitle />
             <div className="bg-white p-10 shadow-lg rounded-md">
-                <AppContent />
+                {/* <AppContent /> */}
             </div>
         </>
     )

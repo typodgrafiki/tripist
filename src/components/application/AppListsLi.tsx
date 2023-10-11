@@ -4,7 +4,6 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { setList } from "@/store/slice"
 import "@/assets/styles/app.css"
 
 export default function AppListsLi({

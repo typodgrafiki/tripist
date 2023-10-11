@@ -1,12 +1,16 @@
 "use client"
 
-import { useSelector, TypedUseSelectorHook } from "react-redux"
-import { RootState } from "@/store/InterfaceState"
-
-const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppTitle() {
-    const title = useTypedSelector((state) => state.list.name)
+    const { listActive } = useGlobalContext()
+    const title = listActive?.name
 
-    return <h1 className="font-semibold text-2xl mb-4">{title}</h1>
+    return (
+        <>
+            <h1 className="font-semibold text-2xl mb-4">
+                {title ? title : "Witaj w Triplist 🎉"}
+            </h1>
+        </>
+    )
 }

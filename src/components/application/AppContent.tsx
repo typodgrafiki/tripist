@@ -1,20 +1,11 @@
 "use client"
 
 import { useRouter, usePathname, useParams } from "next/navigation"
-// import { listDetails } from "@/lib/listDetails"
-import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
-import { RootState } from "@/store/InterfaceState"
 import AppContentElement from "@/components/application/AppContentElement"
-// import { setList } from "@/store/slice"
-
-const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export default function AppContent() {
-    const list = useTypedSelector((state) => state.list.elements)
-    // const dispatch = useDispatch()
+    // const list =
 
-    // // const router = useRouter()
-    // // const pathname = usePathname()
     const params = useParams()
     const listUrl = params.slug
 

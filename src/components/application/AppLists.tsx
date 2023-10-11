@@ -2,15 +2,10 @@
 
 import { useEffect } from "react"
 import AppListsLi from "./AppListsLi"
-import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
-import { RootState } from "@/store/InterfaceState"
-import { setLists } from "@/store/slice"
-
-const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector
+import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppLists() {
-    const lists = useTypedSelector((state) => state.lists.elements)
-    const dispatch = useDispatch()
+    const { lists } = useGlobalContext()
 
     useEffect(() => {
         const getDataLists = async () => {
@@ -18,10 +13,10 @@ export default function AppLists() {
 
             if (res.ok) {
                 const data = await res.json()
-                await dispatch(setLists(data.body))
+                // await dispatch(setLists(data.body))
                 // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
 
-                // console.log(data.body)
+                console.log(data.body)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -33,30 +28,26 @@ export default function AppLists() {
         <>
             {lists ? (
                 <div className="my-lists text-gray-500 pr-7">
-                    {lists.length > 0 ? (
-                        <ul>
-                            {lists.map((element) => (
-                                <AppListsLi
-                                    key={element.id}
-                                    id={element.id}
-                                    name={element.name}
-                                    url={element.url}
-                                />
-                            ))}
-                        </ul>
-                    ) : (
-                        <ul className="my-lists-loading pt-[15px]">
-                            <li className="max-w-[145px]"></li>
-                            <li className="max-w-[138px]"></li>
-                            <li className="max-w-[89px]"></li>
-                            <li className="max-w-[126px]"></li>
-                            <li className="max-w-[133px]"></li>
-                            <li className="max-w-[109px]"></li>
-                        </ul>
-                    )}
+                    <ul>
+                        {lists.map((element) => (
+                            <AppListsLi
+                                key={element.id}
+                                id={element.id}
+                                name={element.name}
+                                url={element.url}
+                            />
+                        ))}
+                    </ul>
                 </div>
             ) : (
-                "Brak list"
+                <ul className="my-lists-loading pt-[15px]">
+                    <li className="max-w-[145px]"></li>
+                    <li className="max-w-[138px]"></li>
+                    <li className="max-w-[89px]"></li>
+                    <li className="max-w-[126px]"></li>
+                    <li className="max-w-[133px]"></li>
+                    <li className="max-w-[109px]"></li>
+                </ul>
             )}
 
             <button className="btn btn-default mt-8">Dodaj listę</button>
