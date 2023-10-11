@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
-import prisma from "@/lib/db"
 
 export async function GET(request: Request) {
     const { userId } = auth()
-
-    // await prisma.$connect()
 
     try {
         if (!userId)
@@ -14,13 +11,15 @@ export async function GET(request: Request) {
                 { status: 401 }
             )
 
-        const user = await prisma.user.create({
-            data: {
-                email: "elsa@prisma.io",
-                name: "Elsa Prisma",
-                preferences: [],
-            },
-        })
+        // const user = await prisma.user.create({
+        //     data: {
+        //         email: "elsa@prisma.io",
+        //         name: "Elsa Prisma",
+        //         preferences: [],
+        //     },
+        // })
+
+        const user = {}
 
         return NextResponse.json({ body: user }, { status: 200 })
     } catch (error) {
