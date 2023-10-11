@@ -7,3 +7,55 @@
     width: 5px;
     border-radius: 5px;
 }
+
+.my-lists-loading li {
+    list-style: none;
+    background-color: #d0d6e5;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 29px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.my-lists-loading li::after {
+    content: "";
+    width: calc(100%);
+    height: calc(100%);
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: linear-gradient(
+            90deg,
+            transparent,
+            rgba(232, 236, 245, 0.5) 50%,
+            transparent 100%
+        ),
+        linear-gradient(#d0d6e5 100px, transparent 0),
+        linear-gradient(#d0d6e5 16px, transparent 0),
+        linear-gradient(#d0d6e5 50px, transparent 0);
+    background-repeat: no-repeat;
+    background-size:
+        75px 175px,
+        100% 100px,
+        100% 16px,
+        100% 30px;
+    background-position:
+        -140px 0,
+        center 0,
+        center 115px,
+        center 142px;
+    box-sizing: border-box;
+    animation: animloader 1.2s linear infinite;
+}
+
+@keyframes animloader {
+    to {
+        background-position:
+            140px 0,
+            center 0,
+            center 115px,
+            center 142px;
+    }
+}
