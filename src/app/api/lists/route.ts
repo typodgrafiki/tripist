@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
+import prisma from "@/lib/prismaClient"
 
 export async function GET(request: Request) {
     const { userId } = auth()
+
+    console.log(userId)
 
     try {
         if (!userId)
@@ -11,22 +14,21 @@ export async function GET(request: Request) {
                 { status: 401 }
             )
 
-        // const user = await prisma.user.create({
-        //     data: {
-        //         email: "elsa@prisma.io",
-        //         name: "Elsa Prisma",
-        //         preferences: [],
-        //     },
-        // })
+        const lists = await prisma.list.findMany({
+            where: {
+                userId: userId,
+            },
+        })
 
-        const user = {}
+        console.log(lists)
 
-        return NextResponse.json({ body: user }, { status: 200 })
+        console.log("work")
+
+        return NextResponse.json({ body: lists }, { status: 200 })
     } catch (error) {
-        console.log("no")
         return NextResponse.json(
             { error: "Internal Server Error" },
-            { status: 500 }
+            { status: 200 }
         )
     }
 }
