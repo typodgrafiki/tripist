@@ -3,6 +3,7 @@
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppListsLi({
     name,
@@ -13,30 +14,20 @@ export default function AppListsLi({
     url: string
     id: string
 }) {
+    const { setListActive } = useGlobalContext()
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
-    // const dispatch = useDispatch()
 
     const getData = async () => {
-        const headers = new Headers()
-        headers.append("ListId", id)
+        const res = await fetch(`/api/lists/${id}`)
 
-        const res = await fetch("/api/showListDetails", {
-            method: "GET",
-            headers: headers,
-        })
+        console.log("fetch")
 
         if (res.ok) {
             const data = await res.json()
+            const result = data.body
 
-            const result = {
-                id: id,
-                name: name,
-                url: url,
-                elements: data.body,
-            }
-
-            // dispatch(setList(result))
+            setListActive(result)
         } else {
             console.error("Błąd pobierania danych")
         }

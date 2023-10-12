@@ -11,7 +11,7 @@ export default function AppContent() {
     // const listUrl = params.slug
 
     useEffect(() => {
-        console.log("test1")
+        // console.log("test1")
     }, [])
 
     return (

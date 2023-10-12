@@ -5,16 +5,15 @@ import AppListsLi from "./AppListsLi"
 import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppLists() {
-    const { lists } = useGlobalContext()
+    const { lists, setLists } = useGlobalContext()
 
     useEffect(() => {
         const getDataLists = async () => {
             const res = await fetch("/api/lists")
             if (res.ok) {
                 const data = await res.json()
-                // await dispatch(setLists(data.body))
+                setLists(data.body)
                 // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
-                console.log(data.body)
             } else {
                 console.error("Błąd pobierania danych")
             }
