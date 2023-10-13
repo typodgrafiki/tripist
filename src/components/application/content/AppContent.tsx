@@ -56,10 +56,10 @@ export default function AppContent() {
             {lists.length > 0 ? (
                 // tu powinno byc if lists jest pusta
 
-                <div className="text-gray-600">
+                <>
                     {elements.length > 0 ? (
                         <>
-                            <div className="bg-white py-9 px-8 shadow-lg rounded-md">
+                            <div className="text-gray-600 bg-white py-9 px-8 shadow-lg rounded-md overflow-y-auto">
                                 <ul>
                                     {elements.map((element, index) => (
                                         <AppContentElement
@@ -80,7 +80,7 @@ export default function AppContent() {
                             Zaznacz którąś z list
                         </div>
                     )}
-                </div>
+                </>
             ) : (
                 <div className="bg-white p-10 shadow-lg rounded-md">
                     <div className="text-center">

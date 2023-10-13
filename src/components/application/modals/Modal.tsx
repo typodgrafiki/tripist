@@ -8,31 +8,31 @@ export default function Modal({ children }: { children: React.ReactNode }) {
 
     if (!openModal) return null
 
-    const handleEscKeyDown = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
-            setOpenModal(false)
-        }
-    }
+    // const handleEscKeyDown = (event: KeyboardEvent) => {
+    //     if (event.key === "Escape") {
+    //         setOpenModal(false)
+    //     }
+    // }
 
-    const handleShadowClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.target === event.currentTarget) {
-            setOpenModal(false)
-        }
-    }
+    // const handleShadowClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    //     if (event.target === event.currentTarget) {
+    //         setOpenModal(false)
+    //     }
+    // }
 
-    useEffect(() => {
-        window.addEventListener("keydown", handleEscKeyDown)
-        return () => {
-            window.removeEventListener("keydown", handleEscKeyDown)
-        }
-    }, [])
+    // useEffect(() => {
+    //     window.addEventListener("keydown", handleEscKeyDown)
+    //     return () => {
+    //         window.removeEventListener("keydown", handleEscKeyDown)
+    //     }
+    // }, [])
 
     if (openModal) {
         return (
             <>
                 <div
-                    className="modal-overlay flex items-center justify-center"
-                    onClick={handleShadowClick}
+                    className="modal-overlay flex items-center justify-center fixed opacity-90 top-0 left-0 right-0 bottom-0 z-10"
+                    // onClick={handleShadowClick}
                 >
                     <div className="bg-white rounded-3xl shadow-2xl p-5">
                         {children}

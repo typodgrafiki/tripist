@@ -87,12 +87,8 @@
     opacity: 1;
 }
 
-.shadow-modal {
+.modal-overlay {
     background-color: #77787d;
-    opacity: 0.9;
-    position: fixed;
-    inset: 0;
-    z-index: 10;
 }
 
 .svg-stroke {
