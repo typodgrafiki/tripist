@@ -14,7 +14,7 @@ interface ListsProps {
     name: string
     type?: string
     url: string
-    elements: ListElementsProps[] | null
+    elements: ListElementsProps[]
 }
 
 interface ListElementsProps {
@@ -27,40 +27,45 @@ interface ListElementsProps {
 interface ListActiveProps {
     id: string | null
     name: string | null
-    elements: ListElementsProps[] | null
+    elements: ListElementsProps[]
 }
 
 interface AppContextType {
     isConnected: boolean
     setIsConnected: Dispatch<SetStateAction<boolean>>
-    lists: ListsProps[] | null
-    setLists: Dispatch<SetStateAction<ListsProps[] | null>>
+    lists: ListsProps[]
+    setLists: Dispatch<SetStateAction<ListsProps[]>>
     listActive: ListActiveProps
     setListActive: Dispatch<SetStateAction<ListActiveProps>>
     listActiveLoading: boolean
     setListActiveLoading: Dispatch<SetStateAction<boolean>>
+    openModal: boolean
+    setOpenModal: Dispatch<SetStateAction<boolean>>
 }
 
 const AppContext = createContext<AppContextType>({
     isConnected: true,
     setIsConnected: () => {},
-    lists: null,
+    lists: [],
     setLists: () => {},
-    listActive: { id: null, name: null, elements: null },
+    listActive: { id: null, name: null, elements: [] },
     setListActive: () => {},
     listActiveLoading: false,
     setListActiveLoading: () => {},
+    openModal: false,
+    setOpenModal: () => {},
 })
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [isConnected, setIsConnected] = useState(true)
-    const [lists, setLists] = useState<ListsProps[] | null>(null)
+    const [lists, setLists] = useState<ListsProps[]>([])
     const [listActive, setListActive] = useState<ListActiveProps>({
         id: null,
         name: null,
-        elements: null,
+        elements: [],
     })
     const [listActiveLoading, setListActiveLoading] = useState(false)
+    const [openModal, setOpenModal] = useState(false)
 
     return (
         <AppContext.Provider
@@ -73,6 +78,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
                 setListActive,
                 listActiveLoading,
                 setListActiveLoading,
+                openModal,
+                setOpenModal,
             }}
         >
             {children}

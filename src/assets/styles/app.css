@@ -35,52 +35,11 @@
     width: 5px;
 }
 
-.my-lists-loading li::after {
-    content: "";
-    width: calc(100%);
-    height: calc(100%);
-    top: 0;
-    left: 0;
-    position: absolute;
-    background-image: linear-gradient(
-            90deg,
-            transparent,
-            rgba(232, 236, 245, 0.5) 50%,
-            transparent 100%
-        ),
-        linear-gradient(#d0d6e5 100px, transparent 0),
-        linear-gradient(#d0d6e5 16px, transparent 0),
-        linear-gradient(#d0d6e5 50px, transparent 0);
-    background-repeat: no-repeat;
-    background-size:
-        75px 175px,
-        100% 100px,
-        100% 16px,
-        100% 30px;
-    background-position:
-        -140px 0,
-        center 0,
-        center 115px,
-        center 142px;
-    box-sizing: border-box;
-    animation: animloader 1.2s linear infinite;
-}
-
-@keyframes animloader {
-    to {
-        background-position:
-            140px 0,
-            center 0,
-            center 115px,
-            center 142px;
-    }
-}
-
 .element-row .round {
     position: relative;
 }
 
-.element-row .round label {
+.element-row .round .label {
     background-color: #fff;
     border: 1px solid #c5c8d1;
     border-radius: 50%;
@@ -90,7 +49,7 @@
     display: block;
 }
 
-.element-row .round label:after {
+.element-row .round .label:after {
     border: 2px solid #fff;
     border-top: none;
     border-right: none;
@@ -110,11 +69,33 @@
     opacity: 0;
 }
 
-.element-row .round input[type="checkbox"]:checked + label {
+.element-row .round input[type="checkbox"]:checked + .label {
     background-color: var(--primary);
     border-color: var(--primary);
 }
 
-.element-row .round input[type="checkbox"]:checked + label:after {
+.element-row .round input[type="checkbox"]:checked + .label:after {
     opacity: 1;
+}
+
+.element-row .element-edit {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.element-row:hover .element-edit {
+    opacity: 1;
+}
+
+.shadow-modal {
+    background-color: #77787d;
+    opacity: 0.9;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+}
+
+.svg-stroke {
+    /* #52545c */
+    stroke: currentColor;
 }

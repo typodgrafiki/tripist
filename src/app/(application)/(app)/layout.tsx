@@ -1,6 +1,7 @@
 import React from "react"
 import AppAside from "@/components/application/aside/AppAside"
 import { AppProvider } from "@/context/AppContext"
+import Modal from "@/components/application/modals/Modal"
 import "@/assets/styles/app.css"
 
 export default function BackLayout({
@@ -16,6 +17,7 @@ export default function BackLayout({
                 </aside>
                 <main className="content w-9/12">{children}</main>
             </div>
+            <Modal children="test" />
         </AppProvider>
     )
 }

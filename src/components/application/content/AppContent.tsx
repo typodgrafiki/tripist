@@ -7,6 +7,7 @@ import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppContent() {
     const {
+        lists,
         listActive,
         setListActive,
         listActiveLoading,
@@ -45,31 +46,43 @@ export default function AppContent() {
 
     return (
         <>
-            <div>{listActiveLoading && "loading"}</div>
-            {elements ? (
-                <>
-                    <div className="text-gray-600">
-                        {elements.length > 0 ? (
-                            <ul>
-                                {elements.map((element, index) => (
-                                    <AppContentElement
-                                        key={element.id}
-                                        name={element.name}
-                                        done={element.status}
-                                        index={index}
-                                    />
-                                ))}
-                            </ul>
-                        ) : (
-                            <div>
-                                Nie udało się wczytać elementów / tablica jest
-                                pusta
+            {listActiveLoading && (
+                <div>
+                    {/* <div className="loader"></div> */}
+                    Loading...
+                </div>
+            )}
+
+            {lists.length > 0 ? (
+                // tu powinno byc if lists jest pusta
+
+                <div className="text-gray-600">
+                    {elements.length > 0 ? (
+                        <>
+                            <div className="bg-white py-9 px-8 shadow-lg rounded-md">
+                                <ul>
+                                    {elements.map((element, index) => (
+                                        <AppContentElement
+                                            key={element.id}
+                                            name={element.name}
+                                            done={element.status}
+                                            index={index}
+                                        />
+                                    ))}
+                                </ul>
                             </div>
-                        )}
-                    </div>
-                </>
+                            <div>
+                                <button>Odznacz wszystko -</button>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="bg-white p-10 shadow-lg rounded-md">
+                            Zaznacz którąś z list
+                        </div>
+                    )}
+                </div>
             ) : (
-                <>
+                <div className="bg-white p-10 shadow-lg rounded-md">
                     <div className="text-center">
                         <p className="text-slate-700 mb-5">
                             Zauważyliśmy, że Twój panel jest jeszcze pusty. Ale
@@ -84,7 +97,7 @@ export default function AppContent() {
                             Stwórz swoją pierwszą listę
                         </button>
                     </div>
-                </>
+                </div>
             )}
         </>
     )

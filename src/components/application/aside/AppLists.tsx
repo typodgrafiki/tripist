@@ -3,9 +3,14 @@
 import { useEffect } from "react"
 import AppListsLi from "./AppListsLi"
 import { useGlobalContext } from "@/context/AppContext"
+import "@/assets/styles/app-loading.css"
 
 export default function AppLists() {
-    const { lists, setLists } = useGlobalContext()
+    const { lists, setLists, setOpenModal } = useGlobalContext()
+
+    const handleCreateList = () => {
+        setOpenModal(true)
+    }
 
     useEffect(() => {
         const getDataLists = async () => {
@@ -47,7 +52,12 @@ export default function AppLists() {
                 </ul>
             )}
 
-            <button className="btn btn-default mt-8">Dodaj listę</button>
+            <button
+                className="btn btn-default mt-8"
+                onClick={handleCreateList}
+            >
+                Dodaj listę
+            </button>
         </>
     )
 }
