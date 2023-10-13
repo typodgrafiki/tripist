@@ -1,13 +1,11 @@
-import AppTitle from "@/components/application/AppTitle"
-import AppContent from "@/components/application/AppContent"
+import AppTitle from "@/components/application/title/AppTitle"
+import AppContent from "@/components/application/content/AppContent"
 
 export default function Dashboard() {
     return (
         <>
             <AppTitle />
-            <div className="bg-white p-10 shadow-lg rounded-md">
-                <AppContent />
-            </div>
+            <AppContent />
         </>
     )
 }

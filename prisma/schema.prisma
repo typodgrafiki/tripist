@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_LOCAL")
 }
 
 model User {
@@ -31,6 +31,8 @@ model List {
   user            User   @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
   predefined      Boolean   @default(false)
+  
+  @@index([userId], name: "idx_userId")
 }
 
 model ListItem {

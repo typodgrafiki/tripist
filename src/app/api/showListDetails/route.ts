@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
-import prisma from "@/lib/db"
 
 export async function GET(request: Request) {
     const { userId } = auth()
@@ -19,11 +18,11 @@ export async function GET(request: Request) {
                 { status: 401 }
             )
 
-        const list = await prisma.listItem.findMany({
-            where: {
-                listId: id,
-            },
-        })
+        // const list = await prisma.listItem.findMany({
+        //     where: {
+        //         listId: id,
+        //     },
+        // })
 
         // const result = {
         //     id: id,
@@ -32,7 +31,7 @@ export async function GET(request: Request) {
         //     elements: list,
         // }
 
-        return NextResponse.json({ body: list }, { status: 200 })
+        // return NextResponse.json({ body: list }, { status: 200 })
     } catch (error) {
         return NextResponse.json(
             { error: "Internal Server Error" },

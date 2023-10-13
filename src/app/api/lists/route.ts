@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
-import prisma from "@/lib/db"
+import prisma from "@/lib/prismaClient"
 
 export async function GET(request: Request) {
     const { userId } = auth()
@@ -26,3 +26,13 @@ export async function GET(request: Request) {
         )
     }
 }
+
+export async function HEAD(request: Request) {}
+
+export async function POST(request: Request) {}
+
+export async function PUT(request: Request) {}
+
+export async function DELETE(request: Request) {}
+
+export async function PATCH(request: Request) {}
