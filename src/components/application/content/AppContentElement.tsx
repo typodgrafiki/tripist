@@ -7,10 +7,12 @@ export default function AppContentElement({
     name,
     done,
     index,
+    category
 }: {
     name: string
     done: boolean
     index: number
+    // category: string[]
 }) {
     return (
         <li className="element-row px-1 border-t flex gap-3 items-stretch hover:bg-slate-50">

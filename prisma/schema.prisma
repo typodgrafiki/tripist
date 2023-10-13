@@ -17,6 +17,7 @@ model User {
   surname   String?
   email     String    @unique
   image     String?
+  categories Category[]
   preferences String[]
   lists     List[]    @relation("UserLists")
 }
@@ -36,12 +37,22 @@ model List {
 }
 
 model ListItem {
+  id            Int    @id @default(autoincrement())
+  name          String
+  status        Boolean
+  listId        String
+  list          List   @relation(fields: [listId], references: [id])
+  categories    Category[] 
+  
+  @@index([listId], name: "idx_listId")
+}
+
+model Category {
   id       Int    @id @default(autoincrement())
   name     String
-  category String?
-  status   Boolean // "Spakowany" lub "Niespakowany"
-  listId   String
-  list     List   @relation(fields: [listId], references: [id])
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  items    ListItem[]
 }
 
 model PredefinedList {

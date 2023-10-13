@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { useRouter, usePathname, useParams } from "next/navigation"
 import AppContentElement from "@/components/application/content/AppContentElement"
 import { useGlobalContext } from "@/context/AppContext"
 
@@ -13,9 +12,6 @@ export default function AppContent() {
         listActiveLoading,
         setListActiveLoading,
     } = useGlobalContext()
-
-    const params = useParams()
-    const listUrl = params.slug
 
     const { id, elements } = listActive
 
@@ -62,17 +58,22 @@ export default function AppContent() {
                             <div className="text-gray-600 bg-white py-9 px-8 shadow-lg rounded-md overflow-y-auto">
                                 <ul>
                                     {elements.map((element, index) => (
-                                        <AppContentElement
-                                            key={element.id}
-                                            name={element.name}
-                                            done={element.status}
-                                            index={index}
-                                        />
+                                        <>
+                                            <AppContentElement
+                                                key={element.id}
+                                                name={element.name}
+                                                done={element.status}
+                                                index={index}
+                                                category={element.category}
+                                            />
+                                            {console.log(element.category)}
+                                        </>
+                                        
                                     ))}
                                 </ul>
                             </div>
-                            <div>
-                                <button>Odznacz wszystko -</button>
+                            <div className="mt-2">
+                                <button className="hover:text-[var(--primary)]">Odznacz wszystko -</button>
                             </div>
                         </>
                     ) : (

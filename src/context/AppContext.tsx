@@ -14,6 +14,11 @@ interface ListsProps {
     name: string
     type?: string
     url: string
+}
+
+interface ListActiveProps {
+    id: string | null
+    name: string | null
     elements: ListElementsProps[]
 }
 
@@ -21,13 +26,7 @@ interface ListElementsProps {
     id: string
     name: string
     status: boolean
-    category?: string
-}
-
-interface ListActiveProps {
-    id: string | null
-    name: string | null
-    elements: ListElementsProps[]
+    category?: string[]
 }
 
 interface AppContextType {
