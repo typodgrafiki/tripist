@@ -14,28 +14,22 @@ export default function AppListsLi({
     url: string
     id: string
 }) {
-    const { setListActive } = useGlobalContext()
+    const { listActive, setListActive } = useGlobalContext()
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
+    const { id: activeId } = listActive
 
-    const getData = async () => {
-        const res = await fetch(`/api/lists/${id}`)
-
-        console.log("fetch")
-
-        if (res.ok) {
-            const data = await res.json()
-            const result = data.body
-
-            setListActive(result)
-        } else {
-            console.error("Błąd pobierania danych")
-        }
+    const changeActive = () => {
+        setListActive((prevState) => ({
+            ...prevState,
+            id: id,
+            name: name,
+        }))
     }
 
     useEffect(() => {
         if (pathname === thisUrl) {
-            getData()
+            changeActive()
         }
     }, [])
 
@@ -46,10 +40,10 @@ export default function AppListsLi({
                     href={thisUrl}
                     className={
                         pathname === thisUrl
-                            ? "list-link-active block font-semibold text-gray-900 bg-white rounded-lg px-5 py-2"
-                            : "block px-5 pl-0 py-2 hover:text-gray-900"
+                            ? "list-link list-link-active block font-semibold text-gray-900 bg-white rounded-lg px-5 py-2"
+                            : "list-link block px-5 pl-0 py-2 hover:text-gray-900 focus:font-semibold focus:text-gray-900 focus:bg-white focus:rounded-lg focus:pl-2"
                     }
-                    onClick={getData}
+                    onClick={changeActive}
                 >
                     {name}
                 </Link>

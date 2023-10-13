@@ -3,7 +3,6 @@ import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 
 export async function GET(request: Request) {
-    console.log("api2")
     const { userId } = auth()
 
     try {
@@ -37,4 +36,3 @@ export async function PUT(request: Request) {}
 export async function DELETE(request: Request) {}
 
 export async function PATCH(request: Request) {}
- 

@@ -21,6 +21,7 @@ export async function GET(request: Request, context: IContext) {
             )
 
         const listId = context.params.id
+
         const list = await prisma.listItem.findMany({
             where: {
                 listId: listId,
