@@ -26,7 +26,13 @@ interface ListElementsProps {
     id: string
     name: string
     status: boolean
-    category?: string[]
+    categories: Categories[]
+}
+
+export interface Categories {
+    id: number
+    name: string
+    userId: string
 }
 
 interface AppContextType {
@@ -36,10 +42,6 @@ interface AppContextType {
     setLists: Dispatch<SetStateAction<ListsProps[]>>
     listActive: ListActiveProps
     setListActive: Dispatch<SetStateAction<ListActiveProps>>
-    listActiveLoading: boolean
-    setListActiveLoading: Dispatch<SetStateAction<boolean>>
-    openModal: boolean
-    setOpenModal: Dispatch<SetStateAction<boolean>>
 }
 
 const AppContext = createContext<AppContextType>({
@@ -49,10 +51,6 @@ const AppContext = createContext<AppContextType>({
     setLists: () => {},
     listActive: { id: null, name: null, elements: [] },
     setListActive: () => {},
-    listActiveLoading: false,
-    setListActiveLoading: () => {},
-    openModal: false,
-    setOpenModal: () => {},
 })
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
@@ -63,8 +61,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         name: null,
         elements: [],
     })
-    const [listActiveLoading, setListActiveLoading] = useState(false)
-    const [openModal, setOpenModal] = useState(false)
 
     return (
         <AppContext.Provider
@@ -75,10 +71,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
                 setLists,
                 listActive,
                 setListActive,
-                listActiveLoading,
-                setListActiveLoading,
-                openModal,
-                setOpenModal,
             }}
         >
             {children}

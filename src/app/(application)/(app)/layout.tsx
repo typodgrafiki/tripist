@@ -1,9 +1,9 @@
 import React from "react"
 import AppAside from "@/components/application/aside/AppAside"
 import { AppProvider } from "@/context/AppContext"
+import { ModalProvider } from "@/context/ModalContext"
 import Modal from "@/components/application/modals/Modal"
 import "@/assets/styles/app.css"
-import CreateList from "@/components/application/modals/CreateList"
 
 export default function BackLayout({
     children,
@@ -12,15 +12,17 @@ export default function BackLayout({
 }) {
     return (
         <AppProvider>
-            <div className="dashboard relative flex justify-center p-12 h-screen">
-                <aside className="w-3/12 flex flex-col justify-between">
-                    <AppAside />
-                </aside>
-                <main className="content w-9/12 flex flex-col">{children}</main>
-            </div>
-            <Modal>
-                <CreateList />
-            </Modal>
+            <ModalProvider>
+                <div className="dashboard relative sm:flex justify-center sm:p-8 md:p-12 h-screen">
+                    <aside className="flex justify-between p-5 sm:w-3/12 sm:p-0 sm:flex-col">
+                        <AppAside />
+                    </aside>
+                    <main className="content sm:w-9/12 flex flex-col bg-white sm:bg-transparent">
+                        {children}
+                    </main>
+                </div>
+                <Modal />
+            </ModalProvider>
         </AppProvider>
     )
 }

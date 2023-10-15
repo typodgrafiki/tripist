@@ -1,17 +1,12 @@
 "use client"
 
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import AppContentElement from "@/components/application/content/AppContentElement"
 import { useGlobalContext } from "@/context/AppContext"
 
 export default function AppContent() {
-    const {
-        lists,
-        listActive,
-        setListActive,
-        listActiveLoading,
-        setListActiveLoading,
-    } = useGlobalContext()
+    const { lists, listActive, setListActive } = useGlobalContext()
+    const [loading, setLoading] = useState(true)
 
     const { id, elements } = listActive
 
@@ -20,13 +15,12 @@ export default function AppContent() {
             const res = await fetch(`/api/lists/${id}`)
             if (res.ok) {
                 const data = await res.json()
-                const result = data.body
-
-                setListActiveLoading(false)
-                setListActive((prevState) => ({
+                const result = await data.body?.elements
+                await setListActive((prevState) => ({
                     ...prevState,
                     elements: result,
                 }))
+                setLoading(false)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -36,26 +30,24 @@ export default function AppContent() {
     }
 
     useEffect(() => {
-        setListActiveLoading(true)
+        setLoading(true)
         getListActive()
     }, [id])
 
     return (
         <>
-            {listActiveLoading && (
-                <div>
-                    {/* <div className="loader"></div> */}
-                    Loading...
+            {loading ? (
+                <div className="flex justify-center text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:py-9 sm:px-8">
+                    <div className="loader"></div>
+                    {/* Loading... */}
                 </div>
-            )}
-
-            {lists.length > 0 ? (
+            ) : lists.length > 0 ? (
                 // tu powinno byc if lists jest pusta
 
                 <>
-                    {elements.length > 0 ? (
+                    {elements?.length > 0 ? (
                         <>
-                            <div className="text-gray-600 bg-white py-9 px-8 shadow-lg rounded-md overflow-y-auto">
+                            <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:py-9 sm:px-8">
                                 <ul>
                                     {elements.map((element, index) => (
                                         <>
@@ -64,16 +56,16 @@ export default function AppContent() {
                                                 name={element.name}
                                                 done={element.status}
                                                 index={index}
-                                                category={element.category}
+                                                category={element.categories}
                                             />
-                                            {console.log(element.category)}
                                         </>
-                                        
                                     ))}
                                 </ul>
                             </div>
                             <div className="mt-2">
-                                <button className="hover:text-[var(--primary)]">Odznacz wszystko -</button>
+                                <button className="hover:text-[var(--primary)]">
+                                    Odznacz wszystko -
+                                </button>
                             </div>
                         </>
                     ) : (

@@ -23,12 +23,27 @@ export async function GET(request: Request, context: IContext) {
         const listId = context.params.id
 
         const list = await prisma.listItem.findMany({
+            // where: {
+            //     listId: listId,
+            // },
+        })
+
+        const list2 = await prisma.list.findUnique({
             where: {
-                listId: listId,
+                id: listId,
+            },
+            include: {
+                elements: {
+                    include: {
+                        categories: true, // Włączamy informacje o kategoriach
+                    },
+                },
             },
         })
 
-        return NextResponse.json({ body: list }, { status: 200 })
+        console.log(list2)
+
+        return NextResponse.json({ body: list2 }, { status: 200 })
     } catch (error) {
         return NextResponse.json(
             { error: "Internal Server Error" },

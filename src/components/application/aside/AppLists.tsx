@@ -1,23 +1,22 @@
 "use client"
 
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import AppListsLi from "./AppListsLi"
 import { useGlobalContext } from "@/context/AppContext"
+import { useModal } from "@/context/ModalContext"
 import "@/assets/styles/app-loading.css"
 
 export default function AppLists() {
-    const { lists, setLists, setOpenModal } = useGlobalContext()
-
-    const handleCreateList = () => {
-        setOpenModal(true)
-    }
+    const { lists, setLists } = useGlobalContext()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const getDataLists = async () => {
             const res = await fetch("/api/lists")
             if (res.ok) {
                 const data = await res.json()
-                setLists(data.body)
+                await setLists(data.body)
+                setLoading(false)
                 // Sprawdzic czy w url jest sciezka - jesli tak to aktywowac liste (jesli istnieje, jesli nie to na strone glowna)
             } else {
                 console.error("Błąd pobierania danych")
@@ -28,8 +27,17 @@ export default function AppLists() {
 
     return (
         <>
-            {lists ? (
-                <div className="my-lists text-gray-500 pr-7">
+            {loading ? (
+                <ul className="my-lists-loading pt-[15px]">
+                    <li className="max-w-[145px]"></li>
+                    <li className="max-w-[138px]"></li>
+                    <li className="max-w-[89px]"></li>
+                    <li className="max-w-[126px]"></li>
+                    <li className="max-w-[133px]"></li>
+                    <li className="max-w-[109px]"></li>
+                </ul>
+            ) : (
+                <div className="hidden sm:block my-lists text-gray-500 pr-7">
                     <ul>
                         {lists.map((element) => (
                             <AppListsLi
@@ -41,23 +49,33 @@ export default function AppLists() {
                         ))}
                     </ul>
                 </div>
-            ) : (
-                <ul className="my-lists-loading pt-[15px]">
-                    <li className="max-w-[145px]"></li>
-                    <li className="max-w-[138px]"></li>
-                    <li className="max-w-[89px]"></li>
-                    <li className="max-w-[126px]"></li>
-                    <li className="max-w-[133px]"></li>
-                    <li className="max-w-[109px]"></li>
-                </ul>
             )}
+            <Button />
+        </>
+    )
+}
 
+const Button = () => {
+    const { modalContent, setModalContent, setIsModalOpen } = useModal()
+
+    const handleOpenModal = () => {
+        setModalContent(<Content />)
+        setIsModalOpen(true)
+    }
+
+    return (
+        <>
             <button
-                className="btn btn-default mt-8"
-                onClick={handleCreateList}
+                className="hidden sm:inline-block btn btn-default mt-8"
+                onClick={handleOpenModal}
             >
                 Dodaj listę
             </button>
+            <div>{modalContent}</div>
         </>
     )
+}
+
+const Content = () => {
+    return <div> div z contentem</div>
 }
