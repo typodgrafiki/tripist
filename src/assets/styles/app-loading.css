@@ -105,3 +105,29 @@
             center 142px;
     }
 }
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    top: -10px;
+    background: #e2e3e8;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: var(--primary);
+    animation: progressBar 5s linear forwards;
+}
+
+@keyframes progressBar {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}

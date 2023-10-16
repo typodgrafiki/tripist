@@ -21,6 +21,7 @@ export default function ButtonDelete() {
                 await setListActive({
                     id: null,
                     name: null,
+                    url: "",
                     elements: [],
                 })
                 setLists((prevLists) =>

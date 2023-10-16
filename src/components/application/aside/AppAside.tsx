@@ -7,10 +7,10 @@ import Logo from "./Logo"
 export default function AppAside() {
     return (
         <>
-            <div className="top">
-                <Logo />
-                <AppLists />
-            </div>
+            {/* <div className="top"> */}
+            <Logo />
+            <AppLists />
+            {/* </div> */}
             <UserButton afterSignOutUrl="/" />
         </>
     )

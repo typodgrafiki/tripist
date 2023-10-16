@@ -38,7 +38,7 @@ export default function AppLists() {
                     <li className="max-w-[109px]"></li>
                 </ul>
             ) : (
-                <div className="hidden sm:block my-lists text-gray-500 pr-7">
+                <div className="hidden sm:block my-lists text-gray-500 pr-7 sm:overflow-y-auto">
                     <ul>
                         {lists.map((element) => (
                             <AppListsLi
@@ -66,7 +66,7 @@ const Button = () => {
 
     return (
         <button
-            className="hidden sm:inline-block btn btn-default mt-8"
+            className="hidden sm:inline-block btn btn-default mt-8 self-start"
             onClick={handleOpenModal}
         >
             Dodaj listę

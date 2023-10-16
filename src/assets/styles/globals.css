@@ -45,10 +45,15 @@
         color: #fff;
     }
 
-    .btn:is(:hover, :focus, :active) {
+    .btn:not([disabled]):is(:hover, :focus, :active) {
         background-color: var(--dark);
         border-color: var(--dark);
         color: #fff;
+    }
+
+    .btn-green {
+        background-color: #27ba0f;
+        border-color: #27ba0f;
     }
 
     .form-control {
@@ -60,5 +65,10 @@
     .form-control::placeholder {
         font-style: italic;
         color: #52545c;
+    }
+
+    .form-control[disabled] {
+        border-color: #ccc;
+        opacity: 0.5;
     }
 }

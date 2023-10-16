@@ -24,7 +24,6 @@ export default function Page() {
                     <ButtonDelete />
                 </div>
             </div>
-
             <AppContent />
         </>
     )

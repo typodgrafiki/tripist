@@ -10,6 +10,7 @@ export default function Logo() {
         setListActive({
             id: null,
             name: null,
+            url: "",
             elements: [],
         })
     }

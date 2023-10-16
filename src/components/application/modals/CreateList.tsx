@@ -1,11 +1,28 @@
 "use client"
 
 import { useState, useRef } from "react"
+import { useRouter } from "next/navigation"
+import { useGlobalContext } from "@/context/AppContext"
+import { useModal } from "@/context/ModalContext"
+import ProgressBar from "../buttons/progressBar"
+import { ListsProps } from "@/context/AppContext"
 
 export default function CreateList() {
+    const router = useRouter()
     const [title, setTitle] = useState("")
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
+    const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
+    const { lists, setLists, listActive, setListActive } = useGlobalContext()
+    const { setIsModalOpen } = useModal()
+
+    const close = () => {
+        router.push(`/dashboard/${listActive.url}`)
+        setTitle("")
+        setSuccess(false)
+        setIsModalOpen(false)
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -22,18 +39,28 @@ export default function CreateList() {
             if (res.ok) {
                 const data = await res.json()
                 const response = data.body
-                setTitle("")
                 formRef.current?.reset()
+                setSuccess(true)
 
-                // await setListActive({
-                //     id: null,
-                //     name: null,
-                //     elements: [],
-                // })
-                // setLists((prevLists) =>
-                //     prevLists.filter((item) => item.id !== id)
-                // )
-                // router.push("/dashboard")
+                setListActive({
+                    id: response.id,
+                    url: response.url,
+                    name: response.name,
+                    elements: [],
+                })
+
+                setLists((prevLists: ListsProps[]) => [
+                    ...prevLists,
+                    {
+                        id: response.id,
+                        name: response.name,
+                        type: undefined,
+                        createAt: new Date(),
+                        url: response.url,
+                        userId: response.userId,
+                        predefined: false,
+                    },
+                ])
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -62,14 +89,47 @@ export default function CreateList() {
                         placeholder="np. Madryt '23, Islandia, Siłownia"
                         className="form-control grow"
                         onChange={handleInputChange}
+                        disabled={success}
                     />
+
                     <button
                         type="submit"
-                        className="btn btn-primary"
+                        className={`flex justify-center items-center btn btn-primary ${
+                            success && "btn-green"
+                        }`}
+                        disabled={success || loading}
                     >
-                        {loading ? "loading" : "Stwórz listę"}
+                        {loading ? (
+                            <div className="loader small"></div>
+                        ) : success ? (
+                            <>
+                                Dodano
+                                <svg
+                                    width="9"
+                                    height="7"
+                                    viewBox="0 0 9 7"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="ml-2"
+                                >
+                                    <path
+                                        d="M1 3.08333L3.57895 6L8 1"
+                                        stroke="white"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </>
+                        ) : (
+                            "Stwórz listę"
+                        )}
+
+                        {/* tutaj powinno sie ustawic licznik odliczania 5s po dodaniu - po czym modal sie zamknie i bedzie routing na ta liste */}
                     </button>
                 </div>
+
+                {success && <ProgressBar closeFn={close} />}
 
                 <div>City / 2 dni / importuj listę...</div>
             </form>

@@ -66,7 +66,7 @@ export async function POST(request: Request, context: IContext) {
             },
         })
 
-        return NextResponse.json({ body: url }, { status: 200 })
+        return NextResponse.json({ body: newElement }, { status: 200 })
     } catch (error) {
         return NextResponse.json(
             { error: "Internal Server Error" },

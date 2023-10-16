@@ -24,6 +24,7 @@ export default function AppListsLi({
             ...prevState,
             id: id,
             name: name,
+            url: url,
         }))
     }
 

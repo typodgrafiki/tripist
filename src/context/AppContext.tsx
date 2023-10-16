@@ -9,7 +9,7 @@ import {
     ReactNode,
 } from "react"
 
-interface ListsProps {
+export interface ListsProps {
     id: string
     name: string
     type?: string
@@ -19,6 +19,7 @@ interface ListsProps {
 interface ListActiveProps {
     id: string | null
     name: string | null
+    url: string
     elements: ListElementsProps[]
 }
 
@@ -49,7 +50,7 @@ const AppContext = createContext<AppContextType>({
     setIsConnected: () => {},
     lists: [],
     setLists: () => {},
-    listActive: { id: null, name: null, elements: [] },
+    listActive: { id: null, name: null, url: "", elements: [] },
     setListActive: () => {},
 })
 
@@ -59,6 +60,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [listActive, setListActive] = useState<ListActiveProps>({
         id: null,
         name: null,
+        url: "",
         elements: [],
     })
 
