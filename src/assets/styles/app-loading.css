@@ -5,6 +5,12 @@
     position: relative;
     animation: rotate 1s linear infinite;
 }
+
+.loader.small {
+    width: 15px;
+    height: 15px;
+}
+
 .loader::before,
 .loader::after {
     content: "";
@@ -15,9 +21,19 @@
     border: 5px solid #e1e8f7;
     animation: prixClipFix 2s linear infinite;
 }
+
+.loader.small::before,
+.loader.small::after {
+    border-width: 1px;
+}
+
 .loader::after {
     transform: rotate3d(90, 90, 0, 180deg);
     border-color: var(--primary);
+}
+
+.loader.small::after {
+    border-color: #2c2d32;
 }
 
 @keyframes rotate {

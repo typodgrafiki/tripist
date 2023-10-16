@@ -7,30 +7,45 @@ import { useGlobalContext } from "@/context/AppContext"
 export default function AppContent() {
     const { lists, listActive, setListActive } = useGlobalContext()
     const [loading, setLoading] = useState(true)
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(
+        null
+    )
 
     const { id, elements } = listActive
 
     const getListActive = async () => {
         try {
+            await setLoading(true)
             const res = await fetch(`/api/lists/${id}`)
             if (res.ok) {
                 const data = await res.json()
-                const result = await data.body?.elements
+                const result = await data.body
                 await setListActive((prevState) => ({
                     ...prevState,
                     elements: result,
                 }))
-                setLoading(false)
             } else {
                 console.error("Błąd pobierania danych")
             }
+            setLoading(false)
         } catch (error) {
             console.error(error)
         }
     }
 
+    const categoriesUnique = Array.from(
+        new Set(
+            elements?.flatMap((element) =>
+                element.categories.map((category) => category.name)
+            )
+        )
+    )
+
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category)
+    }
+
     useEffect(() => {
-        setLoading(true)
         getListActive()
     }, [id])
 
@@ -39,27 +54,66 @@ export default function AppContent() {
             {loading ? (
                 <div className="flex justify-center text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:py-9 sm:px-8">
                     <div className="loader"></div>
-                    {/* Loading... */}
                 </div>
             ) : lists.length > 0 ? (
-                // tu powinno byc if lists jest pusta
-
                 <>
                     {elements?.length > 0 ? (
                         <>
-                            <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:py-9 sm:px-8">
-                                <ul>
-                                    {elements.map((element, index) => (
-                                        <>
-                                            <AppContentElement
-                                                key={element.id}
-                                                name={element.name}
-                                                done={element.status}
-                                                index={index}
-                                                category={element.categories}
-                                            />
-                                        </>
+                            <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-8 sm:pt-7 sm:px-8">
+                                <div className="flex gap-6 mb-6">
+                                    <button
+                                        onClick={() => handleCategoryChange("")}
+                                        className={
+                                            categoriesUnique.some(
+                                                (el) => selectedCategory === el
+                                            )
+                                                ? "text-sm font-semibold uppercase hover:text-[var(--primary)]"
+                                                : "text-sm font-semibold uppercase text-[var(--primary)]"
+                                        }
+                                    >
+                                        Wszystko
+                                    </button>
+                                    {categoriesUnique.map((el, index) => (
+                                        <button
+                                            key={el + index}
+                                            onClick={() =>
+                                                handleCategoryChange(el)
+                                            }
+                                            className={
+                                                selectedCategory === el
+                                                    ? "text-sm font-semibold uppercase text-[var(--primary)]"
+                                                    : "text-sm font-semibold uppercase hover:text-[var(--primary)]"
+                                            }
+                                        >
+                                            {el}
+                                        </button>
                                     ))}
+                                </div>
+
+                                <ul>
+                                    {elements
+                                        .filter(
+                                            (element) =>
+                                                !selectedCategory ||
+                                                element.categories.some(
+                                                    (category) =>
+                                                        category.name ===
+                                                        selectedCategory
+                                                )
+                                        )
+                                        .map((element, index) => (
+                                            <>
+                                                <AppContentElement
+                                                    key={element.id}
+                                                    name={element.name}
+                                                    done={element.status}
+                                                    index={index}
+                                                    category={
+                                                        element.categories
+                                                    }
+                                                />
+                                            </>
+                                        ))}
                                 </ul>
                             </div>
                             <div className="mt-2">

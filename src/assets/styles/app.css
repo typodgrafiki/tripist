@@ -78,18 +78,16 @@
     opacity: 1;
 }
 
-.element-row:not(:has(.element-categories))
-{
+.element-row:not(:has(.element-categories)) {
     padding-right: 4rem;
 }
 
 .element-row .element-edit,
-.element-row .element-categories
-{
+.element-row .element-categories {
     transition: opacity 0.2s ease;
 }
 
-.element-row .element-edit, 
+.element-row .element-edit,
 .element-row:hover .element-categories {
     opacity: 0;
 }
@@ -99,7 +97,17 @@
 }
 
 .modal-overlay {
-    background-color: #77787d;
+    background-color: rgb(119 120 125 / 90%);
+    animation: fade-in 0.1s ease;
+}
+
+.modal {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    animation:
+        fade-in,
+        show-modal 0.15s ease;
 }
 
 .svg-stroke {
@@ -107,7 +115,24 @@
     stroke: currentColor;
 }
 
-.svg-fill
-{
+.svg-fill {
     fill: currentColor;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes show-modal {
+    from {
+        top: -15px;
+    }
+    to {
+        top: 0;
+    }
 }

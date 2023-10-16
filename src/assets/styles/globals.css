@@ -50,4 +50,15 @@
         border-color: var(--dark);
         color: #fff;
     }
+
+    .form-control {
+        background-color: #ecedf1;
+        border-radius: 7px;
+        padding: 10px 20px;
+    }
+
+    .form-control::placeholder {
+        font-style: italic;
+        color: #52545c;
+    }
 }

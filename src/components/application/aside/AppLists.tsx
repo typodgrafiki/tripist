@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import AppListsLi from "./AppListsLi"
 import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
+import CreateList from "@/components/application/modals/CreateList"
 import "@/assets/styles/app-loading.css"
 
 export default function AppLists() {
@@ -56,26 +57,19 @@ export default function AppLists() {
 }
 
 const Button = () => {
-    const { modalContent, setModalContent, setIsModalOpen } = useModal()
+    const { setModalContent, setIsModalOpen } = useModal()
 
     const handleOpenModal = () => {
-        setModalContent(<Content />)
+        setModalContent(<CreateList />)
         setIsModalOpen(true)
     }
 
     return (
-        <>
-            <button
-                className="hidden sm:inline-block btn btn-default mt-8"
-                onClick={handleOpenModal}
-            >
-                Dodaj listę
-            </button>
-            <div>{modalContent}</div>
-        </>
+        <button
+            className="hidden sm:inline-block btn btn-default mt-8"
+            onClick={handleOpenModal}
+        >
+            Dodaj listę
+        </button>
     )
-}
-
-const Content = () => {
-    return <div> div z contentem</div>
 }

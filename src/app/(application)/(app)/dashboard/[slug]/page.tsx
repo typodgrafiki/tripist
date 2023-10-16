@@ -4,6 +4,7 @@ import IconCopy from "@/components/application/icons/copy"
 import IconMore from "@/components/application/icons/more"
 import IconSwitch from "@/components/application/icons/switch"
 import AppTitle from "@/components/application/title/AppTitle"
+import ButtonDelete from "@/components/application/buttons/delete"
 
 export default function Page() {
     return (
@@ -20,9 +21,7 @@ export default function Page() {
                     <button className="hidden sm:inline-block">
                         <IconCopy />
                     </button>
-                    <button className="hidden sm:inline-block">
-                        <IconBin />
-                    </button>
+                    <ButtonDelete />
                 </div>
             </div>
 
