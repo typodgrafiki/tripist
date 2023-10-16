@@ -39,11 +39,11 @@ export default function ButtonDelete() {
 
     return (
         <button
-            className="hidden sm:inline-block"
+            className="hidden sm:inline-block px-1 hover:text-[var(--primary)]"
             onClick={handleClick}
         >
             {loading ? (
-                <div className="loader"></div>
+                <div className="loader small"></div>
             ) : (
                 <>
                     <IconBin />

@@ -66,7 +66,7 @@ const Button = () => {
 
     return (
         <button
-            className="hidden sm:inline-block btn btn-default mt-8 self-start"
+            className="hidden sm:inline-block btn btn-default self-start"
             onClick={handleOpenModal}
         >
             Dodaj listę

@@ -28,6 +28,7 @@ export default function CreateList() {
         e.preventDefault()
 
         try {
+            setError(false)
             await setLoading(true)
             const res = await fetch(`/api/lists`, {
                 method: "POST",
@@ -62,10 +63,12 @@ export default function CreateList() {
                     },
                 ])
             } else {
+                setError(true)
                 console.error("Błąd pobierania danych")
             }
             setLoading(false)
         } catch (error) {
+            setError(true)
             console.error(error)
         }
     }
@@ -82,7 +85,7 @@ export default function CreateList() {
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-between gap-3 mb-6">
+                <div className="flex justify-between gap-3 mb-1">
                     <input
                         type="text"
                         value={title}
@@ -124,14 +127,16 @@ export default function CreateList() {
                         ) : (
                             "Stwórz listę"
                         )}
-
-                        {/* tutaj powinno sie ustawic licznik odliczania 5s po dodaniu - po czym modal sie zamknie i bedzie routing na ta liste */}
                     </button>
                 </div>
-
+                {error && (
+                    <div className="text-red-600 text-sm">
+                        Nie zapisano zmian. Spróbuj ponownie.
+                    </div>
+                )}
                 {success && <ProgressBar closeFn={close} />}
 
-                <div>City / 2 dni / importuj listę...</div>
+                <div className="mt-4">City / 2 dni / importuj listę...</div>
             </form>
         </>
     )

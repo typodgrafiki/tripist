@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import AppContentElement from "@/components/application/content/AppContentElement"
 import { useGlobalContext } from "@/context/AppContext"
+import AddElements from "@/components/application/modals/AddElements"
+import { useModal } from "@/context/ModalContext"
 
 export default function AppContent() {
     const { lists, listActive, setListActive } = useGlobalContext()
@@ -116,11 +118,11 @@ export default function AppContent() {
                                         ))}
                                 </ul>
                             </div>
-                            <div className="mt-2">
-                                <button className="hover:text-[var(--primary)]">
-                                    Odznacz wszystko -
-                                </button>
-                            </div>
+
+                            <button className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]">
+                                Odznacz wszystko -
+                            </button>
+                            <ButtonAddElement />
                         </>
                     ) : (
                         <div className="bg-white p-10 shadow-lg rounded-md">
@@ -146,6 +148,26 @@ export default function AppContent() {
                     </div>
                 </div>
             )}
+        </>
+    )
+}
+
+const ButtonAddElement = () => {
+    const { setModalContent, setIsModalOpen } = useModal()
+
+    const handleOpenModal = () => {
+        setModalContent(<AddElements />)
+        setIsModalOpen(true)
+    }
+
+    return (
+        <>
+            <button
+                className="absolute btn btn-primary w-[80px] h-[80px] bottom-0 right-[20px] text-white block rounded-full"
+                onClick={handleOpenModal}
+            >
+                Add
+            </button>
         </>
     )
 }

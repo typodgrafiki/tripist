@@ -58,17 +58,21 @@
 
     .form-control {
         background-color: #ecedf1;
+        border-color: transparent;
         border-radius: 7px;
         padding: 10px 20px;
     }
 
     .form-control::placeholder {
         font-style: italic;
-        color: #52545c;
+        color: #7c7d80;
+    }
+    
+    .form-control:focus::placeholder {
+        opacity: .5;
     }
 
     .form-control[disabled] {
-        border-color: #ccc;
         opacity: 0.5;
     }
 }

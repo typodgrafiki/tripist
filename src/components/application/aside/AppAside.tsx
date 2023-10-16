@@ -11,7 +11,9 @@ export default function AppAside() {
             <Logo />
             <AppLists />
             {/* </div> */}
-            <UserButton afterSignOutUrl="/" />
+            <div className="flex items-end grow">
+                <UserButton afterSignOutUrl="/" />
+            </div>
         </>
     )
 }

@@ -19,7 +19,7 @@ export default function Logo() {
         <>
             <Link
                 href="/dashboard"
-                className="block sm:mb-5"
+                className="block sm:mb-2"
                 onClick={handleClick}
             >
                 <Image

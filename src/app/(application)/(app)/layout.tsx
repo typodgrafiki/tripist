@@ -14,10 +14,10 @@ export default function BackLayout({
         <AppProvider>
             <ModalProvider>
                 <div className="dashboard relative sm:flex justify-center sm:p-8 md:p-12 h-screen">
-                    <aside className="flex justify-between p-5 sm:w-3/12 sm:p-0 sm:flex-col sm:gap-4">
+                    <aside className="flex justify-start p-5 sm:w-3/12 sm:p-0 sm:flex-col sm:gap-4">
                         <AppAside />
                     </aside>
-                    <main className="content sm:w-9/12 flex flex-col bg-white sm:bg-transparent">
+                    <main className="content relative sm:w-9/12 flex flex-col bg-white sm:bg-transparent">
                         {children}
                     </main>
                 </div>
