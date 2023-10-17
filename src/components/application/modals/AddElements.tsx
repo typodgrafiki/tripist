@@ -16,11 +16,11 @@ export default function CreateLAddElements() {
     const { listActive, setListActive } = useGlobalContext()
     const { setIsModalOpen } = useModal()
 
-    const close = () => {
-        setName("")
-        setSuccess(false)
-        setIsModalOpen(false)
-    }
+    // const close = () => {
+    // setName("")
+    // setSuccess(false)
+    // setIsModalOpen(false)
+    // }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -28,9 +28,9 @@ export default function CreateLAddElements() {
         try {
             setError(false)
             await setLoading(true)
-            const res = await fetch(`/api/lists`, {
+            const res = await fetch(`/api/lists/addElement`, {
                 method: "POST",
-                body: JSON.stringify({ name: name }),
+                body: JSON.stringify({ name: name, listId: listActive.id }),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -38,15 +38,14 @@ export default function CreateLAddElements() {
             if (res.ok) {
                 const data = await res.json()
                 const response = data.body
+                response.categories = []
                 formRef.current?.reset()
                 setSuccess(true)
 
-                // setListActive({
-                //     id: response.id,
-                //     url: response.url,
-                //     name: response.name,
-                //     elements: [],
-                // })
+                setListActive((prevList) => ({
+                    ...prevList,
+                    elements: [response, ...prevList.elements],
+                }))
             } else {
                 setError(true)
                 console.error("Błąd pobierania danych")
@@ -103,9 +102,9 @@ export default function CreateLAddElements() {
                                     <path
                                         d="M1 3.08333L3.57895 6L8 1"
                                         stroke="white"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     />
                                 </svg>
                             </>
@@ -140,7 +139,6 @@ export default function CreateLAddElements() {
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-                {success && <ProgressBar closeFn={close} />}
             </form>
         </>
     )

@@ -3,16 +3,19 @@
 import IconPen from "../icons/pen"
 import IconBin from "../icons/bin"
 import { Categories } from "@/context/AppContext"
+import { removeElement } from "@/actions/removeElement"
 
 export default function AppContentElement({
     name,
     done,
     index,
+    id,
     category,
 }: {
     name: string
     done: boolean
     index: number
+    id: string
     category: Categories[]
 }) {
     return (
@@ -55,10 +58,32 @@ export default function AppContentElement({
                 <button className="px-1 hover:text-[var(--primary)]">
                     <IconPen />
                 </button>
-                <button className="px-1 hover:text-[var(--primary)]">
-                    <IconBin />
-                </button>
+                <ButtonBin
+                    key={id}
+                    id={id}
+                />
             </div>
         </li>
+    )
+}
+
+const ButtonBin = ({ id }: { id: string }) => {
+    const handleRemove = async () => {
+        try {
+            const response = await removeElement(id)
+            console.log(response)
+            console.log("Element usunięty pomyślnie")
+        } catch (error) {
+            console.error("Wystąpił błąd podczas usuwania elementu:", error)
+        }
+    }
+
+    return (
+        <button
+            className="px-1 hover:text-[var(--primary)]"
+            onClick={handleRemove}
+        >
+            <IconBin />
+        </button>
     )
 }

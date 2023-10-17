@@ -13,12 +13,12 @@ export default function AppContent() {
         null
     )
 
-    const { id, elements } = listActive
+    const { id: activeId, elements } = listActive
 
     const getListActive = async () => {
         try {
             await setLoading(true)
-            const res = await fetch(`/api/lists/${id}`)
+            const res = await fetch(`/api/lists/${activeId}`)
             if (res.ok) {
                 const data = await res.json()
                 const result = await data.body
@@ -49,7 +49,7 @@ export default function AppContent() {
 
     useEffect(() => {
         getListActive()
-    }, [id])
+    }, [activeId])
 
     return (
         <>
@@ -110,6 +110,7 @@ export default function AppContent() {
                                                     name={element.name}
                                                     done={element.status}
                                                     index={index}
+                                                    id={element.id}
                                                     category={
                                                         element.categories
                                                     }
@@ -118,11 +119,21 @@ export default function AppContent() {
                                         ))}
                                 </ul>
                             </div>
-
-                            <button className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]">
-                                Odznacz wszystko -
-                            </button>
-                            <ButtonAddElement />
+                            <div className="flex justify-between gap-4">
+                                <button className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]">
+                                    Odznacz wszystko -
+                                </button>
+                                <ButtonAddElement />
+                            </div>
+                        </>
+                    ) : elements?.length === 0 && activeId ? (
+                        <>
+                            <div className="bg-white p-10 shadow-lg rounded-md">
+                                Dodaj pozycje
+                            </div>
+                            <div className="flex justify-end gap-4">
+                                <ButtonAddElement />
+                            </div>
                         </>
                     ) : (
                         <div className="bg-white p-10 shadow-lg rounded-md">
@@ -131,7 +142,7 @@ export default function AppContent() {
                     )}
                 </>
             ) : (
-                <div className="bg-white p-10 shadow-lg rounded-md">
+                <div className="bg-white p-10 shadow-lg rounded-md ">
                     <div className="text-center">
                         <p className="text-slate-700 mb-5">
                             Zauważyliśmy, że Twój panel jest jeszcze pusty. Ale
@@ -161,13 +172,11 @@ const ButtonAddElement = () => {
     }
 
     return (
-        <>
-            <button
-                className="absolute btn btn-primary w-[80px] h-[80px] bottom-0 right-[20px] text-white block rounded-full"
-                onClick={handleOpenModal}
-            >
-                Add
-            </button>
-        </>
+        <button
+            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full"
+            onClick={handleOpenModal}
+        >
+            Add
+        </button>
     )
 }

@@ -14,7 +14,7 @@ export default function CreateList() {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { lists, setLists, listActive, setListActive } = useGlobalContext()
+    const { setLists, listActive, setListActive } = useGlobalContext()
     const { setIsModalOpen } = useModal()
 
     const close = () => {
@@ -118,9 +118,9 @@ export default function CreateList() {
                                     <path
                                         d="M1 3.08333L3.57895 6L8 1"
                                         stroke="white"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                     />
                                 </svg>
                             </>

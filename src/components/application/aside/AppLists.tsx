@@ -38,7 +38,7 @@ export default function AppLists() {
                     <li className="max-w-[109px]"></li>
                 </ul>
             ) : (
-                <div className="hidden sm:block my-lists text-gray-500 pr-7 sm:overflow-y-auto">
+                <div className="hidden sm:block my-lists text-gray-500 sm:overflow-y-auto">
                     <ul>
                         {lists.map((element) => (
                             <AppListsLi

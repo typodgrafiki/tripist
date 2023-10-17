@@ -1,3 +1,21 @@
+.btn-add-element::before,
+.btn-add-element::after {
+    content: "";
+    display: block;
+    background-color: currentColor;
+    height: 2px;
+    width: 30px;
+    border-radius: 2px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -1px);
+}
+
+.btn-add-element::after {
+    transform: translate(-50%, -1px) rotate(90deg);
+}
+
 .my-lists-loading li {
     list-style: none;
     background-color: #d0d6e5;

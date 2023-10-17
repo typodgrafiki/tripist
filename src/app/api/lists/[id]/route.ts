@@ -48,7 +48,41 @@ export async function GET(request: Request, context: IContext) {
 
 export async function HEAD(request: Request) {}
 
-export async function POST(request: Request) {}
+export async function POST(request: Request, context: IContext) {
+    const { userId } = auth()
+
+    try {
+        if (!userId)
+            return NextResponse.json(
+                { message: "Brak użytkownika" },
+                { status: 401 }
+            )
+
+        const requestBody = await request.json()
+        const { name, listId } = requestBody
+
+        if (!name)
+            return NextResponse.json(
+                { message: "Brakujące pola" },
+                { status: 401 }
+            )
+
+        const newElement = await prisma.listItem.create({
+            data: {
+                name: name,
+                status: false,
+                listId: listId,
+            },
+        })
+
+        return NextResponse.json({ body: newElement }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Internal Server Error" },
+            { status: 500 }
+        )
+    }
+}
 
 export async function PUT(request: Request) {}
 
