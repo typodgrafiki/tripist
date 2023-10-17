@@ -15,7 +15,7 @@ export default function AppContentElement({
     name: string
     done: boolean
     index: number
-    id: string
+    id: number
     category: Categories[]
 }) {
     return (
@@ -67,7 +67,7 @@ export default function AppContentElement({
     )
 }
 
-const ButtonBin = ({ id }: { id: string }) => {
+const ButtonBin = ({ id }: { id: number }) => {
     const handleRemove = async () => {
         try {
             const response = await removeElement(id)

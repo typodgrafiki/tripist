@@ -24,7 +24,7 @@ interface ListActiveProps {
 }
 
 interface ListElementsProps {
-    id: string
+    id: number
     name: string
     status: boolean
     categories: Categories[]
