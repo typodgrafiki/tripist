@@ -106,7 +106,7 @@ export default function AppContent() {
                                         .map((element, index) => (
                                             <>
                                                 <AppContentElement
-                                                    key={element.id}
+                                                    key={element.id + index}
                                                     name={element.name}
                                                     done={element.status}
                                                     index={index}
@@ -120,9 +120,7 @@ export default function AppContent() {
                                 </ul>
                             </div>
                             <div className="flex justify-between gap-4">
-                                <button className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]">
-                                    Odznacz wszystko -
-                                </button>
+                                <ButtonDisableAll />
                                 <ButtonAddElement />
                             </div>
                         </>
@@ -177,6 +175,49 @@ const ButtonAddElement = () => {
             onClick={handleOpenModal}
         >
             Add
+        </button>
+    )
+}
+
+const ButtonDisableAll = () => {
+    const { lists, listActive, setListActive } = useGlobalContext()
+
+    const elementsId = listActive.elements
+        .map((item) => item.id.toString())
+        .join(",")
+
+    const handleClick = async () => {
+        try {
+            const res = await fetch(`/api/elements/${elementsId}`, {
+                method: "PUT",
+            })
+            if (res.ok) {
+                setListActive((prevListActive) => {
+                    const updatedListActive = { ...prevListActive }
+                    updatedListActive.elements = prevListActive.elements.map(
+                        (element) => ({
+                            ...element,
+                            status: false,
+                        })
+                    )
+                    return updatedListActive
+                })
+
+                console.log("updated")
+            } else {
+                console.error("Błąd pobierania danych")
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    return (
+        <button
+            className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]"
+            onClick={handleClick}
+        >
+            Odznacz wszystko -
         </button>
     )
 }

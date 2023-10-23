@@ -1,9 +1,12 @@
 "use client"
 
+import { useState } from "react"
+import { useGlobalContext } from "@/context/AppContext"
+import { useModal } from "@/context/ModalContext"
+import EditElement from "@/components/application/modals/EditElement"
 import IconPen from "../icons/pen"
 import IconBin from "../icons/bin"
 import { Categories } from "@/context/AppContext"
-import { removeElement } from "@/actions/removeElement"
 
 export default function AppContentElement({
     name,
@@ -18,6 +21,42 @@ export default function AppContentElement({
     id: number
     category: Categories[]
 }) {
+    const [loading, setLoading] = useState(false)
+    let timeout: NodeJS.Timeout
+
+    const handleChange = async () => {
+        try {
+            await setLoading(true)
+            const res = await fetch(`/api/element/edit/${id}`, {
+                method: "PUT",
+            })
+            if (res.ok) {
+                // const updatedElements = listActive.elements.filter(
+                //     (element) => element.id !== id
+                // )
+                // const updatedListActive = {
+                //     ...listActive,
+                //     elements: updatedElements,
+                // }
+                // setListActive(updatedListActive)
+            } else {
+                console.error("Błąd pobierania danych")
+            }
+
+            setLoading(false)
+        } catch (error) {
+            console.error(error)
+        }
+
+        if (timeout) {
+            clearTimeout(timeout)
+        }
+
+        timeout = setTimeout(() => {
+            clearTimeout(timeout)
+        }, 1000)
+    }
+
     return (
         <li className="element-row relative border-t flex gap-3 items-stretch hover:bg-slate-50 sm:px-1">
             <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
@@ -27,6 +66,7 @@ export default function AppContentElement({
                         defaultChecked={done}
                         className="mr-2"
                         id={`element-${index}`}
+                        onChange={handleChange}
                     />
                     <span className="label"></span>
                 </span>
@@ -55,10 +95,11 @@ export default function AppContentElement({
             )}
 
             <div className="element-edit flex absolute top-0 bottom-0 right-0">
-                <button className="px-1 hover:text-[var(--primary)]">
-                    <IconPen />
-                </button>
-                <ButtonBin
+                <ButtonEdit
+                    key={id}
+                    id={id}
+                />
+                <ButtonDelete
                     key={id}
                     id={id}
                 />
@@ -67,14 +108,33 @@ export default function AppContentElement({
     )
 }
 
-const ButtonBin = ({ id }: { id: number }) => {
+const ButtonDelete = ({ id }: { id: number }) => {
+    const [loading, setLoading] = useState(false)
+    const { listActive, setListActive } = useGlobalContext()
+
     const handleRemove = async () => {
         try {
-            const response = await removeElement(id)
-            console.log(response)
-            console.log("Element usunięty pomyślnie")
+            await setLoading(true)
+            const res = await fetch(`/api/elements/${id}`, {
+                method: "DELETE",
+            })
+            if (res.ok) {
+                const updatedElements = listActive.elements.filter(
+                    (element) => element.id !== id
+                )
+
+                const updatedListActive = {
+                    ...listActive,
+                    elements: updatedElements,
+                }
+
+                setListActive(updatedListActive)
+            } else {
+                console.error("Błąd pobierania danych")
+            }
+            setLoading(false)
         } catch (error) {
-            console.error("Wystąpił błąd podczas usuwania elementu:", error)
+            console.error(error)
         }
     }
 
@@ -82,8 +142,29 @@ const ButtonBin = ({ id }: { id: number }) => {
         <button
             className="px-1 hover:text-[var(--primary)]"
             onClick={handleRemove}
+            disabled={loading}
         >
-            <IconBin />
+            {loading ? <div className="loader small"></div> : <IconBin />}
+        </button>
+    )
+}
+
+const ButtonEdit = ({ id }: { id: number }) => {
+    // const { listActive, setListActive } = useGlobalContext()
+
+    const { setModalContent, setIsModalOpen } = useModal()
+
+    const handleEdit = async () => {
+        setModalContent(<EditElement id={id} />)
+        setIsModalOpen(true)
+    }
+
+    return (
+        <button
+            className="px-1 hover:text-[var(--primary)]"
+            onClick={handleEdit}
+        >
+            <IconPen />
         </button>
     )
 }
