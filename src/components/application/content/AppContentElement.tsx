@@ -116,7 +116,7 @@ export default function AppContentElement({
 
 const ButtonDelete = ({ id }: { id: number }) => {
     const [loading, setLoading] = useState(false)
-    const { listActive, setListActive, activeElements } = useGlobalContext()
+    const { activeElements, setActiveElements } = useGlobalContext()
 
     const handleRemove = async () => {
         try {
@@ -129,12 +129,7 @@ const ButtonDelete = ({ id }: { id: number }) => {
                     (element) => element.id !== id
                 )
 
-                const updatedListActive = {
-                    ...listActive,
-                    updatedElements,
-                }
-
-                setListActive(updatedListActive)
+                setActiveElements(updatedElements)
             } else {
                 console.error("Błąd pobierania danych")
             }

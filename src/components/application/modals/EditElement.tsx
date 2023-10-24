@@ -160,7 +160,7 @@ export default function EditElement({
                 </ul>
 
                 <div className="flex justify-between">
-                    <button className="btn btn-error">Usuń pozycję -</button>
+                    <ButtonDelete id={id} />
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -196,6 +196,48 @@ export default function EditElement({
                     </button>
                 </div>
             </form>
+        </>
+    )
+}
+
+const ButtonDelete = ({ id }: { id: number }) => {
+    const [loading, setLoading] = useState(false)
+    const [success, setSucceess] = useState(false)
+    const { activeElements, setActiveElements } = useGlobalContext()
+
+    const handleDelete = async (e) => {
+        e.preventDefault()
+
+        try {
+            await setLoading(true)
+            const res = await fetch(`/api/elements/${id}`, {
+                method: "DELETE",
+            })
+            if (res.ok) {
+                const updatedElements = activeElements.filter(
+                    (element) => element.id !== id
+                )
+
+                setActiveElements(updatedElements)
+                setSucceess(true)
+            } else {
+                console.error("Błąd pobierania danych")
+            }
+            setLoading(false)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    return (
+        <>
+            <button
+                className="btn btn-error"
+                onClick={handleDelete}
+            >
+                Usuń pozycję -{loading && "LOADING"}
+            </button>
+            {success && "Usunieto"}
         </>
     )
 }
