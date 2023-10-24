@@ -11,7 +11,6 @@ export default function Logo() {
             id: null,
             name: null,
             url: "",
-            elements: [],
         })
     }
 
