@@ -17,6 +17,7 @@ export default function EditElement({
     name: string
     category: Categories[]
 }) {
+    const [nameInput, setNameInput] = useState(name)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
@@ -33,11 +34,46 @@ export default function EditElement({
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        const dataToSend = {
+            name: nameInput,
+            categories: categories,
+        }
+
+        console.log(dataToSend)
+
+        try {
+            setLoading(true)
+            // Wyślij żądanie fetch do API, aby zapisać zmiany
+            const res = await fetch(`/api/element/edit/${id}`, {
+                method: "POST", // Może to być POST, PUT lub inna metoda w zależności od API
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataToSend),
+            })
+
+            if (res.ok) {
+                setSuccess(true)
+
+                // Tutaj możesz także zaktualizować stany categories i activeElements, jeśli masz dostęp do odpowiednich danych z API
+
+                // Wyczyść pole "name"
+                setNameInput("")
+            } else {
+                setError(true)
+            }
+        } catch (error) {
+            console.error(error)
+            setError(true)
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // const newValue = e.target.value
-        // setName(newValue)
+        const newValue = e.target.value
+        setNameInput(newValue)
     }
 
     const showCategories = async () => {
@@ -45,9 +81,6 @@ export default function EditElement({
             const res = await fetch(`/api/categories`)
             const data = await res.json()
             const myCategories = data.body
-
-            // console.log(myCategories)
-            // console.log(category)
 
             const combinedArray = myCategories.map((item: Categories) => ({
                 ...item,
@@ -73,7 +106,7 @@ export default function EditElement({
                 <div className="mb-4">
                     <input
                         type="text"
-                        value={name}
+                        value={nameInput}
                         placeholder="np. Suszarka"
                         className="form-control w-full"
                         onChange={handleInputChange}
