@@ -29,7 +29,11 @@ export async function GET(request: Request, context: IContext) {
             include: {
                 elements: {
                     include: {
-                        categories: true,
+                        categories: {
+                            where: {
+                                userId: userId,
+                            },
+                        },
                     },
                 },
             },

@@ -33,6 +33,7 @@ export default function AppContent() {
                 //     elements: result,
                 // }))
 
+                console.log(result)
                 await setActiveElements(result)
             } else {
                 console.error("Błąd pobierania danych")

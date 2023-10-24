@@ -70,16 +70,64 @@ export default function EditElement({
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-between gap-3 mb-1">
+                <div className="mb-4">
                     <input
                         type="text"
                         value={name}
                         placeholder="np. Suszarka"
-                        className="form-control grow"
+                        className="form-control w-full"
                         onChange={handleInputChange}
                         disabled={success}
                     />
+                    {error && (
+                        <div className="text-red-600 text-sm mt-1">
+                            Nie zapisano zmian. Spróbuj ponownie.
+                        </div>
+                    )}
+                </div>
+                <ul className="mb-5">
+                    {categories?.map((element) => (
+                        <li key={element.id}>
+                            <label className="category-list cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    defaultChecked={element.add}
+                                    className="hidden"
+                                />
+                                <span>
+                                    <svg
+                                        width="13"
+                                        height="13"
+                                        viewBox="0 0 13 13"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="svg-stroke inline-block mr-1 relative -top-[2px]"
+                                    >
+                                        <path
+                                            d="M6.5 1V12"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            className="horizontal"
+                                        />
+                                        <path
+                                            d="M12 6.5L1 6.5"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
 
+                                    {/* {element.id} */}
+                                    {element.name}
+                                </span>
+                            </label>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="flex justify-between">
+                    <button className="btn btn-error">Usuń pozycję -</button>
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -110,50 +158,9 @@ export default function EditElement({
                                 </svg>
                             </>
                         ) : (
-                            <svg
-                                width="13"
-                                height="13"
-                                viewBox="0 0 13 13"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M6.5 1V12"
-                                    stroke="white"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12 6.5L1 6.5"
-                                    stroke="white"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            "Zapisz"
                         )}
                     </button>
-                </div>
-                {error && (
-                    <div className="text-red-600 text-sm">
-                        Nie zapisano zmian. Spróbuj ponownie.
-                    </div>
-                )}
-                <div>
-                    {categories?.map((element) => (
-                        <div
-                            key={element.id}
-                            className={element.add ? "text-blue-500" : ""}
-                        >
-                            {element.id}
-                            {element.name}
-                        </div>
-                    ))}
-                </div>
-
-                <div>
-                    <button className="btn btn-error">Usuń pozycję -</button>
                 </div>
             </form>
         </>

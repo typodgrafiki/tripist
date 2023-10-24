@@ -114,6 +114,19 @@
     opacity: 1;
 }
 
+.category-list {
+    padding: 2px 0;
+    display: block;
+}
+
+.category-list input:checked + span {
+    color: var(--primary);
+}
+
+.category-list input:checked + span .horizontal {
+    opacity: 0;
+}
+
 .modal-overlay {
     background-color: rgb(119 120 125 / 90%);
     animation: fade-in 0.1s ease;
