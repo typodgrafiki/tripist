@@ -13,7 +13,8 @@ export default function CreateLAddElements() {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { listActive, setListActive } = useGlobalContext()
+    const { listActive, setListActive, activeElements, setActiveElements } =
+        useGlobalContext()
     const { setIsModalOpen } = useModal()
 
     // const close = () => {
@@ -38,14 +39,20 @@ export default function CreateLAddElements() {
             if (res.ok) {
                 const data = await res.json()
                 const response = data.body
+
+                console.log(response)
                 response.categories = []
                 formRef.current?.reset()
                 setSuccess(true)
 
-                setListActive((prevList) => ({
-                    ...prevList,
-                    elements: [response, ...prevList.elements],
-                }))
+                // setListActive((prevList) => ({
+                //     ...prevList,
+                //     elements: [response, ...prevList.elements],
+                // }))
+                setActiveElements((prevActiveElements) => [
+                    ...prevActiveElements,
+                    response,
+                ])
             } else {
                 setError(true)
                 console.error("Błąd pobierania danych")

@@ -7,7 +7,8 @@ import IconBin from "@/components/application/icons/bin"
 
 export default function ButtonDelete() {
     const router = useRouter()
-    const { lists, setLists, listActive, setListActive } = useGlobalContext()
+    const { lists, setLists, listActive, setListActive, setActiveElements } =
+        useGlobalContext()
     const [loading, setLoading] = useState(false)
     const { id } = listActive
 
@@ -18,12 +19,12 @@ export default function ButtonDelete() {
                 method: "DELETE",
             })
             if (res.ok) {
-                await setListActive({
+                setListActive({
                     id: null,
                     name: null,
                     url: "",
-                    elements: [],
                 })
+                await setActiveElements([])
                 setLists((prevLists) =>
                     prevLists.filter((item) => item.id !== id)
                 )

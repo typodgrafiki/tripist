@@ -14,7 +14,8 @@ export default function CreateList() {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { setLists, listActive, setListActive } = useGlobalContext()
+    const { setLists, listActive, setListActive, setActiveElements } =
+        useGlobalContext()
     const { setIsModalOpen } = useModal()
 
     const close = () => {
@@ -47,8 +48,9 @@ export default function CreateList() {
                     id: response.id,
                     url: response.url,
                     name: response.name,
-                    elements: [],
                 })
+
+                setActiveElements([])
 
                 setLists((prevLists: ListsProps[]) => [
                     ...prevLists,

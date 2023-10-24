@@ -1,20 +1,29 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
+import { Categories } from "@/context/AppContext"
 
-export default function EditElement({ id }: { id: number }) {
-    const [name, setName] = useState("")
+export default function EditElement({
+    id,
+    name,
+    category,
+}: {
+    id: number
+    name: string
+    category: Categories[]
+}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const { listActive, setListActive } = useGlobalContext()
     const { setIsModalOpen } = useModal()
+    const [categories, setCategories] = useState<Categories[]>([])
 
     // const close = () => {
     // setName("")
@@ -24,46 +33,39 @@ export default function EditElement({ id }: { id: number }) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        try {
-            // setError(false)
-            // await setLoading(true)
-            // const res = await fetch(`/api/lists/addElement`, {
-            //     method: "POST",
-            //     body: JSON.stringify({ name: name, listId: listActive.id }),
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // })
-            // if (res.ok) {
-            //     const data = await res.json()
-            //     const response = data.body
-            //     response.categories = []
-            //     formRef.current?.reset()
-            //     setSuccess(true)
-            //     setListActive((prevList) => ({
-            //         ...prevList,
-            //         elements: [response, ...prevList.elements],
-            //     }))
-            // } else {
-            //     setError(true)
-            //     console.error("Błąd pobierania danych")
-            // }
-            // setLoading(false)
-        } catch (error) {
-            // setError(true)
-            console.error(error)
-        }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        setName(newValue)
+        // const newValue = e.target.value
+        // setName(newValue)
     }
+
+    const showCategories = async () => {
+        try {
+            const res = await fetch(`/api/categories`)
+            const data = await res.json()
+            const myCategories = data.body
+
+            // console.log(myCategories)
+            // console.log(category)
+
+            const combinedArray = myCategories.map((item: Categories) => ({
+                ...item,
+                add: category.some((secondItem) => secondItem.id === item.id),
+            }))
+
+            setCategories(combinedArray)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    useEffect(() => {
+        showCategories()
+    }, [])
 
     return (
         <>
-            <h3 className="title mb-3 font-medium">{id}</h3>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -138,6 +140,21 @@ export default function EditElement({ id }: { id: number }) {
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
+                <div>
+                    {categories?.map((element) => (
+                        <div
+                            key={element.id}
+                            className={element.add ? "text-blue-500" : ""}
+                        >
+                            {element.id}
+                            {element.name}
+                        </div>
+                    ))}
+                </div>
+
+                <div>
+                    <button className="btn btn-error">Usuń pozycję -</button>
+                </div>
             </form>
         </>
     )

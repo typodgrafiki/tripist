@@ -14,14 +14,12 @@ export default function AppListsLi({
     url: string
     id: string
 }) {
-    const { listActive, setListActive } = useGlobalContext()
+    const { setListActive } = useGlobalContext()
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
-    const { id: activeId } = listActive
 
     const changeActive = () => {
         setListActive((prevState) => ({
-            ...prevState,
             id: id,
             name: name,
             url: url,
@@ -36,7 +34,7 @@ export default function AppListsLi({
 
     return (
         <>
-            <li className="relative">
+            <li className="relative mb-1">
                 <Link
                     href={thisUrl}
                     className={

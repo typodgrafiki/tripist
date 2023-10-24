@@ -22,6 +22,7 @@ export default function AppContentElement({
     category: Categories[]
 }) {
     const [loading, setLoading] = useState(false)
+    const { activeElements, setActiveElements } = useGlobalContext()
     let timeout: NodeJS.Timeout
 
     const handleChange = async () => {
@@ -30,15 +31,17 @@ export default function AppContentElement({
             const res = await fetch(`/api/element/edit/${id}`, {
                 method: "PUT",
             })
+            const data = await res.json()
+            const idChange = await data.idChange
+
             if (res.ok) {
-                // const updatedElements = listActive.elements.filter(
-                //     (element) => element.id !== id
-                // )
-                // const updatedListActive = {
-                //     ...listActive,
-                //     elements: updatedElements,
-                // }
-                // setListActive(updatedListActive)
+                const updatedElements = await activeElements.map((element) => {
+                    if (element.id === idChange) {
+                        return { ...element, status: !element.status }
+                    }
+                    return element
+                })
+                setActiveElements(updatedElements)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -53,8 +56,9 @@ export default function AppContentElement({
         }
 
         timeout = setTimeout(() => {
+            // tu powinien wykonywac sie fetch
             clearTimeout(timeout)
-        }, 1000)
+        }, 2000)
     }
 
     return (
@@ -63,7 +67,7 @@ export default function AppContentElement({
                 <span className="relative round">
                     <input
                         type="checkbox"
-                        defaultChecked={done}
+                        checked={done}
                         className="mr-2"
                         id={`element-${index}`}
                         onChange={handleChange}
@@ -98,6 +102,8 @@ export default function AppContentElement({
                 <ButtonEdit
                     key={id}
                     id={id}
+                    name={name}
+                    category={category}
                 />
                 <ButtonDelete
                     key={id}
@@ -110,7 +116,7 @@ export default function AppContentElement({
 
 const ButtonDelete = ({ id }: { id: number }) => {
     const [loading, setLoading] = useState(false)
-    const { listActive, setListActive } = useGlobalContext()
+    const { listActive, setListActive, activeElements } = useGlobalContext()
 
     const handleRemove = async () => {
         try {
@@ -119,13 +125,13 @@ const ButtonDelete = ({ id }: { id: number }) => {
                 method: "DELETE",
             })
             if (res.ok) {
-                const updatedElements = listActive.elements.filter(
+                const updatedElements = activeElements.filter(
                     (element) => element.id !== id
                 )
 
                 const updatedListActive = {
                     ...listActive,
-                    elements: updatedElements,
+                    updatedElements,
                 }
 
                 setListActive(updatedListActive)
@@ -149,13 +155,27 @@ const ButtonDelete = ({ id }: { id: number }) => {
     )
 }
 
-const ButtonEdit = ({ id }: { id: number }) => {
+const ButtonEdit = ({
+    id,
+    name,
+    category,
+}: {
+    id: number
+    name: string
+    category: Categories[]
+}) => {
     // const { listActive, setListActive } = useGlobalContext()
 
     const { setModalContent, setIsModalOpen } = useModal()
 
     const handleEdit = async () => {
-        setModalContent(<EditElement id={id} />)
+        setModalContent(
+            <EditElement
+                id={id}
+                name={name}
+                category={category}
+            />
+        )
         setIsModalOpen(true)
     }
 

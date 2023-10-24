@@ -7,13 +7,19 @@ import AddElements from "@/components/application/modals/AddElements"
 import { useModal } from "@/context/ModalContext"
 
 export default function AppContent() {
-    const { lists, listActive, setListActive } = useGlobalContext()
+    const {
+        lists,
+        listActive,
+        setListActive,
+        activeElements,
+        setActiveElements,
+    } = useGlobalContext()
     const [loading, setLoading] = useState(true)
     const [selectedCategory, setSelectedCategory] = useState<string | null>(
         null
     )
 
-    const { id: activeId, elements } = listActive
+    const { id: activeId } = listActive
 
     const getListActive = async () => {
         try {
@@ -22,10 +28,12 @@ export default function AppContent() {
             if (res.ok) {
                 const data = await res.json()
                 const result = await data.body
-                await setListActive((prevState) => ({
-                    ...prevState,
-                    elements: result,
-                }))
+                // await setListActive((prevState) => ({
+                //     ...prevState,
+                //     elements: result,
+                // }))
+
+                await setActiveElements(result)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -37,7 +45,7 @@ export default function AppContent() {
 
     const categoriesUnique = Array.from(
         new Set(
-            elements?.flatMap((element) =>
+            activeElements?.flatMap((element) =>
                 element.categories.map((category) => category.name)
             )
         )
@@ -59,7 +67,7 @@ export default function AppContent() {
                 </div>
             ) : lists.length > 0 ? (
                 <>
-                    {elements?.length > 0 ? (
+                    {activeElements?.length > 0 ? (
                         <>
                             <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-8 sm:pt-7 sm:px-8">
                                 <div className="flex gap-6 mb-6">
@@ -93,7 +101,7 @@ export default function AppContent() {
                                 </div>
 
                                 <ul>
-                                    {elements
+                                    {activeElements
                                         .filter(
                                             (element) =>
                                                 !selectedCategory ||
@@ -124,7 +132,7 @@ export default function AppContent() {
                                 <ButtonAddElement />
                             </div>
                         </>
-                    ) : elements?.length === 0 && activeId ? (
+                    ) : activeElements?.length === 0 && activeId ? (
                         <>
                             <div className="bg-white p-10 shadow-lg rounded-md">
                                 Dodaj pozycje
@@ -180,30 +188,26 @@ const ButtonAddElement = () => {
 }
 
 const ButtonDisableAll = () => {
-    const { lists, listActive, setListActive } = useGlobalContext()
-
-    const elementsId = listActive.elements
-        .map((item) => item.id.toString())
-        .join(",")
+    const { activeElements, setActiveElements } = useGlobalContext()
 
     const handleClick = async () => {
+        const elementsId = activeElements
+            .map((item) => item.id.toString())
+            .join(",")
         try {
             const res = await fetch(`/api/elements/${elementsId}`, {
                 method: "PUT",
             })
-            if (res.ok) {
-                setListActive((prevListActive) => {
-                    const updatedListActive = { ...prevListActive }
-                    updatedListActive.elements = prevListActive.elements.map(
-                        (element) => ({
-                            ...element,
-                            status: false,
-                        })
-                    )
-                    return updatedListActive
-                })
+            const data = await res.json()
 
-                console.log("updated")
+            const dataElementsId = await data.elementsId
+
+            if (res.ok) {
+                const updatedElements = activeElements.map((element) => ({
+                    ...element, // Rozprzestrzeniaj istniejące pola obiektu
+                    status: false, // Zmieniaj status na false
+                }))
+                setActiveElements(updatedElements)
             } else {
                 console.error("Błąd pobierania danych")
             }

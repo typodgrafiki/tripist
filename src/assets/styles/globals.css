@@ -6,6 +6,7 @@
     --primary: #467bf0;
     --dark: #2c2d32;
     --bg: #eeeff4;
+    --red: #ec0b26;
 }
 
 @layer base {
@@ -48,15 +49,25 @@
         color: #fff;
     }
 
+    .btn-green {
+        background-color: #27ba0f;
+        border-color: #27ba0f;
+    }
+
+    .btn-error {
+        border-color: var(--red);
+        color: var(--red);
+    }
+
+    .btn-error:is(:hover, :focus, :active) {
+        background-color: var(--red);
+        color: #fff;
+    }
+
     .btn:not([disabled]):is(:hover, :focus, :active) {
         background-color: var(--dark);
         border-color: var(--dark);
         color: #fff;
-    }
-
-    .btn-green {
-        background-color: #27ba0f;
-        border-color: #27ba0f;
     }
 
     .form-control {

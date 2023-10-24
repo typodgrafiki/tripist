@@ -81,7 +81,7 @@ export async function PUT(request: Request, context: IContext) {
         }
 
         return NextResponse.json(
-            { message: "Lista została usunięta" },
+            { message: "Lista wyczyszczona: " + query, elementsId: elementsId },
             { status: 200 }
         )
     } catch (error) {

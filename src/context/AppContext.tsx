@@ -20,7 +20,6 @@ interface ListActiveProps {
     id: string | null
     name: string | null
     url: string
-    elements: ListElementsProps[]
 }
 
 interface ListElementsProps {
@@ -34,6 +33,7 @@ export interface Categories {
     id: number
     name: string
     userId: string
+    add?: boolean | undefined
 }
 
 interface AppContextType {
@@ -43,6 +43,8 @@ interface AppContextType {
     setLists: Dispatch<SetStateAction<ListsProps[]>>
     listActive: ListActiveProps
     setListActive: Dispatch<SetStateAction<ListActiveProps>>
+    activeElements: ListElementsProps[]
+    setActiveElements: Dispatch<SetStateAction<ListElementsProps[]>>
 }
 
 const AppContext = createContext<AppContextType>({
@@ -50,8 +52,10 @@ const AppContext = createContext<AppContextType>({
     setIsConnected: () => {},
     lists: [],
     setLists: () => {},
-    listActive: { id: null, name: null, url: "", elements: [] },
+    listActive: { id: null, name: null, url: "" },
     setListActive: () => {},
+    activeElements: [],
+    setActiveElements: () => {},
 })
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
@@ -61,8 +65,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         id: null,
         name: null,
         url: "",
-        elements: [],
     })
+    const [activeElements, setActiveElements] = useState<ListElementsProps[]>(
+        []
+    )
 
     return (
         <AppContext.Provider
@@ -73,6 +79,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
                 setLists,
                 listActive,
                 setListActive,
+                activeElements,
+                setActiveElements,
             }}
         >
             {children}
