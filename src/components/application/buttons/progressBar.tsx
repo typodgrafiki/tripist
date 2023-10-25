@@ -10,7 +10,7 @@ export default function ProgressBar({ closeFn }: { closeFn: () => void }) {
             if (progress < 100) {
                 setProgress(progress + 1)
             }
-        }, 50)
+        }, 17)
 
         return () => {
             clearInterval(interval)
@@ -25,7 +25,7 @@ export default function ProgressBar({ closeFn }: { closeFn: () => void }) {
 
     const style = {
         width: `${progress}%`,
-        transition: "width 5s linear",
+        transition: "width 2s linear",
     }
 
     return (

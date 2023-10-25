@@ -116,7 +116,7 @@
 
 .category-list {
     padding: 2px 0;
-    display: block;
+    display: inline-block;
 }
 
 .category-list input:checked + span {
@@ -139,6 +139,7 @@
     animation:
         fade-in,
         show-modal 0.15s ease;
+    overflow: hidden;
 }
 
 .svg-stroke {

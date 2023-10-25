@@ -25,16 +25,24 @@ export default function AppContentElement({
     const { activeElements, setActiveElements } = useGlobalContext()
     let timeout: NodeJS.Timeout
 
-    const handleChange = async () => {
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         try {
             await setLoading(true)
+
+            const dataToSend = {
+                changeStatus: true,
+            }
             const res = await fetch(`/api/element/edit/${id}`, {
                 method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataToSend),
             })
-            const data = await res.json()
-            const idChange = await data.idChange
 
             if (res.ok) {
+                const data = await res.json()
+                const idChange = await data.idChange
                 const updatedElements = await activeElements.map((element) => {
                     if (element.id === idChange) {
                         return { ...element, status: !element.status }
@@ -64,16 +72,23 @@ export default function AppContentElement({
     return (
         <li className="element-row relative border-t flex gap-3 items-stretch hover:bg-slate-50 sm:px-1">
             <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
-                <span className="relative round">
-                    <input
-                        type="checkbox"
-                        checked={done}
-                        className="mr-2"
-                        id={`element-${index}`}
-                        onChange={handleChange}
-                    />
-                    <span className="label"></span>
+                <span className="relative round w-[21px] h-[21px]">
+                    {loading ? (
+                        <div className="loader small relative top-[2px]"></div>
+                    ) : (
+                        <>
+                            <input
+                                type="checkbox"
+                                checked={done}
+                                className="mr-2"
+                                id={`element-${index}`}
+                                onChange={handleChange}
+                            />
+                            <span className="label"></span>
+                        </>
+                    )}
                 </span>
+
                 <span className="grow">{name}</span>
             </label>
 
@@ -100,15 +115,11 @@ export default function AppContentElement({
 
             <div className="element-edit flex absolute top-0 bottom-0 right-0">
                 <ButtonEdit
-                    key={id}
                     id={id}
                     name={name}
                     category={category}
                 />
-                <ButtonDelete
-                    key={id}
-                    id={id}
-                />
+                <ButtonDelete id={id} />
             </div>
         </li>
     )

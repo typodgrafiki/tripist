@@ -102,7 +102,7 @@ export default function AppContent() {
                                 </div>
 
                                 <ul>
-                                    {activeElements
+                                    {/* {activeElements
                                         .filter(
                                             (element) =>
                                                 !selectedCategory ||
@@ -125,7 +125,19 @@ export default function AppContent() {
                                                     }
                                                 />
                                             </>
-                                        ))}
+                                        ))} */}
+
+                                    {activeElements.map((element, index) => (
+                                        <div key={element.id}>
+                                            <AppContentElement
+                                                name={element.name}
+                                                done={element.status}
+                                                index={index}
+                                                id={element.id}
+                                                category={element.categories}
+                                            />
+                                        </div>
+                                    ))}
                                 </ul>
                             </div>
                             <div className="flex justify-between gap-4">
@@ -189,6 +201,7 @@ const ButtonAddElement = () => {
 }
 
 const ButtonDisableAll = () => {
+    const [loading, setLoading] = useState(false)
     const { activeElements, setActiveElements } = useGlobalContext()
 
     const handleClick = async () => {
@@ -196,6 +209,7 @@ const ButtonDisableAll = () => {
             .map((item) => item.id.toString())
             .join(",")
         try {
+            setLoading(true)
             const res = await fetch(`/api/elements/${elementsId}`, {
                 method: "PUT",
             })
@@ -214,6 +228,8 @@ const ButtonDisableAll = () => {
             }
         } catch (error) {
             console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -222,7 +238,12 @@ const ButtonDisableAll = () => {
             className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]"
             onClick={handleClick}
         >
-            Odznacz wszystko -
+            Odznacz wszystko{" "}
+            {loading ? (
+                <span className="loader small inline-block"></span>
+            ) : (
+                "-"
+            )}
         </button>
     )
 }

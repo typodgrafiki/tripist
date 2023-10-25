@@ -113,13 +113,17 @@
     overflow: hidden;
     margin-top: 10px;
     background: #e2e3e8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .progress {
     width: 0;
     height: 100%;
     background: var(--primary);
-    animation: progressBar 5s linear forwards;
+    animation: progressBar 2s linear forwards;
 }
 
 @keyframes progressBar {

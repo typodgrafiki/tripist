@@ -70,6 +70,11 @@
         color: #fff;
     }
 
+    .btn[disabled] {
+        pointer-events: none;
+        opacity: 0.4;
+    }
+
     .form-control {
         background-color: #ecedf1;
         border-color: transparent;

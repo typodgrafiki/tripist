@@ -8,6 +8,16 @@ import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
 import { Categories } from "@/context/AppContext"
 
+interface IFormData {
+    name: string
+    categories: ICat[]
+}
+interface ICat {
+    id: number
+    name: string // Add this property
+    userId: string // Add this property
+}
+
 export default function EditElement({
     id,
     name,
@@ -17,49 +27,54 @@ export default function EditElement({
     name: string
     category: Categories[]
 }) {
-    const [nameInput, setNameInput] = useState(name)
+    const [formData, setFormData] = useState<IFormData>({
+        name: name,
+        categories: [],
+    })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { listActive, setListActive } = useGlobalContext()
+    const { activeElements, setActiveElements } = useGlobalContext()
     const { setIsModalOpen } = useModal()
     const [categories, setCategories] = useState<Categories[]>([])
 
-    // const close = () => {
-    // setName("")
-    // setSuccess(false)
-    // setIsModalOpen(false)
-    // }
+    const close = () => {
+        setIsModalOpen(false)
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        const dataToSend = {
-            name: nameInput,
-            categories: categories,
-        }
-
-        console.log(dataToSend)
-
+        // console.log(formData.categories)
         try {
             setLoading(true)
             // Wyślij żądanie fetch do API, aby zapisać zmiany
             const res = await fetch(`/api/element/edit/${id}`, {
-                method: "POST", // Może to być POST, PUT lub inna metoda w zależności od API
+                method: "PUT", // Może to być POST, PUT lub inna metoda w zależności od API
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(dataToSend),
+                body: JSON.stringify(formData),
             })
 
             if (res.ok) {
-                setSuccess(true)
+                await setSuccess(true)
 
-                // Tutaj możesz także zaktualizować stany categories i activeElements, jeśli masz dostęp do odpowiednich danych z API
+                const updatedValue = {
+                    name: formData.name, // Nowa nazwa
+                    categories: formData.categories, // Nowe kategorie, możesz dostosować do własnych potrzeb
+                }
 
-                // Wyczyść pole "name"
-                setNameInput("")
+                const updatedState = activeElements.map((item) => {
+                    if (item.id === id) {
+                        return { ...item, ...updatedValue } // Aktualizuj obiekt o id 439
+                    }
+                    return item // Pozostałe obiekty pozostaw niezmienione
+                })
+
+                setActiveElements(updatedState)
+                // zamkniecie modal
             } else {
                 setError(true)
             }
@@ -71,9 +86,47 @@ export default function EditElement({
         }
     }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        setNameInput(newValue)
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, type, value, checked } = e.target
+
+        if (type === "checkbox" && name === "categories") {
+            const categoryObj = JSON.parse(value)
+
+            console.log(categoryObj)
+            const categoryId = categoryObj.id
+            const categoryName = categoryObj.name
+            const categoryUserId = categoryObj.userId
+
+            await setFormData((prevData) => {
+                if (checked) {
+                    // Jeśli checkbox został zaznaczony, dodaj wartość do tablicy categories
+                    return {
+                        ...prevData,
+                        categories: [
+                            ...prevData.categories,
+                            {
+                                id: categoryId,
+                                name: categoryName,
+                                userId: categoryUserId,
+                            },
+                        ],
+                    }
+                } else {
+                    // Jeśli checkbox został odznaczony, usuń wartość z tablicy categories
+                    return {
+                        ...prevData,
+                        categories: prevData.categories.filter(
+                            (category) => category.id !== categoryId
+                        ),
+                    }
+                }
+            })
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }))
+        }
     }
 
     const showCategories = async () => {
@@ -88,6 +141,19 @@ export default function EditElement({
             }))
 
             setCategories(combinedArray)
+
+            const categoriesActiveId = combinedArray
+                .filter((item: Categories) => item.add === true) // Filtruj tylko obiekty z add: true
+                .map((item: Categories) => ({
+                    id: item.id,
+                    name: item.name,
+                    userId: item.userId,
+                })) // Wyodrębnij numery id
+
+            setFormData((prevData) => ({
+                ...prevData,
+                categories: categoriesActiveId,
+            }))
         } catch (e) {
             console.error(e)
         }
@@ -105,12 +171,13 @@ export default function EditElement({
             >
                 <div className="mb-4">
                     <input
+                        name="name"
                         type="text"
-                        value={nameInput}
+                        value={formData.name}
                         placeholder="np. Suszarka"
                         className="form-control w-full"
-                        onChange={handleInputChange}
                         disabled={success}
+                        onChange={handleChange}
                     />
                     {error && (
                         <div className="text-red-600 text-sm mt-1">
@@ -120,12 +187,23 @@ export default function EditElement({
                 </div>
                 <ul className="mb-5">
                     {categories?.map((element) => (
-                        <li key={element.id}>
+                        <li
+                            key={element.id}
+                            className={success || loading ? "opacity-40" : ""}
+                        >
                             <label className="category-list cursor-pointer">
                                 <input
+                                    name="categories"
+                                    value={JSON.stringify({
+                                        id: element.id,
+                                        name: element.name,
+                                        userId: element.userId,
+                                    })}
                                     type="checkbox"
                                     defaultChecked={element.add}
                                     className="hidden"
+                                    onChange={handleChange}
+                                    disabled={success || loading}
                                 />
                                 <span>
                                     <svg
@@ -138,20 +216,18 @@ export default function EditElement({
                                     >
                                         <path
                                             d="M6.5 1V12"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
                                             className="horizontal"
                                         />
                                         <path
                                             d="M12 6.5L1 6.5"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
                                         />
                                     </svg>
-
-                                    {/* {element.id} */}
                                     {element.name}
                                 </span>
                             </label>
@@ -160,7 +236,10 @@ export default function EditElement({
                 </ul>
 
                 <div className="flex justify-between">
-                    <ButtonDelete id={id} />
+                    <ButtonDelete
+                        id={id}
+                        dis={success || loading}
+                    />
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -172,7 +251,7 @@ export default function EditElement({
                             <div className="loader small"></div>
                         ) : success ? (
                             <>
-                                Dodano
+                                Zapisano
                                 <svg
                                     width="9"
                                     height="7"
@@ -196,16 +275,18 @@ export default function EditElement({
                     </button>
                 </div>
             </form>
+            {success && <ProgressBar closeFn={close} />}
         </>
     )
 }
 
-const ButtonDelete = ({ id }: { id: number }) => {
+const ButtonDelete = ({ id, dis }: { id: number; dis: boolean }) => {
     const [loading, setLoading] = useState(false)
     const [success, setSucceess] = useState(false)
     const { activeElements, setActiveElements } = useGlobalContext()
+    const { setIsModalOpen } = useModal()
 
-    const handleDelete = async (e) => {
+    const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
         try {
@@ -214,12 +295,16 @@ const ButtonDelete = ({ id }: { id: number }) => {
                 method: "DELETE",
             })
             if (res.ok) {
-                const updatedElements = activeElements.filter(
+                const updatedElements = await activeElements.filter(
                     (element) => element.id !== id
                 )
 
-                setActiveElements(updatedElements)
-                setSucceess(true)
+                await setActiveElements(updatedElements)
+                await setSucceess(true)
+
+                setTimeout(() => {
+                    setIsModalOpen(false)
+                }, 2000)
             } else {
                 console.error("Błąd pobierania danych")
             }
@@ -232,12 +317,40 @@ const ButtonDelete = ({ id }: { id: number }) => {
     return (
         <>
             <button
-                className="btn btn-error"
+                className={`btn btn-error ${
+                    loading ? "bg-red-600 text-white" : ""
+                }`}
                 onClick={handleDelete}
+                disabled={success || loading || dis}
             >
-                Usuń pozycję -{loading && "LOADING"}
+                {success ? (
+                    <>
+                        Usunięto
+                        <svg
+                            width="9"
+                            height="7"
+                            viewBox="0 0 9 7"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="inline-block svg-stroke ml-2"
+                        >
+                            <path
+                                d="M1 3.08333L3.57895 6L8 1"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </>
+                ) : loading ? (
+                    <>
+                        Usuwanie
+                        <div className="loader small inline-block ml-2 relative top-[2px]"></div>
+                    </>
+                ) : (
+                    "Usuń pozycję -"
+                )}
             </button>
-            {success && "Usunieto"}
         </>
     )
 }
