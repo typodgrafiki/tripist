@@ -27,6 +27,7 @@ export default function Logo() {
                     height={39}
                     alt="Tripist"
                     priority
+                    className="w-[75px] h-[30px] sm:w-[97px] sm:h-[39px]"
                 />
             </Link>
         </>

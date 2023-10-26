@@ -28,12 +28,6 @@ export default function AppContent() {
             if (res.ok) {
                 const data = await res.json()
                 const result = await data.body
-                // await setListActive((prevState) => ({
-                //     ...prevState,
-                //     elements: result,
-                // }))
-
-                console.log(result)
                 await setActiveElements(result)
             } else {
                 console.error("Błąd pobierania danych")
@@ -70,16 +64,16 @@ export default function AppContent() {
                 <>
                     {activeElements?.length > 0 ? (
                         <>
-                            <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-8 sm:pt-7 sm:px-8">
-                                <div className="flex gap-6 mb-6">
+                            <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-8 sm:pt-7 sm:px-8">
+                                <div className="flex gap-6 mb-3 mx-5 sm:mx-0 sm:mb-6 overflow-x-auto">
                                     <button
                                         onClick={() => handleCategoryChange("")}
                                         className={
                                             categoriesUnique.some(
                                                 (el) => selectedCategory === el
                                             )
-                                                ? "text-sm font-semibold uppercase hover:text-[var(--primary)]"
-                                                : "text-sm font-semibold uppercase text-[var(--primary)]"
+                                                ? "text-sm font-semibold uppercase whitespace-nowrap hover:text-[var(--primary)]"
+                                                : "text-sm font-semibold uppercase whitespace-nowrap text-[var(--primary)]"
                                         }
                                     >
                                         Wszystko
@@ -92,8 +86,8 @@ export default function AppContent() {
                                             }
                                             className={
                                                 selectedCategory === el
-                                                    ? "text-sm font-semibold uppercase text-[var(--primary)]"
-                                                    : "text-sm font-semibold uppercase hover:text-[var(--primary)]"
+                                                    ? "text-sm font-semibold uppercase whitespace-nowrap text-[var(--primary)]"
+                                                    : "text-sm font-semibold uppercase whitespace-nowrap hover:text-[var(--primary)]"
                                             }
                                         >
                                             {el}
@@ -102,7 +96,7 @@ export default function AppContent() {
                                 </div>
 
                                 <ul>
-                                    {/* {activeElements
+                                    {activeElements
                                         .filter(
                                             (element) =>
                                                 !selectedCategory ||
@@ -125,22 +119,10 @@ export default function AppContent() {
                                                     }
                                                 />
                                             </>
-                                        ))} */}
-
-                                    {activeElements.map((element, index) => (
-                                        <div key={element.id}>
-                                            <AppContentElement
-                                                name={element.name}
-                                                done={element.status}
-                                                index={index}
-                                                id={element.id}
-                                                category={element.categories}
-                                            />
-                                        </div>
-                                    ))}
+                                        ))}
                                 </ul>
                             </div>
-                            <div className="flex justify-between gap-4">
+                            <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
                                 <ButtonDisableAll />
                                 <ButtonAddElement />
                             </div>
@@ -192,7 +174,7 @@ const ButtonAddElement = () => {
 
     return (
         <button
-            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full"
+            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
             onClick={handleOpenModal}
         >
             Add

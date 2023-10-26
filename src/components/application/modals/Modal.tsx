@@ -39,7 +39,7 @@ export default function Modal() {
                 className="modal-overlay flex items-center justify-center fixed top-0 left-0 right-0 bottom-0 z-10"
                 onClick={handleShadowClick}
             >
-                <div className="modal bg-white rounded-3xl shadow-2xl px-9 py-8">
+                <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
                     {modalContent}
                 </div>
             </div>
