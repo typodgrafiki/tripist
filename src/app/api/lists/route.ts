@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 import { generateUniqueURL } from "@/lib/normalizeUrl"
+import { Categories } from "@/context/AppContext"
 
 export async function GET(request: Request) {
     const { userId } = auth()
@@ -66,32 +67,18 @@ export async function POST(request: Request) {
                         name: item.name,
                         status: false,
                         listId: newList.id,
+                        categories: {
+                            connect: item.categories.map(
+                                (category: Categories) => ({
+                                    id: category.id,
+                                })
+                            ),
+                        },
+                    },
+                    include: {
+                        categories: true,
                     },
                 })
-
-                if (item.categories && Array.isArray(item.categories)) {
-                    const newCategories = []
-                    for (const category of item.categories) {
-                        await prisma.listItem.update({
-                            where: {
-                                id: newItem.id,
-                            },
-                            data: {
-                                categories: {
-                                    connect: {
-                                        id: category.id,
-                                    },
-                                },
-                            },
-                        })
-
-                        console.log("---")
-                        newCategories.push(category)
-                        console.log(newCategories)
-                    }
-
-                    newItem.categories = await newCategories
-                }
 
                 newItems.push(newItem)
             }
@@ -102,6 +89,7 @@ export async function POST(request: Request) {
             items: newItems,
         }
 
+        // return NextResponse.json({ body: result }, { status: 200 })
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
         return NextResponse.json(

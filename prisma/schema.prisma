@@ -37,13 +37,13 @@ model List {
 }
 
 model ListItem {
-  id            Int    @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   name          String
   status        Boolean
   listId        String
-  list          List   @relation(fields: [listId], references: [id])
-  categories    Category[] 
-  
+  list          List      @relation(fields: [listId], references: [id])
+  categories    Category[]
+
   @@index([listId], name: "idx_listId")
 }
 

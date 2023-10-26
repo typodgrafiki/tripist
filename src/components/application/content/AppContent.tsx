@@ -28,6 +28,8 @@ export default function AppContent() {
             if (res.ok) {
                 const data = await res.json()
                 const result = await data.body
+                
+                console.log(result)
                 await setActiveElements(result)
             } else {
                 console.error("Błąd pobierania danych")
