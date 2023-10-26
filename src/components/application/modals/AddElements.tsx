@@ -1,11 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
-import { useModal } from "@/context/ModalContext"
-import ProgressBar from "../buttons/progressBar"
-import { ListsProps } from "@/context/AppContext"
 
 export default function CreateLAddElements() {
     const [name, setName] = useState("")
@@ -13,15 +9,8 @@ export default function CreateLAddElements() {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { listActive, setListActive, activeElements, setActiveElements } =
-        useGlobalContext()
-    const { setIsModalOpen } = useModal()
-
-    // const close = () => {
-    // setName("")
-    // setSuccess(false)
-    // setIsModalOpen(false)
-    // }
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const { listActive, setActiveElements } = useGlobalContext()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -40,19 +29,22 @@ export default function CreateLAddElements() {
                 const data = await res.json()
                 const response = data.body
 
-                console.log(response)
                 response.categories = []
-                formRef.current?.reset()
                 setSuccess(true)
+                setName("")
 
-                // setListActive((prevList) => ({
-                //     ...prevList,
-                //     elements: [response, ...prevList.elements],
-                // }))
                 setActiveElements((prevActiveElements) => [
                     ...prevActiveElements,
                     response,
                 ])
+
+                if (inputRef.current) {
+                    inputRef.current.focus()
+                }
+
+                setTimeout(() => {
+                    setSuccess(false)
+                }, 1500)
             } else {
                 setError(true)
                 console.error("Błąd pobierania danych")
@@ -83,7 +75,7 @@ export default function CreateLAddElements() {
                         placeholder="np. Suszarka"
                         className="form-control grow"
                         onChange={handleInputChange}
-                        disabled={success}
+                        ref={inputRef}
                     />
 
                     <button

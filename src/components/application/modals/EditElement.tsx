@@ -46,7 +46,6 @@ export default function EditElement({
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        // console.log(formData.categories)
         try {
             setLoading(true)
             // Wyślij żądanie fetch do API, aby zapisać zmiany
@@ -91,8 +90,6 @@ export default function EditElement({
 
         if (type === "checkbox" && name === "categories") {
             const categoryObj = JSON.parse(value)
-
-            console.log(categoryObj)
             const categoryId = categoryObj.id
             const categoryName = categoryObj.name
             const categoryUserId = categoryObj.userId

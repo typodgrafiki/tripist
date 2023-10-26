@@ -6,16 +6,29 @@ import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
+import createListAction from "@/actions/createList"
 
-export default function CreateList() {
+type IDuplicatProps = {
+    duplicate?: {
+        id: string
+        name: string
+    }
+}
+
+export default function CreateList({ duplicate }: IDuplicatProps) {
     const router = useRouter()
     const [title, setTitle] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
-    const { setLists, listActive, setListActive, setActiveElements } =
-        useGlobalContext()
+    const {
+        setLists,
+        listActive,
+        setListActive,
+        activeElements,
+        setActiveElements,
+    } = useGlobalContext()
     const { setIsModalOpen } = useModal()
 
     const close = () => {
@@ -31,47 +44,38 @@ export default function CreateList() {
         try {
             setError(false)
             await setLoading(true)
-            const res = await fetch(`/api/lists`, {
-                method: "POST",
-                body: JSON.stringify({ name: title }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
+
+            const response = await createListAction(
+                title,
+                duplicate ? activeElements : []
+            )
+
+            setTitle("")
+            setSuccess(true)
+            setListActive({
+                id: response.list.id,
+                url: response.list.url,
+                name: response.list.name,
             })
-            if (res.ok) {
-                const data = await res.json()
-                const response = data.body
-                formRef.current?.reset()
-                setSuccess(true)
 
-                setListActive({
+            setActiveElements(response.items)
+
+            setLists((prevLists: ListsProps[]) => [
+                ...prevLists,
+                {
                     id: response.id,
-                    url: response.url,
                     name: response.name,
-                })
-
-                setActiveElements([])
-
-                setLists((prevLists: ListsProps[]) => [
-                    ...prevLists,
-                    {
-                        id: response.id,
-                        name: response.name,
-                        type: undefined,
-                        createAt: new Date(),
-                        url: response.url,
-                        userId: response.userId,
-                        predefined: false,
-                    },
-                ])
-            } else {
-                setError(true)
-                console.error("Błąd pobierania danych")
-            }
-            setLoading(false)
+                    type: undefined,
+                    createAt: new Date(),
+                    url: response.url,
+                    userId: response.userId,
+                    predefined: false,
+                },
+            ])
         } catch (error) {
-            setError(true)
             console.error(error)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -126,6 +130,8 @@ export default function CreateList() {
                                     />
                                 </svg>
                             </>
+                        ) : duplicate ? (
+                            "Duplikuj listę"
                         ) : (
                             "Stwórz listę"
                         )}
@@ -136,9 +142,23 @@ export default function CreateList() {
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
+
                 {success && <ProgressBar closeFn={close} />}
 
-                <div className="mt-4">City / 2 dni / importuj listę...</div>
+                {duplicate ? (
+                    <div className="mt-4">
+                        Duplikujesz listę
+                        <span className="font-medium ml-1">
+                            {duplicate.name}
+                        </span>
+                    </div>
+                ) : (
+                    <>
+                        <div className="mt-4">
+                            City / 2 dni / importuj listę...
+                        </div>
+                    </>
+                )}
             </form>
         </>
     )

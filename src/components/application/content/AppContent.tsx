@@ -107,9 +107,8 @@ export default function AppContent() {
                                                 )
                                         )
                                         .map((element, index) => (
-                                            <>
+                                            <div key={element.id}>
                                                 <AppContentElement
-                                                    key={element.id + index}
                                                     name={element.name}
                                                     done={element.status}
                                                     index={index}
@@ -118,7 +117,7 @@ export default function AppContent() {
                                                         element.categories
                                                     }
                                                 />
-                                            </>
+                                            </div>
                                         ))}
                                 </ul>
                             </div>

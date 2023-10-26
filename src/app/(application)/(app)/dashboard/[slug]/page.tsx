@@ -5,6 +5,7 @@ import IconMore from "@/components/application/icons/more"
 import IconSwitch from "@/components/application/icons/switch"
 import AppTitle from "@/components/application/title/AppTitle"
 import ButtonDelete from "@/components/application/buttons/delete"
+import ButtonDuplicate from "@/components/application/buttons/duplicate"
 
 export default function Page() {
     return (
@@ -18,9 +19,7 @@ export default function Page() {
                     <button className="px-3 pr-5 sm:hidden">
                         <IconMore />
                     </button>
-                    <button className="hidden sm:inline-block">
-                        <IconCopy />
-                    </button>
+                    <ButtonDuplicate />
                     <ButtonDelete />
                 </div>
             </div>
