@@ -1,12 +1,8 @@
-type TDuplicateCategoriesProps = {
-    name: string
-    id: number
-    userId: string
-}
+import { Categories } from "@/context/AppContext"
 
 type TCreateElementsProps = {
     name: string
-    categories: TDuplicateCategoriesProps[] | []
+    categories: Categories[] | []
 }
 
 const createListAction = async (
