@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
 import createListAction from "@/actions/createList"
+import { focusInput } from "@/lib/actions"
 import DebugLog from "@/lib/developConsoleLog"
 import DebugLogScript from "@/lib/developConsoleScripts"
 
@@ -25,6 +26,7 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
     const {
         setLists,
         listActive,
@@ -87,6 +89,10 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
         setTitle(newValue)
     }
 
+    useEffect(() => {
+        focusInput(inputRef)
+    }, [])
+
     return (
         <>
             <DebugLog name="ModalCreateList" />
@@ -112,6 +118,7 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                         className="form-control grow"
                         onChange={handleInputChange}
                         disabled={success}
+                        ref={inputRef}
                     />
 
                     <button

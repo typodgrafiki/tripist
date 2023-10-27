@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useGlobalContext } from "@/context/AppContext"
+import { focusInput } from "@/lib/actions"
 import DebugLog from "@/lib/developConsoleLog"
 import DebugLogScript from "@/lib/developConsoleScripts"
 
@@ -15,11 +16,11 @@ export default function CreateLAddElements() {
     const inputRef = useRef<HTMLInputElement | null>(null)
     const { listActive, setActiveElements } = useGlobalContext()
 
-    const focusInput = () => {
-        if (inputRef.current) {
-            inputRef.current.focus()
-        }
-    }
+    // const focusInput = () => {
+    //     if (inputRef.current) {
+    //         inputRef.current.focus()
+    //     }
+    // }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -47,7 +48,7 @@ export default function CreateLAddElements() {
                     response,
                 ])
 
-                focusInput()
+                focusInput(inputRef)
 
                 setTimeout(() => {
                     setSuccess(false)
@@ -69,7 +70,7 @@ export default function CreateLAddElements() {
     }
 
     useEffect(() => {
-        focusInput()
+        focusInput(inputRef)
     }, [])
 
     return (

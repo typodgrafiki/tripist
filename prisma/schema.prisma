@@ -11,25 +11,27 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  name      String?
-  surname   String?
-  email     String    @unique
-  image     String?
-  categories Category[]
-  preferences String[]
-  lists     List[]    @relation("UserLists")
+  id                String    @id @default(uuid())
+  createdAt         DateTime  @default(now())
+  name              String?
+  surname           String?
+  email             String    @unique
+  image             String?
+  categories        Category[]
+  preferences       String[]
+  lists             List[]    @relation("UserLists")
+  changeLogs        ChangeLog[]
 }
 
 model List {
   id              String    @id @default(uuid())
   name            String
   type            String?
-  createAt        DateTime @default(now())
+  createAt        DateTime  @default(now())
+  lastChangeAt    DateTime  @default(now())
   url             String
   userId          String
-  user            User   @relation("UserLists", fields: [userId], references: [id])
+  user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
   predefined      Boolean   @default(false)
   
@@ -40,6 +42,7 @@ model ListItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean
+  createAt      DateTime  @default(now())
   listId        String
   list          List      @relation(fields: [listId], references: [id])
   categories    Category[]
@@ -48,15 +51,26 @@ model ListItem {
 }
 
 model Category {
-  id       Int    @id @default(autoincrement())
+  id       Int        @id @default(autoincrement())
   name     String
   userId   String
-  user     User   @relation(fields: [userId], references: [id])
+  user     User       @relation(fields: [userId], references: [id])
   items    ListItem[]
 }
 
+model ChangeLog {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  action        String    // np. "DELETE", "UPDATE"
+  entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
+  entityId      Int    // ID encji, którą zmieniliśmy
+  previousData  Json     // Dane przed zmianą
+}
+
 model PredefinedList {
-  id       Int             @id @default(autoincrement())
+  id       Int        @id @default(autoincrement())
   name     String
   type     String
   elements PredefinedListItem[]

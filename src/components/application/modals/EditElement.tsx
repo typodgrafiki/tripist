@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { useGlobalContext } from "@/context/AppContext"
+import { useGlobalContext, Categories } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
-import { ListsProps } from "@/context/AppContext"
-import { Categories } from "@/context/AppContext"
+import { focusInput } from "@/lib/actions"
 import DebugLog from "@/lib/developConsoleLog"
 import DebugLogScript from "@/lib/developConsoleScripts"
 
@@ -38,6 +37,7 @@ export default function EditElement({
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
     const { activeElements, setActiveElements } = useGlobalContext()
     const { setIsModalOpen } = useModal()
     const [categories, setCategories] = useState<Categories[]>([])
@@ -161,6 +161,7 @@ export default function EditElement({
 
     useEffect(() => {
         showCategories()
+        focusInput(inputRef)
     }, [])
 
     return (
@@ -182,6 +183,7 @@ export default function EditElement({
                         className="form-control w-full"
                         disabled={success}
                         onChange={handleChange}
+                        ref={inputRef}
                     />
                     {error && (
                         <div className="text-red-600 text-sm mt-1">
