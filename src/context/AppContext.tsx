@@ -16,7 +16,7 @@ export interface ListsProps {
     url: string
 }
 
-interface ListActiveProps {
+export interface ListActiveProps {
     id: string | null
     name: string | null
     url: string

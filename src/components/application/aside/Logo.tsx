@@ -2,8 +2,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useGlobalContext } from "@/context/AppContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function Logo() {
+    DebugLogScript("Logo")
     const { setListActive } = useGlobalContext()
 
     const handleClick = () => {
@@ -16,6 +19,7 @@ export default function Logo() {
 
     return (
         <>
+            <DebugLog name="Logo" />
             <Link
                 href="/dashboard"
                 className="block sm:mb-2"

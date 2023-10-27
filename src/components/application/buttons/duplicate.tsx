@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import IconCopy from "@/components/application/icons/copy"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function ButtonDuplicate() {
-    const router = useRouter()
+    DebugLogScript("ButtonDuplicate")
     const { setModalContent, setIsModalOpen } = useModal()
     const { listActive } = useGlobalContext()
     const { id, name } = listActive
@@ -24,11 +24,14 @@ export default function ButtonDuplicate() {
     }
 
     return (
-        <button
-            className="hidden sm:inline-block px-1 hover:text-[var(--primary)]"
-            onClick={handleClick}
-        >
-            <IconCopy />
-        </button>
+        <>
+            <DebugLog name="ButtonDelete" />
+            <button
+                className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
+                onClick={handleClick}
+            >
+                <IconCopy />
+            </button>
+        </>
     )
 }

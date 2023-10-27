@@ -26,6 +26,10 @@
         );
     }
 
+    .animated {
+        transition: all 0.2s ease;
+    }
+
     .btn {
         display: inline-block;
         padding: 10px 20px;
@@ -35,6 +39,10 @@
         transition:
             color 0.2s ease,
             background-color 0.2s ease;
+    }
+
+    .btn-small {
+        padding: 5px 10px;
     }
 
     .btn-default {
@@ -80,6 +88,10 @@
         border-color: transparent;
         border-radius: 7px;
         padding: 10px 20px;
+    }
+
+    .form-control.success:focus {
+        border-color: green;
     }
 
     .form-control::placeholder {

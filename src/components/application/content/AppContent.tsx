@@ -1,23 +1,23 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import AppContentElement from "@/components/application/content/AppContentElement"
-import { useGlobalContext } from "@/context/AppContext"
+import { useGlobalContext, ListActiveProps } from "@/context/AppContext"
 import AddElements from "@/components/application/modals/AddElements"
 import { useModal } from "@/context/ModalContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function AppContent() {
-    const {
-        lists,
-        listActive,
-        setListActive,
-        activeElements,
-        setActiveElements,
-    } = useGlobalContext()
+    DebugLogScript("Content")
+    const { lists, listActive, activeElements, setActiveElements } =
+        useGlobalContext()
     const [loading, setLoading] = useState(true)
     const [selectedCategory, setSelectedCategory] = useState<string | null>(
         null
     )
+    const { setModalContent, setIsModalOpen } = useModal()
 
     const { id: activeId } = listActive
 
@@ -28,8 +28,7 @@ export default function AppContent() {
             if (res.ok) {
                 const data = await res.json()
                 const result = await data.body
-                
-                console.log(result)
+
                 await setActiveElements(result)
             } else {
                 console.error("Błąd pobierania danych")
@@ -52,12 +51,18 @@ export default function AppContent() {
         setSelectedCategory(category)
     }
 
+    const handleOpenModal = () => {
+        setModalContent(<AddElements />)
+        setIsModalOpen(true)
+    }
+
     useEffect(() => {
         getListActive()
     }, [activeId])
 
     return (
         <>
+            <DebugLog name="Content" />
             {loading ? (
                 <div className="flex justify-center text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:py-9 sm:px-8">
                     <div className="loader"></div>
@@ -66,8 +71,8 @@ export default function AppContent() {
                 <>
                     {activeElements?.length > 0 ? (
                         <>
-                            <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-8 sm:pt-7 sm:px-8">
-                                <div className="flex gap-6 mb-3 mx-5 sm:mx-0 sm:mb-6 overflow-x-auto">
+                            <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
+                                <div className="flex gap-6 mb-3 mx-5 sm:mx-0 sm:mb-5 overflow-x-auto">
                                     <button
                                         onClick={() => handleCategoryChange("")}
                                         className={
@@ -125,21 +130,43 @@ export default function AppContent() {
                             </div>
                             <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
                                 <ButtonDisableAll />
-                                <ButtonAddElement />
+                                <ButtonAddElement
+                                    handleOpenModalFn={handleOpenModal}
+                                />
                             </div>
                         </>
                     ) : activeElements?.length === 0 && activeId ? (
                         <>
-                            <div className="bg-white p-10 shadow-lg rounded-md">
-                                Dodaj pozycje
-                            </div>
-                            <div className="flex justify-end gap-4">
-                                <ButtonAddElement />
+                            <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                                <p className="mb-3">
+                                    Wygląda na to, że Twoja lista jest pusta.
+                                    Kliknij poniżej, aby dodać pierwszą pozycję
+                                    i zorganizować swój wyjazd!
+                                </p>
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={handleOpenModal}
+                                >
+                                    Dodaj pozycję
+                                </button>
                             </div>
                         </>
                     ) : (
-                        <div className="bg-white p-10 shadow-lg rounded-md">
-                            Zaznacz którąś z list
+                        <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                            <p className="mb-5">
+                                Masz już swoje listy gotowe! Kliknij na jedną z
+                                nich, aby zacząć pakować bez stresu.
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-2">
+                                {lists.map((el) => (
+                                    <ListButton
+                                        key={el.id}
+                                        name={el.name}
+                                        id={el.id}
+                                        url={el.url}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     )}
                 </>
@@ -165,25 +192,29 @@ export default function AppContent() {
     )
 }
 
-const ButtonAddElement = () => {
-    const { setModalContent, setIsModalOpen } = useModal()
-
-    const handleOpenModal = () => {
-        setModalContent(<AddElements />)
-        setIsModalOpen(true)
-    }
-
+const ButtonAddElement = ({
+    handleOpenModalFn,
+}: {
+    handleOpenModalFn: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => void
+}) => {
+    DebugLogScript("ContentButtonAddElement")
     return (
-        <button
-            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
-            onClick={handleOpenModal}
-        >
-            Add
-        </button>
+        <>
+            <DebugLog name="ContentButtonAddElement" />
+            <button
+                className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
+                onClick={handleOpenModalFn}
+            >
+                Dodaj
+            </button>
+        </>
     )
 }
 
 const ButtonDisableAll = () => {
+    DebugLogScript("ContentButtonAllDisabled")
     const [loading, setLoading] = useState(false)
     const { activeElements, setActiveElements } = useGlobalContext()
 
@@ -217,16 +248,45 @@ const ButtonDisableAll = () => {
     }
 
     return (
-        <button
-            className="py-3 px-9 self-start font-medium hover:text-[var(--primary)]"
-            onClick={handleClick}
-        >
-            Odznacz wszystko{" "}
-            {loading ? (
-                <span className="loader small inline-block"></span>
-            ) : (
-                "-"
-            )}
-        </button>
+        <>
+            <DebugLog name="ContentButtonAllDisabled" />
+            <button
+                className="animated py-3 px-9 self-start font-medium hover:text-[var(--primary)]"
+                onClick={handleClick}
+            >
+                Odznacz wszystko{" "}
+                {loading ? (
+                    <span className="loader small inline-block"></span>
+                ) : (
+                    "-"
+                )}
+            </button>
+        </>
+    )
+}
+
+const ListButton = ({ id, name, url }: ListActiveProps) => {
+    DebugLogScript("ContentListsButton")
+    const { setListActive } = useGlobalContext()
+    const thisUrl = `/dashboard/${url}`
+
+    return (
+        <>
+            <DebugLog name="ContentListsButton" />
+
+            <Link
+                href={thisUrl}
+                className="btn btn-default btn-small"
+                onClick={() =>
+                    setListActive({
+                        id: id,
+                        name: name,
+                        url: url,
+                    })
+                }
+            >
+                {name}
+            </Link>
+        </>
     )
 }

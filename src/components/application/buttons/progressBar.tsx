@@ -1,8 +1,11 @@
 "use client"
 
 import React, { useEffect, useState, useRef } from "react"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function ProgressBar({ closeFn }: { closeFn: () => void }) {
+    DebugLogScript("ProgressBar")
     const [progress, setProgress] = useState(0)
 
     useEffect(() => {
@@ -30,6 +33,7 @@ export default function ProgressBar({ closeFn }: { closeFn: () => void }) {
 
     return (
         <>
+            <DebugLog name="ProgressBar" />
             <div className="progress-bar">
                 <div
                     className="progress"

@@ -1,9 +1,12 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useGlobalContext } from "@/context/AppContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function CreateLAddElements() {
+    DebugLogScript("ModalAddElement")
     const [name, setName] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -11,6 +14,12 @@ export default function CreateLAddElements() {
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const { listActive, setActiveElements } = useGlobalContext()
+
+    const focusInput = () => {
+        if (inputRef.current) {
+            inputRef.current.focus()
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -38,9 +47,7 @@ export default function CreateLAddElements() {
                     response,
                 ])
 
-                if (inputRef.current) {
-                    inputRef.current.focus()
-                }
+                focusInput()
 
                 setTimeout(() => {
                     setSuccess(false)
@@ -61,9 +68,16 @@ export default function CreateLAddElements() {
         setName(newValue)
     }
 
+    useEffect(() => {
+        focusInput()
+    }, [])
+
     return (
         <>
-            <h3 className="title mb-3 font-medium">{listActive.name}</h3>
+            <DebugLog name="ModalAddElement" />
+            <h3 className="title mb-3 font-medium text-base">
+                {listActive.name}
+            </h3>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -73,7 +87,11 @@ export default function CreateLAddElements() {
                         type="text"
                         value={name}
                         placeholder="np. Suszarka"
-                        className="form-control grow"
+                        className={`animated form-control grow ${
+                            success
+                                ? "focus:border-green-500 focus:ring-green-500"
+                                : ""
+                        }`}
                         onChange={handleInputChange}
                         ref={inputRef}
                     />
@@ -83,7 +101,7 @@ export default function CreateLAddElements() {
                         className={`flex justify-center items-center btn btn-primary ${
                             success && "btn-green"
                         }`}
-                        disabled={success || loading}
+                        disabled={loading}
                     >
                         {loading ? (
                             <div className="loader small"></div>

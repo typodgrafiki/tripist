@@ -7,6 +7,8 @@ import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
 import { Categories } from "@/context/AppContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 interface IFormData {
     name: string
@@ -27,6 +29,7 @@ export default function EditElement({
     name: string
     category: Categories[]
 }) {
+    DebugLogScript("ModalEditElement")
     const [formData, setFormData] = useState<IFormData>({
         name: name,
         categories: [],
@@ -162,6 +165,10 @@ export default function EditElement({
 
     return (
         <>
+            <DebugLog name="ModalEditElement" />
+            <h3 className="title mb-3 font-medium text-base">
+                Edycja elementu
+            </h3>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -232,11 +239,7 @@ export default function EditElement({
                     ))}
                 </ul>
 
-                <div className="flex justify-between">
-                    <ButtonDelete
-                        id={id}
-                        dis={success || loading}
-                    />
+                <div className="flex justify-between flex-row-reverse">
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -270,6 +273,10 @@ export default function EditElement({
                             "Zapisz"
                         )}
                     </button>
+                    <ButtonDelete
+                        id={id}
+                        dis={success || loading}
+                    />
                 </div>
             </form>
             {success && <ProgressBar closeFn={close} />}
@@ -313,6 +320,7 @@ const ButtonDelete = ({ id, dis }: { id: number; dis: boolean }) => {
 
     return (
         <>
+            <DebugLog name="ModalAddElementBtnDelete" />
             <button
                 className={`btn btn-error ${
                     loading ? "bg-red-600 text-white" : ""

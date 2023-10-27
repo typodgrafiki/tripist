@@ -3,17 +3,12 @@
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { useGlobalContext } from "@/context/AppContext"
+import { useGlobalContext, ListActiveProps } from "@/context/AppContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
-export default function AppListsLi({
-    name,
-    url,
-    id,
-}: {
-    name: string
-    url: string
-    id: string
-}) {
+export default function AppListsLi({ name, url, id }: ListActiveProps) {
+    DebugLogScript("AppListsLi")
     const { setListActive } = useGlobalContext()
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + url
@@ -34,14 +29,15 @@ export default function AppListsLi({
 
     return (
         <>
+            <DebugLog name="AppListsLi" />
             <li className="relative mb-1">
                 <Link
                     href={thisUrl}
-                    className={
+                    className={`list-link animated block px-6 py-2 relative rounded-md truncate ${
                         pathname === thisUrl
-                            ? "list-link list-link-active block font-semibold text-gray-900 bg-white rounded-lg px-5 py-2"
-                            : "list-link block px-5 pl-0 py-2 hover:text-gray-900 focus:font-semibold focus:text-gray-900 focus:bg-white focus:rounded-lg focus:pl-2"
-                    }
+                            ? "font-medium text-white bg-[var(--primary)] mx-2 pl-4 pr-1"
+                            : "hover:text-gray-900 hover:ml-2 focus:font-medium focus:bg-[var(--primary)] focus:text-white focus:mx-2"
+                    }`}
                     onClick={changeActive}
                 >
                     {name}

@@ -4,7 +4,7 @@ import prisma from "@/lib/prismaClient"
 import { generateUniqueURL } from "@/lib/normalizeUrl"
 import { Categories } from "@/context/AppContext"
 
-export async function GET(request: Request) {
+export async function GET() {
     const { userId } = auth()
 
     try {
@@ -89,7 +89,6 @@ export async function POST(request: Request) {
             items: newItems,
         }
 
-        // return NextResponse.json({ body: result }, { status: 200 })
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
         return NextResponse.json(

@@ -7,6 +7,8 @@ import EditElement from "@/components/application/modals/EditElement"
 import IconPen from "../icons/pen"
 import IconBin from "../icons/bin"
 import { Categories } from "@/context/AppContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function AppContentElement({
     name,
@@ -21,6 +23,7 @@ export default function AppContentElement({
     id: number
     category: Categories[]
 }) {
+    DebugLogScript("ContentElement")
     const [loading, setLoading] = useState(false)
     const { activeElements, setActiveElements } = useGlobalContext()
     let timeout: NodeJS.Timeout
@@ -70,62 +73,66 @@ export default function AppContentElement({
     }
 
     return (
-        <li className="element-row relative border-t flex gap-3 items-stretch hover:bg-slate-50 sm:px-1">
-            <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
-                <span className="relative round w-[21px] h-[21px]">
-                    {loading ? (
-                        <div className="loader small relative top-[2px]"></div>
-                    ) : (
-                        <>
-                            <input
-                                type="checkbox"
-                                checked={done}
-                                className="mr-2"
-                                id={`element-${index}`}
-                                onChange={handleChange}
-                            />
-                            <span className="label"></span>
-                        </>
-                    )}
-                </span>
+        <>
+            <DebugLog name="ContentElement" />
+            <li className="element-row animated relative border-t flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded">
+                <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
+                    <span className="relative round w-[21px] h-[21px]">
+                        {loading ? (
+                            <div className="loader small relative top-[2px]"></div>
+                        ) : (
+                            <>
+                                <input
+                                    type="checkbox"
+                                    checked={done}
+                                    className="mr-2"
+                                    id={`element-${index}`}
+                                    onChange={handleChange}
+                                />
+                                <span className="label"></span>
+                            </>
+                        )}
+                    </span>
 
-                <span className="grow">{name}</span>
-            </label>
+                    <span className="grow">{name}</span>
+                </label>
 
-            {category && (
-                <>
-                    {category.length > 0 && (
-                        <>
-                            <div className="element-categories hidden sm:flex sm:item-center sm:gap-1">
-                                <span className="block text-xs bg-slate-200 rounded-md self-center px-2 py-1 max-w-[7rem] text-ellipsis overflow-hidden whitespace-nowrap">
-                                    {category[0].name}
-                                </span>
-                                {category.length > 1 && (
-                                    <>
-                                        <span className="block text-xs bg-slate-200 rounded-md self-center px-2 py-1">
-                                            ...
-                                        </span>
-                                    </>
-                                )}
-                            </div>
-                        </>
-                    )}
-                </>
-            )}
+                {category && (
+                    <>
+                        {category.length > 0 && (
+                            <>
+                                <div className="element-categories hidden sm:flex sm:item-center sm:gap-1">
+                                    <span className="block text-xs bg-slate-200 rounded-md self-center px-2 py-1 max-w-[7rem] text-ellipsis overflow-hidden whitespace-nowrap">
+                                        {category[0].name}
+                                    </span>
+                                    {category.length > 1 && (
+                                        <>
+                                            <span className="block text-xs bg-slate-200 rounded-md self-center px-2 py-1">
+                                                ...
+                                            </span>
+                                        </>
+                                    )}
+                                </div>
+                            </>
+                        )}
+                    </>
+                )}
 
-            <div className="element-edit flex absolute top-0 bottom-0 right-0">
-                <ButtonEdit
-                    id={id}
-                    name={name}
-                    category={category}
-                />
-                <ButtonDelete id={id} />
-            </div>
-        </li>
+                <div className="element-edit flex absolute top-0 bottom-0 right-0">
+                    <ButtonEdit
+                        id={id}
+                        name={name}
+                        category={category}
+                    />
+                    <ButtonDelete id={id} />
+                </div>
+            </li>
+        </>
     )
 }
 
 const ButtonDelete = ({ id }: { id: number }) => {
+    DebugLogScript("ContentElementButtonDelete")
     const [loading, setLoading] = useState(false)
     const { activeElements, setActiveElements } = useGlobalContext()
 
@@ -151,13 +158,17 @@ const ButtonDelete = ({ id }: { id: number }) => {
     }
 
     return (
-        <button
-            className="px-1 hover:text-[var(--primary)]"
-            onClick={handleRemove}
-            disabled={loading}
-        >
-            {loading ? <div className="loader small"></div> : <IconBin />}
-        </button>
+        <>
+            <DebugLog name="ContentElementButtonDelete" />
+
+            <button
+                className="px-1 hover:text-[var(--primary)]"
+                onClick={handleRemove}
+                disabled={loading}
+            >
+                {loading ? <div className="loader small"></div> : <IconBin />}
+            </button>
+        </>
     )
 }
 
@@ -170,8 +181,7 @@ const ButtonEdit = ({
     name: string
     category: Categories[]
 }) => {
-    // const { listActive, setListActive } = useGlobalContext()
-
+    DebugLogScript("ContentElementButtonEdit")
     const { setModalContent, setIsModalOpen } = useModal()
 
     const handleEdit = async () => {
@@ -186,11 +196,14 @@ const ButtonEdit = ({
     }
 
     return (
-        <button
-            className="px-1 hover:text-[var(--primary)]"
-            onClick={handleEdit}
-        >
-            <IconPen />
-        </button>
+        <>
+            <DebugLog name="ContentElementButtonEdit" />
+            <button
+                className="px-1 hover:text-[var(--primary)]"
+                onClick={handleEdit}
+            >
+                <IconPen />
+            </button>
+        </>
     )
 }

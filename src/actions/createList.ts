@@ -1,4 +1,7 @@
+"use client"
+
 import { Categories } from "@/context/AppContext"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 type TCreateElementsProps = {
     name: string
@@ -9,7 +12,8 @@ const createListAction = async (
     name: string,
     duplicate?: TCreateElementsProps[]
 ) => {
-    const query = duplicate ? { name, duplicate } : { name }
+    DebugLogScript("createListAction")
+    const query = { name, duplicate }
 
     if (!name) {
         throw "Nie uzupełniono nazwy"

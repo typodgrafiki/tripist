@@ -2,8 +2,11 @@
 
 import { useEffect } from "react"
 import { useModal } from "@/context/ModalContext"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function Modal() {
+    DebugLogScript("Modal")
     const { isModalOpen, setIsModalOpen, modalContent, setModalContent } =
         useModal()
 
@@ -35,10 +38,17 @@ export default function Modal() {
 
     return (
         <>
+            <DebugLog name="Modal" />
             <div
-                className="modal-overlay flex items-center justify-center fixed top-0 left-0 right-0 bottom-0 z-10"
+                className="animated modal-overlay flex items-center justify-center fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm"
                 onClick={handleShadowClick}
             >
+                <div
+                    className="fixed top-0 right-0 text-white p-3 cursor-pointer"
+                    onClick={handleShadowClick}
+                >
+                    ESC
+                </div>
                 <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
                     {modalContent}
                 </div>

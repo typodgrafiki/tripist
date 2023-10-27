@@ -7,6 +7,8 @@ import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
 import { ListsProps } from "@/context/AppContext"
 import createListAction from "@/actions/createList"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 type IDuplicatProps = {
     duplicate?: {
@@ -16,6 +18,7 @@ type IDuplicatProps = {
 }
 
 export default function CreateList({ duplicate }: IDuplicatProps) {
+    DebugLogScript("ModalCreateList")
     const router = useRouter()
     const [title, setTitle] = useState("")
     const [loading, setLoading] = useState(false)
@@ -63,13 +66,13 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
             setLists((prevLists: ListsProps[]) => [
                 ...prevLists,
                 {
-                    id: response.id,
-                    name: response.name,
+                    id: response.list.id,
+                    name: response.list.name,
                     type: undefined,
                     createAt: new Date(),
-                    url: response.url,
-                    userId: response.userId,
-                    predefined: false,
+                    url: response.list.url,
+                    userId: response.list.userId,
+                    predefined: response.predefined,
                 },
             ])
         } catch (error) {
@@ -86,7 +89,17 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
 
     return (
         <>
-            <h3 className="title mb-3 font-medium">Nazwa</h3>
+            <DebugLog name="ModalCreateList" />
+            <h3 className="mb-3 text-gray-400 truncate">
+                <span className="title font-medium text-gray-900 text-base">
+                    Nazwa
+                </span>
+                {duplicate && (
+                    <span className="text-xs ml-2">
+                        (Duplikujesz listę &quot;{duplicate.name}&quot;)
+                    </span>
+                )}
+            </h3>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -145,14 +158,7 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
 
                 {success && <ProgressBar closeFn={close} />}
 
-                {duplicate ? (
-                    <div className="mt-4">
-                        Duplikujesz listę
-                        <span className="font-medium ml-1">
-                            {duplicate.name}
-                        </span>
-                    </div>
-                ) : (
+                {!duplicate && (
                     <>
                         <div className="mt-4">
                             City / 2 dni / importuj listę...

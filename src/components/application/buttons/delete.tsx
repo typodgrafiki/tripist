@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
 import IconBin from "@/components/application/icons/bin"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function ButtonDelete() {
     const router = useRouter()
@@ -39,17 +41,20 @@ export default function ButtonDelete() {
     }
 
     return (
-        <button
-            className="hidden sm:inline-block px-1 hover:text-[var(--primary)]"
-            onClick={handleClick}
-        >
-            {loading ? (
-                <div className="loader small"></div>
-            ) : (
-                <>
-                    <IconBin />
-                </>
-            )}
-        </button>
+        <>
+            <DebugLog name="ButtonDelete" />
+            <button
+                className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
+                onClick={handleClick}
+            >
+                {loading ? (
+                    <div className="loader small"></div>
+                ) : (
+                    <>
+                        <IconBin />
+                    </>
+                )}
+            </button>
+        </>
     )
 }

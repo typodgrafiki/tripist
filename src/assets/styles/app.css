@@ -1,3 +1,7 @@
+body {
+    @apply text-sm;
+}
+
 .btn-add-element::before,
 .btn-add-element::after {
     content: "";
@@ -25,32 +29,6 @@
     display: block;
     position: relative;
     overflow: hidden;
-}
-
-.list-link {
-    transition: padding 0.1s ease;
-}
-
-.list-link:focus,
-.list-link-active {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-}
-
-.list-link::before {
-    content: "";
-    display: block;
-    position: absolute;
-    inset: 0 auto 0 0;
-    background-color: var(--primary);
-    width: 0;
-    border-radius: 5px;
-    transition: width 0.1s ease;
-}
-
-.list-link:focus::before,
-.list-link-active::before {
-    width: 5px;
 }
 
 .element-row .round {

@@ -6,8 +6,11 @@ import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import "@/assets/styles/app-loading.css"
+import DebugLog from "@/lib/developConsoleLog"
+import DebugLogScript from "@/lib/developConsoleScripts"
 
 export default function AppLists() {
+    DebugLogScript("AppLists")
     const { lists, setLists } = useGlobalContext()
     const [loading, setLoading] = useState(true)
 
@@ -28,6 +31,7 @@ export default function AppLists() {
 
     return (
         <>
+            <DebugLog name="AppLists" />
             {loading ? (
                 <ul className="my-lists-loading pt-[15px]">
                     <li className="max-w-[145px]"></li>
@@ -38,7 +42,7 @@ export default function AppLists() {
                     <li className="max-w-[109px]"></li>
                 </ul>
             ) : (
-                <div className="hidden sm:block my-lists text-gray-500 sm:overflow-y-auto">
+                <div className="hidden my-lists text-gray-500 bg-white shadow-md rounded-md py-3 sm:block sm:overflow-y-auto sm:mb-5">
                     <ul>
                         {lists.map((element) => (
                             <AppListsLi
@@ -57,6 +61,7 @@ export default function AppLists() {
 }
 
 const Button = () => {
+    DebugLogScript("AppListsButton")
     const { setModalContent, setIsModalOpen } = useModal()
 
     const handleOpenModal = () => {
@@ -65,11 +70,14 @@ const Button = () => {
     }
 
     return (
-        <button
-            className="hidden sm:inline-block btn btn-default self-start"
-            onClick={handleOpenModal}
-        >
-            Dodaj listę
-        </button>
+        <>
+            <DebugLog name="AppListsButton" />
+            <button
+                className="hidden sm:inline-block btn btn-default self-start sm:mb-4"
+                onClick={handleOpenModal}
+            >
+                Dodaj listę
+            </button>
+        </>
     )
 }
