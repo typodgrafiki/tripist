@@ -4,9 +4,9 @@ import logo from "@/assets/images/logo-footer.svg"
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-400 pt-20">
-            <div className="w-full container mx-auto px-20 flex justify-center mb-14">
-                <div className="logo w-3/12">
+        <footer className="relative bg-gray-900 text-gray-400 pt-10 md:pt-20">
+            <div className="w-full container mx-auto px-7 md:flex md:justify-center md:mb-14">
+                <div className="logo hidden lg:block lg:w-3/12 lg:px-20">
                     <Link href="/#hero">
                         <Image
                             src={logo}
@@ -16,7 +16,7 @@ export default function Footer() {
                         />
                     </Link>
                 </div>
-                <div className="w-3/12">
+                <div className="text-center mb-8 md:w-3/12 md:text-left md:mb-0">
                     <p className="font-semibold text-white mb-4">QUICK LINKS</p>
                     <ul>
                         <li>
@@ -37,7 +37,7 @@ export default function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className="w-3/12">
+                <div className="text-center mb-8 md:w-3/12 md:text-left md:mb-0">
                     <p className="font-semibold text-white mb-4">COMPANY</p>
                     <ul>
                         <li>
@@ -66,7 +66,7 @@ export default function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className="w-3/12">
+                <div className="text-center md:w-3/12 md:text-left">
                     <p className="font-semibold text-white mb-4">SUPPORT</p>
                     <ul>
                         <li>
@@ -96,7 +96,7 @@ export default function Footer() {
                     </ul>
                 </div>
             </div>
-            <p className="copyright text-center p-6 text-sm">
+            <p className="copyright text-center text-gray-600 p-6 text-sm">
                 © 2023 — Tripist. All Rights Reserved.
             </p>
         </footer>

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 function SignBtn() {
     return (
-        <div className="flex space-x-4">
+        <>
             <SignedIn>
                 <Link
                     href="/dashboard"
@@ -28,7 +28,7 @@ function SignBtn() {
                     Załóż konto
                 </Link>
             </SignedOut>
-        </div>
+        </>
     )
 }
 
