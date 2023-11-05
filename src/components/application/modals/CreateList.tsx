@@ -2,14 +2,12 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import ProgressBar from "../buttons/progressBar"
-import { ListsProps } from "@/context/AppContext"
 import createListAction from "@/actions/createList"
-import { focusInput } from "@/lib/actions"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import { focusInput } from "@/utils/utils"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 type IDuplicatProps = {
     duplicate?: {
@@ -19,7 +17,6 @@ type IDuplicatProps = {
 }
 
 export default function CreateList({ duplicate }: IDuplicatProps) {
-    DebugLogScript("ModalCreateList")
     const router = useRouter()
     const [title, setTitle] = useState("")
     const [loading, setLoading] = useState(false)
@@ -27,17 +24,10 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const {
-        setLists,
-        listActive,
-        setListActive,
-        activeElements,
-        setActiveElements,
-    } = useGlobalContext()
     const { setIsModalOpen } = useModal()
 
     const close = () => {
-        router.push(`/dashboard/${listActive.url}`)
+        // router.push(`/dashboard/${listActive.url}`)
         setTitle("")
         setSuccess(false)
         setIsModalOpen(false)
@@ -50,33 +40,33 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
             setError(false)
             await setLoading(true)
 
-            const response = await createListAction(
-                title,
-                duplicate ? activeElements : []
-            )
+            // const response = await createListAction(
+            //     title,
+            //     duplicate ? activeElements : []
+            // )
 
-            setTitle("")
-            setSuccess(true)
-            setListActive({
-                id: response.list.id,
-                url: response.list.url,
-                name: response.list.name,
-            })
+            // setTitle("")
+            // setSuccess(true)
+            // setListActive({
+            //     id: response.list.id,
+            //     url: response.list.url,
+            //     name: response.list.name,
+            // })
 
-            setActiveElements(response.items)
+            // setActiveElements(response.items)
 
-            setLists((prevLists: ListsProps[]) => [
-                ...prevLists,
-                {
-                    id: response.list.id,
-                    name: response.list.name,
-                    type: undefined,
-                    createAt: new Date(),
-                    url: response.list.url,
-                    userId: response.list.userId,
-                    predefined: response.predefined,
-                },
-            ])
+            // setLists((prevLists: ListsProps[]) => [
+            //     ...prevLists,
+            //     {
+            //         id: response.list.id,
+            //         name: response.list.name,
+            //         type: undefined,
+            //         createAt: new Date(),
+            //         url: response.list.url,
+            //         userId: response.list.userId,
+            //         predefined: response.predefined,
+            //     },
+            // ])
         } catch (error) {
             console.error(error)
         } finally {

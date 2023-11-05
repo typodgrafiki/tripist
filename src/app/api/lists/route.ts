@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
-import { generateUniqueURL } from "@/lib/normalizeUrl"
-import { Categories } from "@/context/AppContext"
+import { ICategories } from "@/types/types"
 
 export async function GET() {
     const { userId } = auth()
@@ -44,18 +43,9 @@ export async function POST(request: Request) {
                 { status: 401 }
             )
 
-        const url = await generateUniqueURL(prisma, name)
-
-        if (!url)
-            return NextResponse.json(
-                { message: "Nie wygenerowano url" },
-                { status: 401 }
-            )
-
         const newList = await prisma.list.create({
             data: {
                 name: name,
-                url: url,
                 userId: userId,
             },
         })
@@ -69,7 +59,7 @@ export async function POST(request: Request) {
                         listId: newList.id,
                         categories: {
                             connect: item.categories.map(
-                                (category: Categories) => ({
+                                (category: ICategories) => ({
                                     id: category.id,
                                 })
                             ),

@@ -2,9 +2,9 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useGlobalContext } from "@/context/AppContext"
-import { focusInput } from "@/lib/actions"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import { focusInput } from "@/utils/utils"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function CreateLAddElements() {
     DebugLogScript("ModalAddElement")

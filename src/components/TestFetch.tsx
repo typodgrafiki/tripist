@@ -2,13 +2,10 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
+import { ILists } from "@/types/types"
 import TestFetchLi from "./TestFetchLi"
 import TestCreate from "./TestCreate"
-
-const fetch1 = async () => {
-    const fethhh = await axios.get("/api/lists/1")
-    return fethhh
-}
+import Toastify from "toastify-js"
 
 export default function TestFetch() {
     // Access the client
@@ -19,13 +16,16 @@ export default function TestFetch() {
         queryKey: ["lists"],
         queryFn: async () => {
             const { data } = await axios.get("/api/lists")
-            return data.body
-            // ... as Iterface[]
+            return data.body as ILists[]
         },
     })
 
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Eror</div>
+
+    Toastify({
+        text: "Success get",
+    }).showToast()
 
     return (
         <>

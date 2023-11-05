@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useEffect, useState, useRef } from "react"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function ProgressBar({ closeFn }: { closeFn: () => void }) {
     DebugLogScript("ProgressBar")

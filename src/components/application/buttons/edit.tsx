@@ -4,8 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useGlobalContext } from "@/context/AppContext"
 import IconPen from "@/components/application/icons/pen"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function ButtonEdit() {
     DebugLogScript("ButtonEdit")

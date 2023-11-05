@@ -1,7 +1,7 @@
 "use client"
 
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function Sort() {
     DebugLogScript("SortBtn")

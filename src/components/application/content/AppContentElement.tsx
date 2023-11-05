@@ -7,8 +7,8 @@ import EditElement from "@/components/application/modals/EditElement"
 import IconPen from "../icons/pen"
 import IconBin from "../icons/bin"
 import { Categories } from "@/context/AppContext"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function AppContentElement({
     name,

@@ -17,6 +17,7 @@ model User {
   surname           String?
   email             String    @unique
   image             String?
+  darkTheme         Boolean   @default(true)
   categories        Category[]
   preferences       String[]
   lists             List[]    @relation("UserLists")
@@ -26,10 +27,9 @@ model User {
 model List {
   id              String    @id @default(uuid())
   name            String
-  type            String?
   createAt        DateTime  @default(now())
   lastChangeAt    DateTime  @default(now())
-  url             String
+  url             String?
   userId          String
   user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
@@ -41,7 +41,7 @@ model List {
 model ListItem {
   id            Int       @id @default(autoincrement())
   name          String
-  status        Boolean
+  status        Boolean   @default(false)
   createAt      DateTime  @default(now())
   listId        String
   list          List      @relation(fields: [listId], references: [id])

@@ -2,8 +2,8 @@
 
 import { useEffect } from "react"
 import { useModal } from "@/context/ModalContext"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function Modal() {
     DebugLogScript("Modal")

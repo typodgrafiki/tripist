@@ -39,9 +39,7 @@ export async function GET(request: Request, context: IContext) {
             },
         })
 
-        const elements = list?.elements
-
-        return NextResponse.json({ body: elements }, { status: 200 })
+        return NextResponse.json({ body: list }, { status: 200 })
     } catch (error) {
         return NextResponse.json(
             { error: "Internal Server Error" },

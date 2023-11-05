@@ -1,25 +1,24 @@
 "use client"
 
-import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import IconCopy from "@/components/application/icons/copy"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import DebugLog from "@/utils/developConsoleLog"
+import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function ButtonDuplicate() {
     DebugLogScript("ButtonDuplicate")
     const { setModalContent, setIsModalOpen } = useModal()
-    const { listActive } = useGlobalContext()
-    const { id, name } = listActive
+    // const { listActive } = useGlobalContext()
+    // const { id, name } = listActive
 
     const duplicatData = {
-        id: id || "",
-        name: name || "",
+        // id: id || "",
+        // name: name || "",
     }
 
     const handleClick = async () => {
-        setModalContent(<CreateList duplicate={duplicatData} />)
+        // setModalContent(<CreateList duplicate={duplicatData} />)
         setIsModalOpen(true)
     }
 
