@@ -23,7 +23,6 @@ export default function ContentElement({
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async (status: boolean) => changeElementStatus(id, status),
-        onMutate: (variables) => {},
         onSuccess: (response) => {
             // queryClient.invalidateQueries({
             //     queryKey: ["list", listId, { elements: [{ id: id }] }],
@@ -32,11 +31,49 @@ export default function ContentElement({
             // queryClient.setQueryData(["list", listId], response)
             // }))
 
+            // Aktualizuj konkretny ListItem
+            // queryClient.setQueryData(
+            //     ["listItem", variables.itemId],
+            //     (oldData) => {
+            //         return { ...oldData, status: false }
+            //     }
+            // )
+
+            // Alternatywnie, jeśli ListItem jest częścią listy
+            // queryClient.setQueryData(["listItems"], (oldData) => {
+            //     return oldData.map((item) => {
+            //         if (item.id === variables.itemId) {
+            //             // Zaktualizuj tylko status tego konkretnego elementu
+            //             return { ...item, status: false }
+            //         }
+            //         return item
+            //     })
+            // })
+
+            // console.log(response.data.body)
+
+            queryClient.setQueryData(["list", listId], (oldData) => {
+                return {
+                    ...oldData,
+                    elements: oldData.elements.map((item) => {
+                        if (item.id === response.data.body.id) {
+                            // Zaktualizuj tylko status tego konkretnego elementu
+                            return {
+                                ...item,
+                                status: response.data.body.status,
+                            }
+                        }
+                        return item
+                    }),
+                }
+                // console.log("query")
+                // console.log(oldData)
+            })
+
             // Toastify({
             //     text: `Uaktualniono elementów: ${response.data.body.count}`,
             // }).showToast()
             console.log("success")
-            console.log(response)
         },
         onError: (error) => {
             // Toastify({
@@ -92,22 +129,22 @@ export default function ContentElement({
             <li className="element-row animated relative border-t flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded">
                 <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
                     <span className="relative round w-[21px] h-[21px]">
-                        {/* {loading ? (
+                        {isPending ? (
                             <div className="loader small relative top-[2px]"></div>
                         ) : (
-                            <> */}
-                        <input
-                            type="checkbox"
-                            // checked={status}
-                            defaultChecked={status}
-                            className="mr-2"
-                            id={`element-${id}`}
-                            // onChange={handleChange}
-                            onChange={(e) => mutate(e.target.checked)}
-                        />
-                        <span className="label"></span>
-                        {/* </>
-                        )} */}
+                            <>
+                                <input
+                                    type="checkbox"
+                                    // checked={status}
+                                    defaultChecked={status}
+                                    className="mr-2"
+                                    id={`element-${id}`}
+                                    // onChange={handleChange}
+                                    onChange={(e) => mutate(e.target.checked)}
+                                />
+                                <span className="label"></span>
+                            </>
+                        )}
                     </span>
 
                     <span className="grow">

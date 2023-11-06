@@ -1,3 +1,10 @@
+/**
+ *
+ * TODO dodać informacje jeśli brak połączenia z internetem (isPaused)
+ * TODO przemyslec odswiezanie danych (fetching) automatycznie co 30s
+ *
+ */
+
 "use client"
 
 import { useQuery, useQueryClient } from "@tanstack/react-query"
@@ -15,6 +22,7 @@ export default function Lists() {
         data: lists,
         isLoading,
         isError,
+        isPaused,
     } = useQuery({
         queryKey: ["lists"],
         queryFn: async () => {
@@ -41,6 +49,8 @@ export default function Lists() {
                     </ul>
                 </div>
             )}
+
+            {isPaused && <div>Nie masz połączenia z internetem</div>}
 
             <Button />
         </>
