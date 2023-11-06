@@ -7,8 +7,8 @@
 }
 
 .loader.small {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
 }
 
 .loader::before,
@@ -132,5 +132,42 @@
     }
     100% {
         width: 100%;
+    }
+}
+
+.loader-line {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
+    background: var(--dark);
+    box-shadow:
+        -24px 0 var(--dark),
+        24px 0 var(--dark);
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+    33% {
+        background: var(--dark);
+        box-shadow:
+            -24px 0 var(--primary),
+            24px 0 var(--dark);
+    }
+    66% {
+        background: var(--primary);
+        box-shadow:
+            -24px 0 var(--dark),
+            24px 0 var(--dark);
+    }
+    100% {
+        background: var(--dark);
+        box-shadow:
+            -24px 0 var(--dark),
+            24px 0 var(--primary);
     }
 }

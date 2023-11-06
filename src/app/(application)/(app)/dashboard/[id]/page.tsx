@@ -1,4 +1,4 @@
-import AppContent from "@/components/application/content/AppContent"
+import AppContent from "@/components/application/content/Content"
 
 export default function List({ params }: { params: { id: string } }) {
     return (

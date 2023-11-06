@@ -213,58 +213,6 @@
 //     )
 // }
 
-// const ButtonDisableAll = () => {
-//     DebugLogScript("ContentButtonAllDisabled")
-//     const [loading, setLoading] = useState(false)
-//     const { activeElements, setActiveElements } = useGlobalContext()
-
-//     const handleClick = async () => {
-//         const elementsId = activeElements
-//             .map((item) => item.id.toString())
-//             .join(",")
-//         try {
-//             setLoading(true)
-//             const res = await fetch(`/api/elements/${elementsId}`, {
-//                 method: "PUT",
-//             })
-//             const data = await res.json()
-
-//             const dataElementsId = await data.elementsId
-
-//             if (res.ok) {
-//                 const updatedElements = activeElements.map((element) => ({
-//                     ...element, // Rozprzestrzeniaj istniejące pola obiektu
-//                     status: false, // Zmieniaj status na false
-//                 }))
-//                 setActiveElements(updatedElements)
-//             } else {
-//                 console.error("Błąd pobierania danych")
-//             }
-//         } catch (error) {
-//             console.error(error)
-//         } finally {
-//             setLoading(false)
-//         }
-//     }
-
-//     return (
-//         <>
-//             <DebugLog name="ContentButtonAllDisabled" />
-//             <button
-//                 className="animated py-3 px-9 self-start font-medium hover:text-[var(--primary)]"
-//                 onClick={handleClick}
-//             >
-//                 Odznacz wszystko{" "}
-//                 {loading ? (
-//                     <span className="loader small inline-block"></span>
-//                 ) : (
-//                     "-"
-//                 )}
-//             </button>
-//         </>
-//     )
-// }
-
 // const ListButton = ({ id, name, url }: ListActiveProps) => {
 //     DebugLogScript("ContentListsButton")
 //     const { setListActive } = useGlobalContext()
@@ -293,35 +241,64 @@
 
 "use client"
 
+import { useState, useMemo } from "react"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getElementsAction } from "@/actions/axiosActions"
 import { IList } from "@/types/types"
+import { findUniqueCategories } from "@/utils/utils"
 import Title from "@/components/application/title/Title"
+import ContentElement from "@/components/application/content/ContentElement"
+import ButtonDisableAll from "@/components/application/content/ButtonDisableAll"
 import IconMore from "@/components/application/icons/more"
 import IconSwitch from "@/components/application/icons/switch"
 import ButtonDelete from "@/components/application/buttons/delete"
 import ButtonDuplicate from "@/components/application/buttons/duplicate"
 import ButtonEdit from "@/components/application/buttons/edit"
+import { useModal } from "@/context/ModalContext"
+import AddElements from "@/components/application/modals/AddElements"
+import ButtonAddElement from "./ButtonAddElement"
 
 export default function Content({ id }: { id: string }) {
     const queryClient = useQueryClient()
+    const [selectedCategory, setSelectedCategory] = useState("")
+    const { isModalOpen, setIsModalOpen, modalContent, setModalContent } =
+        useModal()
 
     const {
         data: list,
         isLoading,
         isError,
     } = useQuery({
-        queryKey: ["list"],
+        queryKey: ["list", id],
         queryFn: async () => {
-            const { data } = await getElementsAction(id)
-            return data.body as IList[]
+            const response = await getElementsAction(id)
+            if (response) {
+                return response.data.body as IList
+            }
         },
     })
 
+    const categoriesUnique = useMemo(
+        () => findUniqueCategories(list?.elements || []),
+        [list?.elements]
+    )
+
+    // return <Title loading />
+
     if (isLoading) return <div>Loading...</div>
     if (isError) return <div>Error</div>
+    if (!list) return <div>No data</div>
 
-    const { name } = list
+    const { name, elements, id: listId } = list
+
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category)
+    }
+
+    const handleOpenModal = () => {
+        setModalContent(<AddElements />)
+        setIsModalOpen(true)
+    }
 
     return (
         <>
@@ -339,7 +316,111 @@ export default function Content({ id }: { id: string }) {
                     <ButtonDelete />
                 </div>
             </div>
-            content
+
+            {elements?.length > 0 ? (
+                <>
+                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
+                        {/* TODO zmiana na komponent  */}
+                        <div className="flex gap-6 mb-3 mx-5 sm:mx-0 sm:mb-5 overflow-x-auto">
+                            <button
+                                onClick={() => handleCategoryChange("")}
+                                className={`text-sm font-semibold uppercase whitespace-nowrap 
+                                    ${
+                                        categoriesUnique.some(
+                                            (el) => selectedCategory === el
+                                        )
+                                            ? "hover:text-[var(--primary)]"
+                                            : "text-[var(--primary)]"
+                                    }`}
+                            >
+                                Wszystko
+                            </button>
+                            {categoriesUnique.map((el, index) => (
+                                <button
+                                    key={el + index}
+                                    onClick={() => handleCategoryChange(el)}
+                                    className={`text-sm font-semibold uppercase whitespace-nowrap 
+                                        ${
+                                            selectedCategory === el
+                                                ? "text-[var(--primary)]"
+                                                : "text-sm hover:text-[var(--primary)]"
+                                        }
+                                    `}
+                                >
+                                    {el}
+                                </button>
+                            ))}
+                        </div>
+
+                        <ul>
+                            {elements
+                                // Filtrowanie elementów na podstawie wybranej kategorii
+                                .filter(
+                                    (element) =>
+                                        !selectedCategory ||
+                                        element.categories.some(
+                                            (category) =>
+                                                category.name ===
+                                                selectedCategory
+                                        )
+                                )
+                                // Sortowanie elementów według daty utworzenia `createdAt`
+                                // .sort(
+                                //     (a, b) =>
+                                //         new Date(a.createdAt) -
+                                //         new Date(b.createdAt)
+                                // )
+                                // Mapowanie posortowanych elementów do komponentów
+                                .map((element) => (
+                                    <div key={element.id}>
+                                        <ContentElement {...element} />
+                                    </div>
+                                ))}
+                        </ul>
+                    </div>
+                    <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
+                        <ButtonDisableAll listId={listId} />
+                        <ButtonAddElement handleOpenModalFn={handleOpenModal} />
+                    </div>
+                </>
+            ) : elements?.length === 0 ? (
+                <>
+                    {/* TODO zmiana na komponent  */}
+                    <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                        <p className="mb-3">
+                            Wygląda na to, że Twoja lista jest pusta. Kliknij
+                            poniżej, aby dodać pierwszą pozycję i zorganizować
+                            swój wyjazd!
+                        </p>
+                        <button
+                            className="btn btn-primary"
+                            // onClick={handleOpenModal}
+                        >
+                            Dodaj pozycję
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    {/* TODO zmiana na komponent  */}
+                    <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                        <p className="mb-5">
+                            Masz już swoje listy gotowe! Kliknij na jedną z
+                            nich, aby zacząć pakować bez stresu.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {/* {lists.map((el) => (
+                            <ListButton
+                                key={el.id}
+                                name={el.name}
+                                id={el.id}
+                                url={el.url}
+                            />
+                        ))} */}
+                        </div>
+                    </div>
+                </>
+            )}
         </>
     )
 }

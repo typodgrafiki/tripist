@@ -1,20 +1,24 @@
+/**
+ *
+ *
+ * TODO Przepisać na nowo!!!
+ *
+ *
+ *
+ */
+
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { useGlobalContext } from "@/context/AppContext"
 import { focusInput } from "@/utils/utils"
-import DebugLog from "@/utils/developConsoleLog"
-import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function CreateLAddElements() {
-    DebugLogScript("ModalAddElement")
     const [name, setName] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const { listActive, setActiveElements } = useGlobalContext()
 
     // const focusInput = () => {
     //     if (inputRef.current) {
@@ -25,43 +29,43 @@ export default function CreateLAddElements() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        try {
-            setError(false)
-            await setLoading(true)
-            const res = await fetch(`/api/lists/addElement`, {
-                method: "POST",
-                body: JSON.stringify({ name: name, listId: listActive.id }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            if (res.ok) {
-                const data = await res.json()
-                const response = data.body
+        // try {
+        //     setError(false)
+        //     await setLoading(true)
+        //     const res = await fetch(`/api/lists/addElement`, {
+        //         method: "POST",
+        //         body: JSON.stringify({ name: name, listId: listActive.id }),
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //     })
+        //     if (res.ok) {
+        //         const data = await res.json()
+        //         const response = data.body
 
-                response.categories = []
-                setSuccess(true)
-                setName("")
+        //         response.categories = []
+        //         setSuccess(true)
+        //         setName("")
 
-                setActiveElements((prevActiveElements) => [
-                    ...prevActiveElements,
-                    response,
-                ])
+        //         setActiveElements((prevActiveElements) => [
+        //             ...prevActiveElements,
+        //             response,
+        //         ])
 
-                focusInput(inputRef)
+        //         focusInput(inputRef)
 
-                setTimeout(() => {
-                    setSuccess(false)
-                }, 1500)
-            } else {
-                setError(true)
-                console.error("Błąd pobierania danych")
-            }
-            setLoading(false)
-        } catch (error) {
-            setError(true)
-            console.error(error)
-        }
+        //         setTimeout(() => {
+        //             setSuccess(false)
+        //         }, 1500)
+        //     } else {
+        //         setError(true)
+        //         console.error("Błąd pobierania danych")
+        //     }
+        //     setLoading(false)
+        // } catch (error) {
+        //     setError(true)
+        //     console.error(error)
+        // }
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,11 +79,12 @@ export default function CreateLAddElements() {
 
     return (
         <>
-            <DebugLog name="ModalAddElement" />
             <h3 className="title mb-3 font-medium text-base">
-                {listActive.name}
+                {/* {listActive.name} */}
+                NAME...
             </h3>
-            <form
+            To trzeba napisać na nowo xD
+            {/* <form
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
@@ -157,7 +162,7 @@ export default function CreateLAddElements() {
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-            </form>
+            </form> */}
         </>
     )
 }

@@ -14,7 +14,7 @@ export interface ILists extends IListBasic {
     predefined: boolean
 }
 
-export interface IList extends ILists {
+export interface IList extends IListBasic, ILists {
     elements: IElements[]
 }
 
@@ -32,4 +32,12 @@ export interface ICategories {
     name: string
     userId: string
     add?: boolean | undefined
+}
+
+export interface IApiContext {
+    params: IApiContextId
+}
+
+interface IApiContextId {
+    id: string
 }
