@@ -162,9 +162,11 @@ export async function PATCH(request: Request, context: IApiContext) {
             },
         })
 
-        console.log(updatedList)
+        const result = {
+            list: updatedList,
+        }
 
-        return NextResponse.json({ body: updatedList }, { status: 200 })
+        return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
         return NextResponse.json(
             { error: "Internal Server Error" },

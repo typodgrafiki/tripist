@@ -32,24 +32,27 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => {
             if (editList) {
-                return updateList(title)
+                return updateList(title, editList.id)
             }
             return createList(title, duplicate?.id)
         },
         onSuccess: async (response) => {
+            const { id: listId, name: listName } = response.data.body.list
             queryClient.invalidateQueries({ queryKey: ["lists"] })
 
-            const { id: listId, name: listName } = response.data.body.list
             if (listId) {
                 router.push(`/dashboard/${listId}`)
-                Toastify({
-                    text: `Stworzono listę ${listName}`,
-                }).showToast()
             } else {
-                Toastify({
-                    text: `Zaktualizowano listę`,
-                }).showToast()
+                queryClient.invalidateQueries({
+                    queryKey: ["listData", listId],
+                })
             }
+
+            Toastify({
+                text: listId
+                    ? `Stworzono listę ${listName}`
+                    : `Zaktualizowano listę`,
+            }).showToast()
 
             setTimeout(() => {
                 setIsModalOpen(false)

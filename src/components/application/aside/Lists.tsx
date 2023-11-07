@@ -14,6 +14,7 @@ import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
 import Button from "@/components/ui/Button"
+import { sortElements } from "@/utils/utils"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -35,6 +36,15 @@ export default function Lists() {
             return data.body as ILists[]
         },
     })
+
+    console.log(lists)
+
+    // sortowanie listy createdAt
+    const sortedLists = lists?.sort((a, b) => {
+        return new Date(b.createAt).getTime() - new Date(a.createAt).getTime()
+    })
+
+    console.log(sortedLists)
 
     if (isLoading) return <LoadingLists />
     if (isError) return <div>Error</div>

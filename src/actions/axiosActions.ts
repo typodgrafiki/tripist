@@ -11,7 +11,7 @@ export const createList = async (name: string, duplicateId?: string) => {
     return response
 }
 
-export const updateList = async (name: string) => {
+export const updateList = async (name: string, listId: string) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }

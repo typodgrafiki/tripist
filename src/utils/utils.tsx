@@ -1,6 +1,6 @@
 "use client"
 
-import { IList, IElements } from "@/types/types"
+import { IList, IElements, ILists } from "@/types/types"
 
 export const tostifySuccessColor = "linear-gradient(to right, #00b09b, #96c93d)"
 
