@@ -11,6 +11,17 @@ export const createList = async (name: string, duplicateId?: string) => {
     return response
 }
 
+export const updateList = async (name: string) => {
+    if (!name) {
+        throw "Nie uzupełniono nazwy"
+    }
+
+    const query = { name }
+
+    const response = await axios.patch(`/api/lists/${listId}`, query)
+    return response
+}
+
 export const getListsAction = async () => {
     const response = await axios.get("/api/lists")
     return response

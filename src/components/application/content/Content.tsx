@@ -260,6 +260,8 @@ import ButtonAddElement from "../buttons/ButtonAddItem"
 import ButtonAddItem from "../buttons/ButtonAddItem"
 import Sort from "../modals/Sort"
 import Button from "@/components/ui/Button"
+import IconPen from "../icons/pen"
+import CreateList from "../modals/CreateList"
 
 interface IListResponse {
     data: {
@@ -325,6 +327,11 @@ export default function Content({ id }: { id: string }) {
         setIsModalOpen(true)
     }
 
+    const handleEditList = () => {
+        setModalContent(<CreateList editList={{ name: name, id: listId }} />)
+        setIsModalOpen(true)
+    }
+
     // TODO Dac mozliwosc zmiany sortowania przez uzytkownika
     const sortBy = "createdAt"
     const sortDirection = "desc"
@@ -352,7 +359,12 @@ export default function Content({ id }: { id: string }) {
                     <button className="px-3 pr-5 sm:hidden">
                         <IconMore />
                     </button> */}
-                    {/* <ButtonEdit /> */}
+                    <Button
+                        className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
+                        onClick={handleEditList}
+                    >
+                        <IconPen />
+                    </Button>
                     <ButtonDuplicate
                         listId={listId}
                         name={name}
@@ -437,19 +449,7 @@ export default function Content({ id }: { id: string }) {
                         </Button>
                     </div>
                 </>
-            ) : (
-                <>
-                    {/* 
-                    // TODO zmiana na komponent (to sie nie wyswietla)
-                    */}
-                    <div className="bg-white p-10 shadow-lg rounded-md text-center">
-                        <p className="mb-5">
-                            Masz już swoje listy gotowe! Kliknij na jedną z
-                            nich, aby zacząć pakować bez stresu.
-                        </p>
-                    </div>
-                </>
-            )}
+            ) : null}
         </>
     )
 }

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useModal } from "@/context/ModalContext"
-import { createList } from "@/actions/axiosActions"
+import { createList, updateList } from "@/actions/axiosActions"
 import { focusInput } from "@/utils/utils"
 import DebugLog from "@/utils/developConsoleLog"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
@@ -14,27 +14,42 @@ type IDuplicatProps = {
         id: string
         name: string
     }
+    editList?: {
+        id: string
+        name: string
+    }
 }
 
-export default function CreateList({ duplicate }: IDuplicatProps) {
+export default function CreateList({ duplicate, editList }: IDuplicatProps) {
+    const initialTitle = editList ? editList.name : ""
     const router = useRouter()
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState(initialTitle)
     const { setIsModalOpen, setModalContent } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const queryClient = useQueryClient()
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
-        mutationFn: async () => createList(title, duplicate?.id),
+        mutationFn: async () => {
+            if (editList) {
+                return updateList(title)
+            }
+            return createList(title, duplicate?.id)
+        },
         onSuccess: async (response) => {
             queryClient.invalidateQueries({ queryKey: ["lists"] })
 
             const { id: listId, name: listName } = response.data.body.list
-            router.push(`/dashboard/${listId}`)
-
-            Toastify({
-                text: `Stworzono listę ${listName}`,
-            }).showToast()
+            if (listId) {
+                router.push(`/dashboard/${listId}`)
+                Toastify({
+                    text: `Stworzono listę ${listName}`,
+                }).showToast()
+            } else {
+                Toastify({
+                    text: `Zaktualizowano listę`,
+                }).showToast()
+            }
 
             setTimeout(() => {
                 setIsModalOpen(false)
@@ -116,6 +131,8 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                             </>
                         ) : duplicate ? (
                             "Duplikuj listę"
+                        ) : editList ? (
+                            "Zapisz"
                         ) : (
                             "Stwórz listę"
                         )}
@@ -127,7 +144,7 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                     </div>
                 )}
 
-                {!duplicate && (
+                {!duplicate && !editList && (
                     <>
                         <div className="mt-4">
                             City / 2 dni / importuj listę...

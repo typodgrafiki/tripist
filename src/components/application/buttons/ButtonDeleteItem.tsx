@@ -32,6 +32,20 @@ export default function ButtonDelete({
             Toastify({
                 text: `Usunięto element`,
             }).showToast()
+
+            // Toastify({
+            //     text: "Cofnij zmiany",
+            //     duration: 10000,
+            //     // destination: "https://github.com/apvarun/toastify-js",
+            //     close: true,
+            //     stopOnFocus: true,
+            //     style: {
+            //         background: tostifySuccessColor,
+            //     },
+            //     onClick: function () {
+            //         console.log("click tostify")
+            //     },
+            // }).showToast()
         },
         onError: (error) => {
             Toastify({

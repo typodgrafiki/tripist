@@ -1,7 +1,7 @@
 /**
  *
  * //Usuwanie listy DELETE
- * Edycja listy PUT
+ * Edycja listy PATCH
  *
  */
 
@@ -129,4 +129,46 @@ export async function DELETE(request: Request, context: IApiContext) {
     }
 }
 
-// export async function PATCH(request: Request) {}
+export async function PATCH(request: Request, context: IApiContext) {
+    const { userId } = auth()
+
+    const data = await request.json()
+    const { name: newName } = data
+
+    try {
+        if (!userId) {
+            return NextResponse.json(
+                { message: "Brak użytkownika" },
+                { status: 401 }
+            )
+        }
+
+        if (!context.params.id) {
+            return NextResponse.json(
+                { message: "Brak ID listy" },
+                { status: 402 }
+            )
+        }
+
+        const listId = context.params.id
+
+        const updatedList = await prisma.list.update({
+            where: {
+                id: listId,
+            },
+            data: {
+                name: newName.toString(),
+                lastChangeAt: new Date(),
+            },
+        })
+
+        console.log(updatedList)
+
+        return NextResponse.json({ body: updatedList }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Internal Server Error" },
+            { status: 500 }
+        )
+    }
+}

@@ -2,6 +2,8 @@
 
 import { IList, IElements } from "@/types/types"
 
+export const tostifySuccessColor = "linear-gradient(to right, #00b09b, #96c93d)"
+
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
     if (reference.current) {
         reference.current.focus()
