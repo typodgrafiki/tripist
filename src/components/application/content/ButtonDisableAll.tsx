@@ -8,7 +8,8 @@ export default function ButtonDisableAll({ listId }: { listId: string }) {
     const { mutate, isPending } = useMutation({
         mutationFn: async () => disableAllElementsAction(listId),
         onSuccess: (response) => {
-            queryClient.invalidateQueries({ queryKey: [`list_${listId}`] })
+            //TODO zmienic na setQueryData i dodac onMutate dla lepszego UI
+            queryClient.invalidateQueries({ queryKey: ["elements", listId] })
             Toastify({
                 text: `Uaktualniono elementów: ${response.data.body.count}`,
             }).showToast()

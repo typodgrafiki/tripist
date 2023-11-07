@@ -1,4 +1,4 @@
-export default function ButtonAddElement({
+export default function ButtonAddItem({
     handleOpenModalFn,
 }: {
     handleOpenModalFn: (

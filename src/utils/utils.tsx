@@ -1,6 +1,6 @@
 "use client"
 
-import { IElements } from "@/types/types"
+import { IList, IElements } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
     if (reference.current) {
@@ -10,12 +10,53 @@ export function focusInput(reference: React.RefObject<HTMLInputElement>) {
 }
 
 export function findUniqueCategories(elements: IElements[]) {
-    const result = Array.from(
-        new Set(
-            elements?.flatMap((element) =>
-                element.categories.map((category) => category.name)
+    if (Array.isArray(elements)) {
+        const result = Array.from(
+            new Set(
+                elements?.flatMap((element) =>
+                    element.categories.map((category) => category.name)
+                )
             )
         )
-    )
-    return result
+        return result
+    }
+}
+
+export function changeStatusLocaly(
+    oldData: IElements[],
+    itemId: number,
+    itemStatus: boolean
+) {
+    return oldData.map((item) => {
+        if (item.id === itemId) {
+            return {
+                ...item,
+                status: itemStatus,
+            }
+        }
+        return item
+    })
+}
+
+type SortBy = "createdAt" | "name"
+type SortDirection = "asc" | "desc"
+
+export function sortElements(
+    elements: IElements[],
+    sortBy: SortBy = "createdAt",
+    direction: SortDirection = "desc"
+): IElements[] {
+    if (sortBy === "createdAt") {
+        return elements.sort((a, b) => {
+            return direction === "asc" ? a.id - b.id : b.id - a.id
+        })
+    } else if (sortBy === "name") {
+        return elements.sort((a, b) => {
+            return direction === "asc"
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name)
+        })
+    }
+
+    return elements
 }

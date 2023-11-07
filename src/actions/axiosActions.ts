@@ -1,43 +1,25 @@
 "use client"
 
 import axios from "axios"
-// import { ICategories } from "@/types/types"
 
-// type TCreateElementsProps = {
-//     name: string
-//     categories: ICategories[] | []
-// }
+export const createList = async (name: string, duplicateId?: string) => {
+    const query = { name, duplicateId }
 
-// const setListAction = async (
-//     name: string,
-//     duplicate?: TCreateElementsProps[]
-// ) => {
-//     const query = { name, duplicate }
+    if (!name) {
+        throw "Nie uzupełniono nazwy"
+    }
 
-//     if (!name) {
-//         throw "Nie uzupełniono nazwy"
-//     }
+    const response = await axios.post("/api/lists", query)
 
-//     const response = await fetch(`/api/lists`, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(query),
-//     })
-
-//     const data = await response.json()
-//     const result = data.body
-
-//     return result
-// }
+    return response
+}
 
 export const getListsAction = async () => {
     const response = await axios.get("/api/lists")
     return response
 }
 
-export const getElementsAction = async (id: string) => {
+export const getListData = async (id: string) => {
     if (!id) return null
 
     const response = await axios.get(`/api/lists/${id}`)
@@ -66,6 +48,22 @@ export const changeElementStatus = async (
     const response = await axios.patch(`/api/items/${elementId}`, {
         status: status,
     })
+
+    return response
+}
+
+export const deleteElementsAction = async (id: number) => {
+    if (!id) return null
+
+    const response = await axios.delete(`/api/items/${id}`)
+
+    return response
+}
+
+export const deleteList = async (id: string) => {
+    if (!id) return null
+
+    const response = await axios.delete(`/api/lists/${id}`)
 
     return response
 }

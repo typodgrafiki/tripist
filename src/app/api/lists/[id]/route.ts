@@ -1,6 +1,6 @@
 /**
  *
- * Usuwanie listy DELETE
+ * //Usuwanie listy DELETE
  * Edycja listy PUT
  *
  */
@@ -48,7 +48,7 @@ export async function GET(request: Request, context: IApiContext) {
     }
 }
 
-export async function HEAD(request: Request) {}
+// export async function HEAD(request: Request) {}
 
 // export async function POST(request: Request, context: IContext) {
 //     const { userId } = auth()
@@ -86,43 +86,47 @@ export async function HEAD(request: Request) {}
 //     }
 // }
 
-export async function PUT(request: Request) {}
+// export async function PUT(request: Request) {}
 
-// export async function DELETE(request: Request, context: IContext) {
-//     const { userId } = auth()
+export async function DELETE(request: Request, context: IApiContext) {
+    const { userId } = auth()
 
-//     try {
-//         if (!userId) {
-//             return NextResponse.json(
-//                 { message: "Brak użytkownika" },
-//                 { status: 401 }
-//             )
-//         }
+    try {
+        if (!userId) {
+            return NextResponse.json(
+                { message: "Brak użytkownika" },
+                { status: 401 }
+            )
+        }
 
-//         const listId = context.params.id
+        if (!context.params.id) {
+            return NextResponse.json(
+                { message: "Brak ID listy" },
+                { status: 402 }
+            )
+        }
 
-//         await prisma.listItem.deleteMany({
-//             where: {
-//                 listId: listId,
-//             },
-//         })
+        const listId = context.params.id
 
-//         await prisma.list.delete({
-//             where: {
-//                 id: listId,
-//             },
-//         })
+        await prisma.listItem.deleteMany({
+            where: {
+                listId: listId,
+            },
+        })
 
-//         return NextResponse.json(
-//             { message: "Lista została usunięta" },
-//             { status: 200 }
-//         )
-//     } catch (error) {
-//         return NextResponse.json(
-//             { error: "Internal Server Error" },
-//             { status: 500 }
-//         )
-//     }
-// }
+        const delatedList = await prisma.list.delete({
+            where: {
+                id: listId,
+            },
+        })
 
-export async function PATCH(request: Request) {}
+        return NextResponse.json({ body: delatedList }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Internal Server Error" },
+            { status: 500 }
+        )
+    }
+}
+
+// export async function PATCH(request: Request) {}

@@ -1,14 +1,15 @@
-"use client"
+/**
+ *
+ * TODO Komponent nie zrobiony
+ *
+ */
 
-import DebugLog from "@/utils/developConsoleLog"
-import DebugLogScript from "@/utils/developConsoleScripts"
+import Button from "@/components/ui/Button"
 
 export default function Sort() {
-    DebugLogScript("SortBtn")
     return (
         <>
-            <DebugLog name="SortBtn" />
-            <div>Sortuj</div>
+            <Button className="btn btn-small btn-gray">Sortuj</Button>
         </>
     )
 }

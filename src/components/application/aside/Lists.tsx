@@ -1,22 +1,27 @@
 /**
  *
  * TODO dodać informacje jeśli brak połączenia z internetem (isPaused)
- * TODO przemyslec odswiezanie danych (fetching) automatycznie co 30s
  *
  */
 
 "use client"
 
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { ILists } from "@/types/types"
 import { getListsAction } from "@/actions/axiosActions"
 import ListsRow from "./ListsRow"
 import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
+import Button from "@/components/ui/Button"
 
 export default function Lists() {
-    const queryClient = useQueryClient()
+    const { setModalContent, setIsModalOpen } = useModal()
+
+    const handleOpenModal = () => {
+        setModalContent(<CreateList />)
+        setIsModalOpen(true)
+    }
 
     const {
         data: lists,
@@ -49,30 +54,12 @@ export default function Lists() {
                     </ul>
                 </div>
             )}
-
-            {isPaused && <div>Nie masz połączenia z internetem</div>}
-
-            <Button />
-        </>
-    )
-}
-
-const Button = () => {
-    // const { setModalContent, setIsModalOpen } = useModal()
-
-    const handleOpenModal = () => {
-        // setModalContent(<CreateList />)
-        // setIsModalOpen(true)
-    }
-
-    return (
-        <>
-            <button
+            <Button
                 className="hidden sm:inline-block btn btn-default self-start sm:mb-4"
-                // onClick={handleOpenModal}
+                onClick={handleOpenModal}
             >
                 Dodaj listę
-            </button>
+            </Button>
         </>
     )
 }

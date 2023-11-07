@@ -1,8 +1,8 @@
 /**
- * TODO: FETCH to AXIOS
- * TODO: react query
+ * //TODO: FETCH to AXIOS
+ * //TODO: react query
  * TODO: Add buttons / forms ui
- * TODO: Dodac toastify (zainstalowane)
+ * //TODO: Dodac toastify (zainstalowane)
  */
 
 import React from "react"
@@ -30,8 +30,8 @@ export default function BackLayout({
                         {children}
                     </main>
                 </div>
+                <Modal />
             </QueryProvider>
-            <Modal />
         </ModalProvider>
     )
 }

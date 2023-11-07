@@ -12,10 +12,7 @@ export default function ListsRow({ name, id }: IListBasic) {
         <>
             <li className="relative mb-1">
                 <Link
-                    href={{
-                        pathname: thisUrl,
-                        query: { name: name },
-                    }}
+                    href={thisUrl}
                     className={`list-link animated block px-6 py-2 relative rounded-md truncate ${
                         pathname === thisUrl
                             ? "font-medium text-white bg-[var(--primary)] mx-2 pl-4 pr-1"

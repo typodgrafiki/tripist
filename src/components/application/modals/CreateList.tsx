@@ -3,11 +3,11 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useModal } from "@/context/ModalContext"
-import ProgressBar from "../buttons/progressBar"
-import createListAction from "@/actions/createList"
+import { createList } from "@/actions/axiosActions"
 import { focusInput } from "@/utils/utils"
 import DebugLog from "@/utils/developConsoleLog"
-import DebugLogScript from "@/utils/developConsoleScripts"
+import { useQueryClient, useMutation } from "@tanstack/react-query"
+import Toastify from "toastify-js"
 
 type IDuplicatProps = {
     duplicate?: {
@@ -19,64 +19,38 @@ type IDuplicatProps = {
 export default function CreateList({ duplicate }: IDuplicatProps) {
     const router = useRouter()
     const [title, setTitle] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
+    const { setIsModalOpen, setModalContent } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const { setIsModalOpen } = useModal()
+    const queryClient = useQueryClient()
 
-    const close = () => {
-        // router.push(`/dashboard/${listActive.url}`)
-        setTitle("")
-        setSuccess(false)
-        setIsModalOpen(false)
-    }
+    const { mutate, isPending, isError, isSuccess } = useMutation({
+        mutationFn: async () => createList(title, duplicate?.id),
+        onSuccess: async (response) => {
+            queryClient.invalidateQueries({ queryKey: ["lists"] })
+
+            const { id: listId, name: listName } = response.data.body.list
+            router.push(`/dashboard/${listId}`)
+
+            Toastify({
+                text: `Stworzono listę ${listName}`,
+            }).showToast()
+
+            setTimeout(() => {
+                setIsModalOpen(false)
+                setModalContent(null)
+            }, 2500)
+        },
+        onError: (error) => {
+            Toastify({
+                text: `Nie udało się stworzyć listy`,
+            }).showToast()
+        },
+    })
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        try {
-            setError(false)
-            await setLoading(true)
-
-            // const response = await createListAction(
-            //     title,
-            //     duplicate ? activeElements : []
-            // )
-
-            // setTitle("")
-            // setSuccess(true)
-            // setListActive({
-            //     id: response.list.id,
-            //     url: response.list.url,
-            //     name: response.list.name,
-            // })
-
-            // setActiveElements(response.items)
-
-            // setLists((prevLists: ListsProps[]) => [
-            //     ...prevLists,
-            //     {
-            //         id: response.list.id,
-            //         name: response.list.name,
-            //         type: undefined,
-            //         createAt: new Date(),
-            //         url: response.list.url,
-            //         userId: response.list.userId,
-            //         predefined: response.predefined,
-            //     },
-            // ])
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        setTitle(newValue)
+        mutate()
     }
 
     useEffect(() => {
@@ -106,21 +80,21 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                         value={title}
                         placeholder="np. Madryt '23, Islandia, Siłownia"
                         className="form-control grow"
-                        onChange={handleInputChange}
-                        disabled={success}
+                        onChange={(e) => setTitle(e.target.value)}
+                        disabled={isPending}
                         ref={inputRef}
                     />
 
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
-                            success && "btn-green"
+                            isSuccess && "btn-green"
                         }`}
-                        disabled={success || loading}
+                        disabled={isPending || isSuccess}
                     >
-                        {loading ? (
+                        {isPending ? (
                             <div className="loader small"></div>
-                        ) : success ? (
+                        ) : isSuccess ? (
                             <>
                                 Dodano
                                 <svg
@@ -147,13 +121,11 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                         )}
                     </button>
                 </div>
-                {error && (
+                {isError && (
                     <div className="text-red-600 text-sm">
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-
-                {success && <ProgressBar closeFn={close} />}
 
                 {!duplicate && (
                     <>
