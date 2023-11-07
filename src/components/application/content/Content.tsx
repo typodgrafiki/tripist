@@ -259,6 +259,7 @@ import AddElements from "@/components/application/modals/AddElements"
 import ButtonAddElement from "../buttons/ButtonAddItem"
 import ButtonAddItem from "../buttons/ButtonAddItem"
 import Sort from "../modals/Sort"
+import Button from "@/components/ui/Button"
 
 interface IListResponse {
     data: {
@@ -409,7 +410,12 @@ export default function Content({ id }: { id: string }) {
                     </div>
                     <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
                         <ButtonDisableAll listId={listId} />
-                        <ButtonAddItem handleOpenModalFn={handleOpenModal} />
+                        <Button
+                            onClick={handleOpenModal}
+                            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
+                        >
+                            Dodaj element
+                        </Button>
                     </div>
                 </>
             ) : elements?.length === 0 ? (
@@ -423,34 +429,24 @@ export default function Content({ id }: { id: string }) {
                             poniżej, aby dodać pierwszą pozycję i zorganizować
                             swój wyjazd!
                         </p>
-                        <button
+                        <Button
                             className="btn btn-primary"
-                            // onClick={handleOpenModal}
+                            onClick={handleOpenModal}
                         >
-                            Dodaj pozycję
-                        </button>
+                            Dodaj element
+                        </Button>
                     </div>
                 </>
             ) : (
                 <>
                     {/* 
-                    // TODO zmiana na komponent  
+                    // TODO zmiana na komponent (to sie nie wyswietla)
                     */}
                     <div className="bg-white p-10 shadow-lg rounded-md text-center">
                         <p className="mb-5">
                             Masz już swoje listy gotowe! Kliknij na jedną z
                             nich, aby zacząć pakować bez stresu.
                         </p>
-                        <div className="flex flex-wrap justify-center gap-2">
-                            {/* {lists.map((el) => (
-                            <ListButton
-                                key={el.id}
-                                name={el.name}
-                                id={el.id}
-                                url={el.url}
-                            />
-                        ))} */}
-                        </div>
                     </div>
                 </>
             )}

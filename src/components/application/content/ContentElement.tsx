@@ -80,9 +80,7 @@ export default function ContentElement({
                             <span className="label"></span>
                         </>
                     </span>
-                    <span className="grow">
-                        {id} / {name}
-                    </span>
+                    <span className="grow">{name}</span>
                 </label>
                 <Categories categories={categories} />
                 <div className="element-edit flex absolute top-0 bottom-0 right-0">
