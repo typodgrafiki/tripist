@@ -83,8 +83,10 @@ export default function CreateLAddElements() {
                 {/* {listActive.name} */}
                 NAME...
             </h3>
-            To trzeba napisać na nowo xD
-            {/* <form
+            {/* 
+            // TODO To trzeba napisać na nowo xD 
+            
+            <form
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
