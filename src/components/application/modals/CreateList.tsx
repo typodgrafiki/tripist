@@ -24,7 +24,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
-    const { setIsModalOpen, setModalContent } = useModal()
+    const { setIsModalOpen, setModalContent, closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const queryClient = useQueryClient()
@@ -54,9 +54,9 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                     : `Zaktualizowano listę`,
             }).showToast()
 
+            // TODO Tutaj pojawia sie przycisk zamknij i przy nim jest jakies odliczania po czym setTimeout
             setTimeout(() => {
-                setIsModalOpen(false)
-                setModalContent(null)
+                closeModal()
             }, 2500)
         },
         onError: (error) => {
@@ -99,7 +99,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                         placeholder="np. Madryt '23, Islandia, Siłownia"
                         className="form-control grow"
                         onChange={(e) => setTitle(e.target.value)}
-                        disabled={isPending}
+                        disabled={isPending || isSuccess}
                         ref={inputRef}
                     />
 
@@ -140,20 +140,32 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                             "Stwórz listę"
                         )}
                     </button>
+                    {isSuccess && (
+                        <button
+                            className="btn btn-default"
+                            onClick={closeModal}
+                        >
+                            Zamknij
+                        </button>
+                    )}
                 </div>
                 {isError && (
-                    <div className="text-red-600 text-sm">
+                    <div className="text-red-600 text-sm mt-2">
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-
+                {/* 
                 {!duplicate && !editList && (
                     <>
+                        
+                        // TODO Gotowe listy do zaimportowania 
+                        
                         <div className="mt-4">
                             City / 2 dni / importuj listę...
                         </div>
                     </>
                 )}
+                */}
             </form>
         </>
     )

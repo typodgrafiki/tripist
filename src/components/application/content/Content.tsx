@@ -442,7 +442,7 @@ export default function Content({ id }: { id: string }) {
                             swój wyjazd!
                         </p>
                         <Button
-                            className="btn btn-primary"
+                            className="btn btn-primary mx-auto"
                             onClick={handleOpenModal}
                         >
                             Dodaj element

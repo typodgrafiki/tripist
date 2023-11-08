@@ -37,14 +37,10 @@ export default function Lists() {
         },
     })
 
-    console.log(lists)
-
     // sortowanie listy createdAt
     const sortedLists = lists?.sort((a, b) => {
         return new Date(b.createAt).getTime() - new Date(a.createAt).getTime()
     })
-
-    console.log(sortedLists)
 
     if (isLoading) return <LoadingLists />
     if (isError) return <div>Error</div>
