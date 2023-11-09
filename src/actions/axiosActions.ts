@@ -1,5 +1,6 @@
 "use client"
 
+import { ICategories } from "@/types/types"
 import axios from "axios"
 
 export const createList = async (name: string, duplicateId?: string) => {
@@ -74,4 +75,14 @@ export const createItem = async (name: string, listId: string) => {
         name: name,
     })
     return response
+}
+
+export const fetchAllCategories = async () => {
+    try {
+        const response = await axios.get("/api/categories")
+        return response.data.body as ICategories[]
+    } catch (error) {
+        console.error("There was an error fetching the categories:", error)
+        return []
+    }
 }

@@ -1,19 +1,20 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { useModal } from "@/context/ModalContext"
-import { focusInput } from "@/utils/utils"
+import { fetchAllCategories } from "@/actions/axiosActions"
+import { focusInput, mergeCategoriesWithAssignment } from "@/utils/utils"
 import { ICategories } from "@/types/types"
 
 export default function EditElement({
     id,
     name: itemName,
-    addedCategories,
+    categories: assignedCategories,
 }: {
     id: number
     name: string
-    addedCategories: ICategories[]
+    categories: ICategories[]
 }) {
     const [name, setName] = useState(itemName)
     const [loading, setLoading] = useState(false)
@@ -22,25 +23,37 @@ export default function EditElement({
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const { closeModal } = useModal()
-    // const [categories, setCategories] = useState<ICategories[]>([])
+
+    const [mergedCategories, setMergedCategories] = useState<ICategories[]>([])
+
+    async function fetchAndMergeCategories() {
+        // Pobierz wszystkie kategorie, na przykład za pomocą Axios
+        const allCategories = await fetchAllCategories()
+
+        // Przetwarzanie danych i aktualizacja stanu
+        const merged = await mergeCategoriesWithAssignment(
+            allCategories,
+            assignedCategories
+        )
+        setMergedCategories(merged)
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log("send")
     }
 
-    const handleSelectCategories = async (e) => {
+    const handleSelectCategories = async () => {
         // const { name, type, value, checked } = e.target
     }
 
-    const showCategories = async () => {
-        // console.log("show categories")
-    }
-
     useEffect(() => {
-        showCategories()
         focusInput(inputRef)
     }, [])
+
+    useEffect(() => {
+        fetchAndMergeCategories()
+    }, [assignedCategories])
 
     return (
         <>
@@ -68,13 +81,16 @@ export default function EditElement({
                     )}
                 </div>
                 <ul className="mb-5">
-                    {addedCategories?.map((element) => (
+                    {/* 
+                    // TODO dodać loading kategorii 
+                    */}
+                    {mergedCategories?.map((element) => (
                         <li
                             key={element.id}
                             className={success || loading ? "opacity-40" : ""}
                         >
                             <label className="category-list cursor-pointer">
-                                {/* <input
+                                <input
                                     name="categories"
                                     value={JSON.stringify({
                                         id: element.id,
@@ -82,11 +98,11 @@ export default function EditElement({
                                         userId: element.userId,
                                     })}
                                     type="checkbox"
-                                    defaultChecked={element.add}
+                                    defaultChecked={element.asigned}
                                     className="hidden"
-                                    onChange={handleChange}
+                                    onChange={handleSelectCategories}
                                     disabled={success || loading}
-                                /> */}
+                                />
                                 <span>
                                     <svg
                                         width="13"
@@ -110,7 +126,9 @@ export default function EditElement({
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    {element.name}
+                                    {element.name} /{element.id} /
+                                    {element.userId} /
+                                    {element.asigned ? "+" : "-"}
                                 </span>
                             </label>
                         </li>

@@ -1,8 +1,6 @@
 "use client"
 
-import { IList, IElements, ILists } from "@/types/types"
-
-export const tostifySuccessColor = "linear-gradient(to right, #00b09b, #96c93d)"
+import { IList, IElements, ILists, ICategories } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
     if (reference.current) {
@@ -63,4 +61,19 @@ export function sortElements(
     }
 
     return elements
+}
+
+export function mergeCategoriesWithAssignment(
+    allCategories: ICategories[],
+    assignedCategoryIds: ICategories[]
+) {
+    const assignedIdsSet = new Set(
+        assignedCategoryIds.map((category) => category.id)
+    )
+    return allCategories.map((category) => {
+        if (assignedIdsSet.has(category.id)) {
+            return { ...category, assigned: true }
+        }
+        return category
+    })
 }
