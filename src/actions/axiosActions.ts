@@ -2,6 +2,7 @@
 
 import { ICategories } from "@/types/types"
 import axios from "axios"
+import { activeCategories } from "@/utils/utils"
 
 export const createList = async (name: string, duplicateId?: string) => {
     const query = { name, duplicateId }
@@ -51,6 +52,24 @@ export const changeElementStatus = async (
     }
     const response = await axios.patch(`/api/items/${elementId}`, {
         status: status,
+    })
+    return response
+}
+
+export const changeElement = async (
+    elementId: number,
+    name: string,
+    categories?: ICategories[]
+) => {
+    if (!elementId) {
+        throw "Nie uzupełniono id elementu"
+    }
+
+    const cleanedCategories = categories ? activeCategories(categories) : []
+
+    const response = await axios.put(`/api/items/${elementId}`, {
+        name: name,
+        categories: cleanedCategories || [],
     })
     return response
 }

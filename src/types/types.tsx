@@ -31,7 +31,7 @@ export interface ICategories {
     id: number
     name: string
     userId: string
-    asigned?: boolean | undefined
+    assigned?: boolean | undefined
 }
 
 export interface IApiContext {

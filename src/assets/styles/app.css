@@ -120,6 +120,11 @@ body {
     overflow: hidden;
 }
 
+svg 
+{
+    display: inline-block;
+}
+
 .svg-stroke {
     /* #52545c */
     stroke: currentColor;

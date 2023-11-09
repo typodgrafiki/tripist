@@ -77,3 +77,13 @@ export function mergeCategoriesWithAssignment(
         return category
     })
 }
+
+export function activeCategories(mergedCategories: ICategories[]) {
+    const categoriesWithAssignedTrue = mergedCategories.filter(
+        (category) => category.assigned
+    )
+    const cleanedCategories = categoriesWithAssignedTrue.map(
+        ({ assigned, ...rest }) => rest
+    )
+    return cleanedCategories
+}

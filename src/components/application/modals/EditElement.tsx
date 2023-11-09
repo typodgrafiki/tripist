@@ -1,11 +1,13 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo } from "react"
-import { useRouter } from "next/navigation"
+import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { useModal } from "@/context/ModalContext"
-import { fetchAllCategories } from "@/actions/axiosActions"
+import { fetchAllCategories, changeElement } from "@/actions/axiosActions"
 import { focusInput, mergeCategoriesWithAssignment } from "@/utils/utils"
 import { ICategories } from "@/types/types"
+import IconPlus from "../icons/plus"
+import Toastify from "toastify-js"
 
 export default function EditElement({
     id,
@@ -27,10 +29,7 @@ export default function EditElement({
     const [mergedCategories, setMergedCategories] = useState<ICategories[]>([])
 
     async function fetchAndMergeCategories() {
-        // Pobierz wszystkie kategorie, na przykład za pomocą Axios
         const allCategories = await fetchAllCategories()
-
-        // Przetwarzanie danych i aktualizacja stanu
         const merged = await mergeCategoriesWithAssignment(
             allCategories,
             assignedCategories
@@ -38,13 +37,43 @@ export default function EditElement({
         setMergedCategories(merged)
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log("send")
-    }
+    const { mutate, isPending, isError, isSuccess } = useMutation({
+        mutationFn: async () => changeElement(id, name, mergedCategories),
 
-    const handleSelectCategories = async () => {
-        // const { name, type, value, checked } = e.target
+        onSuccess: async (response) => {
+            console.log(response)
+            // queryClient.setQueryData(
+            //     ["elements", listId],
+            //     (oldData: IElements[]) => {
+            //         return [...oldData, newElement]
+            //     }
+            // )
+
+            Toastify({
+                text: `Edytowano element ${response.data.body.name}`,
+                duration: 2000,
+            }).showToast()
+
+            closeModal()
+        },
+        onError: (error) => {
+            Toastify({
+                className: "toastify-error",
+                text: `Nie udało się edytować elementu`,
+                duration: 2000,
+            }).showToast()
+        },
+    })
+
+    const handleSelectCategories = async (event) => {
+        const { checked, value } = await event.target
+        const category = await JSON.parse(value)
+
+        setMergedCategories((prevCategories) =>
+            prevCategories.map((cat) =>
+                cat.id === category.id ? { ...cat, assigned: checked } : cat
+            )
+        )
     }
 
     useEffect(() => {
@@ -62,7 +91,7 @@ export default function EditElement({
             </h3>
             <form
                 ref={formRef}
-                onSubmit={handleSubmit}
+                onSubmit={() => mutate()}
             >
                 <div className="mb-4">
                     <input
@@ -74,7 +103,7 @@ export default function EditElement({
                         onChange={(e) => setName(e.target.value)}
                         ref={inputRef}
                     />
-                    {error && (
+                    {isError && (
                         <div className="text-red-600 text-sm mt-1">
                             Nie zapisano zmian. Spróbuj ponownie.
                         </div>
@@ -87,9 +116,11 @@ export default function EditElement({
                     {mergedCategories?.map((element) => (
                         <li
                             key={element.id}
-                            className={success || loading ? "opacity-40" : ""}
+                            className={
+                                isSuccess || isPending ? "opacity-40" : ""
+                            }
                         >
-                            <label className="category-list cursor-pointer">
+                            <label className="category-list cursor-pointer relative hover:left-[3px]">
                                 <input
                                     name="categories"
                                     value={JSON.stringify({
@@ -98,37 +129,14 @@ export default function EditElement({
                                         userId: element.userId,
                                     })}
                                     type="checkbox"
-                                    defaultChecked={element.asigned}
+                                    defaultChecked={element.assigned}
                                     className="hidden"
                                     onChange={handleSelectCategories}
-                                    disabled={success || loading}
+                                    disabled={isSuccess || isPending}
                                 />
                                 <span>
-                                    <svg
-                                        width="13"
-                                        height="13"
-                                        viewBox="0 0 13 13"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="svg-stroke inline-block mr-1 relative -top-[2px]"
-                                    >
-                                        <path
-                                            d="M6.5 1V12"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="horizontal"
-                                        />
-                                        <path
-                                            d="M12 6.5L1 6.5"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    {element.name} /{element.id} /
-                                    {element.userId} /
-                                    {element.asigned ? "+" : "-"}
+                                    <IconPlus className="mr-1 relative -top-[1px] w-[10px] h-[10px]" />
+                                    {element.name}
                                 </span>
                             </label>
                         </li>
@@ -139,13 +147,13 @@ export default function EditElement({
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
-                            success && "btn-green"
+                            isSuccess && "btn-green"
                         }`}
-                        disabled={success || loading}
+                        disabled={isSuccess || isPending}
                     >
-                        {loading ? (
+                        {isPending ? (
                             <div className="loader small"></div>
-                        ) : success ? (
+                        ) : isSuccess ? (
                             <>
                                 Zapisano
                                 <svg
