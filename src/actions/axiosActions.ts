@@ -65,3 +65,13 @@ export const deleteList = async (id: string) => {
     const response = await axios.delete(`/api/lists/${id}`)
     return response
 }
+
+export const createItem = async (name: string, listId: string) => {
+    if (!name) {
+        throw "Nie uzupełniono nazwy"
+    }
+    const response = await axios.post(`/api/lists/${listId}/items`, {
+        name: name,
+    })
+    return response
+}

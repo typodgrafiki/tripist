@@ -2,161 +2,39 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { useGlobalContext, Categories } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
-import ProgressBar from "../buttons/progressBar"
 import { focusInput } from "@/utils/utils"
-import DebugLog from "@/utils/developConsoleLog"
-import DebugLogScript from "@/utils/developConsoleScripts"
-
-interface IFormData {
-    name: string
-    categories: ICat[]
-}
-interface ICat {
-    id: number
-    name: string // Add this property
-    userId: string // Add this property
-}
+import { ICategories } from "@/types/types"
 
 export default function EditElement({
     id,
-    name,
-    category,
+    name: itemName,
+    addedCategories,
 }: {
     id: number
     name: string
-    category: Categories[]
+    addedCategories: ICategories[]
 }) {
-    DebugLogScript("ModalEditElement")
-    const [formData, setFormData] = useState<IFormData>({
-        name: name,
-        categories: [],
-    })
+    const [name, setName] = useState(itemName)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const { activeElements, setActiveElements } = useGlobalContext()
-    const { setIsModalOpen } = useModal()
-    const [categories, setCategories] = useState<Categories[]>([])
-
-    const close = () => {
-        setIsModalOpen(false)
-    }
+    const { closeModal } = useModal()
+    // const [categories, setCategories] = useState<ICategories[]>([])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        try {
-            setLoading(true)
-            // Wyślij żądanie fetch do API, aby zapisać zmiany
-            const res = await fetch(`/api/element/edit/${id}`, {
-                method: "PUT", // Może to być POST, PUT lub inna metoda w zależności od API
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            })
-
-            if (res.ok) {
-                await setSuccess(true)
-
-                const updatedValue = {
-                    name: formData.name, // Nowa nazwa
-                    categories: formData.categories, // Nowe kategorie, możesz dostosować do własnych potrzeb
-                }
-
-                const updatedState = activeElements.map((item) => {
-                    if (item.id === id) {
-                        return { ...item, ...updatedValue } // Aktualizuj obiekt o id 439
-                    }
-                    return item // Pozostałe obiekty pozostaw niezmienione
-                })
-
-                setActiveElements(updatedState)
-                // zamkniecie modal
-            } else {
-                setError(true)
-            }
-        } catch (error) {
-            console.error(error)
-            setError(true)
-        } finally {
-            setLoading(false)
-        }
+        console.log("send")
     }
 
-    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, type, value, checked } = e.target
-
-        if (type === "checkbox" && name === "categories") {
-            const categoryObj = JSON.parse(value)
-            const categoryId = categoryObj.id
-            const categoryName = categoryObj.name
-            const categoryUserId = categoryObj.userId
-
-            await setFormData((prevData) => {
-                if (checked) {
-                    // Jeśli checkbox został zaznaczony, dodaj wartość do tablicy categories
-                    return {
-                        ...prevData,
-                        categories: [
-                            ...prevData.categories,
-                            {
-                                id: categoryId,
-                                name: categoryName,
-                                userId: categoryUserId,
-                            },
-                        ],
-                    }
-                } else {
-                    // Jeśli checkbox został odznaczony, usuń wartość z tablicy categories
-                    return {
-                        ...prevData,
-                        categories: prevData.categories.filter(
-                            (category) => category.id !== categoryId
-                        ),
-                    }
-                }
-            })
-        } else {
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: value,
-            }))
-        }
+    const handleSelectCategories = async (e) => {
+        // const { name, type, value, checked } = e.target
     }
 
     const showCategories = async () => {
-        try {
-            const res = await fetch(`/api/categories`)
-            const data = await res.json()
-            const myCategories = data.body
-
-            const combinedArray = myCategories.map((item: Categories) => ({
-                ...item,
-                add: category.some((secondItem) => secondItem.id === item.id),
-            }))
-
-            setCategories(combinedArray)
-
-            const categoriesActiveId = combinedArray
-                .filter((item: Categories) => item.add === true) // Filtruj tylko obiekty z add: true
-                .map((item: Categories) => ({
-                    id: item.id,
-                    name: item.name,
-                    userId: item.userId,
-                })) // Wyodrębnij numery id
-
-            setFormData((prevData) => ({
-                ...prevData,
-                categories: categoriesActiveId,
-            }))
-        } catch (e) {
-            console.error(e)
-        }
+        // console.log("show categories")
     }
 
     useEffect(() => {
@@ -166,7 +44,6 @@ export default function EditElement({
 
     return (
         <>
-            <DebugLog name="ModalEditElement" />
             <h3 className="title mb-3 font-medium text-base">
                 Edycja elementu
             </h3>
@@ -178,11 +55,10 @@ export default function EditElement({
                     <input
                         name="name"
                         type="text"
-                        value={formData.name}
+                        value={name}
                         placeholder="np. Suszarka"
                         className="form-control w-full"
-                        disabled={success}
-                        onChange={handleChange}
+                        onChange={(e) => setName(e.target.value)}
                         ref={inputRef}
                     />
                     {error && (
@@ -192,13 +68,13 @@ export default function EditElement({
                     )}
                 </div>
                 <ul className="mb-5">
-                    {categories?.map((element) => (
+                    {addedCategories?.map((element) => (
                         <li
                             key={element.id}
                             className={success || loading ? "opacity-40" : ""}
                         >
                             <label className="category-list cursor-pointer">
-                                <input
+                                {/* <input
                                     name="categories"
                                     value={JSON.stringify({
                                         id: element.id,
@@ -210,7 +86,7 @@ export default function EditElement({
                                     className="hidden"
                                     onChange={handleChange}
                                     disabled={success || loading}
-                                />
+                                /> */}
                                 <span>
                                     <svg
                                         width="13"
@@ -281,49 +157,14 @@ export default function EditElement({
                     />
                 </div>
             </form>
-            {success && <ProgressBar closeFn={close} />}
         </>
     )
 }
 
 const ButtonDelete = ({ id, dis }: { id: number; dis: boolean }) => {
-    const [loading, setLoading] = useState(false)
-    const [success, setSucceess] = useState(false)
-    const { activeElements, setActiveElements } = useGlobalContext()
-    const { setIsModalOpen } = useModal()
-
-    const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-
-        try {
-            await setLoading(true)
-            const res = await fetch(`/api/elements/${id}`, {
-                method: "DELETE",
-            })
-            if (res.ok) {
-                const updatedElements = await activeElements.filter(
-                    (element) => element.id !== id
-                )
-
-                await setActiveElements(updatedElements)
-                await setSucceess(true)
-
-                setTimeout(() => {
-                    setIsModalOpen(false)
-                }, 2000)
-            } else {
-                console.error("Błąd pobierania danych")
-            }
-            setLoading(false)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
     return (
         <>
-            <DebugLog name="ModalAddElementBtnDelete" />
-            <button
+            {/* <button
                 className={`btn btn-error ${
                     loading ? "bg-red-600 text-white" : ""
                 }`}
@@ -357,7 +198,7 @@ const ButtonDelete = ({ id, dis }: { id: number; dis: boolean }) => {
                 ) : (
                     "Usuń pozycję -"
                 )}
-            </button>
+            </button> */}
         </>
     )
 }

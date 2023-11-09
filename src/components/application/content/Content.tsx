@@ -253,7 +253,6 @@ import IconMore from "@/components/application/icons/more"
 import IconSwitch from "@/components/application/icons/switch"
 import ButtonDeleteList from "@/components/application/buttons/ButtonDeleteList"
 import ButtonDuplicate from "@/components/application/buttons/ButtonDuplicate"
-import ButtonEdit from "@/components/application/buttons/edit"
 import { useModal } from "@/context/ModalContext"
 import AddElements from "@/components/application/modals/AddElements"
 import ButtonAddElement from "../buttons/ButtonAddItem"
@@ -323,7 +322,12 @@ export default function Content({ id }: { id: string }) {
     }
 
     const handleOpenModal = () => {
-        setModalContent(<AddElements />)
+        setModalContent(
+            <AddElements
+                listId={listData.id}
+                listName={listData.name}
+            />
+        )
         setIsModalOpen(true)
     }
 

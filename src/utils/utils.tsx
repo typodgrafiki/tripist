@@ -16,7 +16,9 @@ export function findUniqueCategories(elements: IElements[]) {
         const result = Array.from(
             new Set(
                 elements?.flatMap((element) =>
-                    element.categories.map((category) => category.name)
+                    element.categories
+                        ? element.categories.map((category) => category.name)
+                        : []
                 )
             )
         )

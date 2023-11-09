@@ -129,6 +129,10 @@ body {
     fill: currentColor;
 }
 
+.toastify.toastify-error {
+    background: linear-gradient(to right, rgb(245 49 66), rgb(227 78 69));
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

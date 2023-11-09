@@ -12,6 +12,7 @@ import Toastify from "toastify-js"
 import { changeStatusLocaly } from "@/utils/utils"
 import Categories from "./ItemCategories"
 import ButtonDelete from "../buttons/ButtonDeleteItem"
+import Button from "@/components/ui/Button"
 
 export default function ContentElement({
     id,
@@ -21,6 +22,7 @@ export default function ContentElement({
     categories,
 }: IElements) {
     const queryClient = useQueryClient()
+    const { setModalContent, setIsModalOpen } = useModal()
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async (status: boolean) => changeElementStatus(id, status),
@@ -64,6 +66,17 @@ export default function ContentElement({
         },
     })
 
+    const handleEdit = () => {
+        setModalContent(
+            <EditElement
+                id={id}
+                name={name}
+                categories={categories}
+            />
+        )
+        setIsModalOpen(true)
+    }
+
     return (
         <>
             <li className="element-row animated relative border-t flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded">
@@ -84,11 +97,12 @@ export default function ContentElement({
                 </label>
                 <Categories categories={categories} />
                 <div className="element-edit flex absolute top-0 bottom-0 right-0">
-                    {/* <ButtonEdit
-                        id={id}
-                        name={name}
-                        category={category}
-                    /> */}
+                    <Button
+                        className="px-1 items-center hover:text-[var(--primary)]"
+                        onClick={handleEdit}
+                    >
+                        <IconPen />
+                    </Button>
                     <ButtonDelete
                         id={id}
                         listId={listId}
@@ -98,39 +112,3 @@ export default function ContentElement({
         </>
     )
 }
-
-// const ButtonEdit = ({
-//     id,
-//     name,
-//     category,
-// }: {
-//     id: number
-//     name: string
-//     category: Categories[]
-// }) => {
-//     DebugLogScript("ContentElementButtonEdit")
-//     const { setModalContent, setIsModalOpen } = useModal()
-
-//     const handleEdit = async () => {
-//         setModalContent(
-//             <EditElement
-//                 id={id}
-//                 name={name}
-//                 category={category}
-//             />
-//         )
-//         setIsModalOpen(true)
-//     }
-
-//     return (
-//         <>
-//             <DebugLog name="ContentElementButtonEdit" />
-//             <button
-//                 className="px-1 hover:text-[var(--primary)]"
-//                 onClick={handleEdit}
-//             >
-//                 <IconPen />
-//             </button>
-//         </>
-//     )
-// }
