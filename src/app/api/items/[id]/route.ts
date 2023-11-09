@@ -9,7 +9,7 @@
 import { NextResponse, NextRequest } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
-import { IApiContext } from "@/types/types"
+import { IApiContext, ICategories } from "@/types/types"
 
 export async function PATCH(request: Request, context: IApiContext) {
     const { userId } = auth()
@@ -42,7 +42,6 @@ export async function PATCH(request: Request, context: IApiContext) {
     }
 }
 
-
 export async function PUT(request: Request, context: IApiContext) {
     const { userId } = auth()
     const { name, categories } = await request.json()
@@ -62,7 +61,11 @@ export async function PUT(request: Request, context: IApiContext) {
             },
             data: {
                 name: name,
-                categories: categories,
+                categories: {
+                    connect: categories.map((category: ICategories) => ({
+                        id: category.id,
+                    })),
+                },
             },
         })
 

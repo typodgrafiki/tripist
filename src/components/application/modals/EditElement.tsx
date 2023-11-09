@@ -76,6 +76,11 @@ export default function EditElement({
         )
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        mutate()
+    }
+
     useEffect(() => {
         focusInput(inputRef)
     }, [])
@@ -91,7 +96,7 @@ export default function EditElement({
             </h3>
             <form
                 ref={formRef}
-                onSubmit={() => mutate()}
+                onSubmit={handleSubmit}
             >
                 <div className="mb-4">
                     <input
