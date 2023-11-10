@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { useModal } from "@/context/ModalContext"
 import { fetchAllCategories, changeElement } from "@/actions/axiosActions"
@@ -28,14 +28,14 @@ export default function EditElement({
     const queryClient = useQueryClient()
     const [mergedCategories, setMergedCategories] = useState<ICategories[]>([])
 
-    async function fetchAndMergeCategories() {
+    const fetchAndMergeCategories = useCallback(async () => {
         const allCategories = await fetchAllCategories()
         const merged = await mergeCategoriesWithAssignment(
             allCategories,
             assignedCategories
         )
         setMergedCategories(merged)
-    }
+    }, [assignedCategories])
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => changeElement(id, name, mergedCategories),
@@ -94,7 +94,7 @@ export default function EditElement({
 
     useEffect(() => {
         fetchAndMergeCategories()
-    }, [assignedCategories])
+    }, [fetchAndMergeCategories])
 
     return (
         <>

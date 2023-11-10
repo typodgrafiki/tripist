@@ -1,25 +1,22 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useCallback } from "react"
 import { useModal } from "@/context/ModalContext"
-import DebugLog from "@/utils/developConsoleLog"
-import DebugLogScript from "@/utils/developConsoleScripts"
 
 export default function Modal() {
-    DebugLogScript("Modal")
     const { isModalOpen, setIsModalOpen, modalContent, setModalContent } =
         useModal()
 
-    const closeModal = () => {
+    const closeModal = useCallback(() => {
         setIsModalOpen(false)
         setModalContent(null)
-    }
+    }, [setIsModalOpen, setModalContent])
 
-    const handleEscKeyDown = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
-            closeModal()
-        }
-    }
+    // const handleEscKeyDown = (event: KeyboardEvent) => {
+    //     if (event.key === "Escape") {
+    //         closeModal()
+    //     }
+    // }
 
     const handleShadowClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
@@ -27,18 +24,33 @@ export default function Modal() {
         }
     }
 
+    // useEffect(() => {
+    //     window.addEventListener("keydown", handleEscKeyDown)
+    //     return () => {
+    //         window.removeEventListener("keydown", handleEscKeyDown)
+    //     }
+    // }, [])
+
+    const handleEscKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                closeModal()
+            }
+        },
+        [closeModal]
+    )
+
     useEffect(() => {
         window.addEventListener("keydown", handleEscKeyDown)
         return () => {
             window.removeEventListener("keydown", handleEscKeyDown)
         }
-    }, [])
+    }, [handleEscKeyDown])
 
     if (!isModalOpen) return null
 
     return (
         <>
-            <DebugLog name="Modal" />
             <div
                 className="animated modal-overlay flex items-center justify-center fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm"
                 onClick={handleShadowClick}
