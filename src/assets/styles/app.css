@@ -120,6 +120,10 @@ body {
     overflow: hidden;
 }
 
+svg {
+    display: inline-block;
+}
+
 .svg-stroke {
     /* #52545c */
     stroke: currentColor;
@@ -127,6 +131,18 @@ body {
 
 .svg-fill {
     fill: currentColor;
+}
+
+.toastify {
+    border-radius: 5px !important;
+}
+
+.toastify.toastify-error {
+    background: linear-gradient(to right, rgb(245 49 66), rgb(227 78 69));
+}
+
+.toastify.toastify-success {
+    background: linear-gradient(to right, #00b09b, #96c93d);
 }
 
 @keyframes fade-in {

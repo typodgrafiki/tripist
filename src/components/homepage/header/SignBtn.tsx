@@ -7,23 +7,21 @@ function SignBtn() {
             <SignedIn>
                 <Link
                     href="/dashboard"
-                    className="btn btn-primary transition-colors"
+                    className="btn btn-primary"
                 >
                     Moje konto
                 </Link>
             </SignedIn>
             <SignedOut>
                 <Link
-                    href="/sign-in/"
-                    // ### TO DO usunac / na koncu linka
-                    className="btn btn-default transition-colors"
+                    href="/sign-in"
+                    className="btn btn-default"
                 >
                     Zaloguj się
                 </Link>
                 <Link
-                    href="/sign-up/"
-                    // ### TO DO usunac / na koncu linka
-                    className="btn btn-primary transition-colors"
+                    href="/sign-up"
+                    className="btn btn-primary"
                 >
                     Załóż konto
                 </Link>

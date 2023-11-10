@@ -1,8 +1,14 @@
+/**
+ *
+ * //Dodawanie listy POST
+ * //Pobieranie list GET
+ *
+ */
+
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
-import { generateUniqueURL } from "@/lib/normalizeUrl"
-import { Categories } from "@/context/AppContext"
+import { ICategories } from "@/types/types"
 
 export async function GET() {
     const { userId } = auth()
@@ -34,7 +40,7 @@ export async function HEAD(request: Request) {}
 export async function POST(request: Request) {
     const { userId } = auth()
     const data = await request.json()
-    const { name, duplicate } = data
+    const { name, duplicateId } = data
     const newItems = []
 
     try {
@@ -44,35 +50,36 @@ export async function POST(request: Request) {
                 { status: 401 }
             )
 
-        const url = await generateUniqueURL(prisma, name)
-
-        if (!url)
-            return NextResponse.json(
-                { message: "Nie wygenerowano url" },
-                { status: 401 }
-            )
-
+        //Tworzy nową pustą listę
         const newList = await prisma.list.create({
             data: {
                 name: name,
-                url: url,
                 userId: userId,
             },
         })
 
-        if (duplicate && Array.isArray(duplicate)) {
-            for (const item of duplicate) {
+        // Jeśli duplikat
+        if (duplicateId) {
+            const originalItems = await prisma.listItem.findMany({
+                where: {
+                    listId: duplicateId,
+                },
+                include: {
+                    categories: true,
+                },
+            })
+
+            // Tworzymy duplikaty tych elementów dla nowej listy
+            for (const item of originalItems) {
                 const newItem = await prisma.listItem.create({
                     data: {
                         name: item.name,
                         status: false,
                         listId: newList.id,
                         categories: {
-                            connect: item.categories.map(
-                                (category: Categories) => ({
-                                    id: category.id,
-                                })
-                            ),
+                            connect: item.categories.map((category) => ({
+                                id: category.id,
+                            })),
                         },
                     },
                     include: {

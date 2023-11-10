@@ -2,12 +2,13 @@ import React from "react"
 import "@/assets/styles/globals.css"
 import type { Metadata } from "next"
 import { ClerkProvider } from "@clerk/nextjs"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
 
 export const metadata: Metadata = {
-    title: "Tripist",
-    description: "Manage your trip lists",
+    title: "Tripist: Twoja intuicyjna aplikacja do pakowania",
+    description:
+        "Niezależnie od celu podróży – Tripist zapewnia idealną listę pakowania. Korzystaj z naszych podpowiedzi i zaznaczaj spakowane przedmioty. Pobierz aplikację i zorganizuj się na każdą przygodę!",
+    keywords:
+        "lista pakowania, aplikacja do pakowania, lista na wycieczkę, porady do pakowania, aplikacja do treningu, organizacja wyjazdu, personalizowane listy pakowania, kreator list pakowania",
 }
 
 export default function RootLayout({
@@ -18,10 +19,9 @@ export default function RootLayout({
     return (
         <ClerkProvider>
             <html
-                lang="en"
+                lang="pl"
                 className="scroll-smooth"
             >
-                <DebugLog name="RootLayout" />
                 <body>{children}</body>
             </html>
         </ClerkProvider>

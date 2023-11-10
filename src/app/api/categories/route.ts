@@ -1,8 +1,15 @@
+/**
+ *
+ * Tworzenie nowej kategorii POST
+ * // Pobieranie listy kategorii GET
+ *
+ */
+
 import { NextResponse } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 
-export async function GET(request: Request) {
+export async function GET() {
     const { userId } = auth()
 
     try {

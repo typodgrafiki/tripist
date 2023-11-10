@@ -2,91 +2,75 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useGlobalContext } from "@/context/AppContext"
 import { useModal } from "@/context/ModalContext"
-import ProgressBar from "../buttons/progressBar"
-import { ListsProps } from "@/context/AppContext"
-import createListAction from "@/actions/createList"
-import { focusInput } from "@/lib/actions"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import { createList, updateList } from "@/actions/axiosActions"
+import { focusInput } from "@/utils/utils"
+import DebugLog from "@/utils/developConsoleLog"
+import { useQueryClient, useMutation } from "@tanstack/react-query"
+import Toastify from "toastify-js"
 
 type IDuplicatProps = {
     duplicate?: {
         id: string
         name: string
     }
+    editList?: {
+        id: string
+        name: string
+    }
 }
 
-export default function CreateList({ duplicate }: IDuplicatProps) {
-    DebugLogScript("ModalCreateList")
+export default function CreateList({ duplicate, editList }: IDuplicatProps) {
+    const initialTitle = editList ? editList.name : ""
     const router = useRouter()
-    const [title, setTitle] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
+    const [title, setTitle] = useState(initialTitle)
+    const { setIsModalOpen, setModalContent, closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const {
-        setLists,
-        listActive,
-        setListActive,
-        activeElements,
-        setActiveElements,
-    } = useGlobalContext()
-    const { setIsModalOpen } = useModal()
+    const queryClient = useQueryClient()
 
-    const close = () => {
-        router.push(`/dashboard/${listActive.url}`)
-        setTitle("")
-        setSuccess(false)
-        setIsModalOpen(false)
-    }
+    const { mutate, isPending, isError, isSuccess } = useMutation({
+        mutationFn: async () => {
+            if (editList) {
+                return updateList(title, editList.id)
+            }
+            return createList(title, duplicate?.id)
+        },
+        onSuccess: async (response) => {
+            const { id: listId, name: listName } = response.data.body.list
+            queryClient.invalidateQueries({ queryKey: ["lists"] })
+
+            if (listId) {
+                router.push(`/dashboard/${listId}`)
+            } else {
+                queryClient.invalidateQueries({
+                    queryKey: ["listData", listId],
+                })
+            }
+
+            Toastify({
+                className: "toastify-success",
+                text: listId
+                    ? `Stworzono listę ${listName}`
+                    : `Zaktualizowano listę`,
+            }).showToast()
+
+            // TODO Tutaj pojawia sie przycisk zamknij i przy nim jest jakies odliczania po czym setTimeout
+            setTimeout(() => {
+                closeModal()
+            }, 2500)
+        },
+        onError: (error) => {
+            Toastify({
+                className: "toastify-error",
+                text: `Nie udało się stworzyć listy`,
+            }).showToast()
+        },
+    })
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        try {
-            setError(false)
-            await setLoading(true)
-
-            const response = await createListAction(
-                title,
-                duplicate ? activeElements : []
-            )
-
-            setTitle("")
-            setSuccess(true)
-            setListActive({
-                id: response.list.id,
-                url: response.list.url,
-                name: response.list.name,
-            })
-
-            setActiveElements(response.items)
-
-            setLists((prevLists: ListsProps[]) => [
-                ...prevLists,
-                {
-                    id: response.list.id,
-                    name: response.list.name,
-                    type: undefined,
-                    createAt: new Date(),
-                    url: response.list.url,
-                    userId: response.list.userId,
-                    predefined: response.predefined,
-                },
-            ])
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
-        }
-    }
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        setTitle(newValue)
+        mutate()
     }
 
     useEffect(() => {
@@ -116,21 +100,21 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                         value={title}
                         placeholder="np. Madryt '23, Islandia, Siłownia"
                         className="form-control grow"
-                        onChange={handleInputChange}
-                        disabled={success}
+                        onChange={(e) => setTitle(e.target.value)}
+                        disabled={isPending || isSuccess}
                         ref={inputRef}
                     />
 
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
-                            success && "btn-green"
+                            isSuccess && "btn-green"
                         }`}
-                        disabled={success || loading}
+                        disabled={isPending || isSuccess}
                     >
-                        {loading ? (
+                        {isPending ? (
                             <div className="loader small"></div>
-                        ) : success ? (
+                        ) : isSuccess ? (
                             <>
                                 Dodano
                                 <svg
@@ -152,26 +136,38 @@ export default function CreateList({ duplicate }: IDuplicatProps) {
                             </>
                         ) : duplicate ? (
                             "Duplikuj listę"
+                        ) : editList ? (
+                            "Zapisz"
                         ) : (
                             "Stwórz listę"
                         )}
                     </button>
+                    {isSuccess && (
+                        <button
+                            className="btn btn-default"
+                            onClick={closeModal}
+                        >
+                            Zamknij
+                        </button>
+                    )}
                 </div>
-                {error && (
-                    <div className="text-red-600 text-sm">
+                {isError && (
+                    <div className="text-red-600 text-sm mt-2">
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-
-                {success && <ProgressBar closeFn={close} />}
-
-                {!duplicate && (
+                {/* 
+                {!duplicate && !editList && (
                     <>
+                        
+                        // TODO Gotowe listy do zaimportowania 
+                        
                         <div className="mt-4">
                             City / 2 dni / importuj listę...
                         </div>
                     </>
                 )}
+                */}
             </form>
         </>
     )

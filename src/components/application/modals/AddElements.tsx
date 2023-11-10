@@ -1,72 +1,66 @@
-"use client"
-
 import { useState, useRef, useEffect } from "react"
-import { useGlobalContext } from "@/context/AppContext"
-import { focusInput } from "@/lib/actions"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import { useQueryClient, useMutation } from "@tanstack/react-query"
+import Toastify from "toastify-js"
+import { focusInput } from "@/utils/utils"
+import { createItem } from "@/actions/axiosActions"
+import { IElements } from "@/types/types"
+import IconCheck from "../icons/check"
+import IconPlus from "../icons/plus"
 
-export default function CreateLAddElements() {
-    DebugLogScript("ModalAddElement")
+export default function CreateLAddElements({
+    listId,
+    listName,
+}: {
+    listId: string
+    listName: string
+}) {
     const [name, setName] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const { listActive, setActiveElements } = useGlobalContext()
+    const [isSuccessFallback, setIsSuccessFallback] = useState(false)
+    const queryClient = useQueryClient()
 
-    // const focusInput = () => {
-    //     if (inputRef.current) {
-    //         inputRef.current.focus()
-    //     }
-    // }
+    const { mutate, isPending, isError, isSuccess } = useMutation({
+        mutationFn: async () => createItem(name, listId),
+        onSuccess: async (response) => {
+            setIsSuccessFallback(true)
+
+            // TODO Podczas szybkiego pisania nie nadąża. Nalezy dodac Optimistic
+
+            const newElement = response.data.body
+
+            queryClient.setQueryData(
+                ["elements", listId],
+                (oldData: IElements[]) => {
+                    return [...oldData, newElement]
+                }
+            )
+
+            setName("")
+
+            Toastify({
+                className: "toastify-success",
+                text: `Utworzono element ${response.data.body.name}`,
+                duration: 2000,
+            }).showToast()
+
+            setTimeout(() => {
+                setIsSuccessFallback(false)
+                focusInput(inputRef)
+            }, 1500)
+        },
+        onError: (error) => {
+            Toastify({
+                className: "toastify-error",
+                text: `Nie udało się utworzyć elementu`,
+                duration: 2000,
+            }).showToast()
+        },
+    })
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
-        try {
-            setError(false)
-            await setLoading(true)
-            const res = await fetch(`/api/lists/addElement`, {
-                method: "POST",
-                body: JSON.stringify({ name: name, listId: listActive.id }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            if (res.ok) {
-                const data = await res.json()
-                const response = data.body
-
-                response.categories = []
-                setSuccess(true)
-                setName("")
-
-                setActiveElements((prevActiveElements) => [
-                    ...prevActiveElements,
-                    response,
-                ])
-
-                focusInput(inputRef)
-
-                setTimeout(() => {
-                    setSuccess(false)
-                }, 1500)
-            } else {
-                setError(true)
-                console.error("Błąd pobierania danych")
-            }
-            setLoading(false)
-        } catch (error) {
-            setError(true)
-            console.error(error)
-        }
-    }
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value
-        setName(newValue)
+        mutate()
     }
 
     useEffect(() => {
@@ -75,10 +69,7 @@ export default function CreateLAddElements() {
 
     return (
         <>
-            <DebugLog name="ModalAddElement" />
-            <h3 className="title mb-3 font-medium text-base">
-                {listActive.name}
-            </h3>
+            <h3 className="title mb-3 font-medium text-base">{listName}</h3>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -89,72 +80,35 @@ export default function CreateLAddElements() {
                         value={name}
                         placeholder="np. Suszarka"
                         className={`animated form-control grow ${
-                            success
-                                ? "focus:border-green-500 focus:ring-green-500"
-                                : ""
+                            isSuccessFallback &&
+                            "focus:border-green-500 focus:ring-green-500"
                         }`}
-                        onChange={handleInputChange}
+                        onChange={(e) => setName(e.target.value)}
                         ref={inputRef}
                     />
 
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
-                            success && "btn-green"
+                            isSuccessFallback && "btn-green"
                         }`}
-                        disabled={loading}
+                        disabled={isPending}
                     >
-                        {loading ? (
+                        {isPending ? (
                             <div className="loader small"></div>
-                        ) : success ? (
-                            <>
-                                Dodano
-                                <svg
-                                    width="9"
-                                    height="7"
-                                    viewBox="0 0 9 7"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="ml-2"
-                                >
-                                    <path
-                                        d="M1 3.08333L3.57895 6L8 1"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </>
+                        ) : isSuccessFallback ? (
+                            <IconCheck />
                         ) : (
-                            <svg
-                                width="13"
-                                height="13"
-                                viewBox="0 0 13 13"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M6.5 1V12"
-                                    stroke="white"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                                <path
-                                    d="M12 6.5L1 6.5"
-                                    stroke="white"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
+                            <IconPlus />
                         )}
                     </button>
                 </div>
-                {error && (
+                {isError && (
                     <div className="text-red-600 text-sm">
-                        Nie zapisano zmian. Spróbuj ponownie.
+                        {!name
+                            ? "Uzupełnij nazwę"
+                            : "Nie zapisano zmian. Spróbuj ponownie"}
+                        .
                     </div>
                 )}
             </form>

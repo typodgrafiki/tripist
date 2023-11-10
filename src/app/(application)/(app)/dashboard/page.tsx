@@ -1,15 +1,16 @@
-import AppTitle from "@/components/application/title/AppTitle"
-import AppContent from "@/components/application/content/AppContent"
-import DebugLog from "@/lib/developConsoleLog"
-import DebugLogScript from "@/lib/developConsoleScripts"
+import Title from "@/components/application/title/Title"
+import Content from "@/components/application/content/Content"
 
 export default function Dashboard() {
-    DebugLogScript("Dashboard")
     return (
         <>
-            <DebugLog name="Dashboard" />
-            <AppTitle />
-            <AppContent />
+            <Title />
+            <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                <p className="mb-5">
+                    Masz już swoje listy gotowe! Kliknij na jedną z nich, aby
+                    zacząć pakować bez stresu.
+                </p>
+            </div>
         </>
     )
 }
