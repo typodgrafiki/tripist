@@ -25,6 +25,8 @@ export default function CreateLAddElements({
         onSuccess: async (response) => {
             setIsSuccessFallback(true)
 
+            // TODO Podczas szybkiego pisania nie nadąża. Nalezy dodac Optimistic
+
             const newElement = response.data.body
 
             queryClient.setQueryData(
@@ -34,7 +36,10 @@ export default function CreateLAddElements({
                 }
             )
 
+            setName("")
+
             Toastify({
+                className: "toastify-success",
                 text: `Utworzono element ${response.data.body.name}`,
                 duration: 2000,
             }).showToast()
@@ -42,7 +47,6 @@ export default function CreateLAddElements({
             setTimeout(() => {
                 setIsSuccessFallback(false)
                 focusInput(inputRef)
-                setName("")
             }, 1500)
         },
         onError: (error) => {

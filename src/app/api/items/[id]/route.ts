@@ -9,7 +9,7 @@
 import { NextResponse, NextRequest } from "next/server"
 import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
-import { IApiContext, ICategories } from "@/types/types"
+import { IApiContext, ICategories, TListItemUpdate } from "@/types/types"
 
 export async function PATCH(request: Request, context: IApiContext) {
     const { userId } = auth()
@@ -44,7 +44,10 @@ export async function PATCH(request: Request, context: IApiContext) {
 
 export async function PUT(request: Request, context: IApiContext) {
     const { userId } = auth()
-    const { name, categories } = await request.json()
+    const {
+        name,
+        categories: { categoriesIdsToConnect, categoriesIdsToDisconnect },
+    } = (await request.json()) as TListItemUpdate
 
     try {
         if (!userId)
@@ -62,14 +65,14 @@ export async function PUT(request: Request, context: IApiContext) {
             data: {
                 name: name,
                 categories: {
-                    connect: categories.map((category: ICategories) => ({
-                        id: category.id,
-                    })),
+                    disconnect: categoriesIdsToDisconnect.map((id) => ({ id })),
+                    connect: categoriesIdsToConnect.map((id) => ({ id })),
                 },
             },
+            include: {
+                categories: true,
+            },
         })
-
-        console.log(updatedElement)
 
         return NextResponse.json({ body: updatedElement }, { status: 200 })
     } catch (error) {

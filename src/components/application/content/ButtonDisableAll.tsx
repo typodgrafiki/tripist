@@ -1,7 +1,6 @@
 import { disableAllElementsAction } from "@/actions/axiosActions"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import Toastify from "toastify-js"
-import { tostifySuccessColor } from "@/utils/utils"
 
 export default function ButtonDisableAll({ listId }: { listId: string }) {
     const queryClient = useQueryClient()
@@ -12,11 +11,13 @@ export default function ButtonDisableAll({ listId }: { listId: string }) {
             //TODO zmienic na setQueryData i dodac onMutate dla lepszego UI
             queryClient.invalidateQueries({ queryKey: ["elements", listId] })
             Toastify({
+                className: "toastify-success",
                 text: `Uaktualniono elementów: ${response.data.body.count}`,
             }).showToast()
         },
         onError: () => {
             Toastify({
+                className: "toastify-error",
                 text: `Nie udało się uaktualnić elementów`,
             }).showToast()
         },

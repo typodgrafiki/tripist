@@ -1,6 +1,12 @@
 "use client"
 
-import { IList, IElements, ILists, ICategories } from "@/types/types"
+import {
+    IList,
+    IElements,
+    ILists,
+    ICategories,
+    TListItemCategoriesUpdate,
+} from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
     if (reference.current) {
@@ -67,23 +73,44 @@ export function mergeCategoriesWithAssignment(
     allCategories: ICategories[],
     assignedCategoryIds: ICategories[]
 ) {
-    const assignedIdsSet = new Set(
-        assignedCategoryIds.map((category) => category.id)
-    )
-    return allCategories.map((category) => {
-        if (assignedIdsSet.has(category.id)) {
-            return { ...category, assigned: true }
-        }
-        return category
-    })
+    if (assignedCategoryIds) {
+        const assignedIdsSet = new Set(
+            assignedCategoryIds.map((category) => category.id)
+        )
+        return allCategories.map((category) => {
+            if (assignedIdsSet.has(category.id)) {
+                return { ...category, assigned: true }
+            }
+            return category
+        })
+    } else {
+        return []
+    }
 }
 
+// export function activeCategories(mergedCategories: ICategories[]) {
+//     const categoriesWithAssignedTrue = mergedCategories.filter(
+//         (category) => category.assigned
+//     )
+//     const cleanedCategories = categoriesWithAssignedTrue.map(
+//         ({ assigned, ...rest }) => rest
+//     )
+//     return cleanedCategories
+// }
+
 export function activeCategories(mergedCategories: ICategories[]) {
-    const categoriesWithAssignedTrue = mergedCategories.filter(
-        (category) => category.assigned
+    return mergedCategories.reduce(
+        (acc, category) => {
+            if (category.assigned) {
+                acc.categoriesIdsToConnect.push(category.id)
+            } else {
+                acc.categoriesIdsToDisconnect.push(category.id)
+            }
+            return acc
+        },
+        {
+            categoriesIdsToConnect: [],
+            categoriesIdsToDisconnect: [],
+        } as TListItemCategoriesUpdate
     )
-    const cleanedCategories = categoriesWithAssignedTrue.map(
-        ({ assigned, ...rest }) => rest
-    )
-    return cleanedCategories
 }

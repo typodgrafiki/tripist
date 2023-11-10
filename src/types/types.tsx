@@ -41,3 +41,13 @@ export interface IApiContext {
 interface IApiContextId {
     id: string
 }
+
+export type TListItemCategoriesUpdate = {
+    categoriesIdsToConnect: number[]
+    categoriesIdsToDisconnect: number[]
+}
+
+export type TListItemUpdate = {
+    name: string
+    categories: TListItemCategoriesUpdate
+}

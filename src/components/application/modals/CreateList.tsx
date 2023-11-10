@@ -49,6 +49,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
             }
 
             Toastify({
+                className: "toastify-success",
                 text: listId
                     ? `Stworzono listę ${listName}`
                     : `Zaktualizowano listę`,
@@ -61,6 +62,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
         },
         onError: (error) => {
             Toastify({
+                className: "toastify-error",
                 text: `Nie udało się stworzyć listy`,
             }).showToast()
         },

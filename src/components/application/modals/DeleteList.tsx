@@ -20,6 +20,7 @@ export default function DeleteList({ listId }: { listId: string }) {
             router.push("/dashboard")
 
             Toastify({
+                className: "toastify-success",
                 text: `Usunięto listę ${response?.data.body.name}`,
             }).showToast()
 
@@ -29,6 +30,7 @@ export default function DeleteList({ listId }: { listId: string }) {
         },
         onError: (error) => {
             Toastify({
+                className: "toastify-error",
                 text: `Nie udało się usunąć listy`,
             }).showToast()
         },

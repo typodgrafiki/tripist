@@ -1,31 +1,31 @@
 "use client"
 
-import { useState, useEffect, useRef, useMemo } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { useModal } from "@/context/ModalContext"
 import { fetchAllCategories, changeElement } from "@/actions/axiosActions"
 import { focusInput, mergeCategoriesWithAssignment } from "@/utils/utils"
-import { ICategories } from "@/types/types"
+import { ICategories, IElements } from "@/types/types"
 import IconPlus from "../icons/plus"
 import Toastify from "toastify-js"
+import ButtonDelete from "../buttons/ButtonDeleteItem"
 
 export default function EditElement({
     id,
     name: itemName,
     categories: assignedCategories,
+    listId,
 }: {
     id: number
     name: string
     categories: ICategories[]
+    listId: string
 }) {
     const [name, setName] = useState(itemName)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [success, setSuccess] = useState(false)
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const { closeModal } = useModal()
-
+    const queryClient = useQueryClient()
     const [mergedCategories, setMergedCategories] = useState<ICategories[]>([])
 
     async function fetchAndMergeCategories() {
@@ -41,15 +41,20 @@ export default function EditElement({
         mutationFn: async () => changeElement(id, name, mergedCategories),
 
         onSuccess: async (response) => {
-            console.log(response)
-            // queryClient.setQueryData(
-            //     ["elements", listId],
-            //     (oldData: IElements[]) => {
-            //         return [...oldData, newElement]
-            //     }
-            // )
+            queryClient.setQueryData(
+                ["elements", listId],
+                (oldData: IElements[]) => {
+                    return oldData.map((item) => {
+                        if (item.id === id) {
+                            return response.data.body
+                        }
+                        return item
+                    })
+                }
+            )
 
             Toastify({
+                className: "toastify-success",
                 text: `Edytowano element ${response.data.body.name}`,
                 duration: 2000,
             }).showToast()
@@ -65,7 +70,9 @@ export default function EditElement({
         },
     })
 
-    const handleSelectCategories = async (event) => {
+    const handleSelectCategories = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
         const { checked, value } = await event.target
         const category = await JSON.parse(value)
 
@@ -76,7 +83,7 @@ export default function EditElement({
         )
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         mutate()
     }
@@ -130,8 +137,6 @@ export default function EditElement({
                                     name="categories"
                                     value={JSON.stringify({
                                         id: element.id,
-                                        name: element.name,
-                                        userId: element.userId,
                                     })}
                                     type="checkbox"
                                     defaultChecked={element.assigned}
@@ -149,6 +154,10 @@ export default function EditElement({
                 </ul>
 
                 <div className="flex justify-between flex-row-reverse">
+                    <ButtonDelete
+                        id={id}
+                        listId={listId}
+                    />
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -158,78 +167,12 @@ export default function EditElement({
                     >
                         {isPending ? (
                             <div className="loader small"></div>
-                        ) : isSuccess ? (
-                            <>
-                                Zapisano
-                                <svg
-                                    width="9"
-                                    height="7"
-                                    viewBox="0 0 9 7"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="ml-2"
-                                >
-                                    <path
-                                        d="M1 3.08333L3.57895 6L8 1"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </>
                         ) : (
                             "Zapisz"
                         )}
                     </button>
-                    <ButtonDelete
-                        id={id}
-                        dis={success || loading}
-                    />
                 </div>
             </form>
-        </>
-    )
-}
-
-const ButtonDelete = ({ id, dis }: { id: number; dis: boolean }) => {
-    return (
-        <>
-            {/* <button
-                className={`btn btn-error ${
-                    loading ? "bg-red-600 text-white" : ""
-                }`}
-                onClick={handleDelete}
-                disabled={success || loading || dis}
-            >
-                {success ? (
-                    <>
-                        Usunięto
-                        <svg
-                            width="9"
-                            height="7"
-                            viewBox="0 0 9 7"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="inline-block svg-stroke ml-2"
-                        >
-                            <path
-                                d="M1 3.08333L3.57895 6L8 1"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </>
-                ) : loading ? (
-                    <>
-                        Usuwanie
-                        <div className="loader small inline-block ml-2 relative top-[2px]"></div>
-                    </>
-                ) : (
-                    "Usuń pozycję -"
-                )}
-            </button> */}
         </>
     )
 }

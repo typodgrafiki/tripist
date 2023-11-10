@@ -65,12 +65,7 @@ export const changeElement = async (
         throw "Nie uzupełniono id elementu"
     }
 
-    console.log(name)
-    console.log(categories)
-
     const cleanedCategories = categories ? activeCategories(categories) : []
-
-    console.log(cleanedCategories)
 
     const response = await axios.put(`/api/items/${elementId}`, {
         name: name,

@@ -3,15 +3,19 @@ import { deleteElementsAction } from "@/actions/axiosActions"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { IElements } from "@/types/types"
 import Toastify from "toastify-js"
+import { useModal } from "@/context/ModalContext"
 
 export default function ButtonDelete({
     id,
     listId,
+    icon,
 }: {
     id: number
     listId: string
+    icon?: boolean
 }) {
     const queryClient = useQueryClient()
+    const { closeModal } = useModal()
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => deleteElementsAction(id),
@@ -30,8 +34,11 @@ export default function ButtonDelete({
             }
 
             Toastify({
+                className: "toastify-success",
                 text: `Usunięto element`,
             }).showToast()
+
+            closeModal()
 
             // Toastify({
             //     text: "Cofnij zmiany",
@@ -49,6 +56,7 @@ export default function ButtonDelete({
         },
         onError: (error) => {
             Toastify({
+                className: "toastify-error",
                 text: `Nie udało się usunąć elementu`,
             }).showToast()
         },
@@ -57,11 +65,29 @@ export default function ButtonDelete({
     return (
         <>
             <button
-                className="px-1 hover:text-[var(--primary)]"
+                type="button"
+                className={`${
+                    icon
+                        ? "px-1 hover:text-[var(--primary)]"
+                        : "btn btn-error btn-error-no-border"
+                } ${!icon && isPending ? "bg-red-600 text-white" : ""}`}
                 onClick={() => mutate()}
                 disabled={isPending}
             >
-                {isPending ? <div className="loader small"></div> : <IconBin />}
+                {icon ? (
+                    isPending ? (
+                        <div className="loader small"></div>
+                    ) : (
+                        <IconBin />
+                    )
+                ) : isPending ? (
+                    <>
+                        Usuwanie
+                        <div className="loader small inline-block relative ml-2 top-[2px]"></div>
+                    </>
+                ) : (
+                    "Usuń pozycję -"
+                )}
             </button>
         </>
     )

@@ -47,6 +47,7 @@ export default function ContentElement({
         },
         onSuccess: async (response) => {
             Toastify({
+                className: "toastify-success",
                 text: `Uaktualniono element`,
             }).showToast()
         },
@@ -58,6 +59,7 @@ export default function ContentElement({
                 )
             }
             Toastify({
+                className: "toastify-error",
                 text: `Nie udało się uaktualnić elementu`,
             }).showToast()
         },
@@ -72,6 +74,7 @@ export default function ContentElement({
                 id={id}
                 name={name}
                 categories={categories}
+                listId={listId}
             />
         )
         setIsModalOpen(true)
@@ -106,6 +109,7 @@ export default function ContentElement({
                     <ButtonDelete
                         id={id}
                         listId={listId}
+                        icon
                     />
                 </div>
             </li>
