@@ -6,22 +6,37 @@ async function main() {
     // Utworzenie użytkownika
     const user = await prisma.user.create({
         data: {
-            id: "123",
+            id: "user_2WOhzyozYDSlvch9sTqAEcFFxXu",
             name: "John",
             surname: "Doe",
-            email: "john.doe@example.com",
-            // ... inne pola, jeśli są wymagane
+            email: "on024@go2.pl",
+           preferences: ['dark_mode'],
         },
     })
+    
+    // Create categories
+    const category1 = await prisma.category.create({
+        data: {
+          name: 'Apteczka',
+          userId: user.id,
+        },
+    });
+    
+    const category2 = await prisma.category.create({
+        data: {
+            name: 'Ogólne',
+            userId: user.id,
+        },
+    });
 
     // Utworzenie 10 list dla użytkownika
     for (let i = 0; i < 10; i++) {
         const list = await prisma.list.create({
             data: {
-                id: `list_xyz_${i + 1}`,
+                id: `alist_xyz_${i + 1}`,
                 name: `List ${i + 1}`,
                 userId: user.id,
-                url: `list_xyz_${i + 1}`,
+                url: `00list_xyz_${i + 1}`,
                 // ... inne pola, jeśli są wymagane
             },
         })
@@ -34,6 +49,12 @@ async function main() {
                     name: `Item ${j + 1}`,
                     status: Math.random() > 0.5, // Losowy status
                     listId: list.id,
+                    categories: {
+                        connect: [
+                          { id: category1.id },
+                          { id: category2.id },
+                        ],
+                      },
                     // ... inne pola, jeśli są wymagane
                 },
             })

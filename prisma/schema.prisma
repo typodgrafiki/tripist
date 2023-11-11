@@ -7,43 +7,70 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_LOCAL")
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  name      String?
-  surname   String?
-  email     String    @unique
-  image     String?
-  preferences String[]
-  lists     List[]    @relation("UserLists")
+  id                String    @id @default(uuid())
+  createdAt         DateTime  @default(now())
+  name              String?
+  surname           String?
+  email             String    @unique
+  image             String?
+  darkTheme         Boolean   @default(true)
+  categories        Category[]
+  preferences       String[]
+  lists             List[]    @relation("UserLists")
+  changeLogs        ChangeLog[]
 }
 
 model List {
   id              String    @id @default(uuid())
   name            String
-  type            String?
-  createAt        DateTime @default(now())
-  url             String
+  createAt        DateTime  @default(now())
+  lastChangeAt    DateTime  @default(now())
+  url             String?
   userId          String
-  user            User   @relation("UserLists", fields: [userId], references: [id])
+  user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
   predefined      Boolean   @default(false)
+  
+  @@index([userId], name: "idx_userId")
 }
 
 model ListItem {
-  id       Int    @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
+  name          String
+  status        Boolean   @default(false)
+  createAt      DateTime  @default(now())
+  listId        String
+  list          List      @relation(fields: [listId], references: [id])
+  categories    Category[]
+
+  @@index([listId], name: "idx_listId")
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
   name     String
-  category String?
-  status   Boolean // "Spakowany" lub "Niespakowany"
-  listId   String
-  list     List   @relation(fields: [listId], references: [id])
+  userId   String
+  user     User       @relation(fields: [userId], references: [id])
+  items    ListItem[]
+}
+
+model ChangeLog {
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  action        String    // np. "DELETE", "UPDATE"
+  entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
+  entityId      Int    // ID encji, którą zmieniliśmy
+  previousData  Json     // Dane przed zmianą
 }
 
 model PredefinedList {
-  id       Int             @id @default(autoincrement())
+  id       Int        @id @default(autoincrement())
   name     String
   type     String
   elements PredefinedListItem[]

@@ -1,12 +1,15 @@
-import AppTitle from "@/components/application/AppTitle"
-import AppContent from "@/components/application/AppContent"
+import Title from "@/components/application/title/Title"
+import Content from "@/components/application/content/Content"
 
 export default function Dashboard() {
     return (
         <>
-            <AppTitle />
-            <div className="bg-white p-10 shadow-lg rounded-md">
-                <AppContent />
+            <Title />
+            <div className="bg-white p-10 shadow-lg rounded-md text-center">
+                <p className="mb-5">
+                    Masz już swoje listy gotowe! Kliknij na jedną z nich, aby
+                    zacząć pakować bez stresu.
+                </p>
             </div>
         </>
     )

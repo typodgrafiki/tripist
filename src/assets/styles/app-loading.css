@@ -1,0 +1,173 @@
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+}
+
+.loader.small {
+    width: 14px;
+    height: 14px;
+}
+
+.loader::before,
+.loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #e1e8f7;
+    animation: prixClipFix 2s linear infinite;
+}
+
+.loader.small::before,
+.loader.small::after {
+    border-width: 1px;
+}
+
+.loader::after {
+    transform: rotate3d(90, 90, 0, 180deg);
+    border-color: var(--primary);
+}
+
+.loader.small::after {
+    border-color: #2c2d32;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+    }
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+    }
+    75%,
+    100% {
+        clip-path: polygon(
+            50% 50%,
+            0 0,
+            100% 0,
+            100% 100%,
+            100% 100%,
+            100% 100%
+        );
+    }
+}
+
+.my-lists-loading li::after {
+    content: "";
+    width: calc(100%);
+    height: calc(100%);
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: linear-gradient(
+            90deg,
+            transparent,
+            rgba(232, 236, 245, 0.5) 50%,
+            transparent 100%
+        ),
+        linear-gradient(#d0d6e5 100px, transparent 0),
+        linear-gradient(#d0d6e5 16px, transparent 0),
+        linear-gradient(#d0d6e5 50px, transparent 0);
+    background-repeat: no-repeat;
+    background-size:
+        75px 175px,
+        100% 100px,
+        100% 16px,
+        100% 30px;
+    background-position:
+        -140px 0,
+        center 0,
+        center 115px,
+        center 142px;
+    box-sizing: border-box;
+    animation: animloader 1.2s linear infinite;
+}
+
+@keyframes animloader {
+    to {
+        background-position:
+            140px 0,
+            center 0,
+            center 115px,
+            center 142px;
+    }
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+    background: #e2e3e8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: var(--primary);
+    animation: progressBar 2s linear forwards;
+}
+
+@keyframes progressBar {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.loader-line {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
+    background: var(--dark);
+    box-shadow:
+        -24px 0 var(--dark),
+        24px 0 var(--dark);
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+    33% {
+        background: var(--dark);
+        box-shadow:
+            -24px 0 var(--primary),
+            24px 0 var(--dark);
+    }
+    66% {
+        background: var(--primary);
+        box-shadow:
+            -24px 0 var(--dark),
+            24px 0 var(--dark);
+    }
+    100% {
+        background: var(--dark);
+        box-shadow:
+            -24px 0 var(--dark),
+            24px 0 var(--primary);
+    }
+}

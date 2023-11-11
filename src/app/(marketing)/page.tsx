@@ -15,19 +15,21 @@ import where4 from "@/assets/images/where4.jpg"
 import where5 from "@/assets/images/where5.jpg"
 import where6 from "@/assets/images/where6.jpg"
 import devices from "@/assets/images/devices.png"
+import Title from "@/components/homepage/content/title"
 
 export default function Home() {
     return (
         <>
-            <div className="baner py-40 pt-40 min-h-screen flex mx-auto px-14 justify-center items-stretch gap-10">
-                <div className="caption relative w-2/4 flex flex-col items-start text-left justify-center">
-                    <h3 className="text-2xl text-gray-500">
-                        Wakacje bez zmartwień. / zmiana co 1 s.
+            <div className="baner pt-20 pb-8 mb-14 h-screen min-h-screen justify-between mx-auto px-8 flex flex-col gap-4 md:flex-row md:justify-center md:items-stretch md:gap-10 md:py-40 md:px-14 md:mb-0 ">
+                <div className="caption relative text-center order-1 md:flex md:flex-col md:items-start md:justify-center md:w-2/4 md:text-left">
+                    <h3 className="text-1xl text-gray-500 mb-1 md:text-2xl md:mb-2">
+                        Wakacje bez zmartwień.
+                        {/* / zmiana co 1 s. */}
                     </h3>
-                    <h1 className="font-bold text-6xl">
+                    <h1 className="font-bold text-2xl mb-2 md:text-4xl md:mb-4 lg:text-6xl">
                         Zaplanuj swoją listę pakowania z nami!
                     </h1>
-                    <p>
+                    <p className="text-gray-500 text-sm mb-3 md:text-lg md:mb-4">
                         Intuicyjne narzędzie do tworzenia list, które dopasowują
                         się do Twoich potrzeb.
                     </p>
@@ -40,20 +42,20 @@ export default function Home() {
                         </Link>
                     </SignedOut>
                 </div>
-                <div className="image w-2/4 relative">
+                <div className="image grow relative md:w-2/4 md:order-2">
                     <Image
                         src={hero1}
                         alt="Stwórz listę na wycieczkę do Madrytu z Tripist"
                         width={498}
                         height={411}
-                        className="absolute right-0 top-[35%] z-10 shadow-2xl rounded-2xl max-w-[80%]"
+                        className="absolute right-0 bottom-0 z-10 shadow-2xl rounded-2xl max-w-[80%] max-h-[85%] w-[auto] md:top-[35%] md:bottom-[auto]"
                     />
                     <Image
                         src={hero2}
                         alt="Zdjęcie wakacyjnej listy rzeczy stworzonej dzięki Tripist"
                         width={642}
                         height={483}
-                        className="absolute left-0 top-[10%] shadow-2xl rounded-2xl max-w-[90%]"
+                        className="absolute left-0 top-0 shadow-2xl rounded-2xl max-w-[90%] max-h-[85%] w-[auto] md:top-[10%]"
                     />
                 </div>
             </div>
@@ -61,20 +63,16 @@ export default function Home() {
             <main className="relative">
                 <section
                     id="how"
-                    className="container container-md mx-auto px-14 pb-40"
+                    className="container container-md mx-auto px-7 pb-10 md:pb-40 md:px-14"
                 >
-                    <hgroup className="block text-center container-hrgroup mx-auto mb-14 px-14">
-                        <h2 className="font-bold text-5xl mb-5">
-                            Intuicyjne tworzenie list
-                        </h2>
-                        <p className="text-lg text-gray-500">
-                            Tworzenie listy przed wyjazdem nigdy nie było tak
+                    <Title
+                        title="Intuicyjne tworzenie list"
+                        subtitle="Tworzenie listy przed wyjazdem nigdy nie było tak
                             proste. Dodaj pozycje za pomocą kilku kliknięć i
-                            upewnij się, że masz wszystko, czego potrzebujesz.
-                        </p>
-                    </hgroup>
-                    <div className="flex items-center">
-                        <div className="image w-5/12">
+                            upewnij się, że masz wszystko, czego potrzebujesz."
+                    />
+                    <div className="md:flex md:items-center">
+                        <div className="image md:w-5/12">
                             <Image
                                 src={how1}
                                 alt="Twórz listy z gotowych propozycji"
@@ -83,7 +81,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption w-7/12 px-20 py-8">
+                        <div className="caption md:w-7/12 md:px-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Twórz listy z gotowych propozycji
                             </h3>
@@ -96,8 +94,8 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-row-reverse items-center">
-                        <div className="image w-5/12">
+                    <div className="md:flex md:flex-row-reverse md:items-center">
+                        <div className="image md:w-5/12">
                             <Image
                                 src={how2}
                                 alt="Kopiuj pozycje"
@@ -106,7 +104,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption w-7/12 pl-40 pr-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Kopiuj pozycje
                             </h3>
@@ -118,8 +116,8 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center">
-                        <div className="image w-5/12">
+                    <div className="md:flex md:items-center">
+                        <div className="image md:w-5/12">
                             <Image
                                 src={how3}
                                 alt="Korzystaj z podpowiedzi"
@@ -128,7 +126,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption w-7/12 px-20 py-8">
+                        <div className="caption md:w-7/12 md:px-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Korzystaj z podpowiedzi
                             </h3>
@@ -139,8 +137,8 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-row-reverse items-center">
-                        <div className="image w-5/12 relative">
+                    <div className="md:flex md:flex-row-reverse md:items-center">
+                        <div className="image md:w-5/12 relative">
                             <Image
                                 src={how4}
                                 alt="Zaznaczanie spakowanych przedmiotów"
@@ -150,7 +148,7 @@ export default function Home() {
                             />
                             <span className="image-plus"></span>
                         </div>
-                        <div className="caption w-7/12 pl-40 pr-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Zaznaczanie spakowanych przedmiotów
                             </h3>
@@ -164,9 +162,9 @@ export default function Home() {
                     </div>
                 </section>
                 <section id="where">
-                    <div className="bg-gray-900 pb-36">
-                        <hgroup className="block text-center container-hrgroup mx-auto mb-8 px-14 pt-16">
-                            <h2 className="font-bold text-5xl mb-5 text-white">
+                    <div className="bg-gray-900 pb-36 px-7">
+                        <hgroup className="block text-center container-hrgroup mx-auto mb-8 md:px-14 pt-16">
+                            <h2 className="font-bold text-3xl mb-5 md:text-5xl text-white">
                                 Korzystaj gdziekolwiek się wybierasz
                             </h2>
                             <p className="text-lg text-gray-400 mb-8">
@@ -187,7 +185,7 @@ export default function Home() {
                             </SignedOut>
                         </hgroup>
                     </div>
-                    <div className="container container-md mx-auto px-14 flex justify-center items-start mt-[-9rem] mb-28">
+                    <div className="container container-md px-2 mx-auto mb-14 flex justify-center items-start mt-[-9rem] md:mb-28 md:px-14">
                         <div className="image">
                             <Image
                                 src={where1}
@@ -197,7 +195,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl max-w-full mt-10"
                             />
                         </div>
-                        <div className="image ml-[-2rem] relative z-[1]">
+                        <div className="image hidden ml-[-2rem] relative z-[1] md:block">
                             <Image
                                 src={where2}
                                 alt="..."
@@ -224,7 +222,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl max-w-full"
                             />
                         </div>
-                        <div className="image ml-[-8rem] relative z-[2]">
+                        <div className="image hidden ml-[-8rem] relative z-[2] md:block">
                             <Image
                                 src={where5}
                                 alt="..."
@@ -244,17 +242,13 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
-                <section>
-                    <hgroup className="block text-center container-hrgroup mx-auto mb-8 px-14">
-                        <h2 className="font-bold text-5xl mb-5">
-                            Dostępne zawsze pod ręką
-                        </h2>
-                        <p className="text-lg text-gray-500">
-                            Twoje listy są dostępne zawsze i wszędzie - na
+                <section className="container container-md mx-auto px-7 md:px-14">
+                    <Title
+                        title="Dostępne zawsze pod ręką"
+                        subtitle="Twoje listy są dostępne zawsze i wszędzie - na
                             komputerze w domu, tablecie w kawiarni czy
-                            smartfonie w drodze na lotnisko.
-                        </p>
-                    </hgroup>
+                            smartfonie w drodze na lotnisko."
+                    />
                     <div className="text-center">
                         <Image
                             src={devices}
