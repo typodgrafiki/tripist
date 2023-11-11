@@ -3,9 +3,11 @@ import { authMiddleware } from "@clerk/nextjs"
 const publicRoutes = [
     "/",
     "/blog",
+    "/dokumentacja",
+    "/faq",
+    "/kontakt",
+    "/o-nas",
     "/api/webhooks/user",
-    "/api/showLists",
-    "/api/showListDetails",
 ]
 
 export default authMiddleware({

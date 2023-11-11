@@ -7,7 +7,10 @@ export default function Footer() {
         <footer className="relative bg-gray-900 text-gray-400 pt-10 md:pt-20">
             <div className="w-full container mx-auto px-7 md:flex md:justify-center md:mb-14">
                 <div className="logo hidden lg:block lg:w-3/12 lg:px-20">
-                    <Link href="/#hero">
+                    <Link
+                        href="/#hero"
+                        className="relative inline-block"
+                    >
                         <Image
                             src={logo}
                             width={111}
@@ -69,14 +72,14 @@ export default function Footer() {
                 <div className="text-center md:w-3/12 md:text-left">
                     <p className="font-semibold text-white mb-4">SUPPORT</p>
                     <ul>
-                        <li>
+                        {/* <li>
                             <Link
                                 href="/pomoc"
                                 className="block py-1 hover:text-white"
                             >
                                 Pomoc
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link
                                 href="/dokumentacja"
