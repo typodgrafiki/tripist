@@ -1,31 +1,45 @@
-import { IncomingHttpHeaders } from "http"
 import { headers } from "next/headers"
 import { NextResponse } from "next/server"
-import { Webhook, WebhookRequiredHeaders } from "svix"
 import prisma from "@/lib/prismaClient"
+import * as crypto from "crypto"
 
 const webhookSecret = process.env.WEBHOOK_SECRET || ""
 
 async function handler(request: Request) {
-    const payload = await request.json()
+    console.log("success api")
+
+    const payload: Event = await request.json()
+    const payloadString = JSON.stringify(payload)
     const headersList = headers()
     const heads = {
         "svix-id": headersList.get("svix-id"),
         "svix-timestamp": headersList.get("svix-timestamp"),
         "svix-signature": headersList.get("svix-signature"),
     }
-    const wh = new Webhook(webhookSecret)
-    let evt: Event | null = null
+
+    if (!heads["svix-signature"] || !heads["svix-timestamp"]) {
+        return new Response("Unauthorized", { status: 401 })
+    }
+
+    const signedContent = `${heads["svix-id"]}.${heads["svix-timestamp"]}.${payloadString}`
+
+    const secretBytes = Buffer.from(webhookSecret.split("_")[1], "base64")
+    const signature = crypto
+        .createHmac("sha256", secretBytes)
+        .update(signedContent)
+        .digest("base64")
+
+    const verifySignature = "v1," + signature
 
     try {
-        evt = wh.verify(
-            JSON.stringify(payload),
-            heads as IncomingHttpHeaders & WebhookRequiredHeaders
-        ) as Event
+        if (verifySignature !== heads["svix-signature"]) {
+            return new Response("Invalid signature", { status: 400 })
+        }
 
-        const eventType = evt.type
+        const eventType = payload.type
+
         if (eventType === "user.created" || eventType === "user.updated") {
-            const { id, email_addresses, first_name, last_name } = evt.data
+            const { id, email_addresses, first_name, last_name } = payload.data
 
             await prisma.user.upsert({
                 where: { id },
@@ -40,11 +54,11 @@ async function handler(request: Request) {
                 },
             })
 
-            return NextResponse.json({}, { status: 200 })
+            return new Response("OK", { status: 200 })
         }
     } catch (err) {
         console.error((err as Error).message)
-        return NextResponse.json({}, { status: 400 })
+        return new Response("Error processing request", { status: 400 })
     }
 }
 
