@@ -1,3 +1,8 @@
+html,
+body {
+    height: 100%;
+}
+
 body:before {
     content: url("../../../public/bg-hero.svg");
     display: block;
@@ -60,10 +65,9 @@ body:before {
     .baner {
         max-width: calc(1536px + 7rem);
     }
-    
-    footer .logo a:before 
-    {
-        content: '';
+
+    footer .logo a:before {
+        content: "";
         display: block;
         position: absolute;
         left: 0px;
@@ -74,11 +78,10 @@ body:before {
         background-image: url("../../../public/footer-arrow.svg");
         background-position: left center;
         background-repeat: no-repeat;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
     }
-    
-    footer .logo a:hover:before 
-    {
+
+    footer .logo a:hover:before {
         left: -20px;
         opacity: 1;
     }
