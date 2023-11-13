@@ -33,6 +33,8 @@ async function handler(request: Request) {
 
     try {
         if (verifySignature !== heads["svix-signature"]) {
+            console.log(verifySignature)
+            console.log(heads["svix-signature"])
             console.log("Invalid signature")
             return new Response("Invalid signature", { status: 400 })
         }
