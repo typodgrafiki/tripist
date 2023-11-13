@@ -33,6 +33,7 @@ async function handler(request: Request) {
 
     try {
         if (verifySignature !== heads["svix-signature"]) {
+            console.log("Invalid signature")
             return new Response("Invalid signature", { status: 400 })
         }
 
@@ -54,9 +55,11 @@ async function handler(request: Request) {
                 },
             })
 
+            console.log("OK")
             return new Response("OK", { status: 200 })
         }
     } catch (err) {
+        console.log("Error processing request")
         console.error((err as Error).message)
         return new Response("Error processing request", { status: 400 })
     }
