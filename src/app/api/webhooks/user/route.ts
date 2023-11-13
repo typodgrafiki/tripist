@@ -1,7 +1,5 @@
-import { IncomingHttpHeaders } from "http"
 import { headers } from "next/headers"
 import { NextResponse } from "next/server"
-import { Webhook, WebhookRequiredHeaders } from "svix"
 import prisma from "@/lib/prismaClient"
 import * as crypto from "crypto"
 
@@ -11,6 +9,7 @@ async function handler(request: Request) {
     console.log("success api")
 
     const payload = await request.json()
+    const payloadString = JSON.stringify(payload)
     const headersList = headers()
     const heads = {
         "svix-id": headersList.get("svix-id"),
@@ -22,34 +21,25 @@ async function handler(request: Request) {
         return false
     }
 
-    const data = JSON.stringify(payload)
+    const signedContent = `${heads["svix-id"]}.${heads["svix-timestamp"]}.${payloadString}`
 
-    // Utwórz oczekiwany podpis
-    const expectedSignature = crypto
-        .createHmac("sha256", webhookSecret)
-        .update(heads["svix-timestamp"] + "." + data)
-        .digest("hex")
+    const secretBytes = Buffer.from(webhookSecret.split("_")[1], "base64")
+    const signature = crypto
+        .createHmac("sha256", secretBytes)
+        .update(signedContent)
+        .digest("base64")
 
-    // Porównaj oczekiwany podpis z podpisem z nagłówka
-    const rrr = crypto.timingSafeEqual(
-        Buffer.from(heads["svix-signature"]),
-        Buffer.from(expectedSignature)
-    )
-    console.log(rrr)
-
-    const wh = new Webhook(webhookSecret)
-    let evt: Event | null = null
+    const verifySignature = "v1," + signature
 
     try {
-        evt = wh.verify(
-            JSON.stringify(payload),
-            heads as IncomingHttpHeaders & WebhookRequiredHeaders
-        ) as Event
+        if (verifySignature !== heads["svix-signature"]) {
+            return NextResponse.json({}, { status: 400 })
+        }
 
-        const eventType = evt.type
+        const eventType = payload.type
 
         if (eventType === "user.created" || eventType === "user.updated") {
-            const { id, email_addresses, first_name, last_name } = evt.data
+            const { id, email_addresses, first_name, last_name } = payload.data
 
             await prisma.user.upsert({
                 where: { id },
