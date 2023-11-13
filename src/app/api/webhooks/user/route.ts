@@ -8,7 +8,7 @@ const webhookSecret = process.env.WEBHOOK_SECRET || ""
 async function handler(request: Request) {
     console.log("success api")
 
-    const payload = await request.json()
+    const payload: Event = await request.json()
     const payloadString = JSON.stringify(payload)
     const headersList = headers()
     const heads = {
@@ -18,7 +18,7 @@ async function handler(request: Request) {
     }
 
     if (!heads["svix-signature"] || !heads["svix-timestamp"]) {
-        return false
+        return new Response("Unauthorized", { status: 401 })
     }
 
     const signedContent = `${heads["svix-id"]}.${heads["svix-timestamp"]}.${payloadString}`
@@ -33,7 +33,8 @@ async function handler(request: Request) {
 
     try {
         if (verifySignature !== heads["svix-signature"]) {
-            return NextResponse.json({}, { status: 400 })
+            // return NextResponse.json({}, { status: 400 })
+            return new Response("Invalid signature", { status: 400 })
         }
 
         const eventType = payload.type
@@ -54,12 +55,11 @@ async function handler(request: Request) {
                 },
             })
 
-            return NextResponse.json({}, { status: 200 })
+            return new Response("OK", { status: 200 })
         }
     } catch (err) {
-        console.log("error")
         console.error((err as Error).message)
-        return NextResponse.json({}, { status: 400 })
+        return new Response("Error processing request", { status: 400 })
     }
 }
 
