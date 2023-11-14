@@ -15,6 +15,7 @@ import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
 import Button from "@/components/ui/Button"
 import { sortElements } from "@/utils/utils"
+import IconPlus from "../icons/plus"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -65,6 +66,7 @@ export default function Lists() {
                 onClick={handleOpenModal}
             >
                 Dodaj listę
+                <IconPlus className="ml-2 relative -top-[1px]" />
             </Button>
         </>
     )

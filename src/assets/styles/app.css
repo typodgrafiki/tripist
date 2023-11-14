@@ -22,9 +22,9 @@ body {
 
 .my-lists-loading li {
     list-style: none;
-    background-color: #d0d6e5;
+    background-color: #d2d3d9;
     height: 10px;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-bottom: 29px;
     display: block;
     position: relative;

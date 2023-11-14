@@ -19,6 +19,7 @@ import IconPen from "../icons/pen"
 import CreateList from "../modals/CreateList"
 import FilterCategories from "./FilterCategories"
 import ContentEmpty from "./ContentEmpty"
+import LoadingContent from "./LoadingContent"
 
 export default function Content({ id }: { id: string }) {
     const [selectedCategory, setSelectedCategory] = useState("")
@@ -63,7 +64,7 @@ export default function Content({ id }: { id: string }) {
 
     // return <Title loading />
 
-    if (isLoading) return <div>Loading...</div>
+    if (isLoading) return <LoadingContent />
     if (isError) return <div>Error</div>
     if (!elements || !listData) return <div>No data</div>
 

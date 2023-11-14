@@ -24,7 +24,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
-    const { setIsModalOpen, setModalContent, closeModal } = useModal()
+    const { closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const queryClient = useQueryClient()
@@ -142,14 +142,6 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                             "Stwórz listę"
                         )}
                     </button>
-                    {isSuccess && (
-                        <button
-                            className="btn btn-default"
-                            onClick={closeModal}
-                        >
-                            Zamknij
-                        </button>
-                    )}
                 </div>
                 {isError && (
                     <div className="text-red-600 text-sm mt-2">
