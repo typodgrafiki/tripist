@@ -1,5 +1,4 @@
 import { headers } from "next/headers"
-import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import * as crypto from "crypto"
 
@@ -36,7 +35,7 @@ async function handler(request: Request) {
             console.log(verifySignature)
             console.log(heads["svix-signature"])
             console.log("Invalid signature")
-            return new Response("Invalid signature", { status: 400 })
+            return new Response("Invalid signature", { status: 402 })
         }
 
         const eventType = payload.type
@@ -63,7 +62,7 @@ async function handler(request: Request) {
     } catch (err) {
         console.log("Error processing request")
         console.error((err as Error).message)
-        return new Response("Error processing request", { status: 400 })
+        return new Response("Error processing request", { status: 403 })
     }
 }
 

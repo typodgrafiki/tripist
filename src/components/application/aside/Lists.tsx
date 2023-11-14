@@ -47,10 +47,10 @@ export default function Lists() {
 
     return (
         <>
-            {lists && (
+            {lists && lists.length > 0 && (
                 <div className="hidden my-lists text-gray-500 bg-white shadow-md rounded-md py-3 sm:block sm:overflow-y-auto sm:mb-5">
                     <ul>
-                        {lists.map((element) => (
+                        {sortedLists?.map((element) => (
                             <ListsRow
                                 key={element.id}
                                 id={element.id}
