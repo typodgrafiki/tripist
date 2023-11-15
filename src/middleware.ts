@@ -8,6 +8,7 @@ const publicRoutes = [
     "/kontakt",
     "/o-nas",
     "/api/webhooks/user",
+    "/api/auth/user",
 ]
 
 export default authMiddleware({

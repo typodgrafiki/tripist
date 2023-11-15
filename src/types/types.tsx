@@ -51,3 +51,10 @@ export type TListItemUpdate = {
     name: string
     categories: TListItemCategoriesUpdate
 }
+
+export interface ICreateUser {
+    name: string
+    surname?: string
+    email: string
+    password: string
+}
