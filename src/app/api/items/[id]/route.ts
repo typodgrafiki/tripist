@@ -7,12 +7,13 @@
  */
 
 import { NextResponse, NextRequest } from "next/server"
-import { auth } from "@clerk/nextjs"
+// import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 import { IApiContext, ICategories, TListItemUpdate } from "@/types/types"
 
 export async function PATCH(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
     const { status } = await request.json()
 
     try {
@@ -43,7 +44,8 @@ export async function PATCH(request: Request, context: IApiContext) {
 }
 
 export async function PUT(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
     const {
         name,
         categories: { categoriesIdsToConnect, categoriesIdsToDisconnect },
@@ -84,7 +86,8 @@ export async function PUT(request: Request, context: IApiContext) {
 }
 
 export async function DELETE(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
 
     try {
         if (!userId) {

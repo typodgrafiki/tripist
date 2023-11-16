@@ -24,7 +24,21 @@ model User {
   preferences       String[]
   lists             List[]    @relation("UserLists")
   changeLogs        ChangeLog[]
+  sessions          Session[]
 }
+
+model Session {
+  id                String    @id @default(uuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @default(now())
+  userId            String    
+  user              User      @relation(fields: [userId], references: [id])
+  expiresAt         DateTime
+  data              Json?
+
+  @@unique([userId, expiresAt])
+}
+
 
 model List {
   id              String    @id @default(uuid())

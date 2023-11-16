@@ -6,11 +6,12 @@
  */
 
 import { NextResponse } from "next/server"
-import { auth } from "@clerk/nextjs"
+// import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 
 export async function GET() {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
 
     try {
         if (!userId)

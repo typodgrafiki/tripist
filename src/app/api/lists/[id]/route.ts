@@ -6,12 +6,13 @@
  */
 
 import { NextResponse, NextRequest } from "next/server"
-import { auth } from "@clerk/nextjs"
+// import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
 export async function GET(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
 
     try {
         if (!userId)
@@ -89,7 +90,8 @@ export async function GET(request: Request, context: IApiContext) {
 // export async function PUT(request: Request) {}
 
 export async function DELETE(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
 
     try {
         if (!userId) {
@@ -130,7 +132,8 @@ export async function DELETE(request: Request, context: IApiContext) {
 }
 
 export async function PATCH(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
 
     const data = await request.json()
     const { name: newName } = data

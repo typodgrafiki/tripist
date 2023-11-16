@@ -6,12 +6,13 @@
  */
 
 import { NextResponse, NextRequest } from "next/server"
-import { auth } from "@clerk/nextjs"
+// import { auth } from "@clerk/nextjs"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
 export async function POST(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    // const { userId } = auth()
+    const userId = "123"
     const { name } = await request.json()
 
     try {

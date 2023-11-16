@@ -1,6 +1,8 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import "@/assets/styles/app.css"
+import "toastify-js/src/toastify.css"
 
 export default function LoginLayout({
     children,

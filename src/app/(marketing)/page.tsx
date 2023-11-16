@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { SignedOut } from "@clerk/nextjs"
+// import { SignedOut } from "@clerk/nextjs"
 import hero1 from "@/assets/images/hero1.png"
 import hero2 from "@/assets/images/hero2.jpg"
 import how1 from "@/assets/images/how1.png"
@@ -32,14 +32,14 @@ export default function Home() {
                         Intuicyjne narzędzie do tworzenia list, które dopasowują
                         się do Twoich potrzeb.
                     </p>
-                    <SignedOut>
+                    {/* <SignedOut>
                         <Link
                             href="/sign-up"
                             className="btn btn-primary transition-colors"
                         >
                             Załóż konto
                         </Link>
-                    </SignedOut>
+                    </SignedOut> */}
                 </div>
                 <div className="image grow relative md:w-2/4 md:order-2">
                     <Image
@@ -174,14 +174,14 @@ export default function Home() {
                                 idealną listę. Bo każdy wyjazd i każdy trening
                                 zasługują na pełne przygotowanie.
                             </p>
-                            <SignedOut>
+                            {/* <SignedOut>
                                 <Link
                                     href="/sign-up"
                                     className="btn btn-primary transition-colors"
                                 >
                                     Załóż konto
                                 </Link>
-                            </SignedOut>
+                            </SignedOut> */}
                         </hgroup>
                     </div>
                     <div className="container container-md px-2 mx-auto mb-14 flex justify-center items-start mt-[-9rem] md:mb-28 md:px-14">

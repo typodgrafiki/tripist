@@ -1,10 +1,10 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs"
+// import { SignedIn, SignedOut } from "@clerk/nextjs"
 import Link from "next/link"
 
 function SignBtn() {
     return (
         <>
-            <SignedIn>
+            {/* <SignedIn>
                 <Link
                     href="/dashboard"
                     className="btn btn-primary"
@@ -25,7 +25,7 @@ function SignBtn() {
                 >
                     Załóż konto
                 </Link>
-            </SignedOut>
+            </SignedOut> */}
         </>
     )
 }

@@ -1,21 +1,16 @@
 "use client"
 
-// import { SignUp } from "@clerk/nextjs"
-
-// export default function PageSign() {
-//     return <SignUp redirectUrl="/dashboard" />
-// }
-import { useForm } from "react-hook-form"
+import { useForm, useFormState } from "react-hook-form"
 import Link from "next/link"
 import { ICreateUser } from "@/types/types"
 import { createUser } from "@/actions/userActions"
-import { useQueryClient, useMutation } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 import { useState } from "react"
-import { useFormState } from "react-hook-form"
+import { useRouter } from "next/navigation"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     const { register, handleSubmit, formState } = useForm<ICreateUser>({
         defaultValues: {
@@ -29,21 +24,27 @@ export default function RegisterForm() {
 
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
-        try {
-            const result = await createUser(data)
-            console.log("success")
-            console.log(result)
-        } catch (e) {
-            console.log("error")
-            console.error(e)
+
+        const result = await createUser(data)
+
+        if (result.status === 200) {
+            console.log(result?.data)
+            // router.push("/login")
+        } else {
+            Toastify({
+                className: "toastify-error",
+                text: `Nie udało się dodać użytkownika`,
+            }).showToast()
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
         <div className="h-screen flex justify-center items-center">
             <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
-                <h3 className="truncate">Zarejestruj się</h3>
+                <h3 className="truncate text-xl font-medium mb-4">
+                    Zarejestruj się
+                </h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col justify-between gap-3 mb-1">
                         {/* <input
@@ -56,61 +57,84 @@ export default function RegisterForm() {
                             ref={inputRef}
                         /> */}
 
-                        <input
-                            type="text"
-                            className="form-control grow"
-                            placeholder="Imię"
-                            id="formName"
-                            disabled={loading}
-                            {...register("name", {
-                                required: {
-                                    value: true,
-                                    message: "Imię jest wymagane",
-                                },
-                            })}
-                        />
-                        {errors.name?.message}
-
-                        <input
-                            type="text"
-                            className="form-control grow"
-                            {...register("surname")}
-                            placeholder="Nazwisko"
-                            id="formSurname"
-                            disabled={loading}
-                        />
-
-                        <input
-                            type="email"
-                            className="form-control grow"
-                            {...register("email", {
-                                required: {
-                                    value: true,
-                                    message: "Email jest wymagany",
-                                },
-                            })}
-                            placeholder="john@example.com"
-                            id="formEmail"
-                            autoComplete="username"
-                            disabled={loading}
-                        />
-                        {errors.email?.message}
-
-                        <input
-                            type="password"
-                            className="form-control grow"
-                            {...register("password", {
-                                required: {
-                                    value: true,
-                                    message: "Hasło jest wymagane",
-                                },
-                            })}
-                            placeholder="**********"
-                            id="formPassword"
-                            autoComplete="current-password"
-                            disabled={loading}
-                        />
-                        {errors.password?.message}
+                        <div>
+                            <input
+                                type="text"
+                                className={`form-control grow w-full ${
+                                    errors.name ? "error" : ""
+                                }`}
+                                placeholder="Imię"
+                                id="formName"
+                                disabled={loading}
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: "Imię jest wymagane",
+                                    },
+                                })}
+                            />
+                            {errors.name && (
+                                <div className="error-message text-sm mt-1">
+                                    {errors.name.message}
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                className="form-control grow w-full"
+                                {...register("surname")}
+                                placeholder="Nazwisko"
+                                id="formSurname"
+                                disabled={loading}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="email"
+                                className={`form-control grow w-full ${
+                                    errors.email ? "error" : ""
+                                }`}
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: "Email jest wymagany",
+                                    },
+                                })}
+                                placeholder="john@example.com"
+                                id="formEmail"
+                                autoComplete="username"
+                                disabled={loading}
+                            />
+                            {errors.email && (
+                                <div className="error-message">
+                                    {errors.email.message}
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                className={`form-control grow w-full ${
+                                    errors.password ? "error" : ""
+                                }`}
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message: "Hasło jest wymagane",
+                                    },
+                                })}
+                                placeholder="**********"
+                                id="formPassword"
+                                autoComplete="current-password"
+                                disabled={loading}
+                            />
+                            {errors.password && (
+                                <div className="error-message">
+                                    {errors.password.message}
+                                </div>
+                            )}
+                        </div>
 
                         <button
                             type="submit"
@@ -120,23 +144,23 @@ export default function RegisterForm() {
                             Zarejestruj się
                         </button>
                     </div>
-                    {/* {isError && (
+                    {/* {errors && (
                         <div className="text-red-600 text-sm mt-2">
                             Nie zapisano zmian. Spróbuj ponownie.
                         </div>
                     )} */}
                 </form>
 
-                <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-                    or
+                <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
+                    lub
                 </div>
                 <p className="text-center text-sm text-gray-600 mt-2">
-                    If you don&apos;t have an account, please&nbsp;
+                    Jeśli masz już konto &nbsp;
                     <Link
                         className="text-blue-500 hover:underline"
                         href="/sign-in"
                     >
-                        Sign in
+                        Zaloguj się
                     </Link>
                 </p>
             </div>
