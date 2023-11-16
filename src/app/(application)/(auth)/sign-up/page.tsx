@@ -28,8 +28,8 @@ export default function RegisterForm() {
         const result = await createUser(data)
 
         if (result.status === 200) {
-            console.log(result?.data)
-            // router.push("/login")
+            // console.log(result?.data)
+            router.push("/dashboard")
         } else {
             Toastify({
                 className: "toastify-error",

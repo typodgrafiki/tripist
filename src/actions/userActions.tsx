@@ -38,8 +38,7 @@ export const createUser = async (data: ICreateUser) => {
         const { password: newPasswordHash, ...newUserBody } = newUser
 
         const newSession = await createSession(newUser.id)
-
-        console.log(newSession)
+        // TODO Przeniesc ta funkcje do api i zabezpieczyc polaczenie tokenem
 
         return {
             message: "Użytkownik dodany pomyślnie",

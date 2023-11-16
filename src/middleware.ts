@@ -58,12 +58,10 @@ export async function middleware(request: NextRequest) {
     // console.log(cookie) // => { name: 'vercel', value: 'fast', Path: '/' }
     // The outgoing response will have a `Set-Cookie:vercel=fast;path=/test` header.
 
-    const response = NextResponse.next()
+    // const response = NextResponse.next()
     // response.cookies.set("tripist_auth", "123", {
     //     httpOnly: true,
     // })
-
-    const cookie = request.cookies.get("tripist_auth")
 
     // const session = NextResponse.next()
     // session.cookies.set("tripist_auth", keySession)
@@ -73,28 +71,74 @@ export async function middleware(request: NextRequest) {
     // }
 
     // const aaa = isValidSession("123")
+    const path = request.nextUrl.pathname
+    console.log(path)
 
-    try {
-        const headers = {
-            "Content-Type": "application/json",
-            "Custom-Header": cookie ? cookie.value : "",
-        }
+    if (path.startsWith("/dashboard")) {
+        const sessionCookie = request.cookies.get("tripist_auth")?.value || null
+        console.log(sessionCookie)
 
-        const data = await fetch(`${process.env.BASE_URL}/api/auth`, {
-            method: "GET",
-            headers: headers,
-        })
+        return checkSession(sessionCookie)
+            .then((isValid) => {
+                if (!isValid) {
+                    // Jeśli sesja jest nieważna, przekieruj na stronę logowania
+                    console.log("sesja niewazna")
+                    return NextResponse.redirect(
+                        `${process.env.BASE_URL}/sign-in`
+                    )
+                }
+                // Kontynuuj przetwarzanie żądania
+                console.log("sesja wazna")
+                return NextResponse.next()
+            })
+            .catch(() => {
+                // Obsługa błędów
 
-        const { body: session } = await data.json()
+                console.log("jakis blad")
+                return NextResponse.redirect(`${process.env.BASE_URL}/error`)
+            })
+    }
 
-        if (data.ok) {
-            console.log(session)
-        } else {
-            console.log("brak sesji")
-        }
-    } catch (e) {}
+    console.log("ok lecimy dalej")
+    return NextResponse.next()
 
-    return response
+    // try {
+    //     const data = await fetch(`${process.env.BASE_URL}/api/auth`, {})
+
+    //     const { body: session } = await data.json()
+
+    //     if (data.ok) {
+    //         // session.id
+    //         // console.log(session)
+    //     } else {
+    //         console.log("brak sesji")
+    //     }
+    // } catch (e) {}
+
+    // return response
+}
+
+async function checkSession(sessionCookie: string | null): Promise<boolean> {
+    if (!sessionCookie) {
+        console.log("brak ciasteczka")
+        return false
+    }
+
+    const headers = {
+        "Content-Type": "application/json",
+        "Custom-Header": sessionCookie,
+    }
+
+    const response = await fetch(`${process.env.BASE_URL}/api/auth`, {
+        method: "GET",
+        headers: headers,
+    })
+
+    console.log("odpowiedz api ->")
+    console.log(response)
+
+    // Sprawdź odpowiedź od /api/auth
+    return response.ok
 }
 
 export const config = {
