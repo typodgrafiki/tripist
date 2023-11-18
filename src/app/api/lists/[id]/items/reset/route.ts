@@ -5,13 +5,12 @@
  */
 
 import { NextResponse, NextRequest } from "next/server"
-// import { auth } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
 export async function PATCH(request: Request, context: IApiContext) {
-    // const { userId } = auth()
-    const userId = "123"
+    const { userId } = await useAuth()
 
     try {
         if (!userId)

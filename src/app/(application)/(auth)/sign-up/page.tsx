@@ -3,7 +3,7 @@
 import { useForm, useFormState } from "react-hook-form"
 import Link from "next/link"
 import { ICreateUser } from "@/types/types"
-import { createUser } from "@/actions/userActions"
+import { createUserFetch } from "@/actions/axiosActions"
 import Toastify from "toastify-js"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -25,10 +25,9 @@ export default function RegisterForm() {
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
 
-        const result = await createUser(data)
+        const result = await createUserFetch(data)
 
-        if (result.status === 200) {
-            // console.log(result?.data)
+        if (result) {
             router.push("/dashboard")
         } else {
             Toastify({

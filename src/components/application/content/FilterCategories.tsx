@@ -1,4 +1,4 @@
-import Sort from "../modals/Sort"
+import Sort from "../buttons/Sort"
 
 export default function FilterCategories({
     categoriesUnique,

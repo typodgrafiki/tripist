@@ -5,10 +5,7 @@ export async function GET(request: Request) {
     const sessionId = request.headers.get("custom-header")
 
     if (!sessionId) {
-        return NextResponse.json(
-            { error: "Brak identyfikatora sesji" },
-            { status: 400 }
-        )
+        return NextResponse.json(false, { status: 400 })
     }
 
     try {
@@ -19,14 +16,11 @@ export async function GET(request: Request) {
         })
 
         if (!checkSession) {
-            return NextResponse.json({ error: "Brak sesji" }, { status: 401 })
+            return NextResponse.json(false, { status: 401 })
         }
 
-        return NextResponse.json({ body: checkSession }, { status: 200 })
+        return NextResponse.json(true, { status: 200 })
     } catch (error) {
-        return NextResponse.json(
-            { error: "Internal Server Error" },
-            { status: 500 }
-        )
+        return NextResponse.json(false, { status: 500 })
     }
 }

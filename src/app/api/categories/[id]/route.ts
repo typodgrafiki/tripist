@@ -6,7 +6,7 @@
  */
 
 import { NextResponse } from "next/server"
-// import { auth } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
 
 export async function PUT() {}

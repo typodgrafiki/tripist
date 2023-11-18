@@ -3,10 +3,10 @@
 import { useForm, useFormState } from "react-hook-form"
 import Link from "next/link"
 import { ICreateUser } from "@/types/types"
-import { createUser } from "@/actions/userActions"
 import Toastify from "toastify-js"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { loginUserFetch } from "@/actions/axiosActions"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -22,6 +22,19 @@ export default function RegisterForm() {
 
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
+
+        const result = await loginUserFetch(data)
+
+        if (result) {
+            setLoading(false)
+            router.push("/dashboard")
+        } else {
+            Toastify({
+                className: "toastify-error",
+                text: `Niepoprawny login lub hasło`,
+            }).showToast()
+            setLoading(false)
+        }
 
         // const result = await createUser(data)
 
