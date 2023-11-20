@@ -2,7 +2,20 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export async function middleware(request: NextRequest) {
+    const path = request.nextUrl.pathname
     const sessionCookie = request.cookies.get("tripist_auth")?.value || null
+
+    if (path === "/sign-in" || path === "/sign-up") {
+        if (sessionCookie) {
+            const isValid = await checkSession(sessionCookie)
+            if (isValid) {
+                return NextResponse.redirect(
+                    `${process.env.BASE_URL}/dashboard`
+                )
+            }
+        }
+        return NextResponse.next()
+    }
 
     // Jesli nie ma ciasteczka to login
     if (!sessionCookie) {
@@ -40,5 +53,5 @@ async function checkSession(sessionCookie: string | null): Promise<boolean> {
 }
 
 export const config = {
-    matcher: ["/dashboard/:path*"],
+    matcher: ["/dashboard/:path*", "/sign-in", "/sign-up"],
 }
