@@ -1,16 +1,18 @@
 /**
  *
  * TODO Komponent nie zrobiony
+ * TODO przyciski jako komponenty
  *
  */
 
 import Button from "@/components/ui/Button"
+import { useState } from "react"
 
 export default function Sort() {
+    const [isOpen, setIsOpen] = useState(true)
+
     return (
         <>
-            {/* <Button className="btn btn-small btn-gray">Sortuj</Button> */}
-
             <div className="relative inline-block text-left">
                 <div>
                     <Button
@@ -19,10 +21,13 @@ export default function Sort() {
                         id="menu-button"
                         aria-expanded="true"
                         aria-haspopup="true"
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         Sortuj
                         <svg
-                            className="-mr-1 h-5 w-5 text-gray-400"
+                            className={`-mr-1 h-5 w-5 text-gray-400 ${
+                                isOpen ? "transform rotate-180" : ""
+                            }`}
                             viewBox="0 0 20 20"
                             fill="currentColor"
                             aria-hidden="true"
@@ -35,47 +40,49 @@ export default function Sort() {
                         </svg>
                     </Button>
                 </div>
-
-                <div
-                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex={-1}
-                >
+                {isOpen && (
                     <div
-                        className="py-1"
-                        role="none"
+                        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="menu-button"
+                        tabIndex={-1}
                     >
-                        <a
-                            href="#"
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabIndex={-1}
-                            id="menu-item-0"
+                        <div
+                            className="py-1"
+                            role="none"
                         >
-                            Account settings
-                        </a>
-                        <a
-                            href="#"
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabIndex={-1}
-                            id="menu-item-1"
-                        >
-                            Support
-                        </a>
-                        <a
-                            href="#"
-                            className="text-gray-700 block px-4 py-2 text-sm"
-                            role="menuitem"
-                            tabIndex={-1}
-                            id="menu-item-2"
-                        >
-                            License
-                        </a>
+                            <Button
+                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
+                                role="menuitem"
+                                tabIndex={-1}
+                            >
+                                Najnowsze
+                            </Button>
+                            <Button
+                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
+                                role="menuitem"
+                                tabIndex={-1}
+                            >
+                                Najstarsze
+                            </Button>
+                            <Button
+                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
+                                role="menuitem"
+                                tabIndex={-1}
+                            >
+                                A-Z
+                            </Button>
+                            <Button
+                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
+                                role="menuitem"
+                                tabIndex={-1}
+                            >
+                                Z-A
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </>
     )
