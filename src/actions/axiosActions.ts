@@ -1,8 +1,9 @@
 "use client"
 
-import { ICategories } from "@/types/types"
+import { ICategories, ICreateUser, ILoginUser, IUserData } from "@/types/types"
 import axios from "axios"
 import { activeCategories } from "@/utils/utils"
+import { cookies } from "next/headers"
 
 export const createList = async (name: string, duplicateId?: string) => {
     const query = { name, duplicateId }
@@ -103,5 +104,53 @@ export const fetchAllCategories = async () => {
     } catch (error) {
         console.error("There was an error fetching the categories:", error)
         return []
+    }
+}
+
+export const createUserFetch = async (data: ICreateUser) => {
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.post(`/api/auth/sign-up`, data)
+        return response
+    } catch (error) {
+        return null
+    }
+}
+
+export const loginUserFetch = async (data: ILoginUser) => {
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.post(`/api/auth/sign-in`, data)
+        return response
+    } catch (error) {
+        return null
+    }
+}
+
+export const updateUserFetch = async (data: IUserData) => {
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.post(`/api/auth/update`, data)
+        return response
+    } catch (error) {
+        return null
+    }
+}
+
+export const deleteSession = async () => {
+    try {
+        const response = await axios.post(`/api/auth/logout`)
+        return response
+    } catch (error) {
+        return null
     }
 }

@@ -1,19 +1,57 @@
-import { authMiddleware } from "@clerk/nextjs"
+import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
-const publicRoutes = [
-    "/",
-    "/blog",
-    "/dokumentacja",
-    "/faq",
-    "/kontakt",
-    "/o-nas",
-    "/api/webhooks/user",
-]
+export async function middleware(request: NextRequest) {
+    const path = request.nextUrl.pathname
+    const sessionCookie = request.cookies.get("tripist_auth")?.value || null
 
-export default authMiddleware({
-    publicRoutes,
-})
+    if (path === "/sign-in" || path === "/sign-up") {
+        if (sessionCookie) {
+            const isValid = await checkSession(sessionCookie)
+            if (isValid) {
+                return NextResponse.redirect(
+                    `${process.env.BASE_URL}/dashboard`
+                )
+            }
+        }
+        return NextResponse.next()
+    }
+
+    // Jesli nie ma ciasteczka to login
+    if (!sessionCookie) {
+        return NextResponse.redirect(`${process.env.BASE_URL}/sign-in`)
+    }
+
+    // jesli jest ciasteczko to sprawdzamy
+    const isValid = await checkSession(sessionCookie)
+
+    if (!isValid) {
+        return NextResponse.redirect(`${process.env.BASE_URL}/sign-in`)
+    }
+
+    return NextResponse.next()
+}
+
+async function checkSession(sessionCookie: string | null): Promise<boolean> {
+    if (!sessionCookie) {
+        return false
+    }
+
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: sessionCookie,
+    }
+
+    const response = await fetch(`${process.env.BASE_URL}/api/auth`, {
+        method: "GET",
+        headers: headers,
+    })
+
+    const result = await response.json()
+
+    return result
+}
 
 export const config = {
-    matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+    matcher: ["/dashboard/:path*", "/sign-in", "/sign-up"],
 }

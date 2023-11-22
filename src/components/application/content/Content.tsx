@@ -20,11 +20,22 @@ import CreateList from "../modals/CreateList"
 import FilterCategories from "./FilterCategories"
 import ContentEmpty from "./ContentEmpty"
 import LoadingContent from "./LoadingContent"
+import Sort from "../buttons/Sort"
+import { SortBy, SortDirection } from "@/utils/utils"
+
+export type TSortProps = {
+    sortBy: SortBy
+    sortDirection: SortDirection
+}
 
 export default function Content({ id }: { id: string }) {
     const [selectedCategory, setSelectedCategory] = useState("")
     const { isModalOpen, setIsModalOpen, modalContent, setModalContent } =
         useModal()
+    const [sortCriteria, setSortCriteria] = useState<TSortProps>({
+        sortBy: "createdAt",
+        sortDirection: "desc",
+    })
 
     const {
         data: listData,
@@ -62,6 +73,22 @@ export default function Content({ id }: { id: string }) {
         [elements]
     )
 
+    const sortedAndFilteredElements = useMemo(() => {
+        if (!elements) return []
+        const filteredElements = elements.filter(
+            (element) =>
+                !selectedCategory ||
+                element.categories.some(
+                    (category) => category.name === selectedCategory
+                )
+        )
+        return sortElements(
+            filteredElements,
+            sortCriteria.sortBy,
+            sortCriteria.sortDirection
+        )
+    }, [elements, selectedCategory, sortCriteria])
+
     // return <Title loading />
 
     if (isLoading) return <LoadingContent />
@@ -89,21 +116,12 @@ export default function Content({ id }: { id: string }) {
         setIsModalOpen(true)
     }
 
-    // TODO Dac mozliwosc zmiany sortowania przez uzytkownika
-    const sortBy = "createdAt"
-    const sortDirection = "desc"
-
-    const sortedAndFilteredElements = sortElements(
-        elements.filter(
-            (element) =>
-                !selectedCategory ||
-                element.categories.some(
-                    (category) => category.name === selectedCategory
-                )
-        ),
-        sortBy,
-        sortDirection
-    )
+    const handleSortChange = (
+        newSortBy: SortBy,
+        newSortDirection: SortDirection
+    ) => {
+        setSortCriteria({ sortBy: newSortBy, sortDirection: newSortDirection })
+    }
 
     return (
         <>
@@ -133,11 +151,17 @@ export default function Content({ id }: { id: string }) {
             {elements?.length > 0 ? (
                 <>
                     <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
-                        <FilterCategories
-                            categoriesUnique={categoriesUnique}
-                            handleCategoryChange={handleCategoryChange}
-                            selectedCategory={selectedCategory}
-                        />
+                        <div className="flex mb-3 sm:mb-5 justify-between">
+                            <FilterCategories
+                                categoriesUnique={categoriesUnique}
+                                handleCategoryChange={handleCategoryChange}
+                                selectedCategory={selectedCategory}
+                            />
+                            <Sort
+                                handleSortChange={handleSortChange}
+                                sortCriteria={sortCriteria}
+                            />
+                        </div>
                         <ul>
                             {sortedAndFilteredElements.map((element) => (
                                 <div key={element.id}>

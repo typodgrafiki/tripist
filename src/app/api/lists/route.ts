@@ -6,12 +6,12 @@
  */
 
 import { NextResponse } from "next/server"
-import { auth } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
 import { ICategories } from "@/types/types"
 
 export async function GET() {
-    const { userId } = auth()
+    const { userId } = await useAuth()
 
     try {
         if (!userId)
@@ -38,7 +38,7 @@ export async function GET() {
 export async function HEAD(request: Request) {}
 
 export async function POST(request: Request) {
-    const { userId } = auth()
+    const { userId } = await useAuth()
     const data = await request.json()
     const { name, duplicateId } = data
     const newItems = []

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation"
 import { useModal } from "@/context/ModalContext"
 import { createList, updateList } from "@/actions/axiosActions"
 import { focusInput } from "@/utils/utils"
-import DebugLog from "@/utils/developConsoleLog"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 
@@ -79,7 +78,6 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
 
     return (
         <>
-            <DebugLog name="ModalCreateList" />
             <h3 className="mb-3 text-gray-400 truncate">
                 <span className="title font-medium text-gray-900 text-base">
                     Nazwa

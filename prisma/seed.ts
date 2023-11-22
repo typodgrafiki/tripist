@@ -10,24 +10,25 @@ async function main() {
             name: "John",
             surname: "Doe",
             email: "on024@go2.pl",
-           preferences: ['dark_mode'],
+            password: "123",
+            preferences: ["dark_mode"],
         },
     })
-    
+
     // Create categories
     const category1 = await prisma.category.create({
         data: {
-          name: 'Apteczka',
-          userId: user.id,
-        },
-    });
-    
-    const category2 = await prisma.category.create({
-        data: {
-            name: 'Ogólne',
+            name: "Apteczka",
             userId: user.id,
         },
-    });
+    })
+
+    const category2 = await prisma.category.create({
+        data: {
+            name: "Ogólne",
+            userId: user.id,
+        },
+    })
 
     // Utworzenie 10 list dla użytkownika
     for (let i = 0; i < 10; i++) {
@@ -50,11 +51,8 @@ async function main() {
                     status: Math.random() > 0.5, // Losowy status
                     listId: list.id,
                     categories: {
-                        connect: [
-                          { id: category1.id },
-                          { id: category2.id },
-                        ],
-                      },
+                        connect: [{ id: category1.id }, { id: category2.id }],
+                    },
                     // ... inne pola, jeśli są wymagane
                 },
             })

@@ -7,6 +7,7 @@ export default function Button({
     onClick,
     className,
     textSuccess,
+    ...props
 }: {
     children: React.ReactNode
     isLoading?: boolean
@@ -14,12 +15,17 @@ export default function Button({
     onClick?: () => void
     className?: string
     textSuccess?: string
+    type?: "button" | "submit" | "reset"
+    id?: string
+    role?: "menuitem"
+    tabIndex?: number
 }) {
     return (
         <button
             className={`flex ${className}`}
             onClick={onClick}
             disabled={isLoading || isSuccess}
+            {...props}
         >
             {textSuccess && isSuccess ? textSuccess : children}
             {isLoading && (

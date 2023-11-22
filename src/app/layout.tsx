@@ -1,7 +1,7 @@
 import React from "react"
 import "@/assets/styles/globals.css"
 import type { Metadata } from "next"
-import { ClerkProvider } from "@clerk/nextjs"
+// import { ClerkProvider } from "@clerk/nextjs"
 
 export const metadata: Metadata = {
     title: "Tripist: Twoja intuicyjna aplikacja do pakowania",
@@ -17,13 +17,13 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <ClerkProvider>
+        // <ClerkProvider>
             <html
                 lang="pl"
                 className="scroll-smooth"
             >
                 <body>{children}</body>
             </html>
-        </ClerkProvider>
+        // </ClerkProvider>
     )
 }
