@@ -46,7 +46,19 @@ function Menu() {
                     </li>
                 </ul>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                    <SignBtn />
+                    {/* <SignBtn /> */}
+                    <Link
+                        href="/sign-in"
+                        className="btn btn-default"
+                    >
+                        Zaloguj się
+                    </Link>
+                    <Link
+                        href="/sign-up"
+                        className="btn btn-primary"
+                    >
+                        Załóż konto
+                    </Link>
                 </div>
 
                 <button

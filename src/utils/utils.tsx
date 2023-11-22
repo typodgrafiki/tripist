@@ -46,8 +46,8 @@ export function changeStatusLocaly(
     })
 }
 
-type SortBy = "createdAt" | "name"
-type SortDirection = "asc" | "desc"
+export type SortBy = "createdAt" | "name"
+export type SortDirection = "asc" | "desc"
 
 export function sortElements(
     elements: IElements[],

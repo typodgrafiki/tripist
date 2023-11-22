@@ -1,15 +1,59 @@
 /**
  *
- * TODO Komponent nie zrobiony
- * TODO przyciski jako komponenty
+ * TODO Tu trzeba zrobic porządek z typami bo jesz bałagan
+ * TODO przy małej ilosci elementow dropdown sort nie jest widoczny (sortowanie i kategorie maja byc przyklejone u gory)
  *
  */
 
 import Button from "@/components/ui/Button"
 import { useState } from "react"
+import { SortBy, SortDirection } from "@/utils/utils"
+import { TSortProps } from "../content/Content"
 
-export default function Sort() {
-    const [isOpen, setIsOpen] = useState(true)
+interface ISortTypes {
+    name: string
+    type: SortBy
+    direction: SortDirection
+}
+
+interface ISortChangeProp {
+    handleSortChange: (
+        newSortBy: SortBy,
+        newSortDirection: SortDirection
+    ) => void
+    sortCriteria: TSortProps
+}
+
+type BtnChangeSortProps = ISortChangeProp & ISortTypes
+
+const sortTypes: ISortTypes[] = [
+    {
+        name: "Najnowsze",
+        type: "createdAt",
+        direction: "desc",
+    },
+    {
+        name: "Najstarsze",
+        type: "createdAt",
+        direction: "asc",
+    },
+    {
+        name: "A-Z",
+        type: "name",
+        direction: "asc",
+    },
+    {
+        name: "Z-A",
+        type: "name",
+        direction: "desc",
+    },
+]
+
+export default function Sort({
+    handleSortChange,
+    sortCriteria,
+}: ISortChangeProp) {
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <>
@@ -52,38 +96,46 @@ export default function Sort() {
                             className="py-1"
                             role="none"
                         >
-                            <Button
-                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
-                                role="menuitem"
-                                tabIndex={-1}
-                            >
-                                Najnowsze
-                            </Button>
-                            <Button
-                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
-                                role="menuitem"
-                                tabIndex={-1}
-                            >
-                                Najstarsze
-                            </Button>
-                            <Button
-                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
-                                role="menuitem"
-                                tabIndex={-1}
-                            >
-                                A-Z
-                            </Button>
-                            <Button
-                                className="text-gray-700 block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full"
-                                role="menuitem"
-                                tabIndex={-1}
-                            >
-                                Z-A
-                            </Button>
+                            {sortTypes.map((element, index) => (
+                                <BtnChangeSort
+                                    key={index}
+                                    handleSortChange={handleSortChange}
+                                    sortCriteria={sortCriteria}
+                                    {...element}
+                                />
+                            ))}
                         </div>
                     </div>
                 )}
             </div>
         </>
+    )
+}
+
+const BtnChangeSort = ({
+    handleSortChange,
+    sortCriteria,
+    ...element
+}: BtnChangeSortProps) => {
+    const { name, type, direction } = element
+
+    const isActive = () => {
+        return (
+            type === sortCriteria.sortBy &&
+            direction === sortCriteria.sortDirection
+        )
+    }
+
+    return (
+        <Button
+            className={`block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full ${
+                isActive() ? "text-[var(--primary)]" : ""
+            }`}
+            role="menuitem"
+            tabIndex={-1}
+            onClick={() => handleSortChange(type, direction)}
+        >
+            {name}
+        </Button>
     )
 }

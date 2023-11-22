@@ -64,38 +64,10 @@ export default function EditAccount({
         }
     }
 
-    // const { closeModal } = useModal()
-    // const queryClient = useQueryClient()
-
-    // const { mutate, isPending, isError, isSuccess } = useMutation({
-    //     mutationFn: async () => deleteList(listId),
-    //     onSuccess: async (response) => {
-    //         queryClient.invalidateQueries({ queryKey: ["listData", listId] })
-    //         queryClient.invalidateQueries({ queryKey: ["list"] })
-
-    //         router.push("/dashboard")
-
-    //         Toastify({
-    //             className: "toastify-success",
-    //             text: `Usunięto listę ${response?.data.body.name}`,
-    //         }).showToast()
-
-    //         setTimeout(() => {
-    //             closeModal()
-    //         }, 2500)
-    //     },
-    //     onError: (error) => {
-    //         Toastify({
-    //             className: "toastify-error",
-    //             text: `Nie udało się usunąć listy`,
-    //         }).showToast()
-    //     },
-    // })
-
     return (
-        <>
+        <div className="modal-account">
             <h3 className="flex mb-5 text-gray-400 truncate justify-between items-center">
-                <span className="title font-medium text-gray-900 text-base text-xl">
+                <span className="title font-medium text-gray-900 text-xl">
                     Moje konto
                 </span>
                 <button
@@ -189,6 +161,6 @@ export default function EditAccount({
                     Zapisz
                 </Button>
             </form>
-        </>
+        </div>
     )
 }

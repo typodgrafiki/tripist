@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import { hash } from "bcrypt"
-import { createSession } from "@/utils/session"
-import { cookies } from "next/headers"
 import { useAuth } from "@/lib/auth"
 
 export async function POST(request: Request) {
     // TODO dodac zabezpiecenie autoryzacje
-    // To jest to samo co register - połączyc to
+    // TODO To jest to samo co register - połączyc to
 
     const { userId } = await useAuth()
 
     const data = await request.json()
     const { name, surname, email, password } = data
 
-    email.trim()
-    password.trim()
+    await email.trim()
+    await password.trim()
 
     try {
         if (!email || !userId) {

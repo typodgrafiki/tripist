@@ -3,15 +3,17 @@ import prisma from "@/lib/prismaClient"
 import { hash } from "bcrypt"
 import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
+import { v4 as uuidv4 } from "uuid"
 
 export async function POST(request: Request) {
     // TODO dodac zabezpiecenie autoryzacje
 
     const data = await request.json()
     const { name, surname, email, password } = data
+    const userId = `user_${uuidv4()}`
 
-    email.trim()
-    password.trim()
+    await email.trim()
+    await password.trim()
 
     try {
         if (!name || !email || !password) {
@@ -36,6 +38,7 @@ export async function POST(request: Request) {
         const hashPassword = await hash(password, 10)
         const newUser = await prisma.user.create({
             data: {
+                id: userId,
                 name: name,
                 surname: surname,
                 email: email,

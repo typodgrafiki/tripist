@@ -39,7 +39,7 @@ async function checkSession(sessionCookie: string | null): Promise<boolean> {
 
     const headers = {
         "Content-Type": "application/json",
-        "Custom-Header": sessionCookie,
+        Authorization: sessionCookie,
     }
 
     const response = await fetch(`${process.env.BASE_URL}/api/auth`, {

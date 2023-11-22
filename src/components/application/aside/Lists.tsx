@@ -14,7 +14,6 @@ import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
 import Button from "@/components/ui/Button"
-import { sortElements } from "@/utils/utils"
 import IconPlus from "../icons/plus"
 
 export default function Lists() {

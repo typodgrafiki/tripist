@@ -10,8 +10,8 @@ export async function POST(request: Request) {
     const data = await request.json()
     const { email, password } = data
 
-    email.trim()
-    password.trim()
+    await email.trim()
+    await password.trim()
 
     try {
         if (!email || !password) {

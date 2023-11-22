@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 
 export async function GET(request: Request) {
-    const sessionId = request.headers.get("custom-header")
+    const sessionId = request.headers.get("Authorization")
 
     if (!sessionId) {
         return NextResponse.json(false, { status: 400 })
