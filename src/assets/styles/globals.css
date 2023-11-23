@@ -58,6 +58,10 @@
         color: #fff;
     }
 
+    .btn-white {
+        background-color: #fff;
+    }
+
     .btn-green {
         background-color: #27ba0f;
         border-color: #27ba0f;

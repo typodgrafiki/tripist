@@ -6,17 +6,25 @@ export default function ContentEmpty({
     handleOpenModal: () => void
 }) {
     return (
-        <div className="bg-white p-10 shadow-lg rounded-md text-center">
-            <p className="mb-3">
-                Wygląda na to, że Twoja lista jest pusta. Kliknij poniżej, aby
-                dodać pierwszą pozycję i zorganizować swój wyjazd!
-            </p>
-            <Button
-                className="btn btn-primary mx-auto"
-                onClick={handleOpenModal}
-            >
-                Dodaj element
-            </Button>
+        <div className="text-center grow flex flex-col justify-center items-center">
+            <div className="max-w-[480px]">
+                <h4 className="font-semibold text-[1.1rem] mb-3">
+                    O, mamy tu pustą listę!
+                </h4>
+                <p className="mb-4 text-muted">
+                    Twoja lista jest pusta jak skrzynia skarbów bez skarbów.
+                    Wypełnij ją przedmiotami niezbędnymi do Twojej przygody.
+                    Zastanów się nad tym, co chcesz zabrać, aby Twój wyjazd był
+                    kompletny i bezstresowy. Wypełnij tę listę i ciesz się
+                    idealnie zaplanowaną podróżą.
+                </p>
+                <Button
+                    onClick={handleOpenModal}
+                    className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px]  text-white mx-auto rounded-full"
+                >
+                    Dodaj element
+                </Button>
+            </div>
         </div>
     )
 }

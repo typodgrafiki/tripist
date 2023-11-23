@@ -15,7 +15,7 @@ export default function UserContent({ user }: { user: IUserData }) {
     const router = useRouter()
     const { setIsModalOpen, setModalContent } = useModal()
 
-    const { name, surname, image } = user // TODO to dac w state i przekazac dalej state a nie sztywne wartosci
+    const { name, surname, image } = user
 
     const [data, setData] = useState(user)
 
@@ -41,31 +41,35 @@ export default function UserContent({ user }: { user: IUserData }) {
     }
 
     return (
-        <div className="flex w-full gap-2 items-center">
-            <div>
-                <Image
-                    className="image rounded-full min-w-[55px] cursor-pointer"
-                    width={55}
-                    height={55}
-                    src={image ? image : iconUser}
-                    alt="Zdjęcie użytkownika"
-                    onClick={handleEditAccount}
-                />
-            </div>
-            <div className="truncate">
-                <p
-                    className="text-lg font-semibold leading-5 truncate mt-1 cursor-pointer"
-                    onClick={handleEditAccount}
-                >
-                    {data.name} {data.surname && data.surname}
-                </p>
-                <Button
-                    className="py-1 inline-block hover:text-[var(--primary)]"
-                    onClick={handleLogout}
-                >
-                    Wyloguj się
-                </Button>
-            </div>
+        <div className="rounded-full h-[28px] w-[28px] bg-[#355BB1] text-white flex justify-center items-center cursor-pointer">
+            G
         </div>
+
+        // <div className="flex gap-2 items-center">
+        // <div>
+        //     <Image
+        //         className="image rounded-full cursor-pointer"
+        //         width={28}
+        //         height={28}
+        //         src={image ? image : iconUser}
+        //         alt="Zdjęcie użytkownika"
+        //         onClick={handleEditAccount}
+        //     />
+        // </div>
+        //     <div className="truncate">
+        //         <p
+        //             className="text-lg font-semibold leading-5 truncate mt-1 cursor-pointer"
+        //             onClick={handleEditAccount}
+        //         >
+        //             {data.name} {data.surname && data.surname}
+        //         </p>
+        //         <Button
+        //             className="py-1 inline-block hover:text-[var(--primary)]"
+        //             onClick={handleLogout}
+        //         >
+        //             Wyloguj się
+        //         </Button>
+        //     </div>
+        // </div>
     )
 }

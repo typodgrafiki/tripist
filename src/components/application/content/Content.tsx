@@ -162,7 +162,7 @@ export default function Content({ id }: { id: string }) {
                                 sortCriteria={sortCriteria}
                             />
                         </div>
-                        <ul>
+                        <ul className="">
                             {sortedAndFilteredElements.map((element) => (
                                 <div key={element.id}>
                                     <ContentElement {...element} />
@@ -170,7 +170,7 @@ export default function Content({ id }: { id: string }) {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
+                    <div className="flex justify-between  items-end gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent mt-3">
                         <ButtonDisableAll listId={listId} />
                         <Button
                             onClick={handleOpenModal}

@@ -102,7 +102,7 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                         disabled={isPending || isSuccess}
                         ref={inputRef}
                     />
-
+                    <div>KOLOR</div>
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${

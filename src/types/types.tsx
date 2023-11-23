@@ -5,6 +5,7 @@
 export interface IListBasic {
     id: string
     name: string
+    settingColor: string
 }
 
 export interface ILists extends IListBasic {

@@ -2,6 +2,10 @@ body {
     @apply text-sm;
 }
 
+.text-muted {
+    color: #52545c;
+}
+
 .btn-add-element::before,
 .btn-add-element::after {
     content: "";
@@ -18,6 +22,10 @@ body {
 
 .btn-add-element::after {
     transform: translate(-50%, -1px) rotate(90deg);
+}
+
+.list-link {
+    border-radius: 0 5px 5px 0;
 }
 
 .my-lists-loading li {

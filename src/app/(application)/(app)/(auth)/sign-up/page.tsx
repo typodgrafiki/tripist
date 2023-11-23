@@ -54,7 +54,6 @@ export default function RegisterForm() {
                             disabled={isPending || isSuccess}
                             ref={inputRef}
                         /> */}
-
                     <div>
                         <input
                             type="text"
@@ -76,16 +75,6 @@ export default function RegisterForm() {
                                 {errors.name.message}
                             </div>
                         )}
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            className="form-control grow w-full"
-                            {...register("surname")}
-                            placeholder="Nazwisko"
-                            id="formSurname"
-                            disabled={loading}
-                        />
                     </div>
                     <div>
                         <input
@@ -153,7 +142,7 @@ export default function RegisterForm() {
                 lub
             </div>
             <p className="text-center text-sm text-gray-600 mt-2">
-                Jeśli masz już konto &nbsp;
+                Masz już konto? &nbsp;
                 <Link
                     className="text-blue-500 hover:underline"
                     href="/sign-in"

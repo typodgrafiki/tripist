@@ -45,6 +45,7 @@ model List {
   name            String
   createAt        DateTime  @default(now())
   lastChangeAt    DateTime  @default(now())
+  settingColor    String?
   url             String?
   userId          String
   user            User      @relation("UserLists", fields: [userId], references: [id])
@@ -85,17 +86,24 @@ model ChangeLog {
   previousData  Json     // Dane przed zmianą
 }
 
-model PredefinedList {
-  id       Int        @id @default(autoincrement())
-  name     String
-  type     String
-  elements PredefinedListItem[]
+model PredefinedList {  
+  id              Int       @id @default(autoincrement())
+  name            String
+  settingColor    String?
+  elements        PredefinedListItem[]
 }
 
 model PredefinedListItem {
-  id           Int     @id @default(autoincrement())
-  name         String
-  category     String
-  predefListId Int
-  predefList   PredefinedList @relation(fields: [predefListId], references: [id])
+  id            Int     @id @default(autoincrement())
+  name          String
+  status        Boolean   @default(false)
+  categories    PredefinedCategory[]
+  predefListId  Int
+  predefList    PredefinedList @relation(fields: [predefListId], references: [id])
+}
+
+model PredefinedCategory {
+  id       Int        @id @default(autoincrement())
+  name     String
+  items    PredefinedListItem[]
 }
