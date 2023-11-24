@@ -125,7 +125,7 @@ export default function Content({ id }: { id: string }) {
 
     return (
         <>
-            <div className="flex justify-between gap-2">
+            <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">
                     {/* <button className="px-3 pl-4 sm:hidden">
@@ -150,18 +150,20 @@ export default function Content({ id }: { id: string }) {
 
             {elements?.length > 0 ? (
                 <>
+                    <div className="flex mb-3 justify-between">
+                        <FilterCategories
+                            categoriesUnique={categoriesUnique}
+                            handleCategoryChange={handleCategoryChange}
+                            selectedCategory={selectedCategory}
+                            count={sortedAndFilteredElements.length}
+                        />
+
+                        <Sort
+                            handleSortChange={handleSortChange}
+                            sortCriteria={sortCriteria}
+                        />
+                    </div>
                     <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
-                        <div className="flex mb-3 sm:mb-5 justify-between">
-                            <FilterCategories
-                                categoriesUnique={categoriesUnique}
-                                handleCategoryChange={handleCategoryChange}
-                                selectedCategory={selectedCategory}
-                            />
-                            <Sort
-                                handleSortChange={handleSortChange}
-                                sortCriteria={sortCriteria}
-                            />
-                        </div>
                         <ul className="">
                             {sortedAndFilteredElements.map((element) => (
                                 <div key={element.id}>

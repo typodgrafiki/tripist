@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         if (checkEmailExist) {
             return NextResponse.json(
                 { message: "Użytkownik o takim email już istnieje" },
-                { status: 400 }
+                { status: 401 }
             )
         }
 
@@ -46,10 +46,19 @@ export async function POST(request: Request) {
             },
         })
 
+        if (!newUser) {
+            return NextResponse.json(
+                { message: "Nie udało się dodać użytkownika" },
+                { status: 402 }
+            )
+        }
+
+        // Tworzenie przykładowych list
+        const sampleData = await copyPredefinedListsToUser(newUser.id, [1, 2])
+
+        //Tworzenie sesji
         const { password: newPasswordHash, ...newUserBody } = newUser
-
         const newSession = await createSession(newUser.id)
-
         if ("id" in newSession) {
             cookies().set({
                 name: "tripist_auth",
@@ -65,5 +74,66 @@ export async function POST(request: Request) {
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }
         )
+    }
+}
+
+async function copyPredefinedListsToUser(
+    userId: string,
+    predefinedListIds: number[]
+) {
+    // Iterowanie przez każde ID w tablicy predefinedListIds
+    for (const predefinedListId of predefinedListIds) {
+        // Pobieranie przykładowej listy wraz z elementami i kategoriami
+        const predefinedList = await prisma.predefinedList.findUnique({
+            where: { id: predefinedListId },
+            include: {
+                elements: {
+                    include: {
+                        categories: true,
+                    },
+                },
+            },
+        })
+
+        // Sprawdzanie, czy przykładowa lista istnieje
+        if (!predefinedList) {
+            // Przechodzenie do następnego ID w tablicy
+            continue
+        }
+
+        // Tworzenie nowej listy dla użytkownika
+        const newList = await prisma.list.create({
+            data: {
+                name: predefinedList.name,
+                settingColor: predefinedList.settingColor,
+                userId: userId,
+                predefined: false,
+            },
+        })
+
+        // Kopiowanie elementów listy i kategorii do nowej listy
+        for (const item of predefinedList.elements) {
+            // Tworzenie nowego elementu listy
+            const newListItem = await prisma.listItem.create({
+                data: {
+                    name: item.name,
+                    status: item.status,
+                    listId: newList.id,
+                },
+            })
+
+            // Tworzenie kategorii dla elementu listy
+            for (const category of item.categories) {
+                await prisma.category.create({
+                    data: {
+                        name: category.name,
+                        userId: userId,
+                        items: {
+                            connect: { id: newListItem.id },
+                        },
+                    },
+                })
+            }
+        }
     }
 }

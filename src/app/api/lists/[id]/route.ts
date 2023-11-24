@@ -1,10 +1,3 @@
-/**
- *
- * //Usuwanie listy DELETE
- * Edycja listy PATCH
- *
- */
-
 import { NextResponse, NextRequest } from "next/server"
 import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
@@ -47,46 +40,6 @@ export async function GET(request: Request, context: IApiContext) {
         )
     }
 }
-
-// export async function HEAD(request: Request) {}
-
-// export async function POST(request: Request, context: IContext) {
-//     const { userId } = auth()
-
-//     try {
-//         if (!userId)
-//             return NextResponse.json(
-//                 { message: "Brak użytkownika" },
-//                 { status: 401 }
-//             )
-
-//         const requestBody = await request.json()
-//         const { name, listId } = requestBody
-
-//         if (!name)
-//             return NextResponse.json(
-//                 { message: "Brakujące pola" },
-//                 { status: 401 }
-//             )
-
-//         const newElement = await prisma.listItem.create({
-//             data: {
-//                 name: name,
-//                 status: false,
-//                 listId: listId,
-//             },
-//         })
-
-//         return NextResponse.json({ body: newElement }, { status: 200 })
-//     } catch (error) {
-//         return NextResponse.json(
-//             { error: "Internal Server Error" },
-//             { status: 500 }
-//         )
-//     }
-// }
-
-// export async function PUT(request: Request) {}
 
 export async function DELETE(request: Request, context: IApiContext) {
     const { userId } = await useAuth()
@@ -133,7 +86,7 @@ export async function PATCH(request: Request, context: IApiContext) {
     const { userId } = await useAuth()
 
     const data = await request.json()
-    const { name: newName } = data
+    const { name: newName, color } = data
 
     try {
         if (!userId) {
@@ -159,6 +112,7 @@ export async function PATCH(request: Request, context: IApiContext) {
             data: {
                 name: newName.toString(),
                 lastChangeAt: new Date(),
+                settingColor: color,
             },
         })
 

@@ -125,7 +125,6 @@ body {
     animation:
         fade-in,
         show-modal 0.15s ease;
-    overflow: hidden;
 }
 
 .modal:has(.modal-account),
@@ -165,6 +164,24 @@ svg {
 
 .form-control.error {
     border: 1px solid red;
+}
+
+.select.open {
+    outline: 2px solid var(--primary);
+}
+
+.select-color:after {
+    content: "";
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    position: absolute;
+    inset: -4px;
+}
+
+.select-color.active:after {
+    border-color: var(--dark);
+    opacity: 0.3;
 }
 
 @keyframes fade-in {

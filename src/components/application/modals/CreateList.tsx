@@ -7,6 +7,7 @@ import { createList, updateList } from "@/actions/axiosActions"
 import { focusInput } from "@/utils/utils"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import Toastify from "toastify-js"
+import Select from "@/components/ui/Select"
 
 type IDuplicatProps = {
     duplicate?: {
@@ -19,10 +20,21 @@ type IDuplicatProps = {
     }
 }
 
+const optionsColor = [
+    "bg-red-500",
+    "bg-yellow-500",
+    "bg-emerald-500",
+    "bg-cyan-500",
+    "bg-violet-400",
+    "bg-purple-700",
+    "bg-pink-600",
+]
+
 export default function CreateList({ duplicate, editList }: IDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
+    const [selectedColor, setSelectedColor] = useState(optionsColor[0])
     const { closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -31,9 +43,9 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => {
             if (editList) {
-                return updateList(title, editList.id)
+                return updateList(title, editList.id, selectedColor)
             }
-            return createList(title, duplicate?.id)
+            return createList(title, duplicate?.id, selectedColor)
         },
         onSuccess: async (response) => {
             const { id: listId, name: listName } = response.data.body.list
@@ -102,19 +114,11 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                         disabled={isPending || isSuccess}
                         ref={inputRef}
                     />
-                    <select className="form-control">
-                        <option value="1">
-                            Red
-                            <div
-                                style={{
-                                    background: "red",
-                                    position: "absolute",
-                                    top: 0,
-                                    right: 0,
-                                }}
-                            ></div>
-                        </option>
-                    </select>
+                    <Select
+                        options={optionsColor}
+                        select={selectedColor}
+                        setSelect={setSelectedColor}
+                    />
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${

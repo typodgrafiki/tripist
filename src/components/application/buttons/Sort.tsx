@@ -6,9 +6,9 @@
  */
 
 import Button from "@/components/ui/Button"
-import { useState } from "react"
 import { SortBy, SortDirection } from "@/utils/utils"
 import { TSortProps } from "../content/Content"
+import useDropdown from "@/utils/useDropdown"
 
 interface ISortTypes {
     name: string
@@ -22,6 +22,7 @@ interface ISortChangeProp {
         newSortDirection: SortDirection
     ) => void
     sortCriteria: TSortProps
+    closeDropdown?: () => void
 }
 
 type BtnChangeSortProps = ISortChangeProp & ISortTypes
@@ -53,11 +54,14 @@ export default function Sort({
     handleSortChange,
     sortCriteria,
 }: ISortChangeProp) {
-    const [isOpen, setIsOpen] = useState(false)
+    const { isOpen, toggleDropdown, dropdownRef, closeDropdown } = useDropdown()
 
     return (
         <>
-            <div className="relative inline-block text-left">
+            <div
+                className="relative inline-block text-left"
+                ref={dropdownRef}
+            >
                 <div>
                     <Button
                         type="button"
@@ -65,7 +69,7 @@ export default function Sort({
                         id="menu-button"
                         aria-expanded="true"
                         aria-haspopup="true"
-                        onClick={() => setIsOpen(!isOpen)}
+                        onClick={toggleDropdown}
                     >
                         Sortuj
                         <svg
@@ -100,6 +104,7 @@ export default function Sort({
                                 <BtnChangeSort
                                     key={index}
                                     handleSortChange={handleSortChange}
+                                    closeDropdown={closeDropdown}
                                     sortCriteria={sortCriteria}
                                     {...element}
                                 />
@@ -115,6 +120,7 @@ export default function Sort({
 const BtnChangeSort = ({
     handleSortChange,
     sortCriteria,
+    closeDropdown,
     ...element
 }: BtnChangeSortProps) => {
     const { name, type, direction } = element
@@ -126,6 +132,13 @@ const BtnChangeSort = ({
         )
     }
 
+    const handleClick = () => {
+        if (closeDropdown) {
+            closeDropdown()
+        }
+        handleSortChange(type, direction)
+    }
+
     return (
         <Button
             className={`block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full ${
@@ -133,7 +146,7 @@ const BtnChangeSort = ({
             }`}
             role="menuitem"
             tabIndex={-1}
-            onClick={() => handleSortChange(type, direction)}
+            onClick={handleClick}
         >
             {name}
         </Button>

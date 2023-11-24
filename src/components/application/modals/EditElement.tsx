@@ -153,7 +153,7 @@ export default function EditElement({
                     ))}
                 </ul>
 
-                <div className="flex justify-between flex-row-reverse">
+                <div className="flex justify-between">
                     <ButtonDelete
                         id={id}
                         listId={listId}

@@ -5,8 +5,12 @@ import axios from "axios"
 import { activeCategories } from "@/utils/utils"
 import { cookies } from "next/headers"
 
-export const createList = async (name: string, duplicateId?: string) => {
-    const query = { name, duplicateId }
+export const createList = async (
+    name: string,
+    duplicateId?: string,
+    color: string
+) => {
+    const query = { name, duplicateId, color }
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
@@ -14,12 +18,16 @@ export const createList = async (name: string, duplicateId?: string) => {
     return response
 }
 
-export const updateList = async (name: string, listId: string) => {
+export const updateList = async (
+    name: string,
+    listId: string,
+    color: string
+) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
 
-    const query = { name }
+    const query = { name, color }
 
     const response = await axios.patch(`/api/lists/${listId}`, query)
     return response

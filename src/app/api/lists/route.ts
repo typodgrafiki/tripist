@@ -40,7 +40,7 @@ export async function HEAD(request: Request) {}
 export async function POST(request: Request) {
     const { userId } = await useAuth()
     const data = await request.json()
-    const { name, duplicateId } = data
+    const { name, duplicateId, color } = data
     const newItems = []
 
     try {
@@ -55,6 +55,7 @@ export async function POST(request: Request) {
             data: {
                 name: name,
                 userId: userId,
+                settingColor: color,
             },
         })
 
@@ -104,9 +105,3 @@ export async function POST(request: Request) {
         )
     }
 }
-
-export async function PUT(request: Request) {}
-
-export async function DELETE(request: Request) {}
-
-export async function PATCH(request: Request) {}

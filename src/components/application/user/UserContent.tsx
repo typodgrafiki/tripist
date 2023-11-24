@@ -14,12 +14,13 @@ import IconLogout from "@/assets/images/user/iconLogout.svg"
 import IconCategories from "@/assets/images/user/iconCategories.svg"
 import Image from "next/image"
 import EditCategories from "../modals/EditCategories"
+import useDropdown from "@/utils/useDropdown"
 
 export default function UserContent({ user }: { user: IUserData }) {
     const router = useRouter()
     const { setIsModalOpen, setModalContent } = useModal()
-    const [isOpen, setIsOpen] = useState(false)
     const firstLetterName = user && user.name ? user.name[0] : "N"
+    const { isOpen, toggleDropdown, dropdownRef, closeDropdown } = useDropdown()
 
     const { name, email } = user
 
@@ -69,9 +70,12 @@ export default function UserContent({ user }: { user: IUserData }) {
     ]
 
     return (
-        <div className="relative inline-block text-left">
+        <div
+            className="relative inline-block text-left"
+            ref={dropdownRef}
+        >
             <UserImage
-                setIsOpen={setIsOpen}
+                setIsOpen={toggleDropdown}
                 isOpen={isOpen}
                 firstLetterName={firstLetterName}
             />
@@ -101,6 +105,7 @@ export default function UserContent({ user }: { user: IUserData }) {
                             <Element
                                 key={index}
                                 action={element.action}
+                                closeDropdown={closeDropdown}
                             >
                                 <span className="flex justify-center items-center w-[28px] text-center mr-2">
                                     <Image
@@ -123,16 +128,23 @@ export default function UserContent({ user }: { user: IUserData }) {
 const Element = ({
     action,
     children,
+    closeDropdown,
 }: {
     action: (() => void) | (() => Promise<void>)
     children: React.ReactNode
+    closeDropdown: () => void
 }) => {
+    const handleClick = () => {
+        action()
+        closeDropdown()
+    }
+
     return (
         <Button
             className={`block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full`}
             role="menuitem"
             tabIndex={-1}
-            onClick={action}
+            onClick={handleClick}
         >
             {children}
         </Button>
