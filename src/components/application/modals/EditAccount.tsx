@@ -14,15 +14,10 @@ import iconUser from "@/assets/images/user/boy.png"
 
 type EditAccountProps = {
     data: IUserData
-    handleLogout: () => void
     setData: Dispatch<SetStateAction<IUserData>>
 }
 
-export default function EditAccount({
-    data,
-    setData,
-    handleLogout,
-}: EditAccountProps) {
+export default function EditAccount({ data, setData }: EditAccountProps) {
     const { closeModal } = useModal()
     const { name, surname, image, email } = data
     const [loading, setLoading] = useState(false)
@@ -70,12 +65,6 @@ export default function EditAccount({
                 <span className="title font-medium text-gray-900 text-xl">
                     Moje konto
                 </span>
-                <button
-                    className="cursor-pointer hover:text-[var(--primary)]"
-                    onClick={handleLogout}
-                >
-                    Wyloguj się
-                </button>
             </h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex justify-center mb-6">

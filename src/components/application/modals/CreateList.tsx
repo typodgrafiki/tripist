@@ -102,7 +102,19 @@ export default function CreateList({ duplicate, editList }: IDuplicatProps) {
                         disabled={isPending || isSuccess}
                         ref={inputRef}
                     />
-                    <div>KOLOR</div>
+                    <select className="form-control">
+                        <option value="1">
+                            Red
+                            <div
+                                style={{
+                                    background: "red",
+                                    position: "absolute",
+                                    top: 0,
+                                    right: 0,
+                                }}
+                            ></div>
+                        </option>
+                    </select>
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${

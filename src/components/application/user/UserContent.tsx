@@ -10,25 +10,10 @@ import { deleteSession } from "@/actions/axiosActions"
 import Button from "@/components/ui/Button"
 import UserImage from "./UserImage"
 import IconSettings from "@/assets/images/user/iconSettings.svg"
+import IconLogout from "@/assets/images/user/iconLogout.svg"
+import IconCategories from "@/assets/images/user/iconCategories.svg"
 import Image from "next/image"
-
-const accountActions = [
-    {
-        name: "Ustawienia",
-        icon: IconSettings,
-        action: "action",
-    },
-    {
-        name: "Kategorie",
-        icon: "icon",
-        action: "action",
-    },
-    {
-        name: "Wyloguj się",
-        icon: "icon",
-        action: "action",
-    },
-]
+import EditCategories from "../modals/EditCategories"
 
 export default function UserContent({ user }: { user: IUserData }) {
     const router = useRouter()
@@ -44,10 +29,14 @@ export default function UserContent({ user }: { user: IUserData }) {
         setModalContent(
             <EditAccount
                 data={data}
-                handleLogout={handleLogout}
                 setData={setData}
             />
         )
+        setIsModalOpen(true)
+    }
+
+    const handleEditCategories = () => {
+        setModalContent(<EditCategories />)
         setIsModalOpen(true)
     }
 
@@ -60,6 +49,24 @@ export default function UserContent({ user }: { user: IUserData }) {
             router.push("/sign-in")
         }
     }
+
+    const accountActions = [
+        {
+            name: "Ustawienia",
+            icon: IconSettings,
+            action: handleEditAccount,
+        },
+        {
+            name: "Kategorie",
+            icon: IconCategories,
+            action: handleEditCategories,
+        },
+        {
+            name: "Wyloguj się",
+            icon: IconLogout,
+            action: handleLogout,
+        },
+    ]
 
     return (
         <div className="relative inline-block text-left">
@@ -84,64 +91,50 @@ export default function UserContent({ user }: { user: IUserData }) {
                         <div className="flex gap-2 items-center px-4 py-2">
                             <UserImage firstLetterName={firstLetterName} />
                             <div>
-                                <div>{name}</div>
-                                <div>{email}</div>
+                                <div className="font-semibold">{name}</div>
+                                <div className="text-gray-500 text-xs">
+                                    {email}
+                                </div>
                             </div>
                         </div>
                         {accountActions.map((element, index) => (
                             <Element
                                 key={index}
-                                {...element}
-                            />
+                                action={element.action}
+                            >
+                                <span className="flex justify-center items-center w-[28px] text-center mr-2">
+                                    <Image
+                                        src={element.icon}
+                                        alt="lll"
+                                        width={17}
+                                        height={17}
+                                    />
+                                </span>
+                                {element.name}
+                            </Element>
                         ))}
                     </div>
                 </div>
             )}
         </div>
-        // <div className="flex gap-2 items-center">
-        // <div>
-        //     <Image
-        //         className="image rounded-full cursor-pointer"
-        //         width={28}
-        //         height={28}
-        //         src={image ? image : iconUser}
-        //         alt="Zdjęcie użytkownika"
-        //         onClick={handleEditAccount}
-        //     />
-        // </div>
-        //     <div className="truncate">
-        //         <p
-        //             className="text-lg font-semibold leading-5 truncate mt-1 cursor-pointer"
-        //             onClick={handleEditAccount}
-        //         >
-        //             {data.name} {data.surname && data.surname}
-        //         </p>
-        //         <Button
-        //             className="py-1 inline-block hover:text-[var(--primary)]"
-        //             onClick={handleLogout}
-        //         >
-        //             Wyloguj się
-        //         </Button>
-        //     </div>
-        // </div>
     )
 }
 
-const Element = ({ name, icon, action }) => {
+const Element = ({
+    action,
+    children,
+}: {
+    action: (() => void) | (() => Promise<void>)
+    children: React.ReactNode
+}) => {
     return (
         <Button
             className={`block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full`}
             role="menuitem"
             tabIndex={-1}
-            // onClick={() => handleSortChange(type, direction)}
+            onClick={action}
         >
-            <Image
-                src={icon}
-                height={17}
-                width={17}
-                alt="ustawienia"
-            />
-            {name}
+            {children}
         </Button>
     )
 }
