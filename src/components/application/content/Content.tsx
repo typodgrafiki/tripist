@@ -163,12 +163,13 @@ export default function Content({ id }: { id: string }) {
                             sortCriteria={sortCriteria}
                         />
                     </div>
-                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
+                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
                         <ul className="">
                             {sortedAndFilteredElements.map((element) => (
-                                <div key={element.id}>
-                                    <ContentElement {...element} />
-                                </div>
+                                <ContentElement
+                                    key={element.id}
+                                    {...element}
+                                />
                             ))}
                         </ul>
                     </div>

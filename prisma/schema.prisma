@@ -50,8 +50,8 @@ model List {
   userId          String
   user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
-  predefined      Boolean   @default(false)
-  
+  fromTemplate    Boolean     @default(false)
+
   @@index([userId], name: "idx_userId")
 }
 
@@ -82,28 +82,38 @@ model ChangeLog {
   user          User      @relation(fields: [userId], references: [id])
   action        String    // np. "DELETE", "UPDATE"
   entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
-  entityId      Int    // ID encji, którą zmieniliśmy
-  previousData  Json     // Dane przed zmianą
+  entityId      Int       // ID encji, którą zmieniliśmy
+  previousData  Json      // Dane przed zmianą
 }
 
-model PredefinedList {  
-  id              Int       @id @default(autoincrement())
-  name            String
-  settingColor    String?
-  elements        PredefinedListItem[]
+model Template {
+  id            Int          @id @default(autoincrement())
+  name          String                                      // np. "2 dni citybreak"
+  start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
+  settingColor  String?
+  tripLength    Int?                                        // liczba dni
+  templateTypeId Int                                        // rodzaj wycieczki, np. "citybreak"]
+  templateType TemplateType   @relation(fields: [templateTypeId], references: [id])
+  elements     TemplateItem[]
 }
 
-model PredefinedListItem {
-  id            Int     @id @default(autoincrement())
+model TemplateItem {
+  id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
-  categories    PredefinedCategory[]
-  predefListId  Int
-  predefList    PredefinedList @relation(fields: [predefListId], references: [id])
+  categories    TemplateCategory[]
+  templateId    Int
+  template      Template  @relation(fields: [templateId], references: [id])
 }
 
-model PredefinedCategory {
+model TemplateCategory {
   id       Int        @id @default(autoincrement())
   name     String
-  items    PredefinedListItem[]
+  items    TemplateItem[]
+}
+
+model TemplateType {
+  id          Int          @id @default(autoincrement())
+  name        String       // Nazwa typu, np. "City Break"
+  templates   Template[]
 }

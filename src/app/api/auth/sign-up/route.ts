@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         }
 
         // Tworzenie przykładowych list
-        const sampleData = await copyPredefinedListsToUser(newUser.id, [1, 2])
+        const sampleData = await copyPredefinedListsToUser(newUser.id)
 
         //Tworzenie sesji
         const { password: newPasswordHash, ...newUserBody } = newUser
@@ -76,38 +76,28 @@ export async function POST(request: Request) {
         )
     }
 }
-
-async function copyPredefinedListsToUser(
-    userId: string,
-    predefinedListIds: number[]
-) {
-    // Iterowanie przez każde ID w tablicy predefinedListIds
-    for (const predefinedListId of predefinedListIds) {
-        // Pobieranie przykładowej listy wraz z elementami i kategoriami
-        const predefinedList = await prisma.predefinedList.findUnique({
-            where: { id: predefinedListId },
-            include: {
-                elements: {
-                    include: {
-                        categories: true,
-                    },
+async function copyPredefinedListsToUser(userId: string) {
+    // Pobieranie list z właściwością start == true
+    const predefinedLists = await prisma.template.findMany({
+        where: { start: true },
+        include: {
+            elements: {
+                include: {
+                    categories: true,
                 },
             },
-        })
+        },
+    })
 
-        // Sprawdzanie, czy przykładowa lista istnieje
-        if (!predefinedList) {
-            // Przechodzenie do następnego ID w tablicy
-            continue
-        }
-
+    // Iterowanie przez każdą znalezioną listę
+    for (const predefinedList of predefinedLists) {
         // Tworzenie nowej listy dla użytkownika
         const newList = await prisma.list.create({
             data: {
                 name: predefinedList.name,
                 settingColor: predefinedList.settingColor,
                 userId: userId,
-                predefined: false,
+                fromTemplate: true,
             },
         })
 

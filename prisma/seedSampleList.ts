@@ -5,63 +5,107 @@ import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
 async function main() {
+    // Tworzenie typów wyjazdów i zapisywanie ich ID
+    const cityBreakType = await prisma.templateType.create({
+        data: { name: "City Break" },
+    })
+    const allInclusiveResortType = await prisma.templateType.create({
+        data: { name: "All-Inclusive Resort" },
+    })
+    const trekkingHikingType = await prisma.templateType.create({
+        data: { name: "Trekking / Hiking" },
+    })
+    const beachVacationType = await prisma.templateType.create({
+        data: { name: "Plażowy Wypoczynek" },
+    })
+    const skiingSnowboardingType = await prisma.templateType.create({
+        data: { name: "Narciarstwo / Snowboarding" },
+    })
+    const campingGlampingType = await prisma.templateType.create({
+        data: { name: "Kamping / Glamping" },
+    })
+    const businessTripType = await prisma.templateType.create({
+        data: { name: "Podróże Służbowe" },
+    })
+    const educationalTripType = await prisma.templateType.create({
+        data: { name: "Podróże Edukacyjne" },
+    })
+    const culturalTripType = await prisma.templateType.create({
+        data: { name: "Podróże Kulturowe" },
+    })
+    const adventureTripType = await prisma.templateType.create({
+        data: { name: "Podróże Przygodowe" },
+    })
+    const seaCruiseType = await prisma.templateType.create({
+        data: { name: "Rejsy Morskie" },
+    })
+    const musicFestivalType = await prisma.templateType.create({
+        data: { name: "Festiwale Muzyczne" },
+    })
+    const wellnessSpaType = await prisma.templateType.create({
+        data: { name: "Wellness i Spa" },
+    })
+    const culinaryTripType = await prisma.templateType.create({
+        data: { name: "Podróże Kulinarne" },
+    })
+    const safariNatureTripType = await prisma.templateType.create({
+        data: { name: "Safari / Podróże Przyrodnicze" },
+    })
+    const waterSportsType = await prisma.templateType.create({
+        data: { name: "Sporty Wodne" },
+    })
+    const yogaRetreatsType = await prisma.templateType.create({
+        data: { name: "Joga i Retreats" },
+    })
+    const photographicTripType = await prisma.templateType.create({
+        data: { name: "Podróże Fotograficzne" },
+    })
+    const familyTripType = await prisma.templateType.create({
+        data: { name: "Podróże Rodzinne" },
+    })
+    const backpackingType = await prisma.templateType.create({
+        data: { name: "Backpacking / Mochilero" },
+    })
+    const trainingType = await prisma.templateType.create({
+        data: { name: "Trening" },
+    })
+
     // Tworzenie kategorii
-    const odziezCategory = await prisma.predefinedCategory.create({
+    const odziezCategory = await prisma.templateCategory.create({
         data: { name: "Odzież" },
     })
-    const akcesoriaCategory = await prisma.predefinedCategory.create({
+    const akcesoriaCategory = await prisma.templateCategory.create({
         data: { name: "Akcesoria" },
     })
-    const higienaCategory = await prisma.predefinedCategory.create({
+    const higienaCategory = await prisma.templateCategory.create({
         data: { name: "Higiena" },
     })
-    const technologiaCategory = await prisma.predefinedCategory.create({
-        data: { name: "Technologia" },
+    const technologiaCategory = await prisma.templateCategory.create({
+        data: { name: "Elektronika" },
     })
-    const inneCategory = await prisma.predefinedCategory.create({
+    const inneCategory = await prisma.templateCategory.create({
         data: { name: "Inne" },
     })
 
     // Tworzenie listy predefiniowanej dla treningu na siłowni
-    const gymList = await prisma.predefinedList.create({
+    const gymList = await prisma.template.create({
         data: {
             name: "Trening na siłowni",
+            settingColor: "bg-red-500",
+            start: true,
+            templateTypeId: trainingType.id,
             elements: {
                 create: [
                     {
-                        name: "Koszulka do ćwiczeń",
-                        categories: { connect: [{ id: odziezCategory.id }] },
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: inneCategory.id }] },
                     },
                     {
-                        name: "Spodnie dresowe lub legginsy",
-                        categories: { connect: [{ id: odziezCategory.id }] },
+                        name: "Kłódka do szafki",
+                        categories: { connect: [{ id: inneCategory.id }] },
                     },
                     {
-                        name: "Skarpety sportowe",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Bielizna sportowa",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Buty sportowe",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
-                    },
-                    {
-                        name: "Butelka na wodę",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
-                    },
-                    {
-                        name: "Zegarek sportowy lub monitor aktywności",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
-                    },
-                    {
-                        name: "Żel pod prysznic",
+                        name: "Dezodorant",
                         categories: { connect: [{ id: higienaCategory.id }] },
                     },
                     {
@@ -69,58 +113,33 @@ async function main() {
                         categories: { connect: [{ id: higienaCategory.id }] },
                     },
                     {
-                        name: "Dezodorant",
+                        name: "Żel pod prysznic",
                         categories: { connect: [{ id: higienaCategory.id }] },
                     },
                     {
-                        name: "Szczoteczka i pasta do zębów",
-                        categories: { connect: [{ id: higienaCategory.id }] },
-                    },
-                    {
-                        name: "Zamek do szafki",
-                        categories: { connect: [{ id: inneCategory.id }] },
-                    },
-                    {
-                        name: "Słuchawki",
+                        name: "Zegarek sportowy",
                         categories: {
-                            connect: [{ id: technologiaCategory.id }],
+                            connect: [{ id: akcesoriaCategory.id }],
                         },
                     },
                     {
-                        name: "Opaska na ramię na telefon",
+                        name: "Butelka na wodę",
                         categories: {
-                            connect: [{ id: technologiaCategory.id }],
+                            connect: [{ id: akcesoriaCategory.id }],
                         },
                     },
-                ],
-            },
-        },
-    })
-
-    // Tworzenie listy predefiniowanej na weekend w Madrycie
-    const madridList = await prisma.predefinedList.create({
-        data: {
-            name: "Weekend w Madrycie",
-            elements: {
-                create: [
                     {
-                        name: "Lekkie ubrania na dzień",
+                        name: "Ręcznik",
+                        categories: {
+                            connect: [{ id: akcesoriaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Buty",
                         categories: { connect: [{ id: odziezCategory.id }] },
                     },
                     {
-                        name: "Wygodne spodnie lub spódnice",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Ubrania na wieczór",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Bielizna",
-                        categories: { connect: [{ id: odziezCategory.id }] },
-                    },
-                    {
-                        name: "Piżama",
+                        name: "Bokserki",
                         categories: { connect: [{ id: odziezCategory.id }] },
                     },
                     {
@@ -128,47 +147,42 @@ async function main() {
                         categories: { connect: [{ id: odziezCategory.id }] },
                     },
                     {
-                        name: "Wygodne buty do chodzenia",
+                        name: "Spodenki",
                         categories: { connect: [{ id: odziezCategory.id }] },
                     },
                     {
-                        name: "Buty na wieczorne wyjścia",
+                        name: "Koszulka",
                         categories: { connect: [{ id: odziezCategory.id }] },
                     },
+                ],
+            },
+        },
+    })
+
+    // Tworzenie listy predefiniowanej na weekend w Madrycie
+    const madridList = await prisma.template.create({
+        data: {
+            name: "Weekend w Madrycie",
+            settingColor: "bg-emerald-500",
+            start: true,
+            templateTypeId: cityBreakType.id,
+            tripLength: 2,
+            elements: {
+                create: [
                     {
-                        name: "Kurtka lub sweter",
-                        categories: { connect: [{ id: odziezCategory.id }] },
+                        name: "Parasol",
+                        categories: { connect: [{ id: inneCategory.id }] },
                     },
                     {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
+                        name: "Dokumenty podróży",
+                        categories: { connect: [{ id: inneCategory.id }] },
                     },
                     {
-                        name: "Kapelusz lub czapka",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
+                        name: "Przewodnik turystyczny lub aplikacja z mapą",
+                        categories: { connect: [{ id: inneCategory.id }] },
                     },
                     {
-                        name: "Plecak lub torba na dzień",
-                        categories: { connect: [{ id: akcesoriaCategory.id }] },
-                    },
-                    {
-                        name: "Podstawowe kosmetyki",
-                        categories: { connect: [{ id: higienaCategory.id }] },
-                    },
-                    {
-                        name: "Szczoteczka i pasta do zębów",
-                        categories: { connect: [{ id: higienaCategory.id }] },
-                    },
-                    {
-                        name: "Leki osobiste",
-                        categories: { connect: [{ id: higienaCategory.id }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: higienaCategory.id }] },
-                    },
-                    {
-                        name: "Telefon komórkowy i ładowarka",
+                        name: "Powerbank",
                         categories: {
                             connect: [{ id: technologiaCategory.id }],
                         },
@@ -180,22 +194,80 @@ async function main() {
                         },
                     },
                     {
-                        name: "Powerbank",
+                        name: "Telefon komórkowy i ładowarka",
                         categories: {
                             connect: [{ id: technologiaCategory.id }],
                         },
                     },
                     {
-                        name: "Przewodnik turystyczny lub aplikacja z mapą",
-                        categories: { connect: [{ id: inneCategory.id }] },
+                        name: "Krem z filtrem UV",
+                        categories: { connect: [{ id: higienaCategory.id }] },
                     },
                     {
-                        name: "Dokumenty podróży",
-                        categories: { connect: [{ id: inneCategory.id }] },
+                        name: "Leki osobiste",
+                        categories: { connect: [{ id: higienaCategory.id }] },
                     },
                     {
-                        name: "Parasol",
-                        categories: { connect: [{ id: inneCategory.id }] },
+                        name: "Szczoteczka i pasta do zębów",
+                        categories: { connect: [{ id: higienaCategory.id }] },
+                    },
+                    {
+                        name: "Podstawowe kosmetyki",
+                        categories: { connect: [{ id: higienaCategory.id }] },
+                    },
+                    {
+                        name: "Plecak lub torba na dzień",
+                        categories: {
+                            connect: [{ id: akcesoriaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Kapelusz lub czapka",
+                        categories: {
+                            connect: [{ id: akcesoriaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: {
+                            connect: [{ id: akcesoriaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Kurtka lub sweter",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Buty na wieczorne wyjścia",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Wygodne buty do chodzenia",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Bielizna",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Ubrania na wieczór",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Wygodne spodnie lub spódnice",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Lekkie ubrania na dzień",
+                        categories: { connect: [{ id: odziezCategory.id }] },
                     },
                 ],
             },

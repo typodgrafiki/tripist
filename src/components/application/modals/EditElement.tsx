@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { useModal } from "@/context/ModalContext"
-import { fetchAllCategories, changeElement } from "@/actions/axiosActions"
+import { getAllCategories, changeElement } from "@/actions/axiosActions"
 import { focusInput, mergeCategoriesWithAssignment } from "@/utils/utils"
 import { ICategories, IElements } from "@/types/types"
 import IconPlus from "../icons/plus"
@@ -29,7 +29,7 @@ export default function EditElement({
     const [mergedCategories, setMergedCategories] = useState<ICategories[]>([])
 
     const fetchAndMergeCategories = useCallback(async () => {
-        const allCategories = await fetchAllCategories()
+        const allCategories = await getAllCategories()
         const merged = await mergeCategoriesWithAssignment(
             allCategories,
             assignedCategories

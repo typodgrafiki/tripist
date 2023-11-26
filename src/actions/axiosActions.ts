@@ -8,7 +8,7 @@ import { cookies } from "next/headers"
 export const createList = async (
     name: string,
     duplicateId?: string,
-    color: string
+    color?: string
 ) => {
     const query = { name, duplicateId, color }
     if (!name) {
@@ -18,11 +18,7 @@ export const createList = async (
     return response
 }
 
-export const updateList = async (
-    name: string,
-    listId: string,
-    color: string
-) => {
+export const updateList = async (name: string, listId: string, color?: string) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
@@ -105,13 +101,43 @@ export const createItem = async (name: string, listId: string) => {
     return response
 }
 
-export const fetchAllCategories = async () => {
+export const getAllCategories = async () => {
     try {
         const response = await axios.get("/api/categories")
         return response.data.body as ICategories[]
     } catch (error) {
         console.error("There was an error fetching the categories:", error)
         return []
+    }
+}
+
+export const addCategory = async (nameCategory: string) => {
+    if (!nameCategory) {
+        throw "Nie uzupełniono nazwy"
+    }
+
+    const data = {
+        name: nameCategory,
+    }
+
+    try {
+        const response = await axios.post(`/api/categories/`, data)
+        return response
+    } catch (error) {
+        return null
+    }
+}
+
+export const deleteCategory = async (idCategory: number) => {
+    if (!idCategory) {
+        throw "Nie uzupełniono id"
+    }
+
+    try {
+        const response = await axios.delete(`/api/categories/${idCategory}`)
+        return response
+    } catch (error) {
+        return null
     }
 }
 
