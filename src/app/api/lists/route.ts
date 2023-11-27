@@ -60,26 +60,62 @@ export async function POST(request: Request) {
 
         // Jeśli duplikat
         if (duplicateId) {
-            const originalItems = await prisma.listItem.findMany({
-                where: {
-                    listId: duplicateId,
-                },
-                include: {
-                    categories: true,
-                },
-            })
+            let originalItems
+
+            // Sprawdzanie, czy duplicateId jest liczbą (jest Template)
+            if (typeof duplicateId === "number") {
+                originalItems = await prisma.templateItem.findMany({
+                    where: {
+                        templateId: duplicateId,
+                    },
+                    include: {
+                        categories: true,
+                    },
+                })
+            } else {
+                originalItems = await prisma.listItem.findMany({
+                    where: {
+                        listId: duplicateId,
+                    },
+                    include: {
+                        categories: true,
+                    },
+                })
+            }
 
             // Tworzymy duplikaty tych elementów dla nowej listy
             for (const item of originalItems) {
+                // Sprawdzenie, czy użytkownik posiada już kategorię o tej samej nazwie
+                let categoryConnections = []
+                for (const category of item.categories) {
+                    let userCategory = await prisma.category.findFirst({
+                        where: {
+                            userId: userId, // załóżmy, że userId jest dostępny w tym kontekście
+                            name: category.name,
+                        },
+                    })
+
+                    // Jeśli kategoria nie istnieje, stwórz ją
+                    if (!userCategory) {
+                        userCategory = await prisma.category.create({
+                            data: {
+                                name: category.name,
+                                userId: userId,
+                            },
+                        })
+                    }
+
+                    categoryConnections.push({ id: userCategory.id })
+                }
+
+                // Tworzenie nowego elementu listy z odpowiednimi kategoriami
                 const newItem = await prisma.listItem.create({
                     data: {
                         name: item.name,
                         status: false,
                         listId: newList.id,
                         categories: {
-                            connect: item.categories.map((category) => ({
-                                id: category.id,
-                            })),
+                            connect: categoryConnections,
                         },
                     },
                     include: {
@@ -98,6 +134,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
+        console.log(error)
         return NextResponse.json(
             { error: "Internal Server Error" },
             { status: 500 }

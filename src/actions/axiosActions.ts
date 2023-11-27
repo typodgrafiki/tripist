@@ -7,18 +7,24 @@ import { cookies } from "next/headers"
 
 export const createList = async (
     name: string,
-    duplicateId?: string,
+    duplicateId?: string | number,
     color?: string
 ) => {
     const query = { name, duplicateId, color }
+
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
+
     const response = await axios.post("/api/lists", query)
     return response
 }
 
-export const updateList = async (name: string, listId: string, color?: string) => {
+export const updateList = async (
+    name: string,
+    listId: string,
+    color?: string
+) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
@@ -184,6 +190,28 @@ export const deleteSession = async () => {
     try {
         const response = await axios.post(`/api/auth/logout`)
         return response
+    } catch (error) {
+        return null
+    }
+}
+
+export const getSampleLists = async () => {
+    try {
+        const response = await axios.get(`/api/sample/lists`)
+        return response.data.body
+    } catch (error) {
+        return null
+    }
+}
+
+export const getSampleList = async (listId: number) => {
+    if (!listId) {
+        throw "Nie uzupełniono id"
+    }
+
+    try {
+        const response = await axios.get(`/api/sample/lists/${listId}`)
+        return response.data.body
     } catch (error) {
         return null
     }

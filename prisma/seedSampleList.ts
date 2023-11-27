@@ -1,91 +1,114 @@
 // npx prisma db seed
 
 import { PrismaClient } from "@prisma/client"
+import { createOrGetCategory } from "./seedHelpers"
 
 const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie typów wyjazdów i zapisywanie ich ID
     const cityBreakType = await prisma.templateType.create({
-        data: { name: "City Break" },
-    })
-    const allInclusiveResortType = await prisma.templateType.create({
-        data: { name: "All-Inclusive Resort" },
-    })
-    const trekkingHikingType = await prisma.templateType.create({
-        data: { name: "Trekking / Hiking" },
-    })
-    const beachVacationType = await prisma.templateType.create({
-        data: { name: "Plażowy Wypoczynek" },
-    })
-    const skiingSnowboardingType = await prisma.templateType.create({
-        data: { name: "Narciarstwo / Snowboarding" },
-    })
-    const campingGlampingType = await prisma.templateType.create({
-        data: { name: "Kamping / Glamping" },
-    })
-    const businessTripType = await prisma.templateType.create({
-        data: { name: "Podróże Służbowe" },
-    })
-    const educationalTripType = await prisma.templateType.create({
-        data: { name: "Podróże Edukacyjne" },
-    })
-    const culturalTripType = await prisma.templateType.create({
-        data: { name: "Podróże Kulturowe" },
-    })
-    const adventureTripType = await prisma.templateType.create({
-        data: { name: "Podróże Przygodowe" },
-    })
-    const seaCruiseType = await prisma.templateType.create({
-        data: { name: "Rejsy Morskie" },
-    })
-    const musicFestivalType = await prisma.templateType.create({
-        data: { name: "Festiwale Muzyczne" },
-    })
-    const wellnessSpaType = await prisma.templateType.create({
-        data: { name: "Wellness i Spa" },
-    })
-    const culinaryTripType = await prisma.templateType.create({
-        data: { name: "Podróże Kulinarne" },
-    })
-    const safariNatureTripType = await prisma.templateType.create({
-        data: { name: "Safari / Podróże Przyrodnicze" },
-    })
-    const waterSportsType = await prisma.templateType.create({
-        data: { name: "Sporty Wodne" },
-    })
-    const yogaRetreatsType = await prisma.templateType.create({
-        data: { name: "Joga i Retreats" },
-    })
-    const photographicTripType = await prisma.templateType.create({
-        data: { name: "Podróże Fotograficzne" },
-    })
-    const familyTripType = await prisma.templateType.create({
-        data: { name: "Podróże Rodzinne" },
-    })
-    const backpackingType = await prisma.templateType.create({
-        data: { name: "Backpacking / Mochilero" },
+        data: { name: "city-break" },
     })
     const trainingType = await prisma.templateType.create({
-        data: { name: "Trening" },
+        data: { name: "training" },
+    })
+    const businessType = await prisma.templateType.create({
+        data: { name: "business" },
+    })
+    const vacationType = await prisma.templateType.create({
+        data: { name: "vacation" },
+    })
+    const trekkingType = await prisma.templateType.create({
+        data: { name: "trekking" },
+    })
+    const campingType = await prisma.templateType.create({
+        data: { name: "camping" },
     })
 
+    // const allInclusiveResortType = await prisma.templateType.create({
+    //     data: { name: "All-Inclusive Resort" },
+    // })
+    // const trekkingHikingType = await prisma.templateType.create({
+    //     data: { name: "Trekking / Hiking" },
+    // })
+    // const beachVacationType = await prisma.templateType.create({
+    //     data: { name: "Plażowy Wypoczynek" },
+    // })
+    // const skiingSnowboardingType = await prisma.templateType.create({
+    //     data: { name: "Narciarstwo / Snowboarding" },
+    // })
+    // const campingGlampingType = await prisma.templateType.create({
+    //     data: { name: "Kamping / Glamping" },
+    // })
+    // const businessTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Służbowe" },
+    // })
+    // const educationalTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Edukacyjne" },
+    // })
+    // const culturalTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Kulturowe" },
+    // })
+    // const adventureTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Przygodowe" },
+    // })
+    // const seaCruiseType = await prisma.templateType.create({
+    //     data: { name: "Rejsy Morskie" },
+    // })
+    // const musicFestivalType = await prisma.templateType.create({
+    //     data: { name: "Festiwale Muzyczne" },
+    // })
+    // const wellnessSpaType = await prisma.templateType.create({
+    //     data: { name: "Wellness i Spa" },
+    // })
+    // const culinaryTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Kulinarne" },
+    // })
+    // const safariNatureTripType = await prisma.templateType.create({
+    //     data: { name: "Safari / Podróże Przyrodnicze" },
+    // })
+    // const waterSportsType = await prisma.templateType.create({
+    //     data: { name: "Sporty Wodne" },
+    // })
+    // const yogaRetreatsType = await prisma.templateType.create({
+    //     data: { name: "Joga i Retreats" },
+    // })
+    // const photographicTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Fotograficzne" },
+    // })
+    // const familyTripType = await prisma.templateType.create({
+    //     data: { name: "Podróże Rodzinne" },
+    // })
+    // const backpackingType = await prisma.templateType.create({
+    //     data: { name: "Backpacking / Mochilero" },
+    // })
+
     // Tworzenie kategorii
-    const odziezCategory = await prisma.templateCategory.create({
-        data: { name: "Odzież" },
-    })
-    const akcesoriaCategory = await prisma.templateCategory.create({
-        data: { name: "Akcesoria" },
-    })
-    const higienaCategory = await prisma.templateCategory.create({
-        data: { name: "Higiena" },
-    })
-    const technologiaCategory = await prisma.templateCategory.create({
-        data: { name: "Elektronika" },
-    })
-    const inneCategory = await prisma.templateCategory.create({
-        data: { name: "Inne" },
-    })
+    // const odziezCategory = await prisma.templateCategory.create({
+    //     data: { name: "Odzież" },
+    // })
+    // const akcesoriaCategory = await prisma.templateCategory.create({
+    //     data: { name: "Akcesoria" },
+    // })
+    // const higienaCategory = await prisma.templateCategory.create({
+    //     data: { name: "Higiena" },
+    // })
+    // const technologiaCategory = await prisma.templateCategory.create({
+    //     data: { name: "Elektronika" },
+    // })
+    // const inneCategory = await prisma.templateCategory.create({
+    //     data: { name: "Inne" },
+    // })
+
+    const odziezCategory = await createOrGetCategory("Odzież")
+    const akcesoriaCategory = await createOrGetCategory("Akcesoria")
+    const higienaCategory = await createOrGetCategory("Higiena")
+    const technologiaCategory = await createOrGetCategory("Elektronika")
+    const inneCategory = await createOrGetCategory("Inne")
+    const sprzetKempingowyCategory =
+        await createOrGetCategory("Sprzęt kempingowy")
+    const foodCategory = await createOrGetCategory("Jedzenie")
 
     // Tworzenie listy predefiniowanej dla treningu na siłowni
     const gymList = await prisma.template.create({

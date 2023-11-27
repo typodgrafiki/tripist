@@ -71,3 +71,19 @@ export interface IUserData {
     surname?: string
     password?: string
 }
+
+export interface ISampleList {
+    id: number
+    name: string
+    settingColor: string
+    tripLength?: number
+}
+
+export interface ISampleListElement {
+    name: string
+    categories: ISampleListElement[]
+}
+
+export interface ISampleListElement {
+    name: string
+}
