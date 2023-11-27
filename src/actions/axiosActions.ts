@@ -160,6 +160,21 @@ export const createUserFetch = async (data: ICreateUser) => {
     }
 }
 
+export const confirmSignUp = async (data) => {
+    // TODO Odbieramy dane i lecimy do backend
+
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    // try {
+    //     const response = await axios.patch(`/api/auth/sign-up`, data)
+    //     return response
+    // } catch (error) {
+    //     return null
+    // }
+}
+
 export const loginUserFetch = async (data: ILoginUser) => {
     if (!data) {
         throw "Nie uzupełniono danych"

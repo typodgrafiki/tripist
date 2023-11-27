@@ -11,21 +11,34 @@ datasource db {
 }
 
 model User {
-  id                String    @id @default(uuid())
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @default(now())
-  name              String?
-  surname           String?
-  email             String    @unique
-  image             String?
-  password          String
-  darkTheme         Boolean   @default(true)
-  categories        Category[]
-  preferences       String[]
-  lists             List[]    @relation("UserLists")
-  changeLogs        ChangeLog[]
-  sessions          Session[]
+  id              String       @id @default(uuid())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  name            String?
+  surname         String?
+  email           String       @unique
+  confirmed       Boolean      @default(false)
+  image           String?
+  password        String
+  darkTheme       Boolean      @default(false)
+  categories      Category[]
+  preferences     String[]
+  lists           List[]       @relation("UserLists")
+  changeLogs      ChangeLog[]
+  sessions        Session[]
+  signUpCode      SignUpCodes?  @relation(fields: [signUpCodeId], references: [id])
+  signUpCodeId    String? @unique
 }
+
+model SignUpCodes {
+  id             String    @id @default(uuid())
+  code           Int
+  expiresAt      DateTime
+  User           User?     @relation
+  userId         String?
+}
+
+
 
 model Session {
   id                String    @id @default(uuid())

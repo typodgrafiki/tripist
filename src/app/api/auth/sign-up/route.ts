@@ -4,10 +4,11 @@ import { hash } from "bcrypt"
 import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
 import { v4 as uuidv4 } from "uuid"
+import { Resend } from "resend"
+
+const resend = new Resend(process.env.RESEND_TOKEN)
 
 export async function POST(request: Request) {
-    // TODO dodac zabezpiecenie autoryzacje
-
     const data = await request.json()
     const { name, surname, email, password } = data
     const userId = `user_${uuidv4()}`
@@ -53,22 +54,43 @@ export async function POST(request: Request) {
             )
         }
 
+        // Kod potwierdzający
+        const signUpCode = Math.floor(Math.random() * 9000) + 1000
+        const expiryDate = new Date()
+        expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+
+        const newSignUpCode = await prisma.signUpCodes.create({
+            data: {
+                code: signUpCode,
+                expiresAt: expiryDate,
+                userId: newUser.id, // Powiązanie kodu z nowo utworzonym użytkownikiem
+            },
+        })
+
+        // Wysylanie maila z kodem potwierdzającym
+        resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: newUser.email,
+            subject: "Tripist - kod potwierdzajacy rejestrację",
+            html: `<p>Super, twój kod to:</p><p><b>${signUpCode}</b></p>`,
+        })
+
         // Tworzenie przykładowych list
-        const sampleData = await copyPredefinedListsToUser(newUser.id)
+        // const sampleData = await copyPredefinedListsToUser(newUser.id)
 
         //Tworzenie sesji
-        const { password: newPasswordHash, ...newUserBody } = newUser
-        const newSession = await createSession(newUser.id)
-        if ("id" in newSession) {
-            cookies().set({
-                name: "tripist_auth",
-                value: newSession.id,
-                httpOnly: true,
-                path: "/",
-            })
-        }
+        // const { userId } = newUser
+        // const newSession = await createSession(newUser.id)
+        // if ("id" in newSession) {
+        //     cookies().set({
+        //         name: "tripist_auth",
+        //         value: newSession.id,
+        //         httpOnly: true,
+        //         path: "/",
+        //     })
+        // }
 
-        return NextResponse.json(newUserBody, { status: 200 })
+        return NextResponse.json(userId, { status: 200 })
     } catch (e) {
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
@@ -76,6 +98,33 @@ export async function POST(request: Request) {
         )
     }
 }
+
+// export async function PATCH(request: Request) {
+//     // odbierz userid i kod
+
+//     try {
+//         // const elementId = parseInt(context.params.id, 10)
+
+//         // const updatedElement = await prisma.listItem.update({
+//         //     where: {
+//         //         id: elementId,
+//         //     },
+//         //     data: {
+//         //         status: status,
+//         //     },
+//         // })
+
+//         return NextResponse.json({ body: updatedElement }, { status: 200 })
+//     } catch (error) {
+//         return NextResponse.json(
+//             { error: "Internal Server Error" },
+//             { status: 500 }
+//         )
+//     }
+// }
+
+
+
 async function copyPredefinedListsToUser(userId: string) {
     // Pobieranie list z właściwością start == true
     const predefinedLists = await prisma.template.findMany({
