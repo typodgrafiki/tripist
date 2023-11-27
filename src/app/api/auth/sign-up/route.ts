@@ -114,15 +114,38 @@ async function copyPredefinedListsToUser(userId: string) {
 
             // Tworzenie kategorii dla elementu listy
             for (const category of item.categories) {
-                await prisma.category.create({
-                    data: {
+                // Sprawdzanie, czy kategoria już istnieje
+                const existingCategory = await prisma.category.findFirst({
+                    where: {
                         name: category.name,
                         userId: userId,
-                        items: {
-                            connect: { id: newListItem.id },
-                        },
                     },
                 })
+
+                if (existingCategory) {
+                    // Jeśli kategoria istnieje, połącz ją z nowym elementem listy
+                    await prisma.category.update({
+                        where: {
+                            id: existingCategory.id,
+                        },
+                        data: {
+                            items: {
+                                connect: { id: newListItem.id },
+                            },
+                        },
+                    })
+                } else {
+                    // Jeśli kategoria nie istnieje, utwórz nową
+                    await prisma.category.create({
+                        data: {
+                            name: category.name,
+                            userId: userId,
+                            items: {
+                                connect: { id: newListItem.id },
+                            },
+                        },
+                    })
+                }
             }
         }
     }

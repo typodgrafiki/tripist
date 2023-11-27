@@ -18,6 +18,7 @@ export async function GET(request: Request, context: IApiContext) {
         const list = await prisma.list.findUnique({
             where: {
                 id: listId,
+                userId: userId,
             },
             include: {
                 elements: {
@@ -70,6 +71,7 @@ export async function DELETE(request: Request, context: IApiContext) {
         const delatedList = await prisma.list.delete({
             where: {
                 id: listId,
+                userId: userId,
             },
         })
 
@@ -108,6 +110,7 @@ export async function PATCH(request: Request, context: IApiContext) {
         const updatedList = await prisma.list.update({
             where: {
                 id: listId,
+                userId: userId,
             },
             data: {
                 name: newName.toString(),

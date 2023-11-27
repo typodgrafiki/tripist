@@ -34,6 +34,7 @@ export async function DELETE(request: Request, context: IApiContext) {
         const deletedCategory = await prisma.category.deleteMany({
             where: {
                 id: categoryId,
+                userId: userId,
             },
         })
 

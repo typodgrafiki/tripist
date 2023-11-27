@@ -27,6 +27,16 @@
         );
     }
 
+    .min-h-screenSmall {
+        min-height: 100vh; /* fallback */
+        min-height: 100svb;
+    }
+
+    .min-h-screenLarge {
+        min-height: 100vh; /* fallback */
+        min-height: 100lvb;
+    }
+
     .animated {
         transition: all 0.2s ease;
     }

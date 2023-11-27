@@ -5,6 +5,10 @@ import { useQuery } from "@tanstack/react-query"
 import { getListsAction } from "@/actions/axiosActions"
 import { ILists } from "@/types/types"
 import IconPlus from "../icons/plus"
+import { LoadingContentEmpty } from "./LoadingContent"
+import ContentNoData from "./NoDataContent"
+import CreateList from "@/components/application/modals/CreateList"
+import { useModal } from "@/context/ModalContext"
 
 export default function ContentEmpty({
     handleOpenModal,
@@ -13,6 +17,13 @@ export default function ContentEmpty({
     handleOpenModal?: () => void
     dashboard?: boolean
 }) {
+    const { setIsModalOpen, setModalContent } = useModal()
+
+    const handleCreateListModal = () => {
+        setModalContent(<CreateList />)
+        setIsModalOpen(true)
+    }
+
     const {
         data: lists,
         isLoading,
@@ -25,8 +36,8 @@ export default function ContentEmpty({
         },
     })
 
-    if (isLoading) return <div>Loading</div>
-    if (isError || !lists) return <div>Error</div>
+    if (isLoading) return <LoadingContentEmpty />
+    if (isError || !lists) return <ContentNoData />
 
     return (
         <div className="text-center grow flex flex-col justify-center items-center">
@@ -48,7 +59,7 @@ export default function ContentEmpty({
                                 </p>
                                 <Button
                                     className="btn btn-primary mx-auto items-center"
-                                    // onClick={handleOpenModal}
+                                    onClick={handleCreateListModal}
                                 >
                                     Dodaj listę
                                     <IconPlus className="ml-2" />

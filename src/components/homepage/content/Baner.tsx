@@ -9,7 +9,7 @@ export default async function Baner() {
     const { userId } = await useAuth()
 
     return (
-        <div className="baner pt-20 pb-8 mb-14 h-screen min-h-screen justify-between mx-auto px-8 flex flex-col gap-4 md:flex-row md:justify-center md:items-stretch md:gap-10 md:py-40 md:px-14 md:mb-0 ">
+        <div className="baner pt-20 pb-8 mb-14 h-screen min-h-screenSmall justify-between mx-auto px-8 flex flex-col gap-4 md:flex-row md:justify-center md:items-stretch md:gap-10 md:py-40 md:px-14 md:mb-0 ">
             <div className="caption relative text-center order-1 md:flex md:flex-col md:items-start md:justify-center md:w-2/4 md:text-left">
                 <h3 className="text-1xl text-gray-500 mb-1 md:text-2xl md:mb-2">
                     Wakacje bez zmartwień.

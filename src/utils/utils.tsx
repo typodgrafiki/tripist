@@ -1,9 +1,7 @@
 "use client"
 
 import {
-    IList,
     IElements,
-    ILists,
     ICategories,
     TListItemCategoriesUpdate,
 } from "@/types/types"
@@ -87,16 +85,6 @@ export function mergeCategoriesWithAssignment(
         return []
     }
 }
-
-// export function activeCategories(mergedCategories: ICategories[]) {
-//     const categoriesWithAssignedTrue = mergedCategories.filter(
-//         (category) => category.assigned
-//     )
-//     const cleanedCategories = categoriesWithAssignedTrue.map(
-//         ({ assigned, ...rest }) => rest
-//     )
-//     return cleanedCategories
-// }
 
 export function activeCategories(mergedCategories: ICategories[]) {
     return mergedCategories.reduce(

@@ -95,8 +95,9 @@ const ListCategories = () => {
 
     // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
 
-    if (isLoading) return <div>Loading...</div>
-    if (isError || !categories) return <div>Error ładowania kategorii</div>
+    if (isLoading) return <div className="mt-4">Loading...</div>
+    if (isError || !categories)
+        return <div className="mt-4">Błąd ładowania kategorii</div>
     return (
         <ul className="category-list-border mt-3">
             {categories.map((item) => (

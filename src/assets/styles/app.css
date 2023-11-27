@@ -28,15 +28,27 @@ body {
     border-radius: 0 5px 5px 0;
 }
 
-.my-lists-loading li {
+.my-lists-loading > li,
+.my-lists-loading > div {
     list-style: none;
-    background-color: #d2d3d9;
-    height: 10px;
+    /* width: 65%; */
+    background-color: #d8d9e0;
+    height: 13px;
     border-radius: 3px;
-    margin-bottom: 29px;
-    display: block;
-    position: relative;
-    overflow: hidden;
+    margin-bottom: 26px;
+    /* display: block; */
+}
+
+.my-lists-loading > .title {
+    height: 15px;
+    /* width: 85%; */
+    margin-bottom: 35px;
+}
+
+.my-lists-loading > .wide {
+    height: 33px;
+    opacity: 0.5;
+    margin-bottom: 17px;
 }
 
 .element-row .round {

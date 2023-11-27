@@ -1,21 +1,38 @@
-export default function LoadingContent() {
+export function LoadingContent() {
     return (
-        <>
-            <div className="flex justify-between items-center mt-2 mb-5">
-                <div className="bg-gray-300 h-5 w-1/2 rounded-md"></div>
-                <div className="flex gap-3">
-                    <div className="bg-gray-300 h-5 w-5 rounded-md"></div>
-                    <div className="bg-gray-300 h-5 w-5 rounded-md"></div>
-                    <div className="bg-gray-300 h-5 w-5 rounded-md"></div>
-                </div>
+        <div className="px-2 pt-4">
+            <div className="my-lists-loading flex justify-between items-center gap-5">
+                <div className="title w-4/12"></div>
+                <ul className="my-lists-loading flex gap-5">
+                    <li className="title w-[15px]"></li>
+                    <li className="title w-[15px]"></li>
+                    <li className="title w-[15px]"></li>
+                </ul>
             </div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-            <div className="bg-white h-12 rounded-md mb-2 opacity-60"></div>
-        </>
+            <ul className="my-lists-loading flex gap-5 justify-between">
+                <li className="w-full max-w-[110px]"></li>
+                <li className="w-full max-w-[85px]"></li>
+            </ul>
+            <ul className="my-lists-loading">
+                <li className="wide"></li>
+                <li className="wide"></li>
+                <li className="wide"></li>
+                <li className="wide"></li>
+                <li className="wide"></li>
+            </ul>
+            <ul className="my-lists-loading mt-10">
+                <li className="max-w-[110px]"></li>
+            </ul>
+        </div>
+    )
+}
+
+export function LoadingContentEmpty() {
+    return (
+        <ul className="my-lists-loading px-2 pt-4 flex flex-col grow items-center justify-center">
+            <li className="title w-4/12"></li>
+            <li className="wide w-8/12"></li>
+            <li className="wide w-6/12"></li>
+        </ul>
     )
 }

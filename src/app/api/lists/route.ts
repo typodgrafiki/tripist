@@ -8,7 +8,6 @@
 import { NextResponse } from "next/server"
 import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
-import { ICategories } from "@/types/types"
 
 export async function GET() {
     const { userId } = await useAuth()

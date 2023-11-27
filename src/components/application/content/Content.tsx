@@ -19,9 +19,11 @@ import IconPen from "../icons/pen"
 import CreateList from "../modals/CreateList"
 import FilterCategories from "./FilterCategories"
 import ContentEmpty from "./ContentEmpty"
-import LoadingContent from "./LoadingContent"
+import { LoadingContent } from "./LoadingContent"
 import Sort from "../buttons/Sort"
 import { SortBy, SortDirection } from "@/utils/utils"
+import ContentErrorLoading from "./ErrorContent"
+import ContentNoData from "./NoDataContent"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -89,11 +91,9 @@ export default function Content({ id }: { id: string }) {
         )
     }, [elements, selectedCategory, sortCriteria])
 
-    // return <Title loading />
-
     if (isLoading) return <LoadingContent />
-    if (isError) return <div>Error</div>
-    if (!elements || !listData) return <div>No data</div>
+    if (isError) return <ContentErrorLoading />
+    if (!elements || !listData) return <ContentNoData />
 
     const { name, id: listId } = listData
 

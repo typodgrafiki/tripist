@@ -37,16 +37,15 @@ export default function CreateLAddElements({
             )
 
             setName("")
-
             Toastify({
                 className: "toastify-success",
                 text: `Utworzono element ${response.data.body.name}`,
                 duration: 2000,
             }).showToast()
 
+            focusInput(inputRef)
             setTimeout(() => {
                 setIsSuccessFallback(false)
-                focusInput(inputRef)
             }, 1500)
         },
         onError: (error) => {

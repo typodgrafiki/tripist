@@ -17,6 +17,7 @@ import Button from "@/components/ui/Button"
 import IconPlus from "../icons/plus"
 import arrowDown from "@/assets/images/dashboard/arrow-down.svg"
 import Image from "next/image"
+import ListsErrorLoading from "./Error"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -45,7 +46,7 @@ export default function Lists() {
     })
 
     if (isLoading) return <LoadingLists />
-    if (isError) return <div>Error</div>
+    if (isError) return <ListsErrorLoading />
 
     return (
         <div>
