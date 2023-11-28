@@ -2,7 +2,7 @@
 
 import { useForm, useFormState } from "react-hook-form"
 import Link from "next/link"
-import { ICreateUser } from "@/types/types"
+import { ICodeSignUp, ICreateUser } from "@/types/types"
 import { confirmSignUp, createUserFetch } from "@/actions/axiosActions"
 import Toastify from "toastify-js"
 import { useState } from "react"
@@ -12,7 +12,6 @@ export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
     const [showCode, setShowCode] = useState(false)
     const [userId, setUserId] = useState("")
-    const router = useRouter()
 
     const { register, handleSubmit, formState } = useForm<ICreateUser>({
         defaultValues: {
@@ -47,14 +46,14 @@ export default function RegisterForm() {
             <h3 className="truncate text-xl font-medium mb-4">
                 Zarejestruj się
             </h3>
-            <div className="relative">
+            <div className="relative overflow-hidden">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className={`w-full relative ${
                         showCode ? "-left-full" : "left-0"
                     }`}
                 >
-                    <div className="flex flex-col justify-between gap-3 mb-1">
+                    <div className="flex flex-col justify-between gap-3 mb-1 p-1">
                         {/* <input
                                 type="text"
                                 value={name}
@@ -146,7 +145,6 @@ export default function RegisterForm() {
                                 Nie zapisano zmian. Spróbuj ponownie.
                             </div>
                         )} */}
-                    {userId}
                 </form>
                 {showCode && (
                     <ShowCode
@@ -179,6 +177,7 @@ const ShowCode = ({
     showCode: boolean
     userId: string
 }) => {
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [code, setCode] = useState<null | number>(null)
 
@@ -190,27 +189,25 @@ const ShowCode = ({
     })
     const { errors } = formState
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: ICodeSignUp) => {
         setLoading(true)
-        console.log(data)
-        // const result = await confirmSignUp(data)
+        const result = await confirmSignUp(data)
 
-        // if (result) {
-        //     // router.push("/dashboard")
-
-        //     console.log("test")
-        // } else {
-        //     Toastify({
-        //         className: "toastify-error",
-        //         text: `Nie udało się dodać użytkownika`,
-        //     }).showToast()
-        //     setLoading(false)
-        // }
+        if (result?.status == 200) {
+            router.push("/dashboard")
+        } else {
+            const { body: message } = result?.data
+            Toastify({
+                className: "toastify-error",
+                text: message,
+            }).showToast()
+            setLoading(false)
+        }
     }
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className={`absolute inset-0 w-full flex flex-col justify-center items-center ${
+            className={`absolute inset-0 w-full flex flex-col justify-center p-1 ${
                 showCode ? "" : "left-full"
             }`}
         >
@@ -220,11 +217,14 @@ const ShowCode = ({
                 value={userId}
                 readOnly
             />
-            <label>Kod</label>
+
+            <label className="mb-2 whitespace-nowrap font-medium mr-3">
+                Wpisz kod
+            </label>
             <input
                 type="text"
-                className={`form-control grow w-full`}
-                placeholder="0000"
+                className={`form-control w-full mb-3`}
+                placeholder="----"
                 disabled={loading}
                 {...register("code", {
                     required: {
@@ -233,11 +233,11 @@ const ShowCode = ({
                     },
                 })}
             />
+
             {errors.code && (
                 <div className="error-message">{errors.code.message}</div>
             )}
-            <button className="btn btn-primary">Wyślij</button>
-            {userId}
+            <button className="btn btn-primary w-full">Wyślij</button>
         </form>
     )
 }

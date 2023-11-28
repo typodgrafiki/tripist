@@ -1,7 +1,14 @@
 "use client"
 
-import { ICategories, ICreateUser, ILoginUser, IUserData } from "@/types/types"
+import {
+    ICategories,
+    ICodeSignUp,
+    ICreateUser,
+    ILoginUser,
+    IUserData,
+} from "@/types/types"
 import axios from "axios"
+import { AxiosError } from "axios"
 import { activeCategories } from "@/utils/utils"
 import { cookies } from "next/headers"
 
@@ -160,19 +167,26 @@ export const createUserFetch = async (data: ICreateUser) => {
     }
 }
 
-export const confirmSignUp = async (data) => {
-    // TODO Odbieramy dane i lecimy do backend
-
+export const confirmSignUp = async (data: ICodeSignUp) => {
     if (!data) {
         throw "Nie uzupełniono danych"
     }
 
-    // try {
-    //     const response = await axios.patch(`/api/auth/sign-up`, data)
-    //     return response
-    // } catch (error) {
-    //     return null
-    // }
+    try {
+        const response = await axios.patch(`/api/auth/sign-up`, data)
+        return response
+    } catch (error: any) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
 }
 
 export const loginUserFetch = async (data: ILoginUser) => {
@@ -184,7 +198,16 @@ export const loginUserFetch = async (data: ILoginUser) => {
         const response = await axios.post(`/api/auth/sign-in`, data)
         return response
     } catch (error) {
-        return null
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 }
 

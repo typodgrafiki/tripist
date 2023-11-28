@@ -42,6 +42,13 @@ export async function POST(request: Request) {
             )
         }
 
+        if (user.confirmed === false) {
+            return NextResponse.json(
+                { message: "Email niepotwierdzony" },
+                { status: 403 }
+            )
+        }
+
         const { password: passwordHash, ...userBody } = user
 
         const newSession = await createSession(user.id)

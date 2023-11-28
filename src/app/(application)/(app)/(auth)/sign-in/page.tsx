@@ -25,29 +25,17 @@ export default function RegisterForm() {
 
         const result = await loginUserFetch(data)
 
-        if (result) {
+        if (result?.status === 200) {
             setLoading(false)
             router.push("/dashboard")
         } else {
+            const { message } = result?.data
             Toastify({
                 className: "toastify-error",
-                text: `Niepoprawny login lub hasło`,
+                text: message,
             }).showToast()
             setLoading(false)
         }
-
-        // const result = await createUser(data)
-
-        // if (result.status === 200) {
-        //     // console.log(result?.data)
-        //     router.push("/sign-in")
-        // } else {
-        //     Toastify({
-        //         className: "toastify-error",
-        //         text: `Nie udało się dodać użytkownika`,
-        //     }).showToast()
-        //     setLoading(false)
-        // }
     }
 
     return (

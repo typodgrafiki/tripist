@@ -5,6 +5,7 @@ import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
 import { v4 as uuidv4 } from "uuid"
 import { Resend } from "resend"
+import { sendEmailSignCode } from "@/actions/sendEmail"
 
 const resend = new Resend(process.env.RESEND_TOKEN)
 
@@ -67,28 +68,10 @@ export async function POST(request: Request) {
             },
         })
 
-        // Wysylanie maila z kodem potwierdzającym
-        resend.emails.send({
-            from: "onboarding@resend.dev",
-            to: newUser.email,
-            subject: "Tripist - kod potwierdzajacy rejestrację",
-            html: `<p>Super, twój kod to:</p><p><b>${signUpCode}</b></p>`,
-        })
-
-        // Tworzenie przykładowych list
-        // const sampleData = await copyPredefinedListsToUser(newUser.id)
-
-        //Tworzenie sesji
-        // const { userId } = newUser
-        // const newSession = await createSession(newUser.id)
-        // if ("id" in newSession) {
-        //     cookies().set({
-        //         name: "tripist_auth",
-        //         value: newSession.id,
-        //         httpOnly: true,
-        //         path: "/",
-        //     })
-        // }
+        const sendEmail = await sendEmailSignCode(
+            signUpCode.toString(),
+            email.toString()
+        )
 
         return NextResponse.json(userId, { status: 200 })
     } catch (e) {
@@ -99,31 +82,62 @@ export async function POST(request: Request) {
     }
 }
 
-// export async function PATCH(request: Request) {
-//     // odbierz userid i kod
+export async function PATCH(request: Request) {
+    const data = await request.json()
+    const { code, userId } = data
+    const codeNumber = parseInt(code, 10)
 
-//     try {
-//         // const elementId = parseInt(context.params.id, 10)
+    try {
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+        })
 
-//         // const updatedElement = await prisma.listItem.update({
-//         //     where: {
-//         //         id: elementId,
-//         //     },
-//         //     data: {
-//         //         status: status,
-//         //     },
-//         // })
+        const signUpCode = await prisma.signUpCodes.findFirst({
+            where: { userId: userId },
+        })
 
-//         return NextResponse.json({ body: updatedElement }, { status: 200 })
-//     } catch (error) {
-//         return NextResponse.json(
-//             { error: "Internal Server Error" },
-//             { status: 500 }
-//         )
-//     }
-// }
+        // Sprawdź, czy kod się zgadza i użytkownik istnieje
+        if (signUpCode && signUpCode.code === codeNumber && user) {
+            await prisma.user.update({
+                where: { id: userId },
+                data: { confirmed: true },
+            })
 
+            await prisma.signUpCodes.deleteMany({
+                where: { userId: userId },
+            })
 
+            // Tworzenie przykładowych list
+            const sampleData = await copyPredefinedListsToUser(user.id)
+
+            //Tworzenie sesji
+            const newSession = await createSession(user.id)
+            if ("id" in newSession) {
+                cookies().set({
+                    name: "tripist_auth",
+                    value: newSession.id,
+                    httpOnly: true,
+                    path: "/",
+                })
+            }
+
+            return NextResponse.json(
+                { message: "Potwierdzono użytkownika" },
+                { status: 200 }
+            )
+        } else {
+            return NextResponse.json(
+                { body: "Niepoprawky kod" },
+                { status: 400 }
+            )
+        }
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Internal Server Error" },
+            { status: 500 }
+        )
+    }
+}
 
 async function copyPredefinedListsToUser(userId: string) {
     // Pobieranie list z właściwością start == true

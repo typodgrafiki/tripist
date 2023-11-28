@@ -87,3 +87,8 @@ export interface ISampleListElement {
 export interface ISampleListElement {
     name: string
 }
+
+export interface ICodeSignUp {
+    code: string
+    userId: string
+}
