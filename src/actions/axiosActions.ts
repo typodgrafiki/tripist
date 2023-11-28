@@ -163,7 +163,16 @@ export const createUserFetch = async (data: ICreateUser) => {
         const response = await axios.post(`/api/auth/sign-up`, data)
         return response
     } catch (error) {
-        return null
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
     }
 }
 

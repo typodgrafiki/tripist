@@ -4,10 +4,7 @@ import { hash } from "bcrypt"
 import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
 import { v4 as uuidv4 } from "uuid"
-import { Resend } from "resend"
-import { sendEmailSignCode } from "@/actions/sendEmail"
-
-const resend = new Resend(process.env.RESEND_TOKEN)
+import { sendEmailSignCode } from "@/email/sendEmail"
 
 export async function POST(request: Request) {
     const data = await request.json()

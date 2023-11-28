@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
+const baseUrl = process.env.BASE_URL
+
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     const sessionCookie = request.cookies.get("tripist_auth")?.value || null
@@ -9,9 +11,7 @@ export async function middleware(request: NextRequest) {
         if (sessionCookie) {
             const isValid = await checkSession(sessionCookie)
             if (isValid) {
-                return NextResponse.redirect(
-                    `${process.env.BASE_URL}/dashboard`
-                )
+                return NextResponse.redirect(`${baseUrl}/dashboard`)
             }
         }
         return NextResponse.next()
@@ -19,14 +19,14 @@ export async function middleware(request: NextRequest) {
 
     // Jesli nie ma ciasteczka to login
     if (!sessionCookie) {
-        return NextResponse.redirect(`${process.env.BASE_URL}/sign-in`)
+        return NextResponse.redirect(`${baseUrl}/sign-in`)
     }
 
     // jesli jest ciasteczko to sprawdzamy
     const isValid = await checkSession(sessionCookie)
 
     if (!isValid) {
-        return NextResponse.redirect(`${process.env.BASE_URL}/sign-in`)
+        return NextResponse.redirect(`${baseUrl}/sign-in`)
     }
 
     return NextResponse.next()
@@ -42,7 +42,7 @@ async function checkSession(sessionCookie: string | null): Promise<boolean> {
         Authorization: sessionCookie,
     }
 
-    const response = await fetch(`${process.env.BASE_URL}/api/auth`, {
+    const response = await fetch(`${baseUrl}/api/auth`, {
         method: "GET",
         headers: headers,
     })

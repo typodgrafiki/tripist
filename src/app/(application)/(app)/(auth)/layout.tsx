@@ -15,8 +15,8 @@ export default function LoginLayout({
                 <Link href="/">
                     <Image
                         src="/tripist.svg"
-                        width={97}
-                        height={39}
+                        width={140}
+                        height={35}
                         alt="Tripist"
                         priority
                     />

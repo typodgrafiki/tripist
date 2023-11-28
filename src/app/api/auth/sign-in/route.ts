@@ -5,8 +5,6 @@ import { compare } from "bcrypt"
 import { cookies } from "next/headers"
 
 export async function POST(request: Request) {
-    // TODO dodac zabezpiecenie autoryzacje
-
     const data = await request.json()
     const { email, password } = data
 
