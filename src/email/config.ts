@@ -5,12 +5,12 @@ const passNoReply = process.env.EMAIL_NOREPLY_PASS
 const portEmail = process.env.SMTP_SERVER
 
 const transporter = nodemailer.createTransport({
-    host: "wn03.webd.pl",
+    host: portEmail,
     port: 465,
     secure: true,
     auth: {
-        user: "noreply@tripist.pl",
-        pass: "wPEU632ZfPkf#E",
+        user: adressNoReply,
+        pass: passNoReply,
     },
 })
 
