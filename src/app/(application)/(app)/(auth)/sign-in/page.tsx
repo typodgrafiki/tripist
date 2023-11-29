@@ -7,7 +7,7 @@ import Toastify from "toastify-js"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { generateEmailSignCode, loginUserFetch } from "@/actions/axiosActions"
-import { sendEmailSignCode } from "@/email/sendEmail"
+import { sendEmailSignCode } from "@/email/sendEmailCode"
 import ShowCode from "@/components/application/user/UserSignShowCode"
 
 export default function RegisterForm() {

@@ -28,6 +28,8 @@ model User {
   sessions        Session[]
   signUpCode      SignUpCodes?  @relation(fields: [signUpCodeId], references: [id])
   signUpCodeId    String? @unique
+  remindPass      UserRemindPassword?  @relation(fields: [remindPassId], references: [id])
+  remindPassId    String? @unique
 }
 
 model SignUpCodes {
@@ -38,7 +40,12 @@ model SignUpCodes {
   userId         String?
 }
 
-
+model UserRemindPassword {
+  id             String    @id @default(uuid())
+  expiresAt      DateTime
+  User           User?     @relation
+  userId         String?
+}
 
 model Session {
   id                String    @id @default(uuid())

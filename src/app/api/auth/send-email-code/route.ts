@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
-import { sendEmailSignCode } from "@/email/sendEmail"
+import { sendEmailSignCode } from "@/email/sendEmailCode"
 import { generateCode4 } from "@/utils/utils"
 
 export async function POST(request: Request) {

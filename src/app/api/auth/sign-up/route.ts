@@ -4,7 +4,7 @@ import { hash } from "bcrypt"
 import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
 import { v4 as uuidv4 } from "uuid"
-import { sendEmailSignCode } from "@/email/sendEmail"
+import { sendEmailSignCode } from "@/email/sendEmailCode"
 import { generateCode4 } from "@/utils/utils"
 
 export async function POST(request: Request) {

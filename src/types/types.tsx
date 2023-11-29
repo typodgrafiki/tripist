@@ -92,3 +92,9 @@ export interface ICodeSignUp {
     code: string
     userId: string
 }
+
+export type ICreateRemindPassUser = {
+    email: string
+    password: string
+    token: string
+}

@@ -3,6 +3,7 @@
 import {
     ICategories,
     ICodeSignUp,
+    ICreateRemindPassUser,
     ICreateUser,
     ILoginUser,
     IUserData,
@@ -271,6 +272,54 @@ export const generateEmailSignCode = async (data: { email: string }) => {
 
     try {
         const response = await axios.post(`/api/auth/send-email-code`, data)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}
+
+export const remindPasswordSend = async (email: string) => {
+    if (!email) {
+        throw "Nie uzupełniono danych"
+    }
+
+    const data = {
+        email: email,
+    }
+
+    try {
+        const response = await axios.post(`/api/auth/remind-pass`, data)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}
+
+export const resetPasswordSend = async (data: ICreateRemindPassUser) => {
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.patch(`/api/auth/remind-pass`, data)
         return response
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -1,25 +1,30 @@
 import transporter from "./config"
 
 const adressNoReply = process.env.EMAIL_NOREPLY
+const baseUrl = process.env.BASE_URL
 
-export const sendEmailSignCode = async (code: string, email: string) => {
+export const sendEmailSignPass = async (
+    token: string,
+    email: string,
+    userId: string
+) => {
     try {
-        main(code, email).catch(console.error)
+        main(token, email).catch(console.error)
         return { message: "Wysłano email", status: 200 }
     } catch (error) {
         return { message: "Nie udało się wysłać email", status: 400 }
     }
 }
 
-async function main(code: string, email: string) {
+async function main(token: string, email: string) {
     const info = await transporter.sendMail({
         from: `"Tripist" <${adressNoReply}>`,
         to: email,
-        subject: `${code} - Potwierdź rejestrację`,
+        subject: `Przypomnienie hasła`,
         text: `
-            Twój kod potwierdzający e-mail
-            Skopiuj ten kod i wprowadź go na stronie potwierdzenia, aby zweryfikować swój adres e-mail.
-            Kod: ${code} - jest ważny tylko przez 10 minut. Jeśli to nie Ty prosiłeś o tego e-maila, zignoruj go.
+            Otrzymujesz ten e-mail, ponieważ poprosiłeś o przypomnienie hasła.
+            Przejdź na stronę aby zresetować hasło: https://tripist.pl/reset-password?token=${token}&email=${email}
+            Link jest ważny tylko przez 1 godzinę. Jeśli to nie Ty prosiłeś o to przypomnienie, zignoruj tę wiadomość.
         `,
         html: `
             <html lang="pl">
@@ -30,7 +35,7 @@ async function main(code: string, email: string) {
                                 <table style="width: 100%; background-color: #467bf0; color: #fff; margin-bottom: 20px;">
                                     <tr>
                                         <td style="padding: 10px 20px;">
-                                            <a href="https://tripist.pl" style="text-decoration: none; color: inherit;">
+                                            <a href="${baseUrl}" style="text-decoration: none; color: inherit;">
                                                 <strong>Tripist</strong>
                                             </a>
                                         </td>
@@ -39,22 +44,22 @@ async function main(code: string, email: string) {
                                 <table style="width: 100%; color: #494949;">
                                     <tr>
                                         <td style="padding: 5px 0;">
-                                            Twój kod potwierdzający e-mail.
+                                            Otrzymujesz ten e-mail, ponieważ poprosiłeś o przypomnienie hasła.
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 5px 0;">
-                                            Skopiuj ten kod i wprowadź go na stronie potwierdzenia, aby zweryfikować swój adres e-mail.
+                                            Kliknij poniższy link, aby zresetować hasło:
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 5px 0;">
-                                            <strong style="font-size: 2rem; color: #305fc8;">${code}</strong>
+                                            <a href="${baseUrl}/reset-password?token=${token}&email=${email}" style="color: #305fc8;">Resetuj Hasło</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="padding: 5px 0;">
-                                            Kod potwierdzający jest ważny tylko przez 10 minut. Jeśli to nie Ty prosiłeś o tego e-maila, zignoruj go.
+                                            Link jest ważny tylko przez 10 minut. Jeśli to nie Ty prosiłeś o to przypomnienie, zignoruj tę wiadomość.
                                         </td>
                                     </tr>
                                 </table>

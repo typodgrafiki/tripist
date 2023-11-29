@@ -1,29 +1,37 @@
 "use client"
 
-import { ICreateUser } from "@/types/types"
-import Link from "next/link"
+import { ICreateRemindPassUser } from "@/types/types"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useSearchParams } from "next/navigation"
+import { resetPasswordSend } from "@/actions/axiosActions"
 
 export default function RemindPassword() {
+    const searchParams = useSearchParams()
+    const userEmail = searchParams.get("email")
+    const userToken = searchParams.get("token")
     const [loading, setLoading] = useState(false)
-    const { register, handleSubmit, formState } = useForm<ICreateUser>({
-        defaultValues: {
-            password: "",
-        },
-    })
+    const { register, handleSubmit, formState } =
+        useForm<ICreateRemindPassUser>({
+            defaultValues: {
+                password: "",
+                email: userEmail || "",
+                token: userToken || "",
+            },
+        })
     const { errors } = formState
 
-    const onSubmit = async (data: ICreateUser) => {
-        setLoading(true)
+    const onSubmit = async (data: ICreateRemindPassUser) => {
+        // TODO Komunikacja z api i sprawdzenie token + zmiana hasła
+        // TODO Sprawdzic response i obsłużyc
 
-        // TODO Zrobić funkcjonalnosc
-        // 1. Api
-        // 1.1. Stworzenie w bazie danych token
-        // 1.2. Wysylka maila z tokenem
-        // 2. Link w mailu na strone + token i email w url
-        // 3. Klient wchodzi na strone i sprawdzany jest email i token - jednorazowy, usuwam po sprawdzeniu
-        // 4. Klient tworzy nowe hasło do bazy danych + logowanie
+        setLoading(true)
+        const result = await resetPasswordSend(data)
+
+        // if (result?.status === 200) {
+        // } else {
+        //     setLoading(false)
+        // }
     }
 
     return (
@@ -33,14 +41,31 @@ export default function RemindPassword() {
             </h3>
             <p className="mb-4">
                 Wpisz nowe hasło dla{" "}
-                <span className="text-[var(--primary)]">[jan@example.com]</span>
+                <span className="text-[var(--primary)]">{userEmail}</span>
             </p>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col justify-between gap-3 mb-1"
             >
+                <input
+                    hidden
+                    {...register("email")}
+                    value={userEmail ?? ""}
+                    readOnly
+                />
+                <input
+                    hidden
+                    {...register("token")}
+                    value={userToken ?? ""}
+                    readOnly
+                />
                 <div>
-                    <label className="font-medium block mb-2">Hasło</label>
+                    <label
+                        className="font-medium block mb-2"
+                        htmlFor="formPassword"
+                    >
+                        Hasło
+                    </label>
                     <input
                         type="password"
                         className={`form-control grow w-full ${
@@ -54,7 +79,6 @@ export default function RemindPassword() {
                         })}
                         placeholder="**********"
                         id="formPassword"
-                        autoComplete="current-password"
                         disabled={loading}
                     />
                     {errors.password && (
