@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
+import { createSession } from "@/utils/session"
+import { cookies } from "next/headers"
 import { sendEmailSignPass } from "@/email/sendEmailPass"
 import { ICreateRemindPassUser } from "@/types/types"
+import { hash } from "bcrypt"
 
 export async function POST(request: Request) {
     const data = await request.json()
@@ -43,7 +46,7 @@ export async function POST(request: Request) {
 
         // Generowanie tokena
         const expiryDate = new Date()
-        expiryDate.setHours(expiryDate.getHours() + 1)
+        expiryDate.setHours(expiryDate.getHours() + 24)
 
         const token = await prisma.userRemindPassword.create({
             data: {
@@ -78,7 +81,7 @@ export async function POST(request: Request) {
     }
 }
 
-export async function PATCH(request: Request) {
+export async function PUT(request: Request) {
     const data = await request.json()
     const { email, token, password } = data as ICreateRemindPassUser
     email.trim().toString()
@@ -96,7 +99,6 @@ export async function PATCH(request: Request) {
             where: { email: email },
         })
 
-        // TODO co tu zrobic - moze byc wiele tokenow z tym samym userId
         if (!user) {
             return NextResponse.json(
                 { message: "Nie ma takiego użytkownika" },
@@ -109,68 +111,55 @@ export async function PATCH(request: Request) {
             where: { userId: user.id },
         })
 
-        // ---------------------------------------
-        // if token wygasł
-        // if uzytkownik nie istnieje
-        // if token not mach
+        if (!dbToken) {
+            return NextResponse.json(
+                { message: "Nie znaleziono tokena" },
+                { status: 402 }
+            )
+        }
 
-        // delete token
+        if (dbToken.expiresAt < currentDate) {
+            return NextResponse.json(
+                { message: "Token wygasł" },
+                { status: 403 }
+            )
+        }
 
-        // ok
+        // if match
+        if (dbToken.id !== token) {
+            return NextResponse.json(
+                { message: "Token nie jest prawidłowy" },
+                { status: 405 }
+            )
+        }
 
-        // generate hash pass
-        // update pass
+        const deleteToken = await prisma.userRemindPassword.delete({
+            where: { id: dbToken.id },
+        })
 
-        // ok
-        // -----------------------------------
+        const hashPassword = await hash(password, 10)
+        const userUpdated = await prisma.user.update({
+            where: { id: user.id },
+            data: { password: hashPassword },
+        })
 
-        // check if email already exist
-        // const user = await prisma.user.findUnique({
-        //     where: { email: email },
-        // })
+        if (!userUpdated) {
+            return NextResponse.json(
+                { message: "Nie udało się zapisać hasła" },
+                { status: 406 }
+            )
+        }
 
-        // if (!user) {
-        //     return NextResponse.json(
-        //         { message: "Taki email nie istnieje" },
-        //         { status: 401 }
-        //     )
-        // }
+        const newSession = await createSession(user.id)
 
-        // // Usuwanie istniejących tokenów
-        // const codeForUser = await prisma.userRemindPassword.findMany({
-        //     where: { userId: user.id },
-        // })
-        // const deleteResult = await prisma.userRemindPassword.deleteMany({
-        //     where: {
-        //         id: {
-        //             in: codeForUser.map((code) => code.id),
-        //         },
-        //     },
-        // })
-
-        // // Generowanie tokena
-        // const expiryDate = new Date()
-        // expiryDate.setHours(expiryDate.getHours() + 1)
-
-        // const token = await prisma.userRemindPassword.create({
-        //     data: {
-        //         expiresAt: expiryDate,
-        //         userId: user.id,
-        //     },
-        // })
-
-        // if (!token) {
-        //     return NextResponse.json(
-        //         { message: "Nie utworzono tokena" },
-        //         { status: 402 }
-        //     )
-        // }
-
-        // const sendEmail = await sendEmailSignPass(
-        //     token.id.toString(),
-        //     email.toString(),
-        //     user.id.toString()
-        // )
+        if ("id" in newSession) {
+            cookies().set({
+                name: "tripist_auth",
+                value: newSession.id,
+                httpOnly: true,
+                path: "/",
+            })
+        }
 
         return NextResponse.json(
             { message: "Zaktualizowano hasło" },

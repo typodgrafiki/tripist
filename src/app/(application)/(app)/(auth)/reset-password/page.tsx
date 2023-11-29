@@ -5,8 +5,11 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useSearchParams } from "next/navigation"
 import { resetPasswordSend } from "@/actions/axiosActions"
+import { useRouter } from "next/navigation"
+import Toastify from "toastify-js"
 
 export default function RemindPassword() {
+    const router = useRouter()
     const searchParams = useSearchParams()
     const userEmail = searchParams.get("email")
     const userToken = searchParams.get("token")
@@ -22,16 +25,21 @@ export default function RemindPassword() {
     const { errors } = formState
 
     const onSubmit = async (data: ICreateRemindPassUser) => {
-        // TODO Komunikacja z api i sprawdzenie token + zmiana hasła
-        // TODO Sprawdzic response i obsłużyc
-
         setLoading(true)
         const result = await resetPasswordSend(data)
 
-        // if (result?.status === 200) {
-        // } else {
-        //     setLoading(false)
-        // }
+        // TODO to nie dziala
+
+        if (result?.status === 200) {
+            router.push("/dashboard")
+        } else {
+            const { message } = result?.data
+            Toastify({
+                className: "toastify-error",
+                text: message,
+            }).showToast()
+            setLoading(false)
+        }
     }
 
     return (

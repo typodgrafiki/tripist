@@ -318,10 +318,13 @@ export const resetPasswordSend = async (data: ICreateRemindPassUser) => {
         throw "Nie uzupełniono danych"
     }
 
+    console.log(data)
+
     try {
-        const response = await axios.patch(`/api/auth/remind-pass`, data)
+        const response = await axios.put(`/api/auth/remind-pass`, data)
         return response
     } catch (error) {
+        console.log(error)
         if (axios.isAxiosError(error)) {
             const axiosError: AxiosError = error
             if (axiosError.response) {
