@@ -2,6 +2,10 @@ body {
     @apply text-sm;
 }
 
+.text-muted {
+    color: #52545c;
+}
+
 .btn-add-element::before,
 .btn-add-element::after {
     content: "";
@@ -20,15 +24,31 @@ body {
     transform: translate(-50%, -1px) rotate(90deg);
 }
 
-.my-lists-loading li {
+.list-link {
+    border-radius: 0 5px 5px 0;
+}
+
+.my-lists-loading > li,
+.my-lists-loading > div {
     list-style: none;
-    background-color: #d0d6e5;
-    height: 10px;
-    border-radius: 5px;
-    margin-bottom: 29px;
-    display: block;
-    position: relative;
-    overflow: hidden;
+    /* width: 65%; */
+    background-color: #d8d9e0;
+    height: 13px;
+    border-radius: 3px;
+    margin-bottom: 26px;
+    /* display: block; */
+}
+
+.my-lists-loading > .title {
+    height: 15px;
+    /* width: 85%; */
+    margin-bottom: 35px;
+}
+
+.my-lists-loading > .wide {
+    height: 33px;
+    opacity: 0.5;
+    margin-bottom: 17px;
 }
 
 .element-row .round {
@@ -117,7 +137,12 @@ body {
     animation:
         fade-in,
         show-modal 0.15s ease;
-    overflow: hidden;
+}
+
+.modal:has(.modal-account),
+.modal.modal-account {
+    width: 90%;
+    max-width: 445px;
 }
 
 svg {
@@ -143,6 +168,32 @@ svg {
 
 .toastify.toastify-success {
     background: linear-gradient(to right, #00b09b, #96c93d);
+}
+
+.error-message {
+    color: red;
+}
+
+.form-control.error {
+    border: 1px solid red;
+}
+
+.select.open {
+    outline: 2px solid var(--primary);
+}
+
+.select-color:after {
+    content: "";
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    position: absolute;
+    inset: -4px;
+}
+
+.select-color.active:after {
+    border-color: var(--dark);
+    opacity: 0.3;
 }
 
 @keyframes fade-in {

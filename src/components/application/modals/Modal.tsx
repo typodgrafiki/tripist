@@ -12,24 +12,11 @@ export default function Modal() {
         setModalContent(null)
     }, [setIsModalOpen, setModalContent])
 
-    // const handleEscKeyDown = (event: KeyboardEvent) => {
-    //     if (event.key === "Escape") {
-    //         closeModal()
-    //     }
-    // }
-
     const handleShadowClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
             closeModal()
         }
     }
-
-    // useEffect(() => {
-    //     window.addEventListener("keydown", handleEscKeyDown)
-    //     return () => {
-    //         window.removeEventListener("keydown", handleEscKeyDown)
-    //     }
-    // }, [])
 
     const handleEscKeyDown = useCallback(
         (event: KeyboardEvent) => {
@@ -61,7 +48,7 @@ export default function Modal() {
                 >
                     ESC
                 </div>
-                <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
+                <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 max-h-[98%] overflow-y-auto sm:px-9 sm:py-8">
                     {modalContent}
                 </div>
             </div>

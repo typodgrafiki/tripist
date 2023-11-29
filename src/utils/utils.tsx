@@ -1,9 +1,7 @@
 "use client"
 
 import {
-    IList,
     IElements,
-    ILists,
     ICategories,
     TListItemCategoriesUpdate,
 } from "@/types/types"
@@ -46,8 +44,8 @@ export function changeStatusLocaly(
     })
 }
 
-type SortBy = "createdAt" | "name"
-type SortDirection = "asc" | "desc"
+export type SortBy = "createdAt" | "name"
+export type SortDirection = "asc" | "desc"
 
 export function sortElements(
     elements: IElements[],
@@ -88,16 +86,6 @@ export function mergeCategoriesWithAssignment(
     }
 }
 
-// export function activeCategories(mergedCategories: ICategories[]) {
-//     const categoriesWithAssignedTrue = mergedCategories.filter(
-//         (category) => category.assigned
-//     )
-//     const cleanedCategories = categoriesWithAssignedTrue.map(
-//         ({ assigned, ...rest }) => rest
-//     )
-//     return cleanedCategories
-// }
-
 export function activeCategories(mergedCategories: ICategories[]) {
     return mergedCategories.reduce(
         (acc, category) => {
@@ -113,4 +101,15 @@ export function activeCategories(mergedCategories: ICategories[]) {
             categoriesIdsToDisconnect: [],
         } as TListItemCategoriesUpdate
     )
+}
+
+export function generateCode4() {
+    const signUpCode = Math.floor(Math.random() * 9000) + 1000
+    const expiryDate = new Date()
+    expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+
+    return {
+        signUpCode: signUpCode,
+        expiryDate: expiryDate,
+    }
 }

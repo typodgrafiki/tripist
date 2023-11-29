@@ -19,11 +19,25 @@ import IconPen from "../icons/pen"
 import CreateList from "../modals/CreateList"
 import FilterCategories from "./FilterCategories"
 import ContentEmpty from "./ContentEmpty"
+import { LoadingContent } from "./LoadingContent"
+import Sort from "../buttons/Sort"
+import { SortBy, SortDirection } from "@/utils/utils"
+import ContentErrorLoading from "./ErrorContent"
+import ContentNoData from "./NoDataContent"
+
+export type TSortProps = {
+    sortBy: SortBy
+    sortDirection: SortDirection
+}
 
 export default function Content({ id }: { id: string }) {
     const [selectedCategory, setSelectedCategory] = useState("")
     const { isModalOpen, setIsModalOpen, modalContent, setModalContent } =
         useModal()
+    const [sortCriteria, setSortCriteria] = useState<TSortProps>({
+        sortBy: "createdAt",
+        sortDirection: "desc",
+    })
 
     const {
         data: listData,
@@ -61,11 +75,25 @@ export default function Content({ id }: { id: string }) {
         [elements]
     )
 
-    // return <Title loading />
+    const sortedAndFilteredElements = useMemo(() => {
+        if (!elements) return []
+        const filteredElements = elements.filter(
+            (element) =>
+                !selectedCategory ||
+                element.categories.some(
+                    (category) => category.name === selectedCategory
+                )
+        )
+        return sortElements(
+            filteredElements,
+            sortCriteria.sortBy,
+            sortCriteria.sortDirection
+        )
+    }, [elements, selectedCategory, sortCriteria])
 
-    if (isLoading) return <div>Loading...</div>
-    if (isError) return <div>Error</div>
-    if (!elements || !listData) return <div>No data</div>
+    if (isLoading) return <LoadingContent />
+    if (isError) return <ContentErrorLoading />
+    if (!elements || !listData) return <ContentNoData />
 
     const { name, id: listId } = listData
 
@@ -88,25 +116,16 @@ export default function Content({ id }: { id: string }) {
         setIsModalOpen(true)
     }
 
-    // TODO Dac mozliwosc zmiany sortowania przez uzytkownika
-    const sortBy = "createdAt"
-    const sortDirection = "desc"
-
-    const sortedAndFilteredElements = sortElements(
-        elements.filter(
-            (element) =>
-                !selectedCategory ||
-                element.categories.some(
-                    (category) => category.name === selectedCategory
-                )
-        ),
-        sortBy,
-        sortDirection
-    )
+    const handleSortChange = (
+        newSortBy: SortBy,
+        newSortDirection: SortDirection
+    ) => {
+        setSortCriteria({ sortBy: newSortBy, sortDirection: newSortDirection })
+    }
 
     return (
         <>
-            <div className="flex justify-between gap-2">
+            <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">
                     {/* <button className="px-3 pl-4 sm:hidden">
@@ -131,21 +150,30 @@ export default function Content({ id }: { id: string }) {
 
             {elements?.length > 0 ? (
                 <>
-                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-7 sm:pt-6 sm:px-6">
+                    <div className="flex mb-3 justify-between">
                         <FilterCategories
                             categoriesUnique={categoriesUnique}
                             handleCategoryChange={handleCategoryChange}
                             selectedCategory={selectedCategory}
+                            count={sortedAndFilteredElements.length}
                         />
-                        <ul>
+
+                        <Sort
+                            handleSortChange={handleSortChange}
+                            sortCriteria={sortCriteria}
+                        />
+                    </div>
+                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
+                        <ul className="">
                             {sortedAndFilteredElements.map((element) => (
-                                <div key={element.id}>
-                                    <ContentElement {...element} />
-                                </div>
+                                <ContentElement
+                                    key={element.id}
+                                    {...element}
+                                />
                             ))}
                         </ul>
                     </div>
-                    <div className="flex justify-between gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent">
+                    <div className="flex justify-between  items-end gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent mt-3">
                         <ButtonDisableAll listId={listId} />
                         <Button
                             onClick={handleOpenModal}

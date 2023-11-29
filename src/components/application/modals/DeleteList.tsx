@@ -23,10 +23,7 @@ export default function DeleteList({ listId }: { listId: string }) {
                 className: "toastify-success",
                 text: `Usunięto listę ${response?.data.body.name}`,
             }).showToast()
-
-            setTimeout(() => {
-                closeModal()
-            }, 2500)
+            closeModal()
         },
         onError: (error) => {
             Toastify({

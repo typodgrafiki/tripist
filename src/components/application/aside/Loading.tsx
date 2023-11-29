@@ -1,12 +1,16 @@
 export default function LoadingLists() {
     return (
-        <ul className="my-lists-loading pt-[15px]">
-            <li className="max-w-[145px]"></li>
-            <li className="max-w-[138px]"></li>
-            <li className="max-w-[89px]"></li>
-            <li className="max-w-[126px]"></li>
-            <li className="max-w-[133px]"></li>
-            <li className="max-w-[109px]"></li>
-        </ul>
+        <div className="grow flex flex-col px-6 pt-9 pb-3 justify-between">
+            <ul className="my-lists-loading">
+                <li className="title w-10/12"></li>
+                <li className="w-7/12"></li>
+                <li className="w-7/12"></li>
+                <li className="w-7/12"></li>
+                <li className="w-7/12"></li>
+            </ul>
+            <ul className="my-lists-loading">
+                <li className="w-7/12"></li>
+            </ul>
+        </div>
     )
 }

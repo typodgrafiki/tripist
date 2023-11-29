@@ -1,17 +1,17 @@
 /**
  *
  * Pobieranie elementow na liscie GET
- * Tworzenie elementu w liście POST
+ * //Tworzenie elementu w liście POST
  *
  */
 
 import { NextResponse, NextRequest } from "next/server"
-import { auth } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
 export async function POST(request: Request, context: IApiContext) {
-    const { userId } = auth()
+    const { userId } = await useAuth()
     const { name } = await request.json()
 
     try {

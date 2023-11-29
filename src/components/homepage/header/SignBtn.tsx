@@ -1,18 +1,14 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs"
+"use server"
+
+import { useAuth } from "@/lib/auth"
 import Link from "next/link"
 
-function SignBtn() {
-    return (
-        <>
-            <SignedIn>
-                <Link
-                    href="/dashboard"
-                    className="btn btn-primary"
-                >
-                    Moje konto
-                </Link>
-            </SignedIn>
-            <SignedOut>
+async function SignBtn() {
+    const { userId } = await useAuth()
+
+    if (!userId) {
+        return (
+            <>
                 <Link
                     href="/sign-in"
                     className="btn btn-default"
@@ -25,7 +21,18 @@ function SignBtn() {
                 >
                     Załóż konto
                 </Link>
-            </SignedOut>
+            </>
+        )
+    }
+
+    return (
+        <>
+            <Link
+                href="/dashboard"
+                className="btn btn-primary"
+            >
+                Moje konto
+            </Link>
         </>
     )
 }

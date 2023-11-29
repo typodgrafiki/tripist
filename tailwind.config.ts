@@ -8,5 +8,6 @@ const config: Config = {
     ],
     theme: {},
     plugins: [require("@tailwindcss/forms")],
+    safelist: ["bg-red-500"],
 }
 export default config

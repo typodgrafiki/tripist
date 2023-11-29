@@ -82,7 +82,7 @@ export default function ContentElement({
 
     return (
         <>
-            <li className="element-row animated relative border-t flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded">
+            <li className="element-row animated relative border-t border-gray-200 flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded first:border-0">
                 <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
                     <span className="relative round w-[21px] h-[21px]">
                         <>

@@ -14,7 +14,10 @@ import { useModal } from "@/context/ModalContext"
 import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
 import Button from "@/components/ui/Button"
-import { sortElements } from "@/utils/utils"
+import IconPlus from "../icons/plus"
+import arrowDown from "@/assets/images/dashboard/arrow-down.svg"
+import Image from "next/image"
+import ListsErrorLoading from "./Error"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -43,17 +46,28 @@ export default function Lists() {
     })
 
     if (isLoading) return <LoadingLists />
-    if (isError) return <div>Error</div>
+    if (isError) return <ListsErrorLoading />
 
     return (
-        <>
-            {lists && (
-                <div className="hidden my-lists text-gray-500 bg-white shadow-md rounded-md py-3 sm:block sm:overflow-y-auto sm:mb-5">
+        <div>
+            {lists && lists.length > 0 && (
+                <div className="hidden my-lists grow sm:block pb-20">
+                    <p className="font-semibold uppercase px-6 pt-7 pb-6 ">
+                        Twoje listy
+                        <Image
+                            src={arrowDown}
+                            width={10}
+                            height={5}
+                            alt="arrow down"
+                            className="inline-block ml-2 relative -top-[1px]"
+                        />
+                    </p>
                     <ul>
-                        {lists.map((element) => (
+                        {sortedLists?.map((element) => (
                             <ListsRow
                                 key={element.id}
                                 id={element.id}
+                                settingColor={element.settingColor}
                                 name={element.name}
                             />
                         ))}
@@ -61,11 +75,12 @@ export default function Lists() {
                 </div>
             )}
             <Button
-                className="hidden sm:inline-block btn btn-default self-start sm:mb-4"
+                className="hidden fixed bottom-6 left-5 sm:inline-block btn btn-white "
                 onClick={handleOpenModal}
             >
                 Dodaj listę
+                <IconPlus className="ml-2 relative -top-[1px]" />
             </Button>
-        </>
+        </div>
     )
 }

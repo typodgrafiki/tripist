@@ -7,6 +7,7 @@
     --dark: #2c2d32;
     --bg: #eeeff4;
     --red: #ec0b26;
+    --gray: #ebecf1;
 }
 
 @layer base {
@@ -24,6 +25,16 @@
             rgba(229, 238, 255, 0.262661) 1000px,
             rgba(229, 236, 255, 0) 1186px
         );
+    }
+
+    .min-h-screenSmall {
+        min-height: 100vh; /* fallback */
+        min-height: 100svb;
+    }
+
+    .min-h-screenLarge {
+        min-height: 100vh; /* fallback */
+        min-height: 100lvb;
     }
 
     .animated {
@@ -58,9 +69,18 @@
         color: #fff;
     }
 
+    .btn-white {
+        background-color: #fff;
+    }
+
     .btn-green {
         background-color: #27ba0f;
         border-color: #27ba0f;
+    }
+
+    .btn-gray {
+        background-color: var(--gray);
+        border-color: var(--gray);
     }
 
     .btn-error {

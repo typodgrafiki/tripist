@@ -7,34 +7,71 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_LOCAL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
+  id              String       @id @default(uuid())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  name            String?
+  surname         String?
+  email           String       @unique
+  confirmed       Boolean      @default(false)
+  image           String?
+  password        String
+  darkTheme       Boolean      @default(false)
+  categories      Category[]
+  preferences     String[]
+  lists           List[]       @relation("UserLists")
+  changeLogs      ChangeLog[]
+  sessions        Session[]
+  signUpCode      SignUpCodes?  @relation(fields: [signUpCodeId], references: [id])
+  signUpCodeId    String? @unique
+  remindPass      UserRemindPassword?  @relation(fields: [remindPassId], references: [id])
+  remindPassId    String? @unique
+}
+
+model SignUpCodes {
+  id             String    @id @default(uuid())
+  code           Int
+  expiresAt      DateTime
+  User           User?     @relation
+  userId         String?
+}
+
+model UserRemindPassword {
+  id             String    @id @default(uuid())
+  expiresAt      DateTime
+  User           User?     @relation
+  userId         String?
+}
+
+model Session {
   id                String    @id @default(uuid())
   createdAt         DateTime  @default(now())
-  name              String?
-  surname           String?
-  email             String    @unique
-  image             String?
-  darkTheme         Boolean   @default(true)
-  categories        Category[]
-  preferences       String[]
-  lists             List[]    @relation("UserLists")
-  changeLogs        ChangeLog[]
+  updatedAt         DateTime  @default(now())
+  userId            String    
+  user              User      @relation(fields: [userId], references: [id])
+  expiresAt         DateTime
+  data              Json?
+
+  @@unique([userId, expiresAt])
 }
+
 
 model List {
   id              String    @id @default(uuid())
   name            String
   createAt        DateTime  @default(now())
   lastChangeAt    DateTime  @default(now())
+  settingColor    String?
   url             String?
   userId          String
   user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
-  predefined      Boolean   @default(false)
-  
+  fromTemplate    Boolean     @default(false)
+
   @@index([userId], name: "idx_userId")
 }
 
@@ -65,21 +102,38 @@ model ChangeLog {
   user          User      @relation(fields: [userId], references: [id])
   action        String    // np. "DELETE", "UPDATE"
   entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
-  entityId      Int    // ID encji, którą zmieniliśmy
-  previousData  Json     // Dane przed zmianą
+  entityId      Int       // ID encji, którą zmieniliśmy
+  previousData  Json      // Dane przed zmianą
 }
 
-model PredefinedList {
+model Template {
+  id            Int          @id @default(autoincrement())
+  name          String                                      // np. "2 dni citybreak"
+  start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
+  settingColor  String?
+  tripLength    Int?                                        // liczba dni
+  templateTypeId Int                                        // rodzaj wycieczki, np. "citybreak"]
+  templateType TemplateType   @relation(fields: [templateTypeId], references: [id])
+  elements     TemplateItem[]
+}
+
+model TemplateItem {
+  id            Int       @id @default(autoincrement())
+  name          String
+  status        Boolean   @default(false)
+  categories    TemplateCategory[]
+  templateId    Int
+  template      Template  @relation(fields: [templateId], references: [id])
+}
+
+model TemplateCategory {
   id       Int        @id @default(autoincrement())
   name     String
-  type     String
-  elements PredefinedListItem[]
+  items    TemplateItem[]
 }
 
-model PredefinedListItem {
-  id           Int     @id @default(autoincrement())
-  name         String
-  category     String
-  predefListId Int
-  predefList   PredefinedList @relation(fields: [predefListId], references: [id])
+model TemplateType {
+  id          Int          @id @default(autoincrement())
+  name        String       // Nazwa typu, np. "City Break"
+  templates   Template[]
 }

@@ -6,14 +6,15 @@
         "dev": "next dev",
         "build": "prisma generate & next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "seed:sample": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedSampleList.ts",
+        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedTemplate1.ts"
     },
     "prisma": {
-        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedSampleList.ts"
     },
     "dependencies": {
-        "@clerk/nextjs": "^4.27.1",
-        "@prisma/client": "^5.5.2",
+        "@prisma/client": "^5.6.0",
         "@tailwindcss/forms": "^0.5.6",
         "@tanstack/react-query": "^5.7.0",
         "@tanstack/react-query-devtools": "^5.7.2",
@@ -22,20 +23,28 @@
         "@types/toastify-js": "^1.12.2",
         "autoprefixer": "10.4.15",
         "axios": "^1.6.0",
+        "bcrypt": "^5.1.1",
         "eslint": "8.49.0",
         "eslint-config-next": "13.4.19",
+        "handlebars": "^4.7.8",
         "next": "^14.0.1",
+        "nodemailer": "^6.9.7",
         "postcss": "^8.4.31",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "svix": "^1.13.0",
+        "react-hook-form": "^7.48.2",
         "tailwindcss": "3.3.3",
         "toastify-js": "^1.12.0",
-        "typescript": "5.2.2"
+        "typescript": "5.2.2",
+        "uuid": "^9.0.1"
     },
     "devDependencies": {
+        "@hookform/devtools": "^4.3.1",
         "@tanstack/eslint-plugin-query": "^5.6.0",
+        "@types/bcrypt": "^5.0.2",
         "@types/node": "^20.8.0",
+        "@types/nodemailer": "^6.4.14",
+        "@types/uuid": "^9.0.7",
         "eslint-config-prettier": "^9.0.0",
         "prettier": "^3.0.3",
         "prettier-plugin-tailwindcss": "^0.5.4",

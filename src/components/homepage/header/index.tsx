@@ -11,11 +11,11 @@ export default function Header() {
                     <Link href="/#hero">
                         <Image
                             src="/tripist.svg"
-                            width={142}
-                            height={54}
+                            width={172}
+                            height={43}
                             alt="Tripist"
                             priority
-                            className="w-[87px] h-[35px] md:w-[142px] md:h-[54px]"
+                            className="w-[87px] h-[35px] md:w-[172px] md:h-[43px]"
                         />
                     </Link>
                 </div>

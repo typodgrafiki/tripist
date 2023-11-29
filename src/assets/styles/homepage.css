@@ -3,7 +3,7 @@ body {
     height: 100%;
 }
 
-body:before {
+.homepage:before {
     content: url("../../../public/bg-hero.svg");
     display: block;
     position: fixed;
