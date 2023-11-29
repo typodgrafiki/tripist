@@ -263,3 +263,26 @@ export const getSampleList = async (listId: number) => {
         return null
     }
 }
+
+export const generateEmailSignCode = async (data: { email: string }) => {
+    if (!data) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.post(`/api/auth/send-email-code`, data)
+        console.log(response)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}
