@@ -134,10 +134,10 @@ export default function RegisterForm() {
             </p>
             <div className="flex text-muted justify-center mt-3 text-xs">
                 <Link
-                    href="/"
+                    href="/remind-password"
                     className="hover:text-[var(--primary)]"
                 >
-                    [Zapomniałeś hasła?...]
+                    Zapomniałeś hasła?
                 </Link>
             </div>
         </>

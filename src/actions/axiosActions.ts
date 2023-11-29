@@ -271,7 +271,6 @@ export const generateEmailSignCode = async (data: { email: string }) => {
 
     try {
         const response = await axios.post(`/api/auth/send-email-code`, data)
-        console.log(response)
         return response
     } catch (error) {
         if (axios.isAxiosError(error)) {
