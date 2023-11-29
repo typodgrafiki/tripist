@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import { sendEmailSignCode } from "@/email/sendEmail"
+import { generateCode4 } from "@/utils/utils"
 
 export async function POST(request: Request) {
     const data = await request.json()
@@ -40,10 +41,7 @@ export async function POST(request: Request) {
             },
         })
 
-        // Kod potwierdzający
-        const signUpCode = Math.floor(Math.random() * 9000) + 1000
-        const expiryDate = new Date()
-        expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+        const { signUpCode, expiryDate } = generateCode4()
 
         const newSignUpCode = await prisma.signUpCodes.create({
             data: {
@@ -58,10 +56,7 @@ export async function POST(request: Request) {
             email.toString()
         )
 
-        return NextResponse.json(
-            { message: "Kod wysłany pomyślnie", userId: checkEmailExist.id },
-            { status: 200 }
-        )
+        return NextResponse.json(checkEmailExist.id, { status: 200 })
     } catch (e) {
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },

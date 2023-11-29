@@ -38,7 +38,6 @@ export default function RegisterForm() {
                 className: "toastify-error",
                 text: message,
             }).showToast()
-
             setEmailConfirmed(false)
             setLoading(false)
         } else {
@@ -169,7 +168,7 @@ const ConfirmEmail = ({
         const result = await generateEmailSignCode(data)
 
         if (result?.status === 200) {
-            setUserId(result.data.userId)
+            setUserId(result.data)
             setShowCode(true)
         } else {
             const { message } = result?.data

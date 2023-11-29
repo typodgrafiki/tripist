@@ -5,6 +5,7 @@ import { createSession } from "@/utils/session"
 import { cookies } from "next/headers"
 import { v4 as uuidv4 } from "uuid"
 import { sendEmailSignCode } from "@/email/sendEmail"
+import { generateCode4 } from "@/utils/utils"
 
 export async function POST(request: Request) {
     const data = await request.json()
@@ -52,10 +53,7 @@ export async function POST(request: Request) {
             )
         }
 
-        // Kod potwierdzający
-        const signUpCode = Math.floor(Math.random() * 9000) + 1000
-        const expiryDate = new Date()
-        expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+        const { signUpCode, expiryDate } = generateCode4()
 
         const newSignUpCode = await prisma.signUpCodes.create({
             data: {
