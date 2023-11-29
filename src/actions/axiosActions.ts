@@ -120,7 +120,6 @@ export const getAllCategories = async () => {
         const response = await axios.get("/api/categories")
         return response.data.body as ICategories[]
     } catch (error) {
-        console.error("There was an error fetching the categories:", error)
         return []
     }
 }
@@ -318,13 +317,10 @@ export const resetPasswordSend = async (data: ICreateRemindPassUser) => {
         throw "Nie uzupełniono danych"
     }
 
-    console.log(data)
-
     try {
         const response = await axios.put(`/api/auth/remind-pass`, data)
         return response
     } catch (error) {
-        console.log(error)
         if (axios.isAxiosError(error)) {
             const axiosError: AxiosError = error
             if (axiosError.response) {

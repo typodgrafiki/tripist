@@ -37,7 +37,6 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ message: "Wylogowano" }, { status: 200 })
     } catch (e) {
-        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się zalogować" },
             { status: 500 }

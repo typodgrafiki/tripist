@@ -73,7 +73,6 @@ export async function POST(request: Request) {
             { status: 200 }
         )
     } catch (e) {
-        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }
@@ -166,7 +165,6 @@ export async function PUT(request: Request) {
             { status: 200 }
         )
     } catch (e) {
-        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }
