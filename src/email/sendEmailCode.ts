@@ -5,7 +5,7 @@ const baseUrl = process.env.BASE_URL
 
 export const sendEmailSignCode = async (code: string, email: string) => {
     try {
-        main(code, email).catch(console.error)
+        await main(code, email).catch(console.error)
         console.log("wyslano email")
         return { message: "Wysłano email", status: 200 }
     } catch (error) {
