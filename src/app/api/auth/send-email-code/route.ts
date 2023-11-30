@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import { sendEmailSignCode } from "@/email/sendEmailCode"
-import { generateCode4 } from "@/utils/utils"
 
 export async function POST(request: Request) {
     const data = await request.json()
@@ -62,5 +61,16 @@ export async function POST(request: Request) {
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }
         )
+    }
+}
+
+function generateCode4() {
+    const signUpCode = Math.floor(Math.random() * 9000) + 1000
+    const expiryDate = new Date()
+    expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+
+    return {
+        signUpCode: signUpCode,
+        expiryDate: expiryDate,
     }
 }

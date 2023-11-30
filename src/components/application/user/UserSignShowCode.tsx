@@ -72,7 +72,12 @@ export default function ShowCode({
             {errors.code && (
                 <div className="error-message">{errors.code.message}</div>
             )}
-            <button className="btn btn-primary w-full">Wyślij</button>
+            <button
+                className="btn btn-primary w-full"
+                disabled={loading}
+            >
+                Wyślij
+            </button>
         </form>
     )
 }
