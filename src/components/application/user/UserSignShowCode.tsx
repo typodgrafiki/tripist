@@ -13,7 +13,7 @@ export default function ShowCode({
     userId: string
 }) {
     const router = useRouter()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [code, setCode] = useState<null | number>(null)
 
     const { register, handleSubmit, formState } = useForm({
@@ -72,7 +72,12 @@ export default function ShowCode({
             {errors.code && (
                 <div className="error-message">{errors.code.message}</div>
             )}
-            <button className="btn btn-primary w-full">Wyślij</button>
+            <button
+                className="btn btn-primary w-full"
+                disabled={loading}
+            >
+                Wyślij
+            </button>
         </form>
     )
 }

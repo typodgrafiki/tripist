@@ -102,14 +102,3 @@ export function activeCategories(mergedCategories: ICategories[]) {
         } as TListItemCategoriesUpdate
     )
 }
-
-export function generateCode4() {
-    const signUpCode = Math.floor(Math.random() * 9000) + 1000
-    const expiryDate = new Date()
-    expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
-
-    return {
-        signUpCode: signUpCode,
-        expiryDate: expiryDate,
-    }
-}
