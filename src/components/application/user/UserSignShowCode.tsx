@@ -13,7 +13,7 @@ export default function ShowCode({
     userId: string
 }) {
     const router = useRouter()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [code, setCode] = useState<null | number>(null)
 
     const { register, handleSubmit, formState } = useForm({
