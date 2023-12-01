@@ -64,9 +64,15 @@ export async function POST(request: Request) {
 
         const sendEmail = await sendEmailSignPass(
             token.id.toString(),
-            email.toString(),
-            user.id.toString()
+            email.toString()
         )
+
+        if (!sendEmail) {
+            return NextResponse.json(
+                { message: "Email nie wysłany" },
+                { status: 403 }
+            )
+        }
 
         return NextResponse.json(
             { message: "Wysłano maila z przypomnieniem hasła" },
