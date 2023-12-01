@@ -78,6 +78,14 @@ export default function ShowCode({
             >
                 Wyślij
             </button>
+            {loading && (
+                <div className="absolute inset-0 bg-white text-center flex flex-col justify-center items-center">
+                    Tworzymy dla Ciebie przykładowe listy.
+                    <br />
+                    Może to potrwać chwilę.
+                    <div className="loader mt-5"></div>
+                </div>
+            )}
         </form>
     )
 }
