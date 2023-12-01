@@ -55,6 +55,13 @@ export async function POST(request: Request) {
             email.toString()
         )
 
+        if (!sendEmail) {
+            return NextResponse.json(
+                { message: "Email nie wysłany" },
+                { status: 402 }
+            )
+        }
+
         return NextResponse.json(checkEmailExist.id, { status: 200 })
     } catch (e) {
         return NextResponse.json(

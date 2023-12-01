@@ -78,7 +78,12 @@ export async function POST(request: Request) {
             email.toString()
         )
 
-        console.log(sendEmail)
+        if (!sendEmail) {
+            return NextResponse.json(
+                { message: "Nie wysłano kodu" },
+                { status: 403 }
+            )
+        }
 
         return NextResponse.json(userId, { status: 200 })
     } catch (e) {
