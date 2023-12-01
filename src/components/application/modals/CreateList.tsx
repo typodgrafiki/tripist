@@ -214,7 +214,7 @@ const SampleLists = ({
 
     return (
         <>
-            <ul className="mt-4">
+            <ul className="mt-4 overflow-y-auto max-h-inner-modal">
                 {sampleLists.map((element) => (
                     <SampleList
                         key={element.id}

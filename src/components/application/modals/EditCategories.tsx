@@ -99,7 +99,7 @@ const ListCategories = () => {
     if (isError || !categories)
         return <div className="mt-4">Błąd ładowania kategorii</div>
     return (
-        <ul className="category-list-border mt-3">
+        <ul className="category-list-border mt-3 overflow-y-auto max-h-inner-modal">
             {categories.map((item) => (
                 <Category
                     key={item.id}
