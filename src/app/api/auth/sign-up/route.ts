@@ -69,7 +69,7 @@ export async function POST(request: Request) {
             data: {
                 code: signUpCode,
                 expiresAt: expiryDate,
-                userId: newUser.id, // Powiązanie kodu z nowo utworzonym użytkownikiem
+                userId: newUser.id,
             },
         })
 
@@ -77,6 +77,8 @@ export async function POST(request: Request) {
             signUpCode.toString(),
             email.toString()
         )
+
+        console.log(sendEmail)
 
         return NextResponse.json(userId, { status: 200 })
     } catch (e) {

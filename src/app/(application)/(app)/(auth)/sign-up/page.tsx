@@ -7,6 +7,7 @@ import { ICreateUser } from "@/types/types"
 import { createUserFetch } from "@/actions/axiosActions"
 import Toastify from "toastify-js"
 import { useState } from "react"
+import { sendEmailSignCode } from "@/email/sendEmailCode"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -39,6 +40,11 @@ export default function RegisterForm() {
             }).showToast()
             setLoading(false)
         }
+    }
+
+    const handle1 = async () => {
+        console.log("fetch")
+        const response = await fetch("/api/auth/test")
     }
 
     return (
@@ -166,6 +172,7 @@ export default function RegisterForm() {
                     Zaloguj się
                 </Link>
             </p>
+            <button onClick={handle1}>Fetch</button>
         </>
     )
 }
