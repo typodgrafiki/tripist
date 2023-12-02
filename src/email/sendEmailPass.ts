@@ -1,8 +1,9 @@
 import axios from "axios"
 
+const urlApi = process.env.URL_MAIL_API
+
 export const sendEmailSignPass = async (token: string, email: string) => {
-    const endpointUrl =
-        "http://31d6cfe0d16ae931.tripist.typodgra.webd.pro/pass/index.php"
+    const endpointUrl = `${urlApi}/pass/index.php`
     const data = {
         email: email,
         token: token,
@@ -17,6 +18,7 @@ export const sendEmailSignPass = async (token: string, email: string) => {
 
         return { message: "Wysłano email", status: response.status }
     } catch (error: any) {
+        console.log(error)
         return null
         // {
         //     message: "Nie udało się wysłać email",

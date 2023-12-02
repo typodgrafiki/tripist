@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation"
 import { resetPasswordSend } from "@/actions/axiosActions"
 import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
+import Button from "@/components/ui/Button"
 
 export default function RemindPassword() {
     const router = useRouter()
@@ -95,13 +96,13 @@ export default function RemindPassword() {
                         </div>
                     )}
                 </div>
-                <button
+                <Button
                     type="submit"
                     className={`flex justify-center items-center btn btn-primary`}
-                    disabled={loading}
+                    isLoading={loading}
                 >
                     Zapisz hasło
-                </button>
+                </Button>
             </form>
         </>
     )
