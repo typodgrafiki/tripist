@@ -29,13 +29,14 @@ export default function RegisterForm() {
 
         const result = await createUserFetch(data)
 
-        if (result) {
+        if (result?.status === 200) {
             setShowCode(true)
             setUserId(result.data)
         } else {
+            const { message } = result?.data
             Toastify({
                 className: "toastify-error",
-                text: `Nie udało się dodać użytkownika`,
+                text: message,
             }).showToast()
             setLoading(false)
         }

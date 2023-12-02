@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "seed:sample": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedSampleList.ts",
-        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedTemplate1.ts"
+        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedTemplate1.ts",
+        "seed:deleteAllUsers": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/deleteAllUsers.ts"
     },
     "prisma": {
         "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedSampleList.ts"
