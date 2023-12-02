@@ -24,15 +24,13 @@ export default function Button({
 }) {
     return (
         <button
-            className={`flex ${className}`}
+            className={`flex items-center${className}`}
             onClick={onClick}
             disabled={isLoading || isSuccess}
             {...props}
         >
             {textSuccess && isSuccess ? textSuccess : children}
-            {isLoading && (
-                <div className="loader small ml-2 relative top-[2px]"></div>
-            )}
+            {isLoading && <div className="loader small ml-2"></div>}
         </button>
     )
 }

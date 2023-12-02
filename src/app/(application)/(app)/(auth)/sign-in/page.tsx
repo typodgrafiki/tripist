@@ -7,8 +7,8 @@ import Toastify from "toastify-js"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { generateEmailSignCode, loginUserFetch } from "@/actions/axiosActions"
-import { sendEmailSignCode } from "@/email/sendEmailCode"
 import ShowCode from "@/components/application/user/UserSignShowCode"
+import Button from "@/components/ui/Button"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -109,13 +109,13 @@ export default function RegisterForm() {
                                 </div>
                             )}
                         </div>
-                        <button
+                        <Button
                             type="submit"
                             className={`flex justify-center items-center btn btn-primary`}
-                            disabled={loading}
+                            isLoading={loading}
                         >
                             Zaloguj się
-                        </button>
+                        </Button>
                     </div>
                 </form>
             )}
@@ -218,14 +218,13 @@ const ConfirmEmail = ({
                             </div>
                         )}
                     </div>
-                    <button
+                    <Button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary`}
-                        disabled={loading}
+                        isLoading={loading}
                     >
                         Wyślij kod ponownie
-                    </button>
-                    {showCode && "pokaz kod"}
+                    </Button>
                 </div>
             </form>
             {showCode && (

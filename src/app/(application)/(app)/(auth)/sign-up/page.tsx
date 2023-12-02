@@ -2,11 +2,12 @@
 
 import { useForm } from "react-hook-form"
 import Link from "next/link"
+import Toastify from "toastify-js"
+import { useState } from "react"
 import ShowCode from "@/components/application/user/UserSignShowCode"
 import { ICreateUser } from "@/types/types"
 import { createUserFetch } from "@/actions/axiosActions"
-import Toastify from "toastify-js"
-import { useState } from "react"
+import Button from "@/components/ui/Button"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -29,7 +30,6 @@ export default function RegisterForm() {
         const result = await createUserFetch(data)
 
         if (result) {
-            // router.push("/dashboard")
             setShowCode(true)
             setUserId(result.data)
         } else {
@@ -54,15 +54,6 @@ export default function RegisterForm() {
                     }`}
                 >
                     <div className="flex flex-col justify-between gap-3 mb-1 p-1">
-                        {/* <input
-                                type="text"
-                                value={name}
-                                placeholder="np. Madryt '23, Islandia, Siłownia"
-                                className="form-control grow"
-                                onChange={(e) => setTitle(e.target.value)}
-                                disabled={isPending || isSuccess}
-                                ref={inputRef}
-                            /> */}
                         <div>
                             <input
                                 type="text"
@@ -132,19 +123,19 @@ export default function RegisterForm() {
                             )}
                         </div>
 
-                        <button
+                        <Button
                             type="submit"
                             className={`flex justify-center items-center btn btn-primary`}
-                            disabled={loading}
+                            isLoading={loading}
                         >
                             Zarejestruj się
-                        </button>
+                        </Button>
                     </div>
                     {/* {errors && (
-                            <div className="text-red-600 text-sm mt-2">
-                                Nie zapisano zmian. Spróbuj ponownie.
-                            </div>
-                        )} */}
+                        <div className="text-red-600 text-sm mt-2">
+                            Nie zapisano zmian. Spróbuj ponownie.
+                        </div>
+                    )} */}
                 </form>
                 {showCode && (
                     <ShowCode

@@ -1,10 +1,3 @@
-/**
- * //TODO: FETCH to AXIOS
- * //TODO: react query
- * TODO: Add buttons / forms ui
- * //TODO: Dodac toastify (zainstalowane)
- */
-
 import React from "react"
 import QueryProvider from "@/context/QueryProvider"
 import { ModalProvider } from "@/context/ModalContext"

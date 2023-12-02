@@ -1,10 +1,12 @@
 "use client"
 
 import { remindPasswordSend } from "@/actions/axiosActions"
+import Button from "@/components/ui/Button"
 import { ICreateUser } from "@/types/types"
 import Link from "next/link"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import Toastify from "toastify-js"
 
 export default function RemindPassword() {
     const [loading, setLoading] = useState(false)
@@ -23,6 +25,11 @@ export default function RemindPassword() {
         if (result?.status === 200) {
             setSuccess(true)
         } else {
+            const { message } = result?.data
+            Toastify({
+                className: "toastify-error",
+                text: message,
+            }).showToast()
             setLoading(false)
         }
     }
@@ -73,13 +80,13 @@ export default function RemindPassword() {
                                 </div>
                             )}
                         </div>
-                        <button
+                        <Button
                             type="submit"
                             className={`flex justify-center items-center btn btn-primary`}
-                            disabled={loading}
+                            isLoading={loading}
                         >
                             Wyślij link
-                        </button>
+                        </Button>
                     </form>
                     <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
                         lub

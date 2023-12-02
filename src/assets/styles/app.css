@@ -196,6 +196,10 @@ svg {
     opacity: 0.3;
 }
 
+.max-h-inner-modal {
+    max-height: calc(90vh - 200px);
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

@@ -1,8 +1,9 @@
 import axios from "axios"
 
+const urlApi = process.env.URL_MAIL_API
+
 export const sendEmailSignCode = async (code: string, email: string) => {
-    const endpointUrl =
-        "http://31d6cfe0d16ae931.tripist.typodgra.webd.pro/code/index.php"
+    const endpointUrl = `${urlApi}/code/index.php`
     const data = {
         email: email,
         code: code,

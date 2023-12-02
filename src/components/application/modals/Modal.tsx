@@ -48,7 +48,7 @@ export default function Modal() {
                 >
                     ESC
                 </div>
-                <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 max-h-[98%] overflow-y-auto sm:px-9 sm:py-8">
+                <div className="modal bg-white rounded-3xl shadow-2xl p-5 mx-3 max-h-[98%] sm:px-9 sm:py-8">
                     {modalContent}
                 </div>
             </div>
