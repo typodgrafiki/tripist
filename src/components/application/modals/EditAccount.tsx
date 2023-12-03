@@ -67,7 +67,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                 </span>
             </h3>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex justify-center mb-6">
+                {/* <div className="flex justify-center mb-6">
                     <Image
                         className="image rounded-full cursor-pointer"
                         width={120}
@@ -75,7 +75,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         src={image ? image : iconUser}
                         alt="Zdjęcie użytkownika"
                     />
-                </div>
+                </div> */}
                 <div className="flex gap-2 w-full mb-4">
                     <div className="w-1/2">
                         <label
@@ -146,7 +146,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         {...register("password")}
                     />
                 </div>
-                <Button className="btn btn-primary w-full justify-center">
+                <Button
+                    type="submit"
+                    className="btn btn-primary w-full justify-center"
+                >
                     Zapisz
                 </Button>
             </form>
