@@ -175,12 +175,12 @@ export default function Content({ id }: { id: string }) {
                     </div>
                     <div className="flex justify-between  items-end gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent mt-3">
                         <ButtonDisableAll listId={listId} />
-                        <Button
+                        <button
                             onClick={handleOpenModal}
                             className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
                         >
                             Dodaj element
-                        </Button>
+                        </button>
                     </div>
                 </>
             ) : elements?.length === 0 ? (

@@ -143,6 +143,7 @@ body {
 .modal.modal-account {
     width: 90%;
     max-width: 445px;
+    overflow-y: auto;
 }
 
 svg {

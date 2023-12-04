@@ -7,6 +7,7 @@ import {
     ICreateUser,
     ILoginUser,
     IUserData,
+    TFeedback,
 } from "@/types/types"
 import axios from "axios"
 import { AxiosError } from "axios"
@@ -319,6 +320,28 @@ export const resetPasswordSend = async (data: ICreateRemindPassUser) => {
 
     try {
         const response = await axios.put(`/api/auth/remind-pass`, data)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}
+
+export const createFeedback = async (data: TFeedback) => {
+    if (!data.message) {
+        throw "Nie uzupełniono danych"
+    }
+
+    try {
+        const response = await axios.post(`/api/feedback`, data)
         return response
     } catch (error) {
         if (axios.isAxiosError(error)) {

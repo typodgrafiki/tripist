@@ -98,3 +98,7 @@ export type ICreateRemindPassUser = {
     password: string
     token: string
 }
+
+export type TFeedback = {
+    message: string
+}

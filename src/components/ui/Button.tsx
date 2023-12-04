@@ -24,7 +24,7 @@ export default function Button({
 }) {
     return (
         <button
-            className={`flex items-center${className}`}
+            className={`flex items-center ${className}`}
             onClick={onClick}
             disabled={isLoading || isSuccess}
             {...props}

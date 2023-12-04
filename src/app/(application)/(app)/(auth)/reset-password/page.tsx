@@ -55,6 +55,7 @@ export default function RemindPassword() {
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col justify-between gap-3 mb-1"
+                autoComplete="off"
             >
                 <input
                     hidden
@@ -89,6 +90,7 @@ export default function RemindPassword() {
                         placeholder="**********"
                         id="formPassword"
                         disabled={loading}
+                        autoComplete="new-password"
                     />
                     {errors.password && (
                         <div className="error-message">
