@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import Button from "../ui/Button"
 import { createFeedback } from "@/actions/axiosActions"
@@ -11,7 +11,7 @@ export default function Feedback() {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const { register, handleSubmit, formState } = useForm({
+    const { register, handleSubmit, formState, setValue } = useForm({
         defaultValues: {
             message: "",
         },
@@ -30,6 +30,7 @@ export default function Feedback() {
                 className: "toastify-success",
                 text: message,
             }).showToast()
+            setValue("message", "")
             setLoading(false)
         } else {
             Toastify({
@@ -40,9 +41,25 @@ export default function Feedback() {
         }
     }
 
+    const handleClickOutside = (event) => {
+        if (open && !event.target.closest(".feedback-form")) {
+            setOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        // Nasłuchuj zdarzenia kliknięcia na całej stronie
+        document.addEventListener("click", handleClickOutside)
+
+        // Usuń nasłuchiwanie po odmontowaniu komponentu
+        return () => {
+            document.removeEventListener("click", handleClickOutside)
+        }
+    }, [open])
+
     return (
         <>
-            <div className="fixed bottom-3 right-3 ">
+            <div className="feedback-form fixed bottom-3 right-3 ">
                 {open ? (
                     <form
                         className="p-4 flex flex-col gap-3 bg-white rounded-lg shadow-2xl max-w-sm"
