@@ -41,8 +41,12 @@ export default function Feedback() {
         }
     }
 
-    const handleClickOutside = (event) => {
-        if (open && !event.target.closest(".feedback-form")) {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (
+            open &&
+            event.target &&
+            !(event.target as Element).closest(".feedback-form")
+        ) {
             setOpen(false)
         }
     }
