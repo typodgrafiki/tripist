@@ -13,8 +13,8 @@ export default function Footer() {
                     >
                         <Image
                             src={logo}
-                            width={111}
-                            height={44}
+                            width={39}
+                            height={27}
                             alt="Tripist"
                         />
                     </Link>
