@@ -63,7 +63,7 @@ export default function Feedback() {
 
     return (
         <>
-            <div className="feedback-form fixed bottom-3 right-3 ">
+            <div className="feedback-form fixed bottom-3 right-3 hidden sm:block">
                 {open ? (
                     <form
                         className="p-4 flex flex-col gap-3 bg-white rounded-lg shadow-2xl max-w-sm"

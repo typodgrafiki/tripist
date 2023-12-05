@@ -128,12 +128,10 @@ export default function Content({ id }: { id: string }) {
             <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">
-                    {/* <button className="px-3 pl-4 sm:hidden">
-                        <IconSwitch />
-                    </button>
-                    <button className="px-3 pr-5 sm:hidden">
+                    <Button className="px-3 pr-5 sm:hidden">
                         <IconMore />
-                    </button> */}
+                    </Button>
+
                     <Button
                         className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
                         onClick={handleEditList}
@@ -150,7 +148,7 @@ export default function Content({ id }: { id: string }) {
 
             {elements?.length > 0 ? (
                 <>
-                    <div className="flex mb-3 justify-between">
+                    <div className="hidden sm:flex mb-3 justify-between">
                         <FilterCategories
                             categoriesUnique={categoriesUnique}
                             handleCategoryChange={handleCategoryChange}
