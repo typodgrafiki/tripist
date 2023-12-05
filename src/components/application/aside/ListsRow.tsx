@@ -3,8 +3,10 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { IListBasic } from "@/types/types"
+import { useModal } from "@/context/ModalContext"
 
 export default function ListsRow({ name, id, settingColor }: IListBasic) {
+    const {setIsModalOpen} = useModal()
     const pathname = usePathname()
     const thisUrl = "/dashboard/" + id
 
@@ -18,6 +20,7 @@ export default function ListsRow({ name, id, settingColor }: IListBasic) {
                             ? "font-medium text-white bg-[var(--primary)]"
                             : "hover:text-gray-900 focus:font-medium focus:bg-[var(--primary)] focus:text-white"
                     }`}
+                    onClick={() => setIsModalOpen(false)}
                 >
                     {settingColor && (
                         <span

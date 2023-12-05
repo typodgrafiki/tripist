@@ -120,21 +120,23 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-between gap-3 mb-1">
-                    <input
-                        type="text"
-                        value={title}
-                        placeholder="np. Madryt '23, Islandia, Siłownia"
-                        className="form-control grow"
-                        onChange={(e) => setTitle(e.target.value)}
-                        disabled={isPending || isSuccess}
-                        ref={inputRef}
-                    />
-                    <Select
-                        options={optionsColor}
-                        select={selectedColor}
-                        setSelect={setSelectedColor}
-                    />
+                <div className="flex justify-between gap-3 mb-1 flex-col sm:flex-row">
+                    <div className="flex justify-between gap-3">
+                        <input
+                            type="text"
+                            value={title}
+                            placeholder="np. Madryt '23, Islandia, Siłownia"
+                            className="form-control grow"
+                            onChange={(e) => setTitle(e.target.value)}
+                            disabled={isPending || isSuccess}
+                            ref={inputRef}
+                            />
+                        <Select
+                            options={optionsColor}
+                            select={selectedColor}
+                            setSelect={setSelectedColor}
+                            />
+                    </div>
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
