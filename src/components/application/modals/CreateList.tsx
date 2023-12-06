@@ -121,7 +121,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 onSubmit={handleSubmit}
             >
                 <div className="flex justify-between gap-3 mb-1 flex-col sm:flex-row">
-                    <div className="flex justify-between gap-3">
+                    <div className="flex justify-between gap-3 grow">
                         <input
                             type="text"
                             value={title}
@@ -130,12 +130,12 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                             onChange={(e) => setTitle(e.target.value)}
                             disabled={isPending || isSuccess}
                             ref={inputRef}
-                            />
+                        />
                         <Select
                             options={optionsColor}
                             select={selectedColor}
                             setSelect={setSelectedColor}
-                            />
+                        />
                     </div>
                     <button
                         type="submit"
