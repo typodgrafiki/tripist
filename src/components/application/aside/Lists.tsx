@@ -51,7 +51,7 @@ export default function Lists() {
     return (
         <div>
             {lists && lists.length > 0 && (
-                <div className="hidden my-lists grow sm:block pb-20">
+                <div className="my-lists grow pb-20">
                     <p className="font-semibold uppercase px-6 pt-7 pb-6 ">
                         Twoje listy
                         <Image

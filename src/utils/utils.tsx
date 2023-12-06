@@ -4,6 +4,9 @@ import {
     IElements,
     ICategories,
     TListItemCategoriesUpdate,
+    ISortTypes,
+    SortBy,
+    SortDirection,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -43,9 +46,6 @@ export function changeStatusLocaly(
         return item
     })
 }
-
-export type SortBy = "createdAt" | "name"
-export type SortDirection = "asc" | "desc"
 
 export function sortElements(
     elements: IElements[],
@@ -102,3 +102,26 @@ export function activeCategories(mergedCategories: ICategories[]) {
         } as TListItemCategoriesUpdate
     )
 }
+
+export const sortTypes: ISortTypes[] = [
+    {
+        name: "Najnowsze",
+        type: "createdAt",
+        direction: "desc",
+    },
+    {
+        name: "Najstarsze",
+        type: "createdAt",
+        direction: "asc",
+    },
+    {
+        name: "A-Z",
+        type: "name",
+        direction: "asc",
+    },
+    {
+        name: "Z-A",
+        type: "name",
+        direction: "desc",
+    },
+]

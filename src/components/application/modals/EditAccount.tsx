@@ -7,10 +7,11 @@ import Button from "@/components/ui/Button"
 import { useModal } from "@/context/ModalContext"
 import Toastify from "toastify-js"
 import { IUserData } from "@/types/types"
-import { useState } from "react"
+import React, { useState } from "react"
 import { Dispatch, SetStateAction } from "react"
 import { updateUserFetch } from "@/actions/axiosActions"
 import iconUser from "@/assets/images/user/boy.png"
+import DeleteAccount from "./DeleteAccount"
 
 type EditAccountProps = {
     data: IUserData
@@ -153,6 +154,23 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                     Zapisz
                 </Button>
             </form>
+            <ButtonDeleteAccount>Usuń konto</ButtonDeleteAccount>
         </div>
+    )
+}
+
+const ButtonDeleteAccount = ({ children }: { children: React.ReactNode }) => {
+    const { setModalContent } = useModal()
+
+    const handleDeleteAccount = () => {
+        setModalContent(<DeleteAccount />)
+    }
+    return (
+        <button
+            className="error mt-3 text-red-500 hover:underline"
+            onClick={handleDeleteAccount}
+        >
+            Usuń konto
+        </button>
     )
 }

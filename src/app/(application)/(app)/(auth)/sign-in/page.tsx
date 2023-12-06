@@ -114,7 +114,7 @@ export default function RegisterForm() {
                             className={`flex justify-center items-center btn btn-primary`}
                             isLoading={loading}
                         >
-                            Zaloguj się
+                            {loading ? "Logowanie..." : "Zaloguj się"}
                         </Button>
                     </div>
                 </form>

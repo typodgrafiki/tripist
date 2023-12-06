@@ -356,3 +356,21 @@ export const createFeedback = async (data: TFeedback) => {
         }
     }
 }
+
+export const deleteAccount = async () => {
+    try {
+        const response = await axios.delete(`/api/auth/delete-account`)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}

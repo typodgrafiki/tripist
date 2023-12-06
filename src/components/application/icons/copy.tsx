@@ -1,6 +1,6 @@
 "use client"
 
-export default function IconCopy() {
+export default function IconCopy({ className }: { className?: string }) {
     return (
         <svg
             width="16"
@@ -8,7 +8,7 @@ export default function IconCopy() {
             viewBox="0 0 16 17"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="svg-stroke"
+            className={`svg-stroke ${className}`}
         >
             <rect
                 x="0.5"

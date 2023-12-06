@@ -6,49 +6,22 @@
  */
 
 import Button from "@/components/ui/Button"
-import { SortBy, SortDirection } from "@/utils/utils"
+import { SortBy, SortDirection, ISortTypes } from "@/types/types"
 import { TSortProps } from "../content/Content"
 import useDropdown from "@/utils/useDropdown"
+import { sortTypes } from "@/utils/utils"
 
-interface ISortTypes {
-    name: string
-    type: SortBy
-    direction: SortDirection
-}
-
-interface ISortChangeProp {
+export interface ISortChangeProp {
     handleSortChange: (
         newSortBy: SortBy,
         newSortDirection: SortDirection
     ) => void
     sortCriteria: TSortProps
     closeDropdown?: () => void
+    classNames?: string
 }
 
 type BtnChangeSortProps = ISortChangeProp & ISortTypes
-
-const sortTypes: ISortTypes[] = [
-    {
-        name: "Najnowsze",
-        type: "createdAt",
-        direction: "desc",
-    },
-    {
-        name: "Najstarsze",
-        type: "createdAt",
-        direction: "asc",
-    },
-    {
-        name: "A-Z",
-        type: "name",
-        direction: "asc",
-    },
-    {
-        name: "Z-A",
-        type: "name",
-        direction: "desc",
-    },
-]
 
 export default function Sort({
     handleSortChange,
@@ -100,15 +73,13 @@ export default function Sort({
                             className="py-1"
                             role="none"
                         >
-                            {sortTypes.map((element, index) => (
-                                <BtnChangeSort
-                                    key={index}
-                                    handleSortChange={handleSortChange}
-                                    closeDropdown={closeDropdown}
-                                    sortCriteria={sortCriteria}
-                                    {...element}
-                                />
-                            ))}
+                            <SortDropdown
+                                sortTypes={sortTypes}
+                                handleSortChange={handleSortChange}
+                                closeDropdown={closeDropdown}
+                                sortCriteria={sortCriteria}
+                                classNames="w-full"
+                            />
                         </div>
                     </div>
                 )}
@@ -117,10 +88,43 @@ export default function Sort({
     )
 }
 
+export const SortDropdown = ({
+    sortTypes,
+    handleSortChange,
+    closeDropdown,
+    sortCriteria,
+    classNames,
+}: {
+    sortTypes: ISortTypes[]
+    handleSortChange: (
+        newSortBy: SortBy,
+        newSortDirection: SortDirection
+    ) => void
+    closeDropdown?: () => void
+    sortCriteria: TSortProps
+    classNames?: string
+}) => {
+    return (
+        <>
+            {sortTypes.map((element, index) => (
+                <BtnChangeSort
+                    key={index}
+                    handleSortChange={handleSortChange}
+                    closeDropdown={closeDropdown}
+                    sortCriteria={sortCriteria}
+                    classNames={classNames}
+                    {...element}
+                />
+            ))}
+        </>
+    )
+}
+
 const BtnChangeSort = ({
     handleSortChange,
     sortCriteria,
     closeDropdown,
+    classNames,
     ...element
 }: BtnChangeSortProps) => {
     const { name, type, direction } = element
@@ -141,8 +145,8 @@ const BtnChangeSort = ({
 
     return (
         <Button
-            className={`block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated w-full ${
-                isActive() ? "text-[var(--primary)]" : ""
+            className={`${classNames} block px-4 py-2 text-sm hover:text-[var(--primary)] hover:pl-5 animated ${
+                isActive() ? "text-[var(--primary)] active" : ""
             }`}
             role="menuitem"
             tabIndex={-1}
