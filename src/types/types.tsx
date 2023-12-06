@@ -102,3 +102,12 @@ export type ICreateRemindPassUser = {
 export type TFeedback = {
     message: string
 }
+
+export interface ISortTypes {
+    name: string
+    type: SortBy
+    direction: SortDirection
+}
+
+export type SortBy = "createdAt" | "name"
+export type SortDirection = "asc" | "desc"

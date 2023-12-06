@@ -3,13 +3,11 @@
 import { useState, useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { getListData } from "@/actions/axiosActions"
-import { IElements, IList } from "@/types/types"
+import { IElements, IList, SortBy, SortDirection } from "@/types/types"
 import { findUniqueCategories, sortElements } from "@/utils/utils"
 import Title from "@/components/application/title/Title"
 import ContentElement from "@/components/application/content/ContentElement"
 import ButtonDisableAll from "@/components/application/content/ButtonDisableAll"
-import IconMore from "@/components/application/icons/more"
-import IconSwitch from "@/components/application/icons/switch"
 import ButtonDeleteList from "@/components/application/buttons/ButtonDeleteList"
 import ButtonDuplicate from "@/components/application/buttons/ButtonDuplicate"
 import { useModal } from "@/context/ModalContext"
@@ -21,9 +19,9 @@ import FilterCategories from "./FilterCategories"
 import ContentEmpty from "./ContentEmpty"
 import { LoadingContent } from "./LoadingContent"
 import Sort from "../buttons/Sort"
-import { SortBy, SortDirection } from "@/utils/utils"
 import ContentErrorLoading from "./ErrorContent"
 import ContentNoData from "./NoDataContent"
+import MobileMore from "../buttons/MobileMore"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -128,10 +126,12 @@ export default function Content({ id }: { id: string }) {
             <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">
-                    <Button className="px-3 pr-5 sm:hidden">
-                        <IconMore />
-                    </Button>
-
+                    <MobileMore
+                        handleSortChange={handleSortChange}
+                        sortCriteria={sortCriteria}
+                        listId={listId}
+                        name={name}
+                    />
                     <Button
                         className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
                         onClick={handleEditList}
@@ -161,7 +161,7 @@ export default function Content({ id }: { id: string }) {
                             sortCriteria={sortCriteria}
                         />
                     </div>
-                    <div className="text-gray-600 pb-5 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
+                    <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
                         <ul className="">
                             {sortedAndFilteredElements.map((element) => (
                                 <ContentElement
@@ -171,11 +171,11 @@ export default function Content({ id }: { id: string }) {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex justify-between  items-end gap-4 sticky bottom-0 left-0 right-0  bg-gray-200 sm:static sm:bg-transparent mt-3">
+                    <div className="flex justify-between ml-2 items-end gap-4 sticky bottom-0 left-0 right-0 sm:static mt-3 sm:ml-0">
                         <ButtonDisableAll listId={listId} />
                         <button
                             onClick={handleOpenModal}
-                            className="btn-add-element btn btn-primary relative text-[0] w-[80px] h-[80px] mr-7 -mt-7 z-1 text-white block rounded-full -top-1 sm:top-0"
+                            className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 -mt-7 z-1 text-white block rounded-full bottom-[70px] right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto"
                         >
                             Dodaj element
                         </button>

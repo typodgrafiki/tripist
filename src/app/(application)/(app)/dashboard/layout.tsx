@@ -13,7 +13,7 @@ export default function DashboardLayout({
         <>
             <div className="dashboard flex flex-col sm:h-screen">
                 <Top />
-                <div className="flex grow gap-8 sm:max-h-[calc(100vh-35px)]">
+                <div className="flex grow gap-8 pb-12 sm:max-h-[calc(100vh-35px)] sm:pb-0">
                     <aside className="hidden sm:w-3/12 sm:min-w-[200px] sm:max-w-[300px] sm:flex flex-col pr-5 bg-[var(--gray)] sm:overflow-y-auto relative">
                         <Lists />
                     </aside>

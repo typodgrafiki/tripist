@@ -24,10 +24,6 @@ body {
     transform: translate(-50%, -1px) rotate(90deg);
 }
 
-.list-link {
-    border-radius: 0 5px 5px 0;
-}
-
 .my-lists-loading > li,
 .my-lists-loading > div {
     list-style: none;
@@ -201,6 +197,10 @@ svg {
     max-height: calc(90vh - 200px);
 }
 
+.list-link {
+    border-radius: 5px;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -219,15 +219,23 @@ svg {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .modal .my-lists
-    {
+@media screen and (min-width: 640px) {
+    .list-link {
+        border-radius: 0 5px 5px 0;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .modal .my-lists {
         padding-bottom: 1rem;
     }
 
-    .modal .my-lists p 
-    {
+    .modal .my-lists p {
         padding-top: 1.2rem;
         padding-bottom: 1.2rem;
+    }
+
+    .mobile-sort-box .active {
+        border-color: var(--primary);
     }
 }
