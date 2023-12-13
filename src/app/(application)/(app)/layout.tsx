@@ -3,7 +3,6 @@ import QueryProvider from "@/context/QueryProvider"
 import { ModalProvider } from "@/context/ModalContext"
 import Modal from "@/components/application/modals/Modal"
 import "@/assets/styles/app.css"
-import "@/assets/styles/app-loading.css"
 import "toastify-js/src/toastify.css"
 
 export default function BackLayout({

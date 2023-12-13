@@ -40,7 +40,7 @@ export default function ContentEmpty({
     if (isError || !lists) return <ContentNoData />
 
     return (
-        <div className="text-center grow flex flex-col justify-center items-center">
+        <div className="text-center grow flex flex-col justify-center items-center px-5">
             <div className="max-w-[480px]">
                 {lists.length == 0 ? (
                     <>

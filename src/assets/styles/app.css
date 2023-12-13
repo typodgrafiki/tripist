@@ -90,16 +90,11 @@ body {
     opacity: 1;
 }
 
-.element-row:not(:has(.element-categories)) {
-    padding-right: 4rem;
-}
-
 .element-row .element-edit,
 .element-row .element-categories {
     transition: opacity 0.2s ease;
 }
 
-.element-row .element-edit,
 .element-row:hover .element-categories {
     opacity: 0;
 }
@@ -222,6 +217,10 @@ svg {
 @media screen and (min-width: 640px) {
     .list-link {
         border-radius: 0 5px 5px 0;
+    }
+
+    .element-row:not(:has(.element-categories)) {
+        padding-right: 4rem;
     }
 }
 

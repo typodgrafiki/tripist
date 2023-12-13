@@ -175,7 +175,7 @@ export default function Content({ id }: { id: string }) {
                         <ButtonDisableAll listId={listId} />
                         <button
                             onClick={handleOpenModal}
-                            className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 -mt-7 z-1 text-white block rounded-full bottom-[70px] right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto"
+                            className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 -mt-7 z-1 text-white block rounded-full bottom-[70px] right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto z-10"
                         >
                             Dodaj element
                         </button>
