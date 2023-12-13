@@ -12,7 +12,7 @@ export default function ContactPage() {
                     e-mailowy:{" "}
                     <a
                         href="mailto:kontakt@tripist.pl"
-                        className="underline"
+                        className="animated underline hover:text-[var(--primary)]"
                     >
                         kontakt@tripist.pl
                     </a>{" "}
