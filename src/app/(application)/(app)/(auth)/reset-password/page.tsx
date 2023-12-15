@@ -8,7 +8,6 @@ import { resetPasswordSend } from "@/actions/axiosActions"
 import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
 import Button from "@/components/ui/Button"
-import { checkTokenDate } from "@/actions/axiosActions"
 
 export default function RemindPassword() {
     const router = useRouter()
