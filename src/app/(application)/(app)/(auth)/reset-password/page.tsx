@@ -44,9 +44,6 @@ export default function RemindPassword() {
 
     if (!userEmail || !userToken) return <>Niepoprawny link zmiany hasła</>
 
-    // if (!checkTokenDate(userEmail, userToken))
-    //     return <>Link zmiany hasła wygasł</>
-
     return (
         <>
             <h3 className="truncate text-xl font-medium mb-4">

@@ -374,28 +374,3 @@ export const deleteAccount = async () => {
         }
     }
 }
-
-// export const checkTokenDate = async (email: string, token: string) => {
-//     try {
-//         const data = {
-//             email: email,
-//             token: token,
-//         }
-
-//         const response = await axios.get(`/api/auth/remind-pass`, {
-//             params: data,
-//         })
-//         return response
-//     } catch (error) {
-//         if (axios.isAxiosError(error)) {
-//             const axiosError: AxiosError = error
-//             if (axiosError.response) {
-//                 return axiosError.response
-//             } else {
-//                 return null
-//             }
-//         } else {
-//             return null
-//         }
-//     }
-// }
