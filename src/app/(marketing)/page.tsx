@@ -12,6 +12,7 @@ import where6 from "@/assets/images/where6.jpg"
 import devices from "@/assets/images/devices.png"
 import Title from "@/components/homepage/content/title"
 import Baner from "@/components/homepage/content/Baner"
+import ButtonSignUp from "@/components/homepage/content/ButtonSignUp"
 
 export default function Home() {
     return (
@@ -132,14 +133,7 @@ export default function Home() {
                                 idealną listę. Bo każdy wyjazd i każdy trening
                                 zasługują na pełne przygotowanie.
                             </p>
-                            {/* <SignedOut>
-                                <Link
-                                    href="/sign-up"
-                                    className="btn btn-primary transition-colors"
-                                >
-                                    Załóż konto
-                                </Link>
-                            </SignedOut> */}
+                            <ButtonSignUp />
                         </hgroup>
                     </div>
                     <div className="container container-md px-2 mx-auto mb-14 flex justify-center items-start mt-[-9rem] md:mb-28 md:px-14">

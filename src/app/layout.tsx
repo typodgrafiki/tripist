@@ -1,7 +1,15 @@
 import React from "react"
+import { Poppins } from "next/font/google"
+import type { Metadata } from "next"
 import "@/assets/styles/globals.css"
 import "@/assets/styles/app-loading.css"
-import type { Metadata } from "next"
+
+const poppins = Poppins({
+    subsets: ["latin-ext"],
+    display: "swap",
+    weight: ["400", "500", "600"],
+    style: ["normal", "italic"],
+})
 
 export const metadata: Metadata = {
     title: "Tripist: Twoja intuicyjna aplikacja do pakowania",
@@ -19,7 +27,7 @@ export default function RootLayout({
     return (
         <html
             lang="pl"
-            className="scroll-smooth"
+            className={`scroll-smooth ${poppins.className}`}
         >
             <body>{children}</body>
         </html>
