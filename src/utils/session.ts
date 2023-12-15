@@ -33,7 +33,7 @@ export const createSession = async (userId: string) => {
             data: {
                 id: key,
                 userId: userId,
-                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24), // 24 hours
+                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5), // 5 days
             },
         })
 
