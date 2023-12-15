@@ -125,3 +125,16 @@ export const sortTypes: ISortTypes[] = [
         direction: "desc",
     },
 ]
+
+export function calculateStatusPercentage(items: IElements[]) {
+    const totalItems = items.length
+
+    const trueStatusItems = items.filter((item) => item.status === true).length
+
+    if (totalItems === 0) {
+        return 0
+    }
+
+    const result = Math.round((trueStatusItems / totalItems) * 100)
+    return result
+}

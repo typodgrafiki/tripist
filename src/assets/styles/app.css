@@ -196,6 +196,21 @@ svg {
     border-radius: 5px;
 }
 
+.percentagle-items-track {
+    height: 5px;
+    width: 100%;
+}
+
+.percentagle-items-track,
+.percentagle-items-tick {
+    background-color: #dee0e8;
+}
+
+.percentagle-items-tick {
+    transform: translate(-50%, -50%);
+    margin-top: 1px;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

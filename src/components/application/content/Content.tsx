@@ -4,7 +4,11 @@ import { useState, useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { getListData } from "@/actions/axiosActions"
 import { IElements, IList, SortBy, SortDirection } from "@/types/types"
-import { findUniqueCategories, sortElements } from "@/utils/utils"
+import {
+    calculateStatusPercentage,
+    findUniqueCategories,
+    sortElements,
+} from "@/utils/utils"
 import Title from "@/components/application/title/Title"
 import ContentElement from "@/components/application/content/ContentElement"
 import ButtonDisableAll from "@/components/application/content/ButtonDisableAll"
@@ -121,6 +125,8 @@ export default function Content({ id }: { id: string }) {
         setSortCriteria({ sortBy: newSortBy, sortDirection: newSortDirection })
     }
 
+    const percentagePackedItems = calculateStatusPercentage(elements)
+
     return (
         <>
             <div className="flex justify-between gap-2 mb-1">
@@ -160,6 +166,16 @@ export default function Content({ id }: { id: string }) {
                             handleSortChange={handleSortChange}
                             sortCriteria={sortCriteria}
                         />
+                    </div>
+                    <div className="percentagle-items-track flex rounded-full">
+                        <div
+                            style={{ width: `${percentagePackedItems}%` }}
+                            className="percentagle-items-inner relative rounded-full animated bg-[var(--primary)]"
+                        >
+                            <span className="percentagle-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500">
+                                {percentagePackedItems}%
+                            </span>
+                        </div>
                     </div>
                     <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
                         <ul className="">
