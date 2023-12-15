@@ -198,6 +198,7 @@ svg {
 
 .percentagle-items-track {
     height: 5px;
+    min-height: 5px;
     width: 100%;
 }
 

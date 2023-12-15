@@ -26,6 +26,7 @@ import Sort from "../buttons/Sort"
 import ContentErrorLoading from "./ErrorContent"
 import ContentNoData from "./NoDataContent"
 import MobileMore from "../buttons/MobileMore"
+import PercentagleBar from "./PercentagleBar"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -167,18 +168,9 @@ export default function Content({ id }: { id: string }) {
                             sortCriteria={sortCriteria}
                         />
                     </div>
-                    <div className="percentagle-items-track flex rounded-full">
-                        <div
-                            style={{ width: `${percentagePackedItems}%` }}
-                            className="percentagle-items-inner relative rounded-full animated bg-[var(--primary)]"
-                        >
-                            <span className="percentagle-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500">
-                                {percentagePackedItems}%
-                            </span>
-                        </div>
-                    </div>
+                    <PercentagleBar percent={percentagePackedItems} />
                     <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
-                        <ul className="">
+                        <ul>
                             {sortedAndFilteredElements.map((element) => (
                                 <ContentElement
                                     key={element.id}
