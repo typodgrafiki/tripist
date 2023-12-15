@@ -27,11 +27,17 @@ export default function ShowCode({
     const onSubmit = async (data: ICodeSignUp) => {
         setLoading(true)
         const result = await confirmSignUp(data)
+        const { message } = result?.data
 
         if (result?.status == 200) {
             router.push("/dashboard")
+        } else if (result?.status == 401) {
+            Toastify({
+                className: "toastify-error",
+                text: message,
+            }).showToast()
+            setLoading(false)
         } else {
-            const { body: message } = result?.data
             Toastify({
                 className: "toastify-error",
                 text: message,

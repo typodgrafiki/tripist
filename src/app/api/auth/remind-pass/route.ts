@@ -123,6 +123,17 @@ export async function PUT(request: Request) {
             )
         }
 
+        if (dbToken.id !== token) {
+            await prisma.userRemindPassword.delete({
+                where: { id: dbToken.id },
+            })
+
+            return NextResponse.json(
+                { message: "Nie znaleziono tokena" },
+                { status: 402 }
+            )
+        }
+
         if (dbToken.expiresAt < currentDate) {
             return NextResponse.json(
                 { message: "Token wygasł" },

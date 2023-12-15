@@ -9,7 +9,7 @@ import { sendEmailSignCode } from "@/email/sendEmailCode"
 function generateCode4() {
     const signUpCode = Math.floor(Math.random() * 9000) + 1000
     const expiryDate = new Date()
-    expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+    expiryDate.setMinutes(expiryDate.getMinutes() + 15) // Ustawienie czasu wygaśnięcia na 15 minut od teraz
 
     return {
         signUpCode: signUpCode,
@@ -111,6 +111,13 @@ export async function PATCH(request: Request) {
 
         // Sprawdź, czy kod się zgadza i użytkownik istnieje
         if (signUpCode && signUpCode.code === codeNumber && user) {
+            if (new Date(signUpCode.expiresAt) < new Date()) {
+                return NextResponse.json(
+                    { message: "Kod stracił ważność" },
+                    { status: 401 }
+                )
+            }
+
             await prisma.user.update({
                 where: { id: userId },
                 data: { confirmed: true },
@@ -140,7 +147,7 @@ export async function PATCH(request: Request) {
             )
         } else {
             return NextResponse.json(
-                { body: "Niepoprawky kod" },
+                { message: "Niepoprawky kod" },
                 { status: 400 }
             )
         }

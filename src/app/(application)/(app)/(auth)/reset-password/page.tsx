@@ -8,6 +8,7 @@ import { resetPasswordSend } from "@/actions/axiosActions"
 import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
 import Button from "@/components/ui/Button"
+import { checkTokenDate } from "@/actions/axiosActions"
 
 export default function RemindPassword() {
     const router = useRouter()
@@ -29,10 +30,9 @@ export default function RemindPassword() {
         setLoading(true)
         const result = await resetPasswordSend(data)
 
-        // TODO to nie dziala
-
         if (result?.status === 200) {
             router.push("/dashboard")
+        } else if (result?.status === 401) {
         } else {
             const { message } = result?.data
             Toastify({
@@ -42,6 +42,11 @@ export default function RemindPassword() {
             setLoading(false)
         }
     }
+
+    if (!userEmail || !userToken) return <>Niepoprawny link zmiany hasła</>
+
+    // if (!checkTokenDate(userEmail, userToken))
+    //     return <>Link zmiany hasła wygasł</>
 
     return (
         <>
