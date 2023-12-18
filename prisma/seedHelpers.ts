@@ -19,15 +19,20 @@ export async function createOrGetCategory(name: string) {
 }
 
 // Funkcja do wyszukiwania typu "Business"
-export async function getTemplateType(nameType: string) {
-    let templateType = await prisma.templateType.findFirst({
+export async function createOrGetType(nameType: string, fullName: string) {
+    let templateType = await prisma.listType.findFirst({
         where: { name: nameType },
     })
 
     if (!templateType) {
         // Obsłuż brak typu "Business" w bazie danych
-        return 0
+        templateType = await prisma.listType.create({
+            data: {
+                name: nameType,
+                fullName: fullName,
+            },
+        })
     }
 
-    return templateType.id
+    return templateType
 }

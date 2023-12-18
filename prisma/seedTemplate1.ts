@@ -2,7 +2,7 @@
 // npm run seed:sample
 // npm run seed:template
 
-import { createOrGetCategory, getTemplateType } from "./seedHelpers"
+import { createOrGetCategory, createOrGetType } from "./seedHelpers"
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
@@ -21,13 +21,13 @@ async function main() {
     const foodCategory = await createOrGetCategory("Jedzenie")
 
     // Tworzenie listy predefiniowanej na podróż biznesową
-    const businessTripType = await getTemplateType("business")
+    const businessTripType = await createOrGetType("other", "Inne")
     const businessTripList = await prisma.template.create({
         data: {
             name: "Podróż biznesowa",
             settingColor: "bg-violet-400",
             start: false,
-            templateTypeId: businessTripType,
+            listTypeId: businessTripType.id,
             tripLength: 3,
             elements: {
                 create: [
@@ -154,13 +154,16 @@ async function main() {
         },
     })
 
-    const vacationTemplateType = await getTemplateType("vacation")
+    const vacationTemplateType = await createOrGetType(
+        "summer",
+        "Wakacje letnie"
+    )
     const vacationList = await prisma.template.create({
         data: {
             name: "Wakacje nad Morzem",
             settingColor: "bg-blue-400",
             start: false,
-            templateTypeId: vacationTemplateType,
+            listTypeId: vacationTemplateType.id,
             tripLength: 7,
             elements: {
                 create: [
@@ -330,13 +333,16 @@ async function main() {
         },
     })
 
-    const trekkingTemplateType = await getTemplateType("trekking")
+    const trekkingTemplateType = await createOrGetType(
+        "summer",
+        "Wakacje letnie"
+    )
     const trekkingList = await prisma.template.create({
         data: {
-            name: "Trekking w górach",
+            name: "Trekking w górach - lato",
             settingColor: "bg-blue-400",
             start: false,
-            templateTypeId: trekkingTemplateType,
+            listTypeId: trekkingTemplateType.id,
             tripLength: 5,
             elements: {
                 create: [
@@ -506,13 +512,13 @@ async function main() {
         },
     })
 
-    const campingTemplateType = await getTemplateType("camping")
+    const campingTemplateType = await createOrGetType("camping", "Camping")
     const campingList = await prisma.template.create({
         data: {
             name: "Kemping",
             settingColor: "bg-blue-400",
             start: false,
-            templateTypeId: campingTemplateType,
+            listTypeId: campingTemplateType.id,
             tripLength: 10,
             elements: {
                 create: [

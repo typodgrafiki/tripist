@@ -71,6 +71,7 @@ model List {
   user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
   fromTemplate    Boolean     @default(false)
+  tags            ListTags[]
 
   @@index([userId], name: "idx_userId")
 }
@@ -112,9 +113,10 @@ model Template {
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
   settingColor  String?
   tripLength    Int?                                        // liczba dni
-  templateTypeId Int                                        // rodzaj wycieczki, np. "citybreak"]
-  templateType TemplateType   @relation(fields: [templateTypeId], references: [id])
-  elements     TemplateItem[]
+  listTypeId Int                                            // rodzaj wycieczki, np. "citybreak"]
+  listType     ListType   @relation(fields: [listTypeId], references: [id])
+  elements     TemplateItem[] 
+  tags         ListTags[]
 }
 
 model TemplateItem {
@@ -132,8 +134,21 @@ model TemplateCategory {
   items    TemplateItem[]
 }
 
-model TemplateType {
+model ListType {
   id          Int          @id @default(autoincrement())
-  name        String       // Nazwa typu, np. "City Break"
+  name        String       // Nazwa typu, np. "SUMMER, WINTER, CAMPING, ACTIVE, TRAINING, OTHER"
+  fullName    String       // Pełna nazwa np. "Wakacje letnie, Camping"
   templates   Template[]
+}
+
+model ListTags {
+  id          Int          @id @default(autoincrement())
+  tag         String
+  list        List     @relation(fields: [listId], references: [id])
+  listId      String
+  template    Template @relation(fields: [templateId], references: [id])
+  templateId  Int
+
+  @@index([listId], name: "idx_listTags_listId")
+  @@index([templateId], name: "idx_listTags_templateId")
 }

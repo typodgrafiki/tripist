@@ -7,6 +7,7 @@
 import { NextResponse } from "next/server"
 import { useAuth } from "@/lib/auth"
 import prisma from "@/lib/prismaClient"
+import List from "@/app/(application)/(app)/dashboard/[id]/page"
 
 export async function GET() {
     const { userId } = await useAuth()
@@ -18,9 +19,18 @@ export async function GET() {
                 { status: 401 }
             )
 
-        const lists = await prisma.template.findMany({
+        const lists = await prisma.listType.findMany({
             where: {
-                start: false,
+                templates: {
+                    some: {},
+                },
+            },
+            include: {
+                templates: {
+                    where: {
+                        start: false,
+                    },
+                },
             },
         })
 

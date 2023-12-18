@@ -72,11 +72,22 @@ export interface IUserData {
     password?: string
 }
 
-export interface ISampleList {
+export interface ISampleType {
     id: number
     name: string
+    fullName: string
+    templates: ISampleList[]
+    setImportedId?: React.Dispatch<React.SetStateAction<number>>
+}
+
+export interface ISampleList {
+    id: number
+    listTypeId: number
+    name: string
     settingColor: string
+    start: boolean
     tripLength?: number
+    setImportedId?: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface ISampleListElement {

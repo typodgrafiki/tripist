@@ -13,6 +13,7 @@ import { ISampleList, ISampleListElement } from "@/types/types"
 import IconPlus from "../icons/plus"
 import IconMinus from "../icons/minus"
 import IconCheck from "../icons/check"
+import Sample from "./sampleLists/Sample"
 
 type TDuplicatProps = {
     duplicate?: {
@@ -125,7 +126,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         <input
                             type="text"
                             value={title}
-                            placeholder="np. Madryt '23, Islandia, Siłownia"
+                            placeholder="np. Madryt '23, Siłownia..."
                             className="form-control grow"
                             onChange={(e) => setTitle(e.target.value)}
                             disabled={isPending || isSuccess}
@@ -171,7 +172,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         ) : editList ? (
                             "Zapisz"
                         ) : (
-                            "Stwórz listę"
+                            "Stwórz pustą listę"
                         )}
                     </button>
                 </div>
@@ -182,50 +183,75 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 )}
 
                 {!duplicate && !editList && (
-                    <SampleLists setImportedId={setImportedId} />
+                    <Sample setImportedId={setImportedId} />
                 )}
             </form>
         </>
     )
 }
 
-const SampleLists = ({
+// const Sample = ({
+//     setImportedId,
+// }: {
+//     setImportedId: React.Dispatch<React.SetStateAction<number>>
+// }) => {
+//     const {
+//         data: sampleLists,
+//         isLoading,
+//         isError,
+//         isPaused,
+//     } = useQuery({
+//         queryKey: ["sampleLists"],
+//         queryFn: async () => {
+//             const data = await getSampleLists()
+//             return data as ISampleList[]
+//         },
+//     })
+
+//     console.log(sampleLists)
+
+//     // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
+
+//     if (isLoading)
+//         return <div className="mt-4">Ładowanie list przykładowych...</div>
+//     if (isError || !sampleLists)
+//         return <div className="mt-4">Błąd ładowania list przykładowych</div>
+
+//     return (
+//         <>
+//             <div className="mt-4 overflow-y-auto max-h-inner-modal">
+//                 {sampleLists.map((element) => (
+//                     <SampleTypes
+//                         key={element.name}
+//                         setImportedId={setImportedId}
+//                         {...element}
+//                     />
+//                 ))}
+//             </div>
+//         </>
+//     )
+// }
+
+const SampleTypes = ({
+    fullName,
     setImportedId,
 }: {
+    fullName: string
     setImportedId: React.Dispatch<React.SetStateAction<number>>
 }) => {
-    const {
-        data: sampleLists,
-        isLoading,
-        isError,
-        isPaused,
-    } = useQuery({
-        queryKey: ["sampleLists"],
-        queryFn: async () => {
-            const data = await getSampleLists()
-            return data as ISampleList[]
-        },
-    })
-
-    // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
-
-    if (isLoading)
-        return <div className="mt-4">Ładowanie list przykładowych...</div>
-    if (isError || !sampleLists)
-        return <div className="mt-4">Błąd ładowania list przykładowych</div>
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <>
-            <ul className="mt-4 overflow-y-auto max-h-inner-modal">
-                {sampleLists.map((element) => (
-                    <SampleList
-                        key={element.id}
-                        setImportedId={setImportedId}
-                        {...element}
-                    />
-                ))}
+        <div>
+            <div className="flex justify-between">
+                <div>{fullName}</div>
+                <button onClick={() => setIsOpen(!isOpen)}>rozwin</button>
+            </div>
+
+            <ul>
+                <li>...</li>
             </ul>
-        </>
+        </div>
     )
 }
 
