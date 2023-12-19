@@ -31,6 +31,7 @@ export default function SampleType({
             <button
                 className="animated flex w-full justify-between items-center py-3 cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
+                disabled={isPending}
                 type="button"
             >
                 <span className="font-medium">{fullName}</span>
@@ -99,10 +100,10 @@ const SampleList = ({
             </label>
             <select
                 className={`animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer ${
-                    selectedId == importedId
-                        ? "opacity-100"
-                        : selectedId == importedId && isPending
-                          ? "opacity-50"
+                    selectedId == importedId && isPending
+                        ? "opacity-50"
+                        : selectedId == importedId
+                          ? "opacity-100"
                           : "opacity-0"
                 }`}
                 disabled={isPending}
