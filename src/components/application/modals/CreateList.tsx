@@ -9,7 +9,6 @@ import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 import Select from "@/components/ui/Select"
 import { getSampleLists } from "@/actions/axiosActions"
-import { ISampleList, ISampleListElement } from "@/types/types"
 import IconPlus from "../icons/plus"
 import IconMinus from "../icons/minus"
 import IconCheck from "../icons/check"
@@ -25,11 +24,6 @@ type TDuplicatProps = {
         name: string
     }
 }
-// type TSampleSetElements = {
-//     setListSampleElements: React.Dispatch<
-//         React.SetStateAction<ISampleListElement[]>
-//     >
-// }
 
 const optionsColor = [
     "bg-red-500",
@@ -46,6 +40,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
     const [selectedColor, setSelectedColor] = useState(optionsColor[0])
+    const [isCreateSample, setIsCreateSample] = useState(false)
     // const [listSampleElements, setListSampleElements] = useState<
     //     ISampleListElement[]
     // >([])
@@ -138,43 +133,45 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                             setSelect={setSelectedColor}
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className={`flex justify-center items-center btn btn-primary ${
-                            isSuccess && "btn-green"
-                        }`}
-                        disabled={isPending || isSuccess}
-                    >
-                        {isPending ? (
-                            <div className="loader small"></div>
-                        ) : isSuccess ? (
-                            <>
-                                Dodano
-                                <svg
-                                    width="9"
-                                    height="7"
-                                    viewBox="0 0 9 7"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="ml-2"
-                                >
-                                    <path
-                                        d="M1 3.08333L3.57895 6L8 1"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </>
-                        ) : duplicate ? (
-                            "Duplikuj listę"
-                        ) : editList ? (
-                            "Zapisz"
-                        ) : (
-                            "Stwórz pustą listę"
-                        )}
-                    </button>
+                    {!isCreateSample && (
+                        <button
+                            type="submit"
+                            className={`flex justify-center items-center btn btn-primary ${
+                                isSuccess && "btn-green"
+                            }`}
+                            disabled={isPending || isSuccess}
+                        >
+                            {isPending ? (
+                                <div className="loader small"></div>
+                            ) : isSuccess ? (
+                                <>
+                                    Dodano
+                                    <svg
+                                        width="9"
+                                        height="7"
+                                        viewBox="0 0 9 7"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="ml-2"
+                                    >
+                                        <path
+                                            d="M1 3.08333L3.57895 6L8 1"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                </>
+                            ) : duplicate ? (
+                                "Duplikuj listę"
+                            ) : editList ? (
+                                "Zapisz"
+                            ) : (
+                                "Stwórz pustą listę"
+                            )}
+                        </button>
+                    )}
                 </div>
                 {isError && (
                     <div className="text-red-600 text-sm mt-2">
@@ -183,122 +180,17 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 )}
 
                 {!duplicate && !editList && (
-                    <Sample setImportedId={setImportedId} />
+                    <Sample
+                        importedId={importedId}
+                        setImportedId={setImportedId}
+                        isCreateSample={isCreateSample}
+                        setIsCreateSample={setIsCreateSample}
+                        isPending={isPending}
+                        isError={isError}
+                        isSuccess={isSuccess}
+                    />
                 )}
             </form>
-        </>
-    )
-}
-
-// const Sample = ({
-//     setImportedId,
-// }: {
-//     setImportedId: React.Dispatch<React.SetStateAction<number>>
-// }) => {
-//     const {
-//         data: sampleLists,
-//         isLoading,
-//         isError,
-//         isPaused,
-//     } = useQuery({
-//         queryKey: ["sampleLists"],
-//         queryFn: async () => {
-//             const data = await getSampleLists()
-//             return data as ISampleList[]
-//         },
-//     })
-
-//     console.log(sampleLists)
-
-//     // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
-
-//     if (isLoading)
-//         return <div className="mt-4">Ładowanie list przykładowych...</div>
-//     if (isError || !sampleLists)
-//         return <div className="mt-4">Błąd ładowania list przykładowych</div>
-
-//     return (
-//         <>
-//             <div className="mt-4 overflow-y-auto max-h-inner-modal">
-//                 {sampleLists.map((element) => (
-//                     <SampleTypes
-//                         key={element.name}
-//                         setImportedId={setImportedId}
-//                         {...element}
-//                     />
-//                 ))}
-//             </div>
-//         </>
-//     )
-// }
-
-const SampleTypes = ({
-    fullName,
-    setImportedId,
-}: {
-    fullName: string
-    setImportedId: React.Dispatch<React.SetStateAction<number>>
-}) => {
-    const [isOpen, setIsOpen] = useState(false)
-
-    return (
-        <div>
-            <div className="flex justify-between">
-                <div>{fullName}</div>
-                <button onClick={() => setIsOpen(!isOpen)}>rozwin</button>
-            </div>
-
-            <ul>
-                <li>...</li>
-            </ul>
-        </div>
-    )
-}
-
-const SampleList = ({
-    name,
-    id,
-    setImportedId,
-    tripLength: days,
-}: {
-    name: string
-    id: number
-    setImportedId: React.Dispatch<React.SetStateAction<number>>
-    tripLength?: number
-}) => {
-    const [isImported, setIsImported] = useState(false)
-
-    const handleImportId: () => void = () => {
-        setImportedId(id)
-        setIsImported(true)
-    }
-
-    return (
-        <>
-            <li className="flex w-full justify-between items-center py-2 border-t border-gray-200 first:border-0">
-                <span className="font-medium">
-                    {name} / dni: {days}
-                </span>
-                <button
-                    type="button"
-                    onClick={handleImportId}
-                    className={`flex items-center gap-1  ${
-                        isImported
-                            ? "text-[var(--primary)]"
-                            : "text-gray-500 hover:text-[var(--primary)]"
-                    }`}
-                >
-                    {isImported ? (
-                        <>
-                            zaimportowano <IconCheck />
-                        </>
-                    ) : (
-                        <>
-                            importuj <IconPlus />
-                        </>
-                    )}
-                </button>
-            </li>
         </>
     )
 }

@@ -212,6 +212,10 @@ svg {
     margin-top: 1px;
 }
 
+.sample-list.open {
+    border-color: transparent;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

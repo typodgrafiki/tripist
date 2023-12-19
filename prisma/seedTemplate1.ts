@@ -513,13 +513,168 @@ async function main() {
     })
 
     const campingTemplateType = await createOrGetType("camping", "Camping")
-    const campingList = await prisma.template.create({
+    const campingList10 = await prisma.template.create({
         data: {
             name: "Kemping",
             settingColor: "bg-blue-400",
             start: false,
             listTypeId: campingTemplateType.id,
             tripLength: 10,
+            elements: {
+                create: [
+                    // Sprzęt do kempingu
+                    {
+                        name: "Namiot z osprzętem (kolce, linki)",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Śpiwór",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Karimata/materac dmuchany",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Latarka lub latarka czołowa",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Lekkie krzesełka kempingowe",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Stół kempingowy składany",
+                        categories: {
+                            connect: [{ id: sprzetKempingowyCategory.id }],
+                        },
+                    },
+
+                    // Gotowanie i jedzenie
+                    {
+                        name: "Kuchenka turystyczna",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+                    {
+                        name: "Menażka, naczynia, sztućce",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+                    {
+                        name: "Składany kubek, talerze",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+                    {
+                        name: "Propan/butan do kuchenki",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+                    {
+                        name: "Żywność (kawa, herbata, makarony, sosy, konserwy)",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+                    {
+                        name: "Proszek do uzdatniania wody",
+                        categories: { connect: [{ id: foodCategory.id }] },
+                    },
+
+                    // Odzież i akcesoria
+                    {
+                        name: "Buty trekkingowe/wodoodporne",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Odzież termoaktywna",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Kurtka przeciwdeszczowa",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem lub bandana",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Krem z filtrem przeciwsłonecznym",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: odziezCategory.id }] },
+                    },
+
+                    // Zdrowie i higiena
+                    {
+                        name: "Apteczka pierwszej pomocy",
+                        categories: {
+                            connect: [{ id: higienaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Środki przeciw owadom",
+                        categories: {
+                            connect: [{ id: higienaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Środki higieniczne (papier toaletowy, wilgotne chusteczki, żel antybakteryjny)",
+                        categories: {
+                            connect: [{ id: higienaCategory.id }],
+                        },
+                    },
+                    {
+                        name: "Ręcznik szybkoschnący",
+                        categories: {
+                            connect: [{ id: higienaCategory.id }],
+                        },
+                    },
+
+                    // Inne
+                    {
+                        name: "Power bank",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                    {
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                    {
+                        name: "Lornetka",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                    {
+                        name: "Kompas/GPS",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                    {
+                        name: "Notatnik i długopis",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                    {
+                        name: "Torba na śmieci",
+                        categories: { connect: [{ id: inneCategory.id }] },
+                    },
+                ],
+            },
+        },
+    })
+
+    const campingList2 = await prisma.template.create({
+        data: {
+            name: "Kemping",
+            settingColor: "bg-blue-400",
+            start: false,
+            listTypeId: campingTemplateType.id,
+            tripLength: 2,
             elements: {
                 create: [
                     // Sprzęt do kempingu

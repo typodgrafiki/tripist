@@ -1,41 +1,61 @@
 "use client"
 
 import { useState } from "react"
-import { ISampleList } from "@/types/types"
+import {
+    TSampleListStatus,
+    TSampleType,
+    TSampleProps,
+    TSampleList,
+} from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
 
 export default function SampleType({
-    id,
     templates,
     fullName,
+    importedId,
     setImportedId,
-}: {
-    id: number
-    templates: ISampleList[]
-    fullName: string
-    setImportedId: React.Dispatch<React.SetStateAction<number>>
-}) {
+    isPending,
+    isError,
+    isSuccess,
+}: TSampleType & TSampleProps & TSampleListStatus) {
     const [isOpen, setIsOpen] = useState(false)
 
-    return (
-        <div className="border-t border-gray-200 first:border-0">
-            <div className="flex w-full justify-between items-center py-2">
-                <div className="font-medium">{fullName}</div>
-                <button onClick={() => setIsOpen(!isOpen)} className="animated text-gray-400 hover:text-gray-950" type="button">
-                    rozwin
-                    <ArrowDown className="ml-1" />
-                </button>
-            </div>
+    if (templates.length === 0) return null
 
+    return (
+        <div
+            className={`sample-list border-b border-gray-300 last:border-0 ${
+                isOpen ? "open" : ""
+            }`}
+        >
+            <button
+                className="animated flex w-full justify-between items-center py-3 cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+            >
+                <span className="font-medium">{fullName}</span>
+                <span className="animated text-gray-500 hover:text-gray-950">
+                    {isOpen ? "zwiń" : "rozwin"}
+                    <ArrowDown
+                        className={`ml-1 ${
+                            isOpen ? "origin-center rotate-180" : ""
+                        }`}
+                    />
+                </span>
+            </button>
             {isOpen && (
-                <ul className="bg-gray-100 py-2 px-3 rounded-lg">
+                <ul className="bg-gray-100 px-4 py-1 rounded-lg">
                     {templates.map((element) => (
                         <SampleList
-                        key={element.id}
-                        setImportedId={setImportedId}
-                        {...element}
+                            key={element.name}
+                            importedId={importedId}
+                            setImportedId={setImportedId}
+                            isPending={isPending}
+                            isError={isError}
+                            isSuccess={isSuccess}
+                            {...element}
                         />
-                        ))}
+                    ))}
                 </ul>
             )}
         </div>
@@ -44,15 +64,60 @@ export default function SampleType({
 
 const SampleList = ({
     name,
-    id,
-    tripLength,
+    options,
+    importedId,
     setImportedId,
-    listTypeId,
-}: ISampleList) => {
+    isPending,
+    isError,
+    isSuccess,
+}: TSampleListStatus & TSampleList & TSampleProps) => {
+    // Stan lokalny do przechowywania wybranego id
+    const [selectedId, setSelectedId] = useState(options[0].id)
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newId = parseInt(e.target.value, 10)
+        setSelectedId(newId)
+        setImportedId(newId)
+    }
+
+    const handleRadioChange = () => {
+        setImportedId(selectedId)
+    }
+
     return (
-        <li className="flex justify-between gap-2">
-            <span>{name}</span>
-            <span>{tripLength} dni</span>
+        <li className="flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
+            <label className="py-2 grow cursor-pointer">
+                <input
+                    type="radio"
+                    name="listSampleId"
+                    value={selectedId}
+                    onChange={handleRadioChange}
+                    className="mr-2"
+                    disabled={isPending}
+                />
+                {name}
+            </label>
+            <select
+                className={`animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer ${
+                    selectedId == importedId
+                        ? "opacity-100"
+                        : selectedId == importedId && isPending
+                          ? "opacity-50"
+                          : "opacity-0"
+                }`}
+                disabled={isPending}
+                value={selectedId}
+                onChange={handleSelectChange}
+            >
+                {options.map((element) => (
+                    <option
+                        key={element.id}
+                        value={element.id}
+                    >
+                        {element.tripLength} dni
+                    </option>
+                ))}
+            </select>
         </li>
     )
 }

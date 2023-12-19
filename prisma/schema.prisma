@@ -111,7 +111,7 @@ model Template {
   id            Int          @id @default(autoincrement())
   name          String                                      // np. "2 dni citybreak"
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
-  settingColor  String?
+  settingColor  String
   tripLength    Int?                                        // liczba dni
   listTypeId Int                                            // rodzaj wycieczki, np. "citybreak"]
   listType     ListType   @relation(fields: [listTypeId], references: [id])

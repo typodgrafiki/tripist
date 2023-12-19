@@ -72,31 +72,46 @@ export interface IUserData {
     password?: string
 }
 
-export interface ISampleType {
+export type TSampleProps = {
+    importedId: number
+    setImportedId: React.Dispatch<React.SetStateAction<number>>
+}
+
+export type TSampleTypeFull = {
     id: number
     name: string
     fullName: string
-    templates: ISampleList[]
-    setImportedId?: React.Dispatch<React.SetStateAction<number>>
+    templates: TSampleTypeFullTemplates[]
 }
 
-export interface ISampleList {
+export type TSampleTypeFullTemplates = {
     id: number
-    listTypeId: number
     name: string
-    settingColor: string
     start: boolean
-    tripLength?: number
-    setImportedId?: React.Dispatch<React.SetStateAction<number>>
+    settingColor: string
+    tripLength: number | null
+    listTypeId: number
 }
 
-export interface ISampleListElement {
-    name: string
-    categories: ISampleListElement[]
+export type TSampleType = {
+    fullName: string
+    templates: TSampleList[]
 }
 
-export interface ISampleListElement {
+export type TSampleList = {
     name: string
+    options: TSampleListOptions[]
+}
+
+type TSampleListOptions = {
+    id: number
+    tripLength: number
+}
+
+export type TSampleListStatus = {
+    isPending: boolean
+    isError: boolean
+    isSuccess: boolean
 }
 
 export interface ICodeSignUp {
