@@ -160,3 +160,8 @@ export interface ISortTypes {
 
 export type SortBy = "createdAt" | "name"
 export type SortDirection = "asc" | "desc"
+
+export type TSampleCustomItemsCount = {
+    checkedCount: number
+    totalCount: number
+}

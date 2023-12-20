@@ -10,6 +10,7 @@ import {
     TSampleCustomItems,
     TSampleCustomItemsToApi,
     TSampleCustomCategoryApi,
+    TSampleCustomItemsCount
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -176,4 +177,11 @@ export function changeSampleCustomDataToApi(
     })
 
     return flattenedData
+}
+
+export function countItems(items: TSampleCustomCategoryApi[]) {
+    let totalCount = items.length
+    let checkedCount = items.filter(item => item.checked).length
+
+    return { totalCount, checkedCount } as TSampleCustomItemsCount
 }

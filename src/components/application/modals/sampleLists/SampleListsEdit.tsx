@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { getSampleList } from "@/actions/axiosActions"
-import { changeSampleCustomDataToComponent } from "@/utils/utils"
+import { changeSampleCustomDataToComponent, countItems } from "@/utils/utils"
 import {
-    TSampleCustomItemsToApi,
     TSampleCustomCategoryApi,
     TSampleListStatus,
     TSampleProps,
 } from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
 import IconCheck from "../../icons/check"
-import IconPlus from "../../icons/plus"
 
 interface HandleItemToggle {
     (categoryName: string, itemName: string): void
@@ -23,6 +21,7 @@ export default function SampleListsEdit({
     dataCustomList: data,
     setDataCustomList: setData,
 }: TSampleProps & TSampleListStatus) {
+    const [openPanels, setOpenPanels] = useState<boolean[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -32,7 +31,9 @@ export default function SampleListsEdit({
                 setIsLoading(true)
                 const response = await getSampleList(importedId)
                 const groupedItems = changeSampleCustomDataToComponent(response)
+                const categoryCount = Object.keys(groupedItems).length
                 setData(groupedItems)
+                setOpenPanels([true, ...Array(categoryCount - 1).fill(false)]);
             } catch (err) {
                 // TODO obsłuż błędy
                 // setError(err)
@@ -42,6 +43,7 @@ export default function SampleListsEdit({
         }
 
         fetchData()
+        
     }, [importedId]) // Efekt uruchomi się, gdy `importedId` ulegnie zmianie
 
     const handleItemToggle: HandleItemToggle = (categoryName, itemName) => {
@@ -57,6 +59,11 @@ export default function SampleListsEdit({
             newData[categoryName] = categoryItems
             return newData
         })
+    }
+
+    const handlePanelToggle = (panelIndex: number) => {
+        const updatedOpenPanels = openPanels.map((_, index) => (index === panelIndex ? !openPanels[index] : false));
+        setOpenPanels(updatedOpenPanels);
     }
 
     if (isLoading) {
@@ -80,6 +87,8 @@ export default function SampleListsEdit({
                     isPending={isPending}
                     isError={isError}
                     isSuccess={isSuccess}
+                    isOpenPanel={openPanels[index]}
+                    handlePanelToggle={handlePanelToggle}
                 />
             ))}
         </div>
@@ -94,44 +103,54 @@ const SampleListsCategoryEdit = ({
     isPending,
     isError,
     isSuccess,
+    isOpenPanel,
+    handlePanelToggle
 }: {
     categoryName: string
     items: TSampleCustomCategoryApi[]
     index: number
     handleItemToggle: HandleItemToggle
+    isOpenPanel: boolean
+    handlePanelToggle: (panelIndex: number) => void
 } & TSampleListStatus) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const contentRef = useRef<HTMLDivElement>(null)
+    const [maxHeight, setMaxHeight] = useState(0)
+    const {checkedCount, totalCount} = countItems(items)
 
     useEffect(() => {
-        if (index === 0) {
-            setIsOpen(true)
+        if (contentRef.current) {
+            setMaxHeight(contentRef.current.scrollHeight);
         }
-    }, [index])
+    }, [])
+
+    
 
     return (
         <fieldset
             className={`sample-list border-b border-gray-300 last:border-0 ${
-                isOpen ? "open" : ""
+                isOpenPanel ? "open" : ""
             }`}
         >
             <button
                 className="animated flex w-full justify-between items-center py-3 cursor-pointer"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => handlePanelToggle(index)}
                 disabled={isPending}
                 type="button"
             >
-                <span className="font-medium">{categoryName}</span>
+                <span className="font-medium">{categoryName} <span className="text-gray-400 text-xs font-normal ml-1">[{checkedCount}/{totalCount}]</span></span>
                 <span className="animated text-gray-500 hover:text-gray-950">
-                    {isOpen ? "zwiń" : "rozwin"}
+                    {isOpenPanel ? "zwiń" : "rozwin"}
                     <ArrowDown
                         className={`ml-1 ${
-                            isOpen ? "origin-center rotate-180" : ""
+                            isOpenPanel ? "origin-center rotate-180" : ""
                         }`}
                     />
                 </span>
             </button>
-            {isOpen && (
-                <div className="bg-gray-100 p-4 rounded-lg flex flex-wrap gap-2">
+            <div className='overflow-hidden animated'
+                style={{ maxHeight: isOpenPanel ? `${maxHeight}px` : '0' }}
+            >
+                <div ref={contentRef} className={`bg-gray-100 rounded-lg p-4 flex flex-wrap gap-2`}>
                     {items.map((item, itemIndex) => (
                         <SampleListsElementEdit
                             key={itemIndex}
@@ -145,7 +164,7 @@ const SampleListsCategoryEdit = ({
                         />
                     ))}
                 </div>
-            )}
+            </div>
         </fieldset>
     )
 }
