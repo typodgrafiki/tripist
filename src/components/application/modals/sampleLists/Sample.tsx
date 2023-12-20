@@ -8,29 +8,43 @@ import SampleLists from "./SampleLists"
 import ArrowDown from "../../icons/arrowDown"
 import ArrowRight from "../../icons/arrowRight"
 import Button from "@/components/ui/Button"
+import SampleListsEdit from "./SampleListsEdit"
 
 type TSampleProps2 = {
     isCreateSample: boolean
     setIsCreateSample: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+type TSampleProps3 = {
+    customList: boolean
+    setCustomList: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 export default function Sample({
     isPending,
     isError,
     isSuccess,
+    customList,
+    setCustomList,
     importedId,
     setImportedId,
     isCreateSample,
     setIsCreateSample,
-}: TSampleProps & TSampleProps2 & TSampleListStatus) {
+    dataCustomList,
+    setDataCustomList,
+}: TSampleProps & TSampleProps2 & TSampleProps3 & TSampleListStatus) {
     if (isCreateSample)
         return (
             <SampleOn
+                customList={customList}
+                setCustomList={setCustomList}
                 importedId={importedId}
                 setImportedId={setImportedId}
                 isPending={isPending}
                 isError={isError}
                 isSuccess={isSuccess}
+                dataCustomList={dataCustomList}
+                setDataCustomList={setDataCustomList}
             />
         )
 
@@ -52,9 +66,13 @@ const SampleOn = ({
     isPending,
     isError,
     isSuccess,
+    customList,
+    setCustomList,
     importedId,
     setImportedId,
-}: TSampleProps & TSampleListStatus) => {
+    dataCustomList,
+    setDataCustomList,
+}: TSampleProps & TSampleProps3 & TSampleListStatus) => {
     const {
         data: sampleLists,
         isLoading,
@@ -68,8 +86,6 @@ const SampleOn = ({
         },
     })
 
-    console.log(sampleLists)
-
     // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
 
     if (isLoading)
@@ -79,28 +95,45 @@ const SampleOn = ({
 
     return (
         <>
-            <div className="mt-4 overflow-y-auto max-h-inner-modal">
-                {sampleLists.map((element) => (
-                    <SampleLists
-                        key={element.fullName}
-                        importedId={importedId}
-                        setImportedId={setImportedId}
-                        isPending={isPending}
-                        isError={isError}
-                        isSuccess={isSuccess}
-                        {...element}
-                    />
-                ))}
-            </div>
+            {customList ? (
+                <SampleListsEdit
+                    importedId={importedId}
+                    setImportedId={setImportedId}
+                    dataCustomList={dataCustomList}
+                    setDataCustomList={setDataCustomList}
+                    isPending={isPending}
+                    isError={isError}
+                    isSuccess={isSuccess}
+                />
+            ) : (
+                <div className="mt-4 overflow-y-auto max-h-inner-modal">
+                    {sampleLists.map((element) => (
+                        <SampleLists
+                            key={element.fullName}
+                            importedId={importedId}
+                            setImportedId={setImportedId}
+                            isPending={isPending}
+                            isError={isError}
+                            isSuccess={isSuccess}
+                            dataCustomList={dataCustomList}
+                            setDataCustomList={setDataCustomList}
+                            {...element}
+                        />
+                    ))}
+                </div>
+            )}
             <div className="flex justify-between gap-3 mt-4">
-                <Button
-                    type="button"
-                    className="btn btn-default"
-                    isDisabled={importedId == 0 || isPending}
-                >
-                    Przeglądaj elementy
-                    <ArrowDown className="ml-2" />
-                </Button>
+                {!customList && (
+                    <Button
+                        type="button"
+                        className="btn btn-default"
+                        isDisabled={importedId == 0 || isPending}
+                        onClick={() => setCustomList(true)}
+                    >
+                        Przeglądaj elementy
+                        <ArrowDown className="ml-2" />
+                    </Button>
+                )}
                 <Button
                     className="grow btn btn-primary justify-center"
                     type="submit"
@@ -109,6 +142,11 @@ const SampleOn = ({
                 >
                     {isPending ? (
                         "Tworzenie listy"
+                    ) : customList ? (
+                        <>
+                            Stwórz listę
+                            <ArrowRight className="ml-2" />
+                        </>
                     ) : (
                         <>
                             Zatwierdź szablon

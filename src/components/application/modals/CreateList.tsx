@@ -3,16 +3,20 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useModal } from "@/context/ModalContext"
-import { createList, getSampleList, updateList } from "@/actions/axiosActions"
-import { focusInput } from "@/utils/utils"
+import {
+    createList,
+    updateList,
+    createListCustom,
+} from "@/actions/axiosActions"
+import { focusInput, changeSampleCustomDataToApi } from "@/utils/utils"
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 import Select from "@/components/ui/Select"
-import { getSampleLists } from "@/actions/axiosActions"
 import IconPlus from "../icons/plus"
 import IconMinus from "../icons/minus"
 import IconCheck from "../icons/check"
 import Sample from "./sampleLists/Sample"
+import { TSampleCustomItemsToApi } from "@/types/types"
 
 type TDuplicatProps = {
     duplicate?: {
@@ -40,11 +44,18 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
     const [selectedColor, setSelectedColor] = useState(optionsColor[0])
+
+    // TODO to mozna do obiektu wrzucic
     const [isCreateSample, setIsCreateSample] = useState(false)
+    const [customList, setCustomList] = useState(false)
+    const [dataCustomList, setDataCustomList] =
+        useState<TSampleCustomItemsToApi>({})
+
     // const [listSampleElements, setListSampleElements] = useState<
     //     ISampleListElement[]
     // >([])
     const [importedId, setImportedId] = useState(0)
+
     const { closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -56,6 +67,13 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
         mutationFn: async () => {
             if (editList) {
                 return updateList(title, editList.id, selectedColor)
+            }
+            if (isCreateSample && customList) {
+                return createListCustom(
+                    title,
+                    changeSampleCustomDataToApi(dataCustomList),
+                    selectedColor
+                )
             }
             return createList(title, idToDuplicate, selectedColor)
         },
@@ -79,9 +97,9 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
             }).showToast()
 
             // TODO Tutaj pojawia sie przycisk zamknij i przy nim jest jakies odliczania po czym setTimeout
-            setTimeout(() => {
-                closeModal()
-            }, 2500)
+            // setTimeout(() => {
+            closeModal()
+            // }, 2500)
         },
         onError: (error) => {
             Toastify({
@@ -181,6 +199,9 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
 
                 {!duplicate && !editList && (
                     <Sample
+                        customList={customList}
+                        setCustomList={setCustomList}
+                        setDataCustomList={setDataCustomList}
                         importedId={importedId}
                         setImportedId={setImportedId}
                         isCreateSample={isCreateSample}
@@ -188,6 +209,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         isPending={isPending}
                         isError={isError}
                         isSuccess={isSuccess}
+                        dataCustomList={dataCustomList}
                     />
                 )}
             </form>

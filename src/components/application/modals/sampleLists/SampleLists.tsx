@@ -17,6 +17,8 @@ export default function SampleType({
     isPending,
     isError,
     isSuccess,
+    dataCustomList,
+    setDataCustomList,
 }: TSampleType & TSampleProps & TSampleListStatus) {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -54,6 +56,8 @@ export default function SampleType({
                             isPending={isPending}
                             isError={isError}
                             isSuccess={isSuccess}
+                            dataCustomList={dataCustomList}
+                            setDataCustomList={setDataCustomList}
                             {...element}
                         />
                     ))}

@@ -53,6 +53,25 @@ export type TListItemUpdate = {
     categories: TListItemCategoriesUpdate
 }
 
+type TSampleCustomCategories = {
+    name: string
+}
+
+export type TSampleCustomItems = {
+    name: string
+    categories: TSampleCustomCategories[]
+}
+
+export type TSampleCustomCategoryApi = {
+    name: string
+    categories: TSampleCustomCategories[]
+    checked: boolean
+}
+
+export type TSampleCustomItemsToApi = {
+    [categoryName: string]: TSampleCustomCategoryApi[]
+}
+
 export interface ILoginUser {
     email: string
     password: string
@@ -75,6 +94,10 @@ export interface IUserData {
 export type TSampleProps = {
     importedId: number
     setImportedId: React.Dispatch<React.SetStateAction<number>>
+    dataCustomList: TSampleCustomItemsToApi
+    setDataCustomList: React.Dispatch<
+        React.SetStateAction<TSampleCustomItemsToApi>
+    >
 }
 
 export type TSampleTypeFull = {

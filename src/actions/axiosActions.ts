@@ -8,6 +8,7 @@ import {
     ILoginUser,
     IUserData,
     TFeedback,
+    TSampleCustomItems,
 } from "@/types/types"
 import axios from "axios"
 import { AxiosError } from "axios"
@@ -19,12 +20,31 @@ export const createList = async (
     duplicateId?: string | number,
     color?: string
 ) => {
-    const query = { name, duplicateId, color }
+    let query
+
+    if (duplicateId) {
+        query = { name, duplicateId, color }
+    } else {
+        query = { name, color }
+    }
 
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
 
+    const response = await axios.post("/api/lists", query)
+    return response
+}
+
+export const createListCustom = async (
+    name: string,
+    customData: TSampleCustomItems[],
+    color?: string
+) => {
+    const query = { name, customData, color }
+    if (!name || !customData) {
+        throw "Nie uzupełniono danych"
+    }
     const response = await axios.post("/api/lists", query)
     return response
 }

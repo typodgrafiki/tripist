@@ -7,6 +7,9 @@ import {
     ISortTypes,
     SortBy,
     SortDirection,
+    TSampleCustomItems,
+    TSampleCustomItemsToApi,
+    TSampleCustomCategoryApi,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -137,4 +140,40 @@ export function calculateStatusPercentage(items: IElements[]) {
 
     const result = Math.round((trueStatusItems / totalItems) * 100)
     return result
+}
+
+export function changeSampleCustomDataToComponent(
+    data: TSampleCustomItems[]
+): TSampleCustomItemsToApi {
+    const groupedItems = data.reduce<TSampleCustomItemsToApi>((acc, item) => {
+        const itemWithChecked: TSampleCustomCategoryApi = {
+            ...item,
+            checked: true,
+        }
+        item.categories.forEach((category) => {
+            if (!acc[category.name]) {
+                acc[category.name] = []
+            }
+            acc[category.name].push(itemWithChecked)
+        })
+        return acc
+    }, {} as TSampleCustomItemsToApi)
+
+    return groupedItems
+}
+
+export function changeSampleCustomDataToApi(
+    data: TSampleCustomItemsToApi
+): TSampleCustomItems[] {
+    const flattenedData: TSampleCustomItems[] = []
+
+    Object.values(data).forEach((categoryItems) => {
+        categoryItems.forEach((item) => {
+            if (item.checked) {
+                flattenedData.push(item)
+            }
+        })
+    })
+
+    return flattenedData
 }
