@@ -6,8 +6,9 @@ interface ISelectProps {
     options: string[]
     select: string
     setSelect: (color: string) => void
+    className?: string
 }
-export default function Select({ options, select, setSelect }: ISelectProps) {
+export default function Select({ options, select, setSelect, className }: ISelectProps) {
     const { isOpen, toggleDropdown, dropdownRef, closeDropdown } = useDropdown()
 
     const handleChangeColor = (color: string) => {
@@ -17,7 +18,7 @@ export default function Select({ options, select, setSelect }: ISelectProps) {
 
     return (
         <div
-            className="flex relative"
+            className={`flex relative ${className}`}
             ref={dropdownRef}
         >
             <button

@@ -13,6 +13,7 @@ import SampleListsEdit from "./SampleListsEdit"
 type TSampleProps2 = {
     isCreateSample: boolean
     setIsCreateSample: React.Dispatch<React.SetStateAction<boolean>>
+    titleIsEmpty: boolean
 }
 
 type TSampleProps3 = {
@@ -32,6 +33,7 @@ export default function Sample({
     setIsCreateSample,
     dataCustomList,
     setDataCustomList,
+    titleIsEmpty
 }: TSampleProps & TSampleProps2 & TSampleProps3 & TSampleListStatus) {
     if (isCreateSample)
         return (
@@ -50,12 +52,14 @@ export default function Sample({
 
     return (
         <>
+            <p className="text-center my-3">lub</p>
             <button
                 type="button"
-                className="btn btn-default mt-3"
+                className="btn btn-default w-full"
                 onClick={() => setIsCreateSample(true)}
+                disabled={titleIsEmpty}
             >
-                Stwórz z szablonu
+                Stwórz gotową listę z szablonu
                 <ArrowDown className="ml-2" />
             </button>
         </>

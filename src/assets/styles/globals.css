@@ -42,7 +42,7 @@
 
     .btn {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 14px 20px;
         border-width: 1px;
         border-style: solid;
         border-radius: 7px;
@@ -119,7 +119,7 @@
         background-color: #ecedf1;
         border-color: transparent;
         border-radius: 7px;
-        padding: 10px 20px;
+        padding: 12px 20px;
     }
 
     .form-control.success:focus {

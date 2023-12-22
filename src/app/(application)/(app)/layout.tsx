@@ -13,7 +13,7 @@ export default function BackLayout({
     return (
         <ModalProvider>
             <QueryProvider>
-                <div className="bg-white sm:bg-[#F4F5F9] sm:h-screen">
+                <div className="bg-white text-sm sm:bg-[#F4F5F9] sm:h-screen">
                     {children}
                 </div>
                 <Modal />

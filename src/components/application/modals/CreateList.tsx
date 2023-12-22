@@ -17,6 +17,9 @@ import IconMinus from "../icons/minus"
 import IconCheck from "../icons/check"
 import Sample from "./sampleLists/Sample"
 import { TSampleCustomItemsToApi } from "@/types/types"
+import TitleModal from "@/components/ui/ModalTitle"
+import FormLabel from "@/components/ui/FormLabel"
+import ArrowRight from "../icons/arrowRight"
 
 type TDuplicatProps = {
     duplicate?: {
@@ -43,6 +46,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
+    const titleIsEmpty = title === ""
     const [selectedColor, setSelectedColor] = useState(optionsColor[0])
 
     // TODO to mozna do obiektu wrzucic
@@ -50,12 +54,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const [customList, setCustomList] = useState(false)
     const [dataCustomList, setDataCustomList] =
         useState<TSampleCustomItemsToApi>({})
-
-    // const [listSampleElements, setListSampleElements] = useState<
-    //     ISampleListElement[]
-    // >([])
     const [importedId, setImportedId] = useState(0)
-
     const { closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -120,77 +119,73 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
 
     return (
         <>
-            <h3 className="mb-3 text-gray-400 truncate">
-                <span className="title font-medium text-gray-900 text-base">
-                    Nazwa
-                </span>
-                {duplicate && (
-                    <span className="text-xs ml-2">
-                        (Duplikujesz listę &quot;{duplicate.name}&quot;)
-                    </span>
-                )}
-            </h3>
+            <TitleModal>                
+                {duplicate ? (
+                    <>
+                        Duplikuj listę
+                        <span className="text-sm ml-2 text-muted font-normal">
+                            ({duplicate.name})
+                        </span>
+                    </>
+                ) : editList ? "Edytuj listę" : "Stwórz listę"}
+            </TitleModal>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
-                <div className="flex justify-between gap-3 mb-1 flex-col sm:flex-row">
-                    <div className="flex justify-between gap-3 grow">
-                        <input
-                            type="text"
-                            value={title}
-                            placeholder="np. Madryt '23, Siłownia..."
-                            className="form-control grow"
-                            onChange={(e) => setTitle(e.target.value)}
-                            disabled={isPending || isSuccess}
-                            ref={inputRef}
-                        />
-                        <Select
-                            options={optionsColor}
-                            select={selectedColor}
-                            setSelect={setSelectedColor}
-                        />
-                    </div>
-                    {!isCreateSample && (
+                {!isCreateSample && (
+                    <>
+                        <div className="flex justify-between gap-4 mb-5">
+                            <div className="grow">
+                                <FormLabel>Nazwa listy:</FormLabel>
+                                <input
+                                    type="text"
+                                    value={title}
+                                    placeholder="np. Madryt '23, Siłownia..."
+                                    className="form-control w-full"
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    disabled={isPending || isSuccess}
+                                    ref={inputRef}
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <FormLabel>Kolor:</FormLabel>
+                                <Select
+                                    options={optionsColor}
+                                    select={selectedColor}
+                                    setSelect={setSelectedColor}
+                                    className="grow"
+                                />
+                            </div>
+                        </div>
+
+                    
                         <button
                             type="submit"
-                            className={`flex justify-center items-center btn btn-primary ${
+                            className={`flex justify-center items-center w-full btn btn-primary ${
                                 isSuccess && "btn-green"
                             }`}
-                            disabled={isPending || isSuccess}
+                            // disabled={isPending || isSuccess}
+                            disabled={titleIsEmpty}
                         >
                             {isPending ? (
                                 <div className="loader small"></div>
                             ) : isSuccess ? (
-                                <>
-                                    Dodano
-                                    <svg
-                                        width="9"
-                                        height="7"
-                                        viewBox="0 0 9 7"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="ml-2"
-                                    >
-                                        <path
-                                            d="M1 3.08333L3.57895 6L8 1"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </>
+                                "Dodano"
                             ) : duplicate ? (
                                 "Duplikuj listę"
                             ) : editList ? (
                                 "Zapisz"
                             ) : (
-                                "Stwórz pustą listę"
+                                <>
+                                    Stwórz pustą listę
+                                    <ArrowRight className="ml-2" />
+                                </>
                             )}
                         </button>
-                    )}
-                </div>
+                    </>
+                )}
+
                 {isError && (
                     <div className="text-red-600 text-sm mt-2">
                         Nie zapisano zmian. Spróbuj ponownie.
@@ -210,6 +205,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         isError={isError}
                         isSuccess={isSuccess}
                         dataCustomList={dataCustomList}
+                        titleIsEmpty={titleIsEmpty}
                     />
                 )}
             </form>

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { generateEmailSignCode, loginUserFetch } from "@/actions/axiosActions"
 import ShowCode from "@/components/application/user/UserSignShowCode"
 import Button from "@/components/ui/Button"
+import TitleModal from "@/components/ui/ModalTitle"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -52,7 +53,7 @@ export default function RegisterForm() {
 
     return (
         <>
-            <h3 className="truncate text-xl font-medium mb-4">Zaloguj się</h3>
+            <TitleModal>Zaloguj się</TitleModal>
             {!emailConfirmed ? (
                 <ConfirmEmail
                     loading={loading}

@@ -8,6 +8,7 @@ import { resetPasswordSend } from "@/actions/axiosActions"
 import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
 import Button from "@/components/ui/Button"
+import TitleModal from "@/components/ui/ModalTitle"
 
 export default function RemindPassword() {
     const router = useRouter()
@@ -46,9 +47,7 @@ export default function RemindPassword() {
 
     return (
         <>
-            <h3 className="truncate text-xl font-medium mb-4">
-                Utwórz nowe hasło
-            </h3>
+            <TitleModal>Utwórz nowe hasło</TitleModal>
             <p className="mb-4">
                 Wpisz nowe hasło dla{" "}
                 <span className="text-[var(--primary)]">{userEmail}</span>
