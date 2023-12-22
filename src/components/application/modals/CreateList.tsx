@@ -8,7 +8,11 @@ import {
     updateList,
     createListCustom,
 } from "@/actions/axiosActions"
-import { focusInput, changeSampleCustomDataToApi } from "@/utils/utils"
+import {
+    focusInput,
+    changeSampleCustomDataToApi,
+    optionsColor,
+} from "@/utils/utils"
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 import Select from "@/components/ui/Select"
@@ -16,31 +20,16 @@ import IconPlus from "../icons/plus"
 import IconMinus from "../icons/minus"
 import IconCheck from "../icons/check"
 import Sample from "./sampleLists/Sample"
-import { TSampleCustomItemsToApi } from "@/types/types"
-import TitleModal from "@/components/ui/ModalTitle"
+import {
+    TSampleContextType,
+    TSampleCustomItemsToApi,
+    TDuplicatProps,
+    TImportedList,
+} from "@/types/types"
+import ModalTitle from "@/components/ui/ModalTitle"
 import FormLabel from "@/components/ui/FormLabel"
 import ArrowRight from "../icons/arrowRight"
-
-type TDuplicatProps = {
-    duplicate?: {
-        id: string
-        name: string
-    }
-    editList?: {
-        id: string
-        name: string
-    }
-}
-
-const optionsColor = [
-    "bg-red-500",
-    "bg-yellow-500",
-    "bg-emerald-500",
-    "bg-cyan-500",
-    "bg-violet-400",
-    "bg-purple-700",
-    "bg-pink-600",
-]
+import SampleProvider from "@/context/SampleListContext"
 
 export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
@@ -54,13 +43,20 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const [customList, setCustomList] = useState(false)
     const [dataCustomList, setDataCustomList] =
         useState<TSampleCustomItemsToApi>({})
-    const [importedId, setImportedId] = useState(0)
+
+    // const [importedList, setImportedList] = useState(0)
+    const [importedList, setImportedList] = useState<TImportedList>({
+        id: 0,
+        days: 0,
+        type: "",
+    })
+
     const { closeModal } = useModal()
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const queryClient = useQueryClient()
 
-    const idToDuplicate = duplicate ? duplicate.id : importedId
+    const idToDuplicate = duplicate ? duplicate.id : importedList.id
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => {
@@ -117,18 +113,41 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
         focusInput(inputRef)
     }, [])
 
+    const contextData: TSampleContextType = {
+        title: title,
+        titleIsEmpty: titleIsEmpty,
+        titleColor: selectedColor,
+        isCreateSample: isCreateSample,
+        setIsCreateSample: setIsCreateSample,
+        dataCustomList: dataCustomList,
+        setDataCustomList: setDataCustomList,
+        customList: customList,
+        setCustomList: setCustomList,
+        importedList: importedList,
+        setImportedList: setImportedList,
+        isPending: isPending,
+        isError: isError,
+        isSuccess: isSuccess,
+    }
+
     return (
-        <>
-            <TitleModal>                
-                {duplicate ? (
-                    <>
-                        Duplikuj listę
-                        <span className="text-sm ml-2 text-muted font-normal">
-                            ({duplicate.name})
-                        </span>
-                    </>
-                ) : editList ? "Edytuj listę" : "Stwórz listę"}
-            </TitleModal>
+        <SampleProvider contextData={contextData}>
+            {!isCreateSample && (
+                <ModalTitle>
+                    {duplicate ? (
+                        <>
+                            Duplikuj listę
+                            <span className="text-sm ml-2 text-muted font-normal">
+                                ({duplicate.name})
+                            </span>
+                        </>
+                    ) : editList ? (
+                        "Edytuj listę"
+                    ) : (
+                        "Stwórz listę"
+                    )}
+                </ModalTitle>
+            )}
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -158,14 +177,11 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                                 />
                             </div>
                         </div>
-
-                    
                         <button
                             type="submit"
                             className={`flex justify-center items-center w-full btn btn-primary ${
                                 isSuccess && "btn-green"
                             }`}
-                            // disabled={isPending || isSuccess}
                             disabled={titleIsEmpty}
                         >
                             {isPending ? (
@@ -185,30 +201,13 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         </button>
                     </>
                 )}
-
+                {!duplicate && !editList && <Sample />}
                 {isError && (
-                    <div className="text-red-600 text-sm mt-2">
+                    <div className="text-red-600 text-sm mt-2 text-center">
                         Nie zapisano zmian. Spróbuj ponownie.
                     </div>
                 )}
-
-                {!duplicate && !editList && (
-                    <Sample
-                        customList={customList}
-                        setCustomList={setCustomList}
-                        setDataCustomList={setDataCustomList}
-                        importedId={importedId}
-                        setImportedId={setImportedId}
-                        isCreateSample={isCreateSample}
-                        setIsCreateSample={setIsCreateSample}
-                        isPending={isPending}
-                        isError={isError}
-                        isSuccess={isSuccess}
-                        dataCustomList={dataCustomList}
-                        titleIsEmpty={titleIsEmpty}
-                    />
-                )}
             </form>
-        </>
+        </SampleProvider>
     )
 }

@@ -1,53 +1,46 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query"
 import { getSampleLists } from "@/actions/axiosActions"
-import { TSampleType, TSampleProps, TSampleListStatus } from "@/types/types"
+import { TSampleType } from "@/types/types"
 import SampleLists from "./SampleLists"
 import ArrowDown from "../../icons/arrowDown"
 import ArrowRight from "../../icons/arrowRight"
 import Button from "@/components/ui/Button"
 import SampleListsEdit from "./SampleListsEdit"
+import ModalTitleSample from "@/components/ui/ModalTitleSample"
+import ModalTitle from "@/components/ui/ModalTitle"
+import ModalLoading from "@/components/ui/ModalLoading"
+import ModalError from "@/components/ui/ModalError"
+import SampleTypes from "./SampleLists"
+import { SampleContext } from "@/context/SampleListContext"
 
-type TSampleProps2 = {
-    isCreateSample: boolean
-    setIsCreateSample: React.Dispatch<React.SetStateAction<boolean>>
-    titleIsEmpty: boolean
-}
+export default function Sample() {
+    const {
+        title,
+        titleColor,
+        titleIsEmpty,
+        importedList,
+        isCreateSample,
+        setIsCreateSample,
+        customList,
+    } = useContext(SampleContext)
 
-type TSampleProps3 = {
-    customList: boolean
-    setCustomList: React.Dispatch<React.SetStateAction<boolean>>
-}
+    const titleData = {
+        title: title,
+        titleColor: titleColor,
+        length: importedList.days,
+        type: importedList.type,
+        custom: customList,
+    }
 
-export default function Sample({
-    isPending,
-    isError,
-    isSuccess,
-    customList,
-    setCustomList,
-    importedId,
-    setImportedId,
-    isCreateSample,
-    setIsCreateSample,
-    dataCustomList,
-    setDataCustomList,
-    titleIsEmpty
-}: TSampleProps & TSampleProps2 & TSampleProps3 & TSampleListStatus) {
     if (isCreateSample)
         return (
-            <SampleOn
-                customList={customList}
-                setCustomList={setCustomList}
-                importedId={importedId}
-                setImportedId={setImportedId}
-                isPending={isPending}
-                isError={isError}
-                isSuccess={isSuccess}
-                dataCustomList={dataCustomList}
-                setDataCustomList={setDataCustomList}
-            />
+            <>
+                <ModalTitleSample titleData={titleData} />
+                <SampleOn />
+            </>
         )
 
     return (
@@ -66,22 +59,15 @@ export default function Sample({
     )
 }
 
-const SampleOn = ({
-    isPending,
-    isError,
-    isSuccess,
-    customList,
-    setCustomList,
-    importedId,
-    setImportedId,
-    dataCustomList,
-    setDataCustomList,
-}: TSampleProps & TSampleProps3 & TSampleListStatus) => {
+const SampleOn = () => {
+    const { customList, isPending, importedList, setCustomList } =
+        useContext(SampleContext)
     const {
         data: sampleLists,
         isLoading,
         isError: isErrorLoad,
-        isPaused,
+        isRefetching,
+        refetch,
     } = useQuery({
         queryKey: ["sampleLists"],
         queryFn: async () => {
@@ -93,72 +79,62 @@ const SampleOn = ({
     // TODO Pobieranie danych rowniez odbywa sie w edycji elementu - polaczyc jesli sie da aby bralo z cache
 
     if (isLoading)
-        return <div className="mt-4">Ładowanie list przykładowych...</div>
+        return <ModalLoading>Ładowanie list przykładowych...</ModalLoading>
     if (isErrorLoad || !sampleLists)
-        return <div className="mt-4">Błąd ładowania list przykładowych</div>
+        return (
+            <ModalError>
+                Nie udało się załadować list przykładowych.
+                <Button
+                    className="btn btn-primary mt-4 text-sm"
+                    onClick={() => refetch()}
+                    isLoading={isRefetching}
+                    type="button"
+                >
+                    Spróbuj ponownie
+                    <ArrowRight className="ml-2" />
+                </Button>
+            </ModalError>
+        )
 
     return (
         <>
             {customList ? (
-                <SampleListsEdit
-                    importedId={importedId}
-                    setImportedId={setImportedId}
-                    dataCustomList={dataCustomList}
-                    setDataCustomList={setDataCustomList}
-                    isPending={isPending}
-                    isError={isError}
-                    isSuccess={isSuccess}
-                />
+                <SampleListsEdit />
             ) : (
-                <div className="mt-4 overflow-y-auto max-h-inner-modal">
-                    {sampleLists.map((element) => (
-                        <SampleLists
-                            key={element.fullName}
-                            importedId={importedId}
-                            setImportedId={setImportedId}
-                            isPending={isPending}
-                            isError={isError}
-                            isSuccess={isSuccess}
-                            dataCustomList={dataCustomList}
-                            setDataCustomList={setDataCustomList}
-                            {...element}
-                        />
-                    ))}
-                </div>
-            )}
-            <div className="flex justify-between gap-3 mt-4">
-                {!customList && (
+                <>
+                    <SampleTypes data={sampleLists} />
+                    <Button
+                        className="btn btn-primary w-full justify-center mt-3"
+                        type="submit"
+                        isLoading={isPending}
+                        isDisabled={importedList.id == 0}
+                    >
+                        {isPending ? (
+                            "Tworzenie listy"
+                        ) : customList ? (
+                            <>
+                                Stwórz listę
+                                <ArrowRight className="ml-2" />
+                            </>
+                        ) : (
+                            <>
+                                Stwórz listę z szablonu
+                                <ArrowRight className="ml-2" />
+                            </>
+                        )}
+                    </Button>
+                    <p className="text-center my-3">lub</p>
                     <Button
                         type="button"
-                        className="btn btn-default"
-                        isDisabled={importedId == 0 || isPending}
+                        className="btn btn-default w-full justify-center"
+                        isDisabled={importedList.id == 0 || isPending}
                         onClick={() => setCustomList(true)}
                     >
-                        Przeglądaj elementy
+                        Dostosuj wybraną listę
                         <ArrowDown className="ml-2" />
                     </Button>
-                )}
-                <Button
-                    className="grow btn btn-primary justify-center"
-                    type="submit"
-                    isLoading={isPending}
-                    isDisabled={importedId == 0}
-                >
-                    {isPending ? (
-                        "Tworzenie listy"
-                    ) : customList ? (
-                        <>
-                            Stwórz listę
-                            <ArrowRight className="ml-2" />
-                        </>
-                    ) : (
-                        <>
-                            Zatwierdź szablon
-                            <ArrowRight className="ml-2" />
-                        </>
-                    )}
-                </Button>
-            </div>
+                </>
+            )}
         </>
     )
 }

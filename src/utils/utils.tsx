@@ -10,7 +10,7 @@ import {
     TSampleCustomItems,
     TSampleCustomItemsToApi,
     TSampleCustomCategoryApi,
-    TSampleCustomItemsCount
+    TSampleCustomItemsCount,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -130,6 +130,16 @@ export const sortTypes: ISortTypes[] = [
     },
 ]
 
+export const optionsColor = [
+    "bg-red-500",
+    "bg-yellow-500",
+    "bg-emerald-500",
+    "bg-cyan-500",
+    "bg-violet-400",
+    "bg-purple-700",
+    "bg-pink-600",
+]
+
 export function calculateStatusPercentage(items: IElements[]) {
     const totalItems = items.length
 
@@ -181,7 +191,7 @@ export function changeSampleCustomDataToApi(
 
 export function countItems(items: TSampleCustomCategoryApi[]) {
     let totalCount = items.length
-    let checkedCount = items.filter(item => item.checked).length
+    let checkedCount = items.filter((item) => item.checked).length
 
     return { totalCount, checkedCount } as TSampleCustomItemsCount
 }

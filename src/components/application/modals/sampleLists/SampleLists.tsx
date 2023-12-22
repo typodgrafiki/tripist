@@ -1,26 +1,49 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect, ReactNode } from "react"
+import { useContext } from "react"
+import { SampleContext } from "@/context/SampleListContext"
+import ModalTitle from "@/components/ui/ModalTitle"
+import { usePanelControl, usePanel } from "@/lib/usePanels"
 import {
-    TSampleListStatus,
     TSampleType,
-    TSampleProps,
+    TPanelsCollapsedTypeProps,
     TSampleList,
+    TSampleListOptions,
 } from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
+import { type } from "os"
 
-export default function SampleType({
+export default function ControlPanels({ data }: { data: TSampleType[] }) {
+    const { activePanel, togglePanel } = usePanelControl(1)
+
+    return (
+        <div className="mt-4 overflow-y-auto max-h-inner-modal">
+            <ModalTitle>Wybierz typ listy</ModalTitle>
+            {data.map((element, index) => (
+                <Types
+                    key={index}
+                    index={index}
+                    activePanel={activePanel}
+                    togglePanel={togglePanel}
+                    {...element}
+                />
+            ))}
+        </div>
+    )
+}
+
+function Types({
     templates,
-    fullName,
-    importedId,
-    setImportedId,
-    isPending,
-    isError,
-    isSuccess,
-    dataCustomList,
-    setDataCustomList,
-}: TSampleType & TSampleProps & TSampleListStatus) {
-    const [isOpen, setIsOpen] = useState(false)
+    fullName: typeName,
+    activePanel,
+    togglePanel,
+    index,
+}: TSampleType & TPanelsCollapsedTypeProps & { index: number }) {
+    const { isPending } = useContext(SampleContext)
+    const { panelContentRef, maxHeight, isOpen } = usePanel(
+        activePanel === index
+    )
 
     if (templates.length === 0) return null
 
@@ -32,11 +55,11 @@ export default function SampleType({
         >
             <button
                 className="animated flex w-full justify-between items-center py-3 cursor-pointer"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => togglePanel(index)}
                 disabled={isPending}
                 type="button"
             >
-                <span className="font-medium">{fullName}</span>
+                <span className="font-medium">{typeName}</span>
                 <span className="animated text-gray-500 hover:text-gray-950">
                     {isOpen ? "zwiń" : "rozwin"}
                     <ArrowDown
@@ -46,83 +69,80 @@ export default function SampleType({
                     />
                 </span>
             </button>
-            {isOpen && (
-                <ul className="bg-gray-100 px-4 py-1 rounded-lg">
-                    {templates.map((element) => (
+
+            <div
+                className="overflow-hidden animated"
+                style={{ maxHeight: isOpen ? `${maxHeight}px` : "0" }}
+            >
+                <div
+                    ref={panelContentRef}
+                    className={`bg-gray-100 rounded-lg px-4 py-1`}
+                >
+                    {templates.map((element, index) => (
                         <SampleList
-                            key={element.name}
-                            importedId={importedId}
-                            setImportedId={setImportedId}
-                            isPending={isPending}
-                            isError={isError}
-                            isSuccess={isSuccess}
-                            dataCustomList={dataCustomList}
-                            setDataCustomList={setDataCustomList}
+                            key={element.name + index}
                             {...element}
                         />
                     ))}
-                </ul>
-            )}
+                </div>
+            </div>
         </div>
     )
 }
 
-const SampleList = ({
-    name,
-    options,
-    importedId,
-    setImportedId,
-    isPending,
-    isError,
-    isSuccess,
-}: TSampleListStatus & TSampleList & TSampleProps) => {
-    // Stan lokalny do przechowywania wybranego id
-    const [selectedId, setSelectedId] = useState(options[0].id)
+const SampleList = ({ name: type, options }: TSampleList) => {
+    const { isPending, importedList, setImportedList } =
+        useContext(SampleContext)
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newId = parseInt(e.target.value, 10)
-        setSelectedId(newId)
-        setImportedId(newId)
+    const [selectedRadioId, setSelectedRadioId] = useState<number | null>(null)
+
+    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const [id, days] = e.target.value.split("_").map(Number)
+        setImportedList({ id, days, type })
+        setSelectedRadioId(id)
+
+        console.log(name)
     }
 
-    const handleRadioChange = () => {
-        setImportedId(selectedId)
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const [id, days] = e.target.value.split("_").map(Number)
+        setImportedList({ id, days, type })
     }
 
     return (
-        <li className="flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
-            <label className="py-2 grow cursor-pointer">
-                <input
-                    type="radio"
-                    name="listSampleId"
-                    value={selectedId}
-                    onChange={handleRadioChange}
-                    className="mr-2"
-                    disabled={isPending}
-                />
-                {name}
+        <li className="sample-select-type-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
+            <input
+                id={`${options[0].id}_${options[0].tripLength}`}
+                type="radio"
+                name="listSampleId"
+                value={`${options[0].id}_${options[0].tripLength}`}
+                onChange={handleRadioChange}
+                className="mr-2"
+                disabled={isPending}
+            />
+            <label
+                className="py-3 grow cursor-pointer"
+                htmlFor={`${options[0].id}_${options[0].tripLength}`}
+            >
+                {type}
             </label>
             <select
-                className={`animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer ${
-                    selectedId == importedId && isPending
-                        ? "opacity-50"
-                        : selectedId == importedId
-                          ? "opacity-100"
-                          : "opacity-0"
-                }`}
+                className="dark animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer"
                 disabled={isPending}
-                value={selectedId}
+                value={`${importedList.id}_${importedList.days}`}
                 onChange={handleSelectChange}
             >
                 {options.map((element) => (
-                    <option
+                    <Option
                         key={element.id}
-                        value={element.id}
-                    >
-                        {element.tripLength} dni
-                    </option>
+                        {...element}
+                    />
                 ))}
             </select>
         </li>
     )
+}
+
+const Option = ({ id, tripLength }: TSampleListOptions) => {
+    return <option value={`${id}_${tripLength}`}>{tripLength} dni</option>
 }

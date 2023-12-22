@@ -91,15 +91,6 @@ export interface IUserData {
     password?: string
 }
 
-export type TSampleProps = {
-    importedId: number
-    setImportedId: React.Dispatch<React.SetStateAction<number>>
-    dataCustomList: TSampleCustomItemsToApi
-    setDataCustomList: React.Dispatch<
-        React.SetStateAction<TSampleCustomItemsToApi>
-    >
-}
-
 export type TSampleTypeFull = {
     id: number
     name: string
@@ -126,15 +117,44 @@ export type TSampleList = {
     options: TSampleListOptions[]
 }
 
-type TSampleListOptions = {
+export type TSampleListOptions = {
     id: number
     tripLength: number
 }
 
-export type TSampleListStatus = {
+export type TSampleTitle = {
+    titleData: {
+        title: string
+        titleColor: string
+        type?: string
+        length?: number
+        custom?: boolean
+    }
+}
+
+export type TSampleContextType = {
+    title: string
+    titleIsEmpty: boolean
+    titleColor: string
+    isCreateSample: boolean
+    setIsCreateSample: React.Dispatch<React.SetStateAction<boolean>>
+    dataCustomList: TSampleCustomItemsToApi
+    setDataCustomList: React.Dispatch<
+        React.SetStateAction<TSampleCustomItemsToApi>
+    >
+    customList: boolean
+    setCustomList: React.Dispatch<React.SetStateAction<boolean>>
+    importedList: TImportedList
+    setImportedList: React.Dispatch<React.SetStateAction<TImportedList>>
     isPending: boolean
     isError: boolean
     isSuccess: boolean
+}
+
+export type TImportedList = {
+    id: number
+    days: number
+    type: string
 }
 
 export interface ICodeSignUp {
@@ -164,4 +184,22 @@ export type SortDirection = "asc" | "desc"
 export type TSampleCustomItemsCount = {
     checkedCount: number
     totalCount: number
+}
+
+export type TDuplicatProps = {
+    duplicate?: {
+        id: string
+        name: string
+    }
+    editList?: {
+        id: string
+        name: string
+    }
+}
+
+export type TPanelsCollapsedType = number
+
+export type TPanelsCollapsedTypeProps = {
+    activePanel: TPanelsCollapsedType
+    togglePanel: (panelIndex: number) => void
 }

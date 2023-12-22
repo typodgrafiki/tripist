@@ -216,6 +216,15 @@ svg {
     border-color: transparent;
 }
 
+.sample-select-type-row input + label + select {
+    opacity: 0;
+    visibility: hidden;
+}
+.sample-select-type-row input:checked + label + select {
+    opacity: 1;
+    visibility: visible;
+}
+
 .panel-collapse {
     display: flex;
     flex-direction: column;
@@ -231,6 +240,11 @@ svg {
     max-height: 100vh;
 }
 
+select.dark {
+    background-image: url(../images/dashboard/select-arrow.svg);
+    background-size: 13px 9px;
+    padding-right: 26px;
+}
 
 @keyframes fade-in {
     from {

@@ -11,6 +11,9 @@ const config: Config = {
             boxShadow: {
                 top: "0 10px 40px rgba(0, 0, 0, 0.06)",
             },
+            textColor: {
+                muted: "#7d8490",
+            },
         },
     },
     plugins: [require("@tailwindcss/forms")],

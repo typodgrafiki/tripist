@@ -8,7 +8,7 @@ import ShowCode from "@/components/application/user/UserSignShowCode"
 import { ICreateUser } from "@/types/types"
 import { createUserFetch } from "@/actions/axiosActions"
 import Button from "@/components/ui/Button"
-import TitleModal from "@/components/ui/ModalTitle"
+import ModalTitle from "@/components/ui/ModalTitle"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -45,7 +45,7 @@ export default function RegisterForm() {
 
     return (
         <>
-            <TitleModal>Zarejestruj się</TitleModal>
+            <ModalTitle>Zarejestruj się</ModalTitle>
             <div className="relative overflow-hidden">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
