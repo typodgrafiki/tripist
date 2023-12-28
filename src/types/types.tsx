@@ -197,7 +197,7 @@ export type TDuplicatProps = {
     }
 }
 
-export type TPanelsCollapsedType = number
+export type TPanelsCollapsedType = number | null
 
 export type TPanelsCollapsedTypeProps = {
     activePanel: TPanelsCollapsedType

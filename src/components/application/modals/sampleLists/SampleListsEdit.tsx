@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from "react"
 import { getSampleList } from "@/actions/axiosActions"
 import { SampleContext } from "@/context/SampleListContext"
 import { changeSampleCustomDataToComponent, countItems } from "@/utils/utils"
-import { TSampleCustomCategoryApi } from "@/types/types"
+import { TSampleCustomCategoryApi, TPanelsCollapsedTypeProps } from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
 import IconCheck from "../../icons/check"
 import ModalLoading from "@/components/ui/ModalLoading"
@@ -10,6 +10,7 @@ import ModalError from "@/components/ui/ModalError"
 import Button from "@/components/ui/Button"
 import ArrowRight from "../../icons/arrowRight"
 import ModalTitle from "@/components/ui/ModalTitle"
+import { usePanelControl, usePanel } from "@/lib/usePanels"
 
 interface HandleItemToggle {
     (categoryName: string, itemName: string): void
@@ -17,25 +18,26 @@ interface HandleItemToggle {
 
 export default function SampleListsEdit() {
     const {
+        title,
         importedList,
         dataCustomList: data,
         setDataCustomList: setData,
+        isPending
     } = useContext(SampleContext)
     const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(false)
+    const { activePanel, togglePanel } = usePanelControl(0)
 
     const fetchData = async () => {
-        console.log("text")
         try {
             setIsLoading(true)
+            setError(false)
             const response = await getSampleList(importedList.id)
             const groupedItems = changeSampleCustomDataToComponent(response)
-            const categoryCount = Object.keys(groupedItems).length
             setData(groupedItems)
-            // setOpenPanels([true, ...Array(categoryCount - 1).fill(false)])
         } catch (err) {
             // TODO obsłuż błędy
-            // setError(err)
+            setError(true)
         } finally {
             setIsLoading(false)
         }
@@ -59,13 +61,6 @@ export default function SampleListsEdit() {
             return newData
         })
     }
-
-    // const handlePanelToggle = (panelIndex: number) => {
-    //     const updatedOpenPanels = openPanels.map((_, index) =>
-    //         index === panelIndex ? !openPanels[index] : false
-    //     )
-    //     setOpenPanels(updatedOpenPanels)
-    // }
 
     if (isLoading) {
         return <ModalLoading>Ładowanie szczegółów listy...</ModalLoading>
@@ -91,21 +86,26 @@ export default function SampleListsEdit() {
     return (
         <div>
             <ModalTitle>Dostosuj elementy na liście</ModalTitle>
-            // TODO ... in progress ...
-            {/* {Object.entries(data).map(([category, items], index) => (
-                <SampleListsCategoryEdit
-                    key={category}
-                    categoryName={category}
-                    items={items}
-                    index={index}
-                    handleItemToggle={handleItemToggle}
-                    isPending={isPending}
-                    isError={isError}
-                    isSuccess={isSuccess}
-                    isOpenPanel={openPanels[index]}
-                    handlePanelToggle={handlePanelToggle}
-                />
-            ))} */}
+            <div>
+                {Object.entries(data).map(([category, items], index) => (
+                    <SampleListsCategoryEdit
+                        key={category}
+                        categoryName={category}
+                        items={items}
+                        index={index}
+                        handleItemToggle={handleItemToggle}
+                        activePanel={activePanel}
+                        togglePanel={togglePanel}
+                    />
+                ))}
+            </div>
+            <Button
+                className="btn btn-primary w-full justify-center mt-3"
+                type="submit"
+            >
+                Stwórz listę
+                <ArrowRight className="ml-2" />
+            </Button>
         </div>
     )
 }
@@ -115,38 +115,30 @@ const SampleListsCategoryEdit = ({
     items,
     index,
     handleItemToggle,
-    isPending,
-    isError,
-    isSuccess,
-    isOpenPanel,
-    handlePanelToggle,
+    activePanel,
+    togglePanel,
 }: {
     categoryName: string
     items: TSampleCustomCategoryApi[]
     index: number
     handleItemToggle: HandleItemToggle
-    isOpenPanel: boolean
-    handlePanelToggle: (panelIndex: number) => void
-} & TSampleListStatus) => {
-    const contentRef = useRef<HTMLDivElement>(null)
-    const [maxHeight, setMaxHeight] = useState(0)
+} & TPanelsCollapsedTypeProps) => {
     const { checkedCount, totalCount } = countItems(items)
 
-    useEffect(() => {
-        if (contentRef.current) {
-            setMaxHeight(contentRef.current.scrollHeight)
-        }
-    }, [])
+    const { isPending } = useContext(SampleContext)
+    const { panelContentRef, maxHeight, isOpen } = usePanel(
+        activePanel === index
+    )
 
     return (
-        <fieldset
+        <div
             className={`sample-list border-b border-gray-300 last:border-0 ${
-                isOpenPanel ? "open" : ""
+                isOpen ? "open" : ""
             }`}
         >
             <button
                 className="animated flex w-full justify-between items-center py-3 cursor-pointer"
-                onClick={() => handlePanelToggle(index)}
+                onClick={() => togglePanel(index)}
                 disabled={isPending}
                 type="button"
             >
@@ -157,77 +149,62 @@ const SampleListsCategoryEdit = ({
                     </span>
                 </span>
                 <span className="animated text-gray-500 hover:text-gray-950">
-                    {isOpenPanel ? "zwiń" : "rozwin"}
+                    {isOpen ? "zwiń" : "rozwin"}
                     <ArrowDown
                         className={`ml-1 ${
-                            isOpenPanel ? "origin-center rotate-180" : ""
+                            isOpen ? "origin-center rotate-180" : ""
                         }`}
                     />
                 </span>
             </button>
+
             <div
                 className="overflow-hidden animated"
-                style={{ maxHeight: isOpenPanel ? `${maxHeight}px` : "0" }}
+                style={{ maxHeight: isOpen ? `${maxHeight}px` : "0" }}
             >
                 <div
-                    ref={contentRef}
-                    className={`bg-gray-100 rounded-lg p-4 flex flex-wrap gap-2`}
+                    ref={panelContentRef}
+                    className={`bg-gray-100 rounded-lg px-4 py-1`}
                 >
                     {items.map((item, itemIndex) => (
                         <SampleListsElementEdit
                             key={itemIndex}
                             item={item}
-                            itemIndex={itemIndex}
                             categoryName={categoryName}
                             handleItemToggle={handleItemToggle}
-                            isPending={isPending}
-                            isError={isError}
-                            isSuccess={isSuccess}
                         />
                     ))}
                 </div>
             </div>
-        </fieldset>
+        </div>
     )
 }
 
 const SampleListsElementEdit = ({
     item,
-    itemIndex,
     categoryName,
     handleItemToggle,
-    isPending,
-    isError,
-    isSuccess,
 }: {
     item: TSampleCustomCategoryApi
-    itemIndex: number
     categoryName: string
     handleItemToggle: HandleItemToggle
-} & TSampleListStatus) => {
+}) => {
     return (
-        <label
-            key={itemIndex}
-            className={`block animated bg-white rounded-full px-3 pr-2 py-1 cursor-pointer ${
-                item.checked
-                    ? "text-[var(--primary)] hover:text-blue-700"
-                    : "text-gray-400 hover:text-gray-600"
-            }`}
-        >
-            {item.name}
+        <li className="sample-select-type-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
             <input
+                id={`items[${item.name}]`}
                 type="checkbox"
                 name={`items[${item.name}]`}
-                checked={item.checked}
                 onChange={() => handleItemToggle(categoryName, item.name)}
-                disabled={isPending}
-                className="hidden"
+                className="mr-2"
+                checked={item.checked}
             />
-            <IconCheck
-                className={`animated ml-1 -top-[1px] ${
-                    item.checked ? "opacity-100" : "opacity-0"
-                }`}
-            />
-        </label>
+            <label
+                className="py-3 grow cursor-pointer"
+                htmlFor={`items[${item.name}]`}
+            >
+                {item.name}
+            </label>
+        </li>
     )
 }

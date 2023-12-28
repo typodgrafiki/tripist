@@ -7,7 +7,7 @@ const usePanelControl = (initialOpenPanel: TPanelsCollapsedType = 0) => {
 
     const togglePanel = useCallback((panelIndex: number) => {
         setActivePanel((prevActivePanel) =>
-            prevActivePanel === panelIndex ? 0 : panelIndex
+            prevActivePanel === panelIndex ? null : panelIndex
         )
     }, [])
 

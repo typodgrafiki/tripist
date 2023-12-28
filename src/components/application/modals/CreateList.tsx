@@ -93,7 +93,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
 
             // TODO Tutaj pojawia sie przycisk zamknij i przy nim jest jakies odliczania po czym setTimeout
             // setTimeout(() => {
-            closeModal()
+            // closeModal()
             // }, 2500)
         },
         onError: (error) => {
