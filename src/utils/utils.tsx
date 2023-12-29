@@ -140,17 +140,27 @@ export const optionsColor = [
     "bg-pink-600",
 ]
 
+/**
+ * Oblicza procentową wartość elementów z aktywnym (true) statusem.
+ *
+ * @param {IElements[]} items - Tablica elementów, dla których ma być obliczony procent.
+ *                              Zakłada się, że każdy element ma pole 'status'.
+ * @returns {number} Procentowa wartość elementów z aktywnym statusem w stosunku do całkowitej liczby elementów.
+ *                   Wynik jest zaokrąglany do najbliższej liczby całkowitej.
+ */
 export function calculateStatusPercentage(items: IElements[]) {
     const totalItems = items.length
-
-    const trueStatusItems = items.filter((item) => item.status === true).length
 
     if (totalItems === 0) {
         return 0
     }
 
-    const result = Math.round((trueStatusItems / totalItems) * 100)
-    return result
+    const trueStatusItems = items.reduce(
+        (count, item) => count + (item.status ? 1 : 0),
+        0
+    )
+
+    return Math.round((trueStatusItems / totalItems) * 100)
 }
 
 export function changeSampleCustomDataToComponent(

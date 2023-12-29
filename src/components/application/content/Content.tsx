@@ -130,6 +130,7 @@ export default function Content({ id }: { id: string }) {
 
     return (
         <>
+            {/* Header view */}
             <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">

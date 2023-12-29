@@ -196,18 +196,18 @@ svg {
     border-radius: 5px;
 }
 
-.percentagle-items-track {
+.percentage-items-track {
     height: 5px;
     min-height: 5px;
     width: 100%;
 }
 
-.percentagle-items-track,
-.percentagle-items-tick {
+.percentage-items-track,
+.percentage-items-tick {
     background-color: #dee0e8;
 }
 
-.percentagle-items-tick {
+.percentage-items-tick {
     transform: translate(-50%, -50%);
     margin-top: 1px;
 }
