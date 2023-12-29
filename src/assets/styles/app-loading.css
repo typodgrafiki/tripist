@@ -104,12 +104,11 @@
 
 .canvas-success {
     pointer-events: none;
-    position: absolute;
+    position: fixed;
     display: block;
     width: 100%;
     height: 100%;
     z-index: 2;
     top: 0;
     left: 0;
-    overflow: hidden;
 }

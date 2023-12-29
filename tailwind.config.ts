@@ -17,6 +17,14 @@ const config: Config = {
         },
     },
     plugins: [require("@tailwindcss/forms")],
-    safelist: ["bg-red-500"],
+    safelist: [
+        "bg-red-500",
+        "bg-yellow-500",
+        "bg-emerald-500",
+        "bg-cyan-500",
+        "bg-violet-400",
+        "bg-purple-700",
+        "bg-pink-600",
+    ],
 }
 export default config

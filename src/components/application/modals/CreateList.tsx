@@ -16,9 +16,6 @@ import {
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query"
 import Toastify from "toastify-js"
 import Select from "@/components/ui/Select"
-import IconPlus from "../icons/plus"
-import IconMinus from "../icons/minus"
-import IconCheck from "../icons/check"
 import Sample from "./sampleLists/Sample"
 import {
     TSampleContextType,
@@ -30,6 +27,8 @@ import ModalTitle from "@/components/ui/ModalTitle"
 import FormLabel from "@/components/ui/FormLabel"
 import ArrowRight from "../icons/arrowRight"
 import SampleProvider from "@/context/SampleListContext"
+import ModalLoading from "@/components/ui/ModalLoading"
+import ModalSuccess from "@/components/ui/ModalSuccess"
 
 export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
@@ -44,7 +43,6 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const [dataCustomList, setDataCustomList] =
         useState<TSampleCustomItemsToApi>({})
 
-    // const [importedList, setImportedList] = useState(0)
     const [importedList, setImportedList] = useState<TImportedList>({
         id: 0,
         days: 0,
@@ -76,25 +74,19 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
             const { id: listId, name: listName } = response.data.body.list
             queryClient.invalidateQueries({ queryKey: ["lists"] })
 
-            if (listId) {
-                router.push(`/dashboard/${listId}`)
-            } else {
+            if (!listId) return
+
+            if (editList) {
                 queryClient.invalidateQueries({
                     queryKey: ["listData", listId],
                 })
+            } else {
+                router.push(`/dashboard/${listId}`)
             }
 
-            Toastify({
-                className: "toastify-success",
-                text: listId
-                    ? `Stworzono listę ${listName}`
-                    : `Zaktualizowano listę`,
-            }).showToast()
-
-            // TODO Tutaj pojawia sie przycisk zamknij i przy nim jest jakies odliczania po czym setTimeout
-            // setTimeout(() => {
-            // closeModal()
-            // }, 2500)
+            setTimeout(() => {
+                closeModal()
+            }, 3000)
         },
         onError: (error) => {
             Toastify({
@@ -129,6 +121,31 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
         isError: isError,
         isSuccess: isSuccess,
     }
+
+    if (isPending && !isCreateSample)
+        return (
+            <ModalLoading>
+                {duplicate
+                    ? "Trwa duplikowanie listy"
+                    : editList
+                      ? "Trwa edycja listy"
+                      : "Trwa tworzenie listy"}{" "}
+                <span className="text-[var(--primary)]">{title}</span> ...
+            </ModalLoading>
+        )
+
+    if (isSuccess && !isCreateSample)
+        return (
+            <ModalSuccess>
+                Lista <span className="text-[var(--primary)]">{title}</span>{" "}
+                {duplicate
+                    ? "została skopiowana"
+                    : editList
+                      ? "została zmieniona"
+                      : "została stworzona"}
+                !
+            </ModalSuccess>
+        )
 
     return (
         <SampleProvider contextData={contextData}>

@@ -10,7 +10,6 @@ import ArrowRight from "../../icons/arrowRight"
 import Button from "@/components/ui/Button"
 import SampleListsEdit from "./SampleListsEdit"
 import ModalTitleSample from "@/components/ui/ModalTitleSample"
-import ModalTitle from "@/components/ui/ModalTitle"
 import ModalLoading from "@/components/ui/ModalLoading"
 import ModalError from "@/components/ui/ModalError"
 import ModalSuccess from "@/components/ui/ModalSuccess"
@@ -61,8 +60,14 @@ export default function Sample() {
 }
 
 const SampleOn = () => {
-    const { title, customList, isPending, isSuccess, importedList, setCustomList } =
-        useContext(SampleContext)
+    const {
+        title,
+        customList,
+        isPending,
+        isSuccess,
+        importedList,
+        setCustomList,
+    } = useContext(SampleContext)
     const {
         data: sampleLists,
         isLoading,
@@ -97,9 +102,21 @@ const SampleOn = () => {
             </ModalError>
         )
 
-    if (isPending) return <ModalLoading>Trwa tworzenie listy <span className="text-[var(--primary)]">{title}</span> ...</ModalLoading>
+    if (isPending)
+        return (
+            <ModalLoading>
+                Trwa tworzenie listy{" "}
+                <span className="text-[var(--primary)]">{title}</span> ...
+            </ModalLoading>
+        )
 
-    if (!isSuccess) return <ModalSuccess>Lista <span className="text-[var(--primary)]">{title}</span> została stworzona!</ModalSuccess>
+    if (isSuccess)
+        return (
+            <ModalSuccess>
+                Lista <span className="text-[var(--primary)]">{title}</span>{" "}
+                została stworzona!
+            </ModalSuccess>
+        )
 
     return (
         <>

@@ -26,7 +26,7 @@ import Sort from "../buttons/Sort"
 import ContentErrorLoading from "./ErrorContent"
 import ContentNoData from "./NoDataContent"
 import MobileMore from "../buttons/MobileMore"
-import PercentagleBar from "./PercentagleBar"
+import PercentageBar from "./PercentageBar"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -168,7 +168,7 @@ export default function Content({ id }: { id: string }) {
                             sortCriteria={sortCriteria}
                         />
                     </div>
-                    <PercentagleBar percent={percentagePackedItems} />
+                    <PercentageBar percent={percentagePackedItems} />
                     <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
                         <ul>
                             {sortedAndFilteredElements.map((element) => (

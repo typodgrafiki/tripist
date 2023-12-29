@@ -12,6 +12,7 @@ import { Dispatch, SetStateAction } from "react"
 import { updateUserFetch } from "@/actions/axiosActions"
 import iconUser from "@/assets/images/user/boy.png"
 import DeleteAccount from "./DeleteAccount"
+import Label from "@/components/ui/Label"
 
 type EditAccountProps = {
     data: IUserData
@@ -79,12 +80,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                 </div> */}
                 <div className="flex gap-2 w-full mb-4">
                     <div className="w-1/2">
-                        <label
+                        <Label
+                            name="Imię"
                             htmlFor="formName"
-                            className="block mb-2 font-semibold"
-                        >
-                            Imię
-                        </label>
+                        />
                         <input
                             type="text"
                             className={`form-control w-full ${
@@ -96,12 +95,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         />
                     </div>
                     <div className="w-1/2">
-                        <label
+                        <Label
+                            name="Nazwisko"
                             htmlFor="formSurname"
-                            className="block mb-2 font-semibold"
-                        >
-                            Nazwisko
-                        </label>
+                        />
                         <input
                             type="text"
                             className={`form-control w-full ${
@@ -114,12 +111,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                     </div>
                 </div>
                 <div className="w-full mb-4">
-                    <label
+                    <Label
+                        name="Email"
                         htmlFor="formEmail"
-                        className="block mb-2 font-semibold"
-                    >
-                        Email
-                    </label>
+                    />
                     <input
                         type="text"
                         className={`form-control w-full ${
@@ -131,12 +126,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                     />
                 </div>
                 <div className="w-full mb-6">
-                    <label
+                    <Label
+                        name="Hasło"
                         htmlFor="formPassword"
-                        className="block mb-2 font-semibold"
-                    >
-                        Hasło
-                    </label>
+                    />
                     <input
                         type="text"
                         className={`form-control w-full ${

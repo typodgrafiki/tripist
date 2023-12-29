@@ -1,5 +1,5 @@
 "use client"
-export default function PercentagleBar({ percent }: { percent: number }) {
+export default function PercentageBar({ percent }: { percent: number }) {
     return (
         <div className="percentagle-items-track flex rounded-full">
             <div
