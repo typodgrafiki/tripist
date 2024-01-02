@@ -10,6 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Gender {
+  Female
+  Male
+}
+
+enum ActionType {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum EntityType {
+  LISTITEM
+  LIST
+  CATEGORY
+}
+
+
 model User {
   id              String       @id @default(uuid())
   createdAt       DateTime     @default(now())
@@ -20,6 +38,7 @@ model User {
   confirmed       Boolean      @default(false)
   image           String?
   password        String
+  gender          Gender?
   darkTheme       Boolean      @default(false)
   categories      Category[]
   preferences     String[]
@@ -101,10 +120,10 @@ model ChangeLog {
   createdAt     DateTime  @default(now())
   userId        String
   user          User      @relation(fields: [userId], references: [id])
-  action        String    // np. "DELETE", "UPDATE"
-  entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
-  entityId      Int       // ID encji, którą zmieniliśmy
-  previousData  Json      // Dane przed zmianą
+  action        ActionType    // np. "DELETE", "UPDATE"
+  ntityType     EntityType    // np. "LISTITEM", "LIST", "CATEGORY"
+  entityId      Int           // ID encji, którą zmieniliśmy
+  previousData  Json          // Dane przed zmianą
 }
 
 model Template {
