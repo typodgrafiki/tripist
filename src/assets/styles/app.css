@@ -240,6 +240,20 @@ svg {
     max-height: 100vh;
 }
 
+.tooltip-content {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, 3px) rotate(45deg);
+}
+
 select.dark {
     background-image: url(../images/dashboard/select-arrow.svg);
     background-size: 13px 9px;

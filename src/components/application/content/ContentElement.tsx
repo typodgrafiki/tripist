@@ -13,6 +13,7 @@ import { changeStatusLocaly } from "@/utils/utils"
 import Categories from "./ItemCategories"
 import ButtonDelete from "../buttons/ButtonDeleteItem"
 import Button from "@/components/ui/Button"
+import Tooltip from "@/components/ui/Tooltip"
 
 export default function ContentElement({
     id,
@@ -98,17 +99,27 @@ export default function ContentElement({
                 </label>
                 <Categories categories={categories} />
                 <div className="element-edit flex pr-2 sm:absolute sm:top-0 sm:bottom-0 sm:right-0 sm:opacity-0 sm:pr-0">
+                    {/* <Tooltip
+                        text="Edytuj"
+                        className="flex"
+                    > */}
                     <Button
                         className="px-2 items-center hover:text-[var(--primary)] sm:px-1"
                         onClick={handleEdit}
                     >
                         <IconPen />
                     </Button>
+                    {/* </Tooltip>
+                    <Tooltip
+                        text="Usuń"
+                        className="flex"
+                    > */}
                     <ButtonDelete
                         id={id}
                         listId={listId}
                         icon
                     />
+                    {/* </Tooltip> */}
                 </div>
             </li>
         </>

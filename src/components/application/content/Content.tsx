@@ -27,6 +27,7 @@ import ContentErrorLoading from "./ErrorContent"
 import ContentNoData from "./NoDataContent"
 import MobileMore from "../buttons/MobileMore"
 import PercentageBar from "./PercentageBar"
+import Tooltip from "@/components/ui/Tooltip"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -140,12 +141,17 @@ export default function Content({ id }: { id: string }) {
                         listId={listId}
                         name={name}
                     />
-                    <Button
-                        className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
-                        onClick={handleEditList}
+                    <Tooltip
+                        text="Edytuj"
+                        className="hidden sm:flex mb-2 "
                     >
-                        <IconPen />
-                    </Button>
+                        <Button
+                            className="animated px-3 hover:text-[var(--primary)] rounded-full"
+                            onClick={handleEditList}
+                        >
+                            <IconPen />
+                        </Button>
+                    </Tooltip>
                     <ButtonDuplicate
                         listId={listId}
                         name={name}
