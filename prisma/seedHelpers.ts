@@ -3,22 +3,37 @@
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
-type NameCategory =
+export type NameCategory =
     | "Odzież"
     | "Akcesoria"
-    | "Higiena"
+    | "Apteczka"
+    | "Łazienka / Higiena"
+    | "Kosmetyczka"
     | "Elektronika"
+    | "Samochód"
     | "Inne"
-    | "Sprzęt kempingowy"
     | "Jedzenie"
-    | "Spanie"
     | "Kuchnia"
-    | "Łazienka"
-    | "Campervan"
-    | "Plaża i trekking"
+    | "Camping"
+    | "Jezioro"
+    | "Plaża"
+    | "Trekking"
+    | "Dokumenty"
+    | "Biznes"
+    | "Sport"
+    | "Sprzęt sportowy"
+    | "Bieganie"
+    | "Siłownia"
+    | "Morsowanie"
+    | "Basen"
+    | "Joga"
+    | "Ścianka wspinaczkowa"
+    | "Crossfit"
+    | "Kajak"
+    | "Sztuki walki"
 
 // Funkcja do tworzenia lub uzyskiwania dostępu do kategorii
-export async function createOrGetCategory(name: string) {
+export async function createOrGetCategory(name: NameCategory) {
     let category = await prisma.templateCategory.findFirst({
         where: { name: name },
     })
@@ -29,14 +44,13 @@ export async function createOrGetCategory(name: string) {
         })
     }
 
-    return category
+    return category.id
 }
 
 type NameType =
     | "training"
     | "summer"
     | "winter"
-    // | "camping"
     | "active"
     | "other"
 
@@ -44,7 +58,6 @@ type FullNameType =
     | "Trening"
     | "Wakacje letnie"
     | "Wakacje zimowe"
-    // | "Camping"
     | "Wakacje aktywne"
     | "Inne"
 
@@ -66,5 +79,5 @@ export async function createOrGetType(
         })
     }
 
-    return templateType
+    return templateType.id
 }
