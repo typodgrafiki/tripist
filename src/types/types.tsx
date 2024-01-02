@@ -82,6 +82,11 @@ export interface ICreateUser extends ILoginUser {
     surname?: string
 }
 
+export type TCreateUserApi = {
+    userId: string
+    email: string
+}
+
 export interface IUserData {
     userId?: string | null
     name?: string

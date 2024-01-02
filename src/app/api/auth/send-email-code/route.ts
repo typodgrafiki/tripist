@@ -62,7 +62,12 @@ export async function POST(request: Request) {
             )
         }
 
-        return NextResponse.json(checkEmailExist.id, { status: 200 })
+        const result = {
+            userId: checkEmailExist.id,
+            email: email,
+        }
+
+        return NextResponse.json(result, { status: 200 })
     } catch (e) {
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },

@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation"
 export default function ShowCode({
     showCode,
     userId,
+    email,
 }: {
     showCode: boolean
     userId: string
+    email: string
 }) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
@@ -48,10 +50,12 @@ export default function ShowCode({
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className={`absolute inset-0 w-full flex flex-col justify-center p-1 ${
-                showCode ? "" : "left-full"
-            }`}
+            className="flex flex-col justify-center p-1"
         >
+            <p className="mb-4">
+                Wpisz nowe hasło dla{" "}
+                <span className="text-[var(--primary)]">{email}</span>
+            </p>
             <input
                 hidden
                 {...register("userId")}

@@ -85,7 +85,12 @@ export async function POST(request: Request) {
             )
         }
 
-        return NextResponse.json(userId, { status: 200 })
+        const result = {
+            userId: userId,
+            email: newUser.email,
+        }
+
+        return NextResponse.json(result, { status: 200 })
     } catch (e) {
         console.log(e)
         return NextResponse.json(

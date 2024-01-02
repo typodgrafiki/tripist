@@ -100,7 +100,7 @@ export default function RemindPassword() {
                 </div>
                 <Button
                     type="submit"
-                    className={`flex justify-center items-center btn btn-primary`}
+                    className={`flex justify-center items-center btn btn-primary mt-2`}
                     isLoading={loading}
                 >
                     Zapisz hasło

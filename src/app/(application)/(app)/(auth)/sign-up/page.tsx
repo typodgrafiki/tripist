@@ -5,15 +5,17 @@ import Link from "next/link"
 import Toastify from "toastify-js"
 import { useState } from "react"
 import ShowCode from "@/components/application/user/UserSignShowCode"
-import { ICreateUser } from "@/types/types"
+import { ICreateUser, TCreateUserApi } from "@/types/types"
 import { createUserFetch } from "@/actions/axiosActions"
 import Button from "@/components/ui/Button"
 import ModalTitle from "@/components/ui/ModalTitle"
+import Label from "@/components/ui/Label"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
     const [showCode, setShowCode] = useState(false)
     const [userId, setUserId] = useState("")
+    const [userEmail, setUserEmail] = useState("")
 
     const { register, handleSubmit, formState } = useForm<ICreateUser>({
         defaultValues: {
@@ -32,7 +34,8 @@ export default function RegisterForm() {
 
         if (result?.status === 200) {
             setShowCode(true)
-            setUserId(result.data)
+            setUserId(result.data.userId)
+            setUserEmail(result.data.email)
         } else {
             const { message } = result?.data
             Toastify({
@@ -46,7 +49,14 @@ export default function RegisterForm() {
     return (
         <>
             <ModalTitle>Zarejestruj się</ModalTitle>
-            <div className="relative overflow-hidden">
+
+            {showCode ? (
+                <ShowCode
+                    showCode={showCode}
+                    userId={userId}
+                    email={userEmail}
+                />
+            ) : (
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className={`w-full relative ${
@@ -55,6 +65,10 @@ export default function RegisterForm() {
                 >
                     <div className="flex flex-col justify-between gap-3 mb-1 p-1">
                         <div>
+                            <Label
+                                name="Imię"
+                                htmlFor="formName"
+                            />
                             <input
                                 type="text"
                                 className={`form-control grow w-full ${
@@ -77,6 +91,10 @@ export default function RegisterForm() {
                             )}
                         </div>
                         <div>
+                            <Label
+                                name="Email"
+                                htmlFor="formEmail"
+                            />
                             <input
                                 type="email"
                                 className={`form-control grow w-full ${
@@ -100,6 +118,10 @@ export default function RegisterForm() {
                             )}
                         </div>
                         <div>
+                            <Label
+                                name="Hasło"
+                                htmlFor="formPassword"
+                            />
                             <input
                                 type="password"
                                 className={`form-control grow w-full ${
@@ -125,7 +147,7 @@ export default function RegisterForm() {
 
                         <Button
                             type="submit"
-                            className={`flex justify-center items-center btn btn-primary`}
+                            className={`flex justify-center items-center btn btn-primary mt-4`}
                             isLoading={loading}
                         >
                             Zarejestruj się
@@ -137,13 +159,7 @@ export default function RegisterForm() {
                         </div>
                     )} */}
                 </form>
-                {showCode && (
-                    <ShowCode
-                        showCode={showCode}
-                        userId={userId}
-                    />
-                )}
-            </div>
+            )}
 
             <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
                 lub
