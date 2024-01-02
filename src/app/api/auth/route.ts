@@ -5,7 +5,7 @@ export async function GET(request: Request) {
     const sessionId = request.headers.get("Authorization")
 
     if (!sessionId) {
-        return NextResponse.json(false, { status: 400 })
+        return NextResponse.json(false, { status: 401 })
     }
 
     try {
@@ -28,13 +28,19 @@ export async function GET(request: Request) {
             return NextResponse.json(false, { status: 401 })
         }
 
-        await prisma.session.update({
-            where: { id: sessionId },
-            data: {
-                updatedAt: new Date(),
-                expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 5), // 5 days
-            },
-        })
+        const oneDay = 1000 * 60 * 60 * 24
+        const fiveDays = oneDay * 5
+        const expiryThreshold = new Date(Date.now() + oneDay)
+
+        if (new Date(checkSession.expiresAt) < expiryThreshold) {
+            await prisma.session.update({
+                where: { id: sessionId },
+                data: {
+                    updatedAt: new Date(),
+                    expiresAt: new Date(Date.now() + fiveDays),
+                },
+            })
+        }
 
         return NextResponse.json(true, { status: 200 })
     } catch (error) {

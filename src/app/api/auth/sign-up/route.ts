@@ -22,14 +22,14 @@ export async function POST(request: Request) {
     const { name, surname, email, password } = data
     const userId = `user_${uuidv4()}`
 
-    await email.trim()
-    await password.trim()
+    email.trim()
+    password.trim()
 
     try {
         if (!name || !email || !password) {
             return NextResponse.json(
                 { message: "Nie uzupełniono danych" },
-                { status: 400 }
+                { status: 422 }
             )
         }
 
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
         if (checkEmailExist) {
             return NextResponse.json(
                 { message: "Użytkownik o takim email już istnieje" },
-                { status: 401 }
+                { status: 409 }
             )
         }
 
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
         if (!newUser) {
             return NextResponse.json(
                 { message: "Nie udało się dodać użytkownika" },
-                { status: 402 }
+                { status: 500 }
             )
         }
 
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
         if (!sendEmail) {
             return NextResponse.json(
                 { message: "Nie wysłano kodu" },
-                { status: 403 }
+                { status: 500 }
             )
         }
 
@@ -92,7 +92,6 @@ export async function POST(request: Request) {
 
         return NextResponse.json(result, { status: 200 })
     } catch (e) {
-        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }

@@ -38,7 +38,7 @@ model User {
   confirmed       Boolean      @default(false)
   image           String?
   password        String
-  gender          Gender?
+  gender          Gender?      
   darkTheme       Boolean      @default(false)
   categories      Category[]
   preferences     String[]
@@ -121,7 +121,7 @@ model ChangeLog {
   userId        String
   user          User      @relation(fields: [userId], references: [id])
   action        ActionType    // np. "DELETE", "UPDATE"
-  ntityType     EntityType    // np. "LISTITEM", "LIST", "CATEGORY"
+  entityType    EntityType    // np. "LISTITEM", "LIST", "CATEGORY"
   entityId      Int           // ID encji, którą zmieniliśmy
   previousData  Json          // Dane przed zmianą
 }
