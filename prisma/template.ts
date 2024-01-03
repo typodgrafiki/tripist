@@ -144,6 +144,10 @@ const test = [
     name: "Przewodnik po okolicy",
     categories: { connect: [ {id: allinclusive.id}] },
 },
+{
+    name: "Zabezpieczenie bagażu",
+    categories: { connect: [{ id: allinclusive.id }, { id: tropikalnawyspa.id }, { id: egipt.id }] },
+},
 
 
 
@@ -182,6 +186,73 @@ const test = [
     name: "Adapter do gniazdka elektrycznego",
     categories: { connect: [{ id: tropikalnaWyspa.id }] },
 },
+
+
+
+
+
+
+// Afryka / Egipt
+{
+    name: "Lekkie i przewiewne ubrania",
+    categories: { connect: [{ id: egipt.id }] },
+},
+{
+    name: "Lekkie ubrania z długimi rękawami i nogawkami",
+    categories: { connect: [{ id: egipt.id }] },
+},
+{
+    name: "Sandały",
+    categories: { connect: [{ id: egipt.id }] },
+},
+// + Sprzęt do nurkowania
+// + Safari
+
+
+
+
+
+
+
+// Safari
+{
+    name: "Przewiewne ubrania w kolorach neutralnych",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Obuwie trekkingowe",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Kapelusz z szerokim rondem",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Okulary przeciwsłoneczne",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Lornetka",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Plecak na wycieczki",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Butelka na wodę",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Przewodnik po dzikiej przyrodzie",
+    categories: { connect: [{ id: safari.id }] },
+},
+{
+    name: "Aparat fotograficzny z zoomem",
+    categories: { connect: [{ id: safari.id }] },
+}
+
+
 
 
 
@@ -229,6 +300,10 @@ const test = [
     categories: { connect: [{ id: plaza.id }] },
 },
 {
+    name: "Wodoodporny aparat fotograficzny",
+    categories: { connect: [{ id: plaza.id }, { id: nurkowanie.id }] },
+},
+{
     name: "Piłka plażowa",
     categories: { connect: [{ id: plaza.id }] },
 },
@@ -244,6 +319,8 @@ const test = [
     name: "Dmuchany materac lub koło",
     categories: { connect: [{ id: plaza.id }, { id: allinclusive.id }] },
 },
+
+
 
 
 
@@ -429,123 +506,7 @@ const test = [
 
 
 
-// Safari
-Lekkie, przewiewne ubrania - w kolorach neutralnych, aby nie przyciągać uwagi dzikich zwierząt.
-Ciepłe ubrania na wieczór - wieczory i poranki mogą być chłodne.
-Długie spodnie i długie rękawy - ochrona przed słońcem i owadami.
-Wygodne obuwie trekkingowe - na wycieczki po parkach narodowych.
-Kapelusz z szerokim rondem - ochrona przed słońcem.
-Okulary przeciwsłoneczne.
-Bielizna - włącznie z bielizną termoaktywną na chłodniejsze dni.
-Kurtka przeciwdeszczowa lub płaszcz przeciwdeszczowy.
-Sprzęt i Akcesoria
-Lornetka - niezbędna do obserwacji dzikich zwierząt z daleka.
-Plecak na wycieczki - na wodę, przekąski, aparat fotograficzny.
-Butelka na wodę - najlepiej wielokrotnego użytku.
-Przewodnik po dzikiej przyrodzie - aby łatwiej rozpoznawać zwierzęta i rośliny.
-Elektronika
-Aparat fotograficzny z dobrym zoomem - do fotografowania zwierząt z bezpiecznej odległości.
-Dodatkowe karty pamięci i baterie/akumulator do aparatu.
-Smartfon i ładowarka.
-Power bank.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, środki na alergię.
-Repelent na komary.
-Krem z filtrem UV.
-Artykuły higieniczne - szczoteczka do zębów, pasta, żel pod prysznic.
-Dokumenty i Inne
-Dokumenty podróżne - paszport, wiza (jeśli jest wymagana), bilety lotnicze.
-Ubezpieczenie podróżne - upewnij się, że obejmuje aktywności na safari.
-Gotówka - szczególnie w małych nominałach, przydatna na napiwki i drobne wydatki.
-Notatnik i długopis - do zapisywania obserwacji i wrażeń.
-Różne
-Książki/e-booki - na relaks w czasie przerw w safari.
-Przenośny wentylator - jeśli wybierasz się w gorącym sezonie.
-Zestaw do czyszczenia sprzętu fotograficznego - aby utrzymać aparat w dobrej kondycji.
 
-
-
-
-
-// Objazdówka
-odstawowe Wyposażenie Samochodu
-Dokumenty samochodu - dowód rejestracyjny, ważne ubezpieczenie.
-Prawo jazdy i dokumenty tożsamości wszystkich pasażerów.
-Zestaw narzędzi do samochodu - klucz do kół, lewarek.
-Koło zapasowe lub zestaw naprawczy do opon.
-Trójkąt ostrzegawczy i kamizelki odblaskowe.
-Latarka i baterie zapasowe.
-Odzież i Obuwie
-Wygodne ubrania na podróż - preferowane są warstwy, które łatwo się ściąga i zakłada.
-Dodatkowe ubrania - w zależności od pogody i długości podróży.
-Buty wygodne do prowadzenia i na spacery.
-Kapelusz lub czapka - ochrona przed słońcem.
-Okulary przeciwsłoneczne.
-Jedzenie i Płyny
-Przekąski - orzechy, owoce, batony energetyczne.
-Woda i napoje - najlepiej w termosie lub butelkach wielokrotnego użytku.
-Lodówka turystyczna - jeśli planujesz dłuższe przerwy na posiłki.
-Elektronika i Rozrywka
-Ładowarka samochodowa i kable do telefonów.
-Smartfon i/lub nawigacja GPS.
-Muzyka, audiobooki, podcasty - na długie godziny w drodze.
-Power bank.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy.
-Artykuły higieniczne - chusteczki nawilżane, żel antybakteryjny, papier toaletowy.
-Krem z filtrem UV - szczególnie ważny podczas długich podróży w słoneczne dni.
-Nocleg i Wypoczynek
-Namiot i śpiwór - jeśli planujesz nocleg na kempingu.
-Poduszka podróżna i koc - dla komfortu podczas jazdy.
-Latarka czołowa - przydatna podczas noclegów na kempingu.
-Nawigacja i Planowanie
-Mapy papierowe - jako zapas do nawigacji elektronicznej.
-Notatnik i długopis - do zapisywania ważnych informacji i planowania trasy.
-Różne
-Torba na śmieci - aby utrzymać porządek w samochodzie.
-Karty do gry, planszówki - na przerwy i wieczory.
-Fotelik dla dziecka - jeśli podróżujesz z małymi dziećmi.
-
-
-
-
-// Afryka / Egipt
-Odzież i Obuwie
-Lekkie i przewiewne ubrania - z naturalnych materiałów jak bawełna lub len.
-Ubrania z długimi rękawami i nogawkami - dla ochrony przed słońcem i owadami.
-Kapelusz lub czapka z daszkiem - ochrona przed intensywnym słońcem.
-Okulary przeciwsłoneczne.
-Wygodne buty - najlepiej zamknięte, na wycieczki i spacery.
-Sandały - na cieplejsze dni.
-Stroje kąpielowe - jeśli planujesz korzystać z basenu lub plaży.
-Lekka kurtka lub bluza - na chłodniejsze wieczory.
-Bielizna i skarpetki - dostosowane do klimatu.
-Zdrowie i Higiena
-Krem z filtrem UV - o wysokim faktorze ochrony.
-Repelent na komary - szczególnie ważne w regionach zagrożonych malarią.
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, środki przeciw alergii, leki na biegunkę.
-Artykuły higieniczne - szczoteczka i pasta do zębów, szampon, mydło.
-Środki higieny intymnej - w zależności od indywidualnych potrzeb.
-Leki osobiste - jeśli są regularnie stosowane.
-Elektronika
-Aparat fotograficzny lub kamera - do utrwalania wspomnień.
-Smartfon i ładowarka.
-Power bank.
-Adapter do gniazdka elektrycznego - w zależności od typu używanego w danym kraju.
-Dokumenty i Inne
-Paszport - z ważną wizą, jeśli jest wymagana.
-Bilety lotnicze i potwierdzenia rezerwacji.
-Ubezpieczenie podróżne - upewnij się, że obejmuje specyfikę podróży do Afryki/Egiptu.
-Kopie dokumentów - w razie ich utraty lub kradzieży.
-Gotówka - najlepiej w lokalnej walucie, oraz karty płatnicze.
-Na Safari (jeśli dotyczy)
-Lornetka - do obserwacji dzikich zwierząt.
-Neutralne kolory ubrań - zieleń, beż, brąz, aby nie przyciągać uwagi zwierząt.
-Torba na kurze i pył - do ochrony aparatu i elektroniki.
-Różne
-Słownik lub przewodnik po języku - podstawowe zwroty w lokalnym języku mogą być bardzo pomocne.
-Notatnik i długopis - do zapisywania wrażeń i ważnych informacji.
-Książki, e-booki, muzyka - na relaks w czasie przerw.
 
 
 
@@ -560,7 +521,7 @@ Książki, e-booki, muzyka - na relaks w czasie przerw.
     categories: { connect: [{ id: dokumenty.id }]},
 },
 {
-    name: "Ubezpieczenie",
+    name: "Ubezpieczenie podróżne",
     categories: { connect: [{ id: dokumenty.id }]},
 },
 {
@@ -581,6 +542,14 @@ Książki, e-booki, muzyka - na relaks w czasie przerw.
 },
 {
     name: "Kopie ważnych dokumentów",
+    categories: { connect: [{ id: dokumenty.id }, {id: biznes.id}] },
+},
+{
+    name: "Bilety lotnicze",
+    categories: { connect: [{ id: dokumenty.id }, {id: biznes.id}] },
+},
+{
+    name: "Potwierdzenia rezerwacji",
     categories: { connect: [{ id: dokumenty.id }, {id: biznes.id}] },
 },
 
@@ -635,12 +604,6 @@ Książki, e-booki, muzyka - na relaks w czasie przerw.
 
 
 
-
-// Samochód
-{
-    name: "Rozdzielacz USB - zapalniczka",
-    categories: { connect: [{ id: car.id }]},
-},
 
 
 
@@ -839,6 +802,55 @@ Książki, e-booki, muzyka - na relaks w czasie przerw.
 
 
 
+
+// Samochód
+{
+    name: "Dokumenty samochodu",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Ładowarka samochodowa + kabel",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Transmiter FM",
+    categories: { connect: [{ id: car.id }, {id:campping.id}]},  
+},
+{
+    name: "Klucz do kół, lewarek",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Zestaw naprawczy do opon",
+    categories: { connect: [{ id: car.id }]},   
+},
+{
+    name: "Kabel rozruchowy",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Latarka i baterie zapasowe",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Wygodne ubrania na podróż",
+    categories: { connect: [{ id: car.id }]},
+},
+{
+    name: "Lodówka turystyczna",
+    categories: { connect: [{ id: car.id }, {id: kuchnia.id}, {id: camping.id}]},
+},
+
+
+
+
+
+
+
 // Camping
 {
     name: "Prysznic ciśnieniowy",
@@ -895,51 +907,79 @@ Książki, e-booki, muzyka - na relaks w czasie przerw.
 {
     name: "Peleryna przeciwdeszczowa",
     categories: { connect: [{ id: camping.id }, {id: odziez.id}] },
+},
+{
+    name: "Młotek do śledzi",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
+},
+{
+    name: "Nóż",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
+},
+{
+    name: "Śrubokręt",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
+},
+{
+    name: "Przenośny grill",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: kuchniaVan.id}] },
+},
+{
+    name: "Kuchenka gazowa",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: kuchniaVan.id}] },
+},
+{
+    name: "Worki na śmieci",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: car.id}] },
 }
 
 
 
 
+
+
 // Camping rodzinny
-Sprzęt Kempingowy
-Namiot - wystarczająco duży dla całej rodziny.
-Śpiwory - dostosowane do warunków pogodowych.
-Maty izolacyjne lub materace nadmuchiwane.
-Lampki kempingowe i latarki - wraz z zapasowymi bateriami lub akumulatorami.
-Krzesła i stół kempingowy - dla wygody przy posiłkach i relaksie.
-Sprzęt do gotowania na kempingu - przenośny grill, kuchenka gazowa, naczynia, sztućce, garnki.
-Zestaw narzędzi kempingowych - młotek do śledzi, nóż, śrubokręt.
-Odzież i Obuwie
-Ubrania na różne warunki pogodowe - warstwy ubrań, które łatwo się ściąga i zakłada.
-Kurtki przeciwdeszczowe lub płaszcze.
-Ciepłe ubrania na chłodne noce - swetry, bluzy.
-Obuwie wygodne - do chodzenia po terenie kempingu i wycieczek.
-Kapelusz lub czapka - ochrona przed słońcem.
-Stroje kąpielowe - jeśli jest basen lub jezioro.
-Klapki do prysznica.
-Jedzenie i Płyny
-Zapasowe jedzenie - konserwy, makarony, przekąski, produkty łatwe w przechowywaniu.
-Woda pitna - szczególnie ważne, jeśli na kempingu nie ma dostępu do czystej wody.
-Chłodna torba - do przechowywania świeżych produktów.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, środki na alergię, preparaty na ukąszenia owadów.
-Artykuły higieniczne - papier toaletowy, ręczniki, mydło, szampon.
-Środki przeciw komarom i kleszczom.
-Krem z filtrem UV.
-Dla Dzieci
-Zabawki i gry - do zabawy na świeżym powietrzu.
-Nosidełko lub wózek terenowy - dla małych dzieci.
-Kojec podróżny - jeśli podróżujesz z małymi dziećmi.
-Dziecięce środki przeciwsłoneczne i repelenty.
-Inne
-Worki na śmieci - do utrzymywania czystości na kempingu.
-Zapalniczka lub zapałki.
-Książki, karty, gry planszowe - na wieczorne rozrywki.
-Smartfon i ładowarka - najlepiej z power bankiem.
-Mapy i informacje o regionie - jeśli planujesz wycieczki.
-Sprzęt Dodatkowy (opcjonalnie)
-Kajak, rowery - jeśli planujesz aktywności na świeżym powietrzu.
-Parasol plażowy i maty - jeśli będziecie spędzać czas na plaży.
+{
+    name: "Namiot rodzinny",
+    categories: { connect: [{ id: campingRodzinny.id }] },
+},
+{
+    name: "Materac nadmuchiwany lub maty izolacyjne",   
+    categories: { connect: [{ id: campingRodzinny.id }] },
+},
+{
+    name: "Śpiwory",
+    categories: { connect: [{ id: campingRodzinny.id }] },
+},
+{
+    name: "Lampki kempingowe",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
+},
+{
+    name: "Krzesła i stół kempingowy",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
+},
+{
+    name: "Woda pitna",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}] },
+},
+{
+    name: "Kajak (opcjonalnie)",
+    categories: { connect: [{ id: campingRodzinny.id }, },
+},
+{
+    name: "Rowery (opcjonalnie)",
+    categories: { connect: [{ id: campingRodzinny.id }, },
+},
+{
+    name: "Parasol plażowy (opcjonalnie)",
+    categories: { connect: [{ id: campingRodzinny.id }, },
+},
+
+
+
+
+
 
 
 
@@ -950,6 +990,10 @@ Parasol plażowy i maty - jeśli będziecie spędzać czas na plaży.
 },
 {
     name: "Makarony",
+    categories: { connect: [{ id: jedzenie.id }] },
+},
+{
+    name: "Konserwy",
     categories: { connect: [{ id: jedzenie.id }] },
 },
 {
@@ -1077,6 +1121,10 @@ Parasol plażowy i maty - jeśli będziecie spędzać czas na plaży.
         ],
     },
 },
+{
+    name: "Mapy papierowe",
+    categories: { connect: [{ id: inne.id }, {id: camping.id}, {id: car.id}] },
+}
 
 
 
@@ -1199,25 +1247,78 @@ Parasol plażowy i maty - jeśli będziecie spędzać czas na plaży.
 
 
 // Niemowlak
-smoczek,
-ulubiona zabawka,
-pieluszki standardowe,
-pieluszki wodoodporne (jeżeli planujesz z dzieckiem pływać),
-chusteczki nawilżone,
-nakrycie głowy,
-odzież UV,
-krem z filtrem przeciwsłonecznym (SPF50 lub SPF70),
-butelkę do mleka,
-mleko modyfikowane lub kaszkę (zależy ile miesięcy ma niemowlę),
-śliniak,
-leki przeciwgorączkowe,
-leki przeciwbólowe,
-sól fizjologiczną w jednorazowych ampułkach,
-termometr,
-plastry,
-żel na ząbkowanie,
-żel na ukąszenia owadów,
-niania elektroniczna.
+{
+    name: "Smoczek",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Ulubiona zabawka",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Pieluszki standardowe",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Pieluszki wodoodporne",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Chusteczki nawilżone",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Nakrycie głowy",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Krem z filtrem przeciwsłonecznym (SPF50 lub SPF70)",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Butelka do mleka",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Mleko modyfikowane lub kaszka",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Śliniak",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Leki przeciwgorączkowe dla niemowląt",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Leki przeciwbólowe dla niemowląt",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Sól fizjologiczna w jednorazowych ampułkach",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Termometr",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Plastry",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Żel na ząbkowanie",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Żel na ukąszenia owadów",
+    categories: { connect: [{ id: niemowle.id }] },
+},
+{
+    name: "Niania elektroniczna",
+    categories: { connect: [{ id: niemowle.id }] },
+}
 
 
 
@@ -1225,15 +1326,67 @@ niania elektroniczna.
 
 
 // Dzieci
-apteczka,
-artykuły higieniczne,
-ubrania UV,
-buty do wody,
-zabawki na plażę,
-książeczki, kolorowanki lub gry (w razie złej pogody),
-akcesoria plażowe np. składany, lekki namiot,
-okulary przeciwsłoneczne,
-butelki z filtrem na wodę.
+{
+    name: "Apteczka dla dzieci",
+    categories: { connect: [{ id: zdrowie.id }] },
+},
+{
+    name: "Artykuły higieniczne dla dzieci",
+    categories: { connect: [{ id: higiena.id }] },
+},
+{
+    name: "Buty do wody dla dzieci",
+    categories: { connect: [{ id: obuwie.id }, { id: plywanie.id }] },
+},
+{
+    name: "Zabawki na plażę",
+    categories: { connect: [{ id: zabawki.id }, { id: plazowe.id }] },
+},
+{
+    name: "Książeczki",
+    categories: { connect: [{ id: ksiazki.id }] },
+},
+{
+    name: "Kolorowanki",
+    categories: { connect: [{ id: ksiazki.id }] },
+},
+{
+    name: "Gry dla dzieci",
+    categories: { connect: [{ id: zabawki.id }] },
+},
+{
+    name: "Składany, lekki namiot",
+    categories: { connect: [{ id: plazowe.id }, { id: kempingowe.id }] },
+},
+{
+    name: "Okulary przeciwsłoneczne dla dzieci",
+    categories: { connect: [{ id: akcesoria.id }] },
+},
+{
+    name: "Butelki z filtrem na wodę",
+    categories: { connect: [{ id: akcesoria.id }] },
+},
+{
+    name: "Zabawki do zabawy na świeżym powietrzu",
+    categories: { connect: [{ id: zabawki.id }, { id: outdoor.id }] },
+},
+{
+    name: "Nosidełko",
+    categories: { connect: [{ id: podrozne.id }] },
+},
+{
+    name: "Wózek terenowy",
+    categories: { connect: [{ id: podrozne.id }] },
+},
+{
+    name: "Kojec podróżny",
+    categories: { connect: [{ id: podrozne.id }] },
+},
+{
+    name: "Dziecięce środki przeciwsłoneczne",
+    categories: { connect: [{ id: ochrona_sloneczna.id }] },
+},
+
 
 
 
@@ -1449,438 +1602,1024 @@ butelki z filtrem na wodę.
 
 
 // ACTIVE Rower
-Sprzęt Rowerowy
-Rower - odpowiednio przystosowany do planowanych tras (szosowy, MTB, trekkingowy).
-Kask rowerowy - dla bezpieczeństwa.
-Zestaw naprawczy - dętki, łatki, pompka, narzędzia wielofunkcyjne, zapasowe łańcuch.
-Oświetlenie rowerowe - przednie i tylne lampki.
-Bidon na wodę lub system hydratacyjny.
-Błotniki - jeśli planujesz jazdę w deszczowe dni.
-Zamki rowerowe - do zabezpieczenia roweru.
-Odzież Rowerowa
-Strój kolarski - koszulka, spodenki z wkładką, rękawiczki.
-Buty rowerowe - odpowiednie do pedałów.
-Kurtka przeciwdeszczowa/wiatrówka.
-Warstwy termiczne - na chłodniejsze dni.
-Okulary przeciwsłoneczne.
-Czapka pod kask lub opaska na głowę.
-Skarpetki rowerowe.
-Akcesoria i Narzędzia
-Sakwy rowerowe lub plecak - do przewożenia rzeczy.
-GPS rowerowy lub licznik - do śledzenia tras i dystansu.
-Mapy i plany tras - w formie papierowej lub elektronicznej.
-Zestaw pierwszej pomocy - plastry, bandaże, środki przeciwbólowe.
-Telefon komórkowy i ładowarka - najlepiej z power bankiem.
-Żywność i Płyny
-Przekąski energetyczne - batony, żele, orzechy.
-Woda - duża ilość, aby uniknąć odwodnienia.
-Posiłki - jeśli planujesz gotowanie na kempingu.
-Higiena i Komfort
-Krem z filtrem UV.
-Środki higieniczne - mydło, pasta do zębów, szczoteczka.
-Ręcznik szybkoschnący.
-Środki przeciw owadom.
-Dla Noclegu (jeśli dotyczy)
-Namiot, śpiwór, mata termiczna - jeśli planujesz nocleg na kempingu.
-Lampka kempingowa lub latarka.
-Sprzęt do gotowania - kuchenka turystyczna, naczynia, sztućce.
-Różne
-Notatnik i długopis - do zapisywania wrażeń.
-Książki, e-booki, muzyka - na wieczorne relaksy.
-Zestaw do czyszczenia roweru - szczotki, środki do smarowania łańcucha.
+{
+    name: "Rower",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Kask rowerowy",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Dętka",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Łatki do dętek",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Klej do łatek",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Pompka rowerowa",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Łyżki do opon",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Skuwacz łańcucha",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Zapasowy łańcuch",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Oświetlenie rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Bidon",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Błotniki",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Zapięcie rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Żele energetyczne",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Batony energetyczne",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Izotonik w proszku",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Koszulka kolarska",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Spodenki rowerowe z wkładką",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Rękawiczki rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Buty rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Wiatrówka rowerowa",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Kurtka przeciwdeszczowa rowerowa",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Warstwa termiczna",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Okulary przeciwsłoneczne",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Czapka pod kask",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Opaska pod kask",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Skarpetki rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Sakwy rowerowe",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Plecak",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Licznik rowerowy",
+    categories: { connect: [{ id: rower.id }] },
+},
+{
+    name: "Mapy i plany tras",
+    categories: { connect: [{ id: podrozne.id }] },
+},
+{
+    name: "Zestaw do czyszczenia roweru",
+    categories: { connect: [{ id: rower.id }] },
+}
+
 
 
 
 
 // ACTIVE wspinaczka
-Sprzęt Wspinaczkowy
-Uprząż wspinaczkowa - dobrze dopasowana i komfortowa.
-Kask wspinaczkowy - dla ochrony głowy.
-Karabinki, ekspresy - podstawowe wyposażenie do asekuracji.
-Lina wspinaczkowa - odpowiednia do planowanych dróg.
-Przyrząd asekuracyjny - np. ATC lub GriGri.
-Buty wspinaczkowe - dobrze dopasowane, specyficzne dla wspinaczki.
-Magnesja - w woreczku lub pudełku.
-Taśmy, pętle, przyrządy do zjazdów - w zależności od rodzaju wspinaczki.
-Koc ratunkowy - na wypadek nagłych zmian pogody lub wypadku.
-Odzież i Obuwie
-Wygodne ubrania do wspinaczki - elastyczne spodnie, przewiewne koszulki.
-Warstwy termiczne - bielizna termoaktywna, polar.
-Kurtka przeciwdeszczowa/wiatrówka.
-Czapka, szalik, rękawiczki - na chłodniejsze dni.
-Buty trekkingowe - na podejścia i zejścia.
-Okulary przeciwsłoneczne - ochrona przed intensywnym słońcem.
-Akcesoria
-Plecak wspinaczkowy - wygodny, z możliwością przymocowania sprzętu.
-System hydratacyjny lub bidony na wodę.
-Apteczka pierwszej pomocy - z podstawowymi lekami i materiałami opatrunkowymi.
-Latarka czołowa - przydatna podczas wczesnych wyjść lub powrotów po zmroku.
-Elektronika
-Telefon komórkowy i ładowarka.
-Power bank.
-Aparat fotograficzny lub kamera - jeśli chcesz dokumentować swoje wspinaczki.
-Żywność i Płyny
-Energetyczne przekąski - batony, orzechy, suszone owoce.
-Posiłki liofilizowane - jeśli planujesz noclegi w górach.
-Środki do oczyszczania wody - tabletki lub filtr, jeśli źródło wody nie jest pewne.
-Nocleg i Wypoczynek
-Namiot górski - jeśli planujesz biwakowanie.
-Śpiwór i mata termiczna - dostosowane do warunków.
-Kuchenka turystyczna - do gotowania na biwakach.
-Różne
-Mapy i przewodniki wspinaczkowe - dla regionu, w którym będziesz się wspinać.
-Dziennik wspinaczkowy - do zapisywania swoich osiągnięć.
-Książki, e-booki, muzyka - na wieczory i odpoczynek.
+{
+    name: "Uprząż wspinaczkowa",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Kask wspinaczkowy",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Karabinki",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Ekspresy",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Lina wspinaczkowa",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Przyrząd asekuracyjny",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Buty wspinaczkowe",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Magnesja",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Taśmy",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Pętle",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Przyrządy do zjazdów",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Koc ratunkowy",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Elastyczne spodnie",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Przewiewne koszulki",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Kurtka przeciwdeszczowa/wiatrówka",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Plecak wspinaczkowy",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Bidon",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Bukłak",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Energetyczne przekąski",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Środki do oczyszczania wody",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Mapy wspinaczkowe",
+    categories: { connect: [{ id: wspinaczka.id }] },
+},
+{
+    name: "Przewodniki wspinaczkowe",
+    categories: { connect: [{ id: wspinaczka.id }] },
+}
+
+
 
 
 
 
 
 // ACTIVE Bieganie
-Odzież i Obuwie do Biegania
-Buty do biegania - dobrze dopasowane, sprawdzone i wygodne.
-Odzież biegowa - lekkie i oddychające koszulki, spodenki, legginsy.
-Bielizna sportowa - zapewniająca wsparcie i komfort.
-Skarpety do biegania - najlepiej bezszwowe, odprowadzające wilgoć.
-Czapka lub opaska na głowę - ochrona przed słońcem lub chłodem.
-Rękawiczki - jeśli planujesz biegać w chłodniejsze dni.
-Kurtka biegowa - wiatroodporna i oddychająca, na chłodniejsze dni.
-Akcesoria do Biegania
-Pasek na numer startowy - jeśli planujesz udział w zawodach.
-Zegarek sportowy lub smartband - do monitorowania aktywności i postępów.
-Plecak biegowy lub pas z bidonami - do transportu wody i drobnych przedmiotów.
-Opaski kompresyjne - dla wsparcia mięśni podczas dłuższych biegów.
-Ochraniacze na kolana - jeśli są potrzebne ze względu na urazy.
-Żywność i Płyny
-Woda - do nawodnienia przed, w trakcie i po biegu.
-Izotoniczne napoje sportowe - dla uzupełnienia elektrolitów.
-Batony energetyczne lub żele - szybkie źródło energii podczas biegania.
-Elektronika
-Słuchawki - najlepiej bezprzewodowe, do słuchania muzyki lub audiobooków.
-Telefon komórkowy - z aplikacjami do biegania.
-Power bank - do ładowania urządzeń elektronicznych.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - plastry, bandaże, środek przeciwbólowy.
-Krem z filtrem UV - ochrona przed słońcem.
-Środki przeciw otarciom - kremy lub maści.
-Środki higieniczne - mokre chusteczki, żel antybakteryjny.
-Różne
-Mapy i plany tras biegowych - szczególnie w nieznanej okolicy.
-Notatnik i długopis - do zapisywania treningów i postępów.
-Książki, e-booki, muzyka - na relaks po bieganiu.
+{
+    name: "Buty do biegania",
+    categories: { connect: [{ id: obuwie_biegowe.id }] },
+},
+{
+    name: "Koszulki biegowe",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Spodenki biegowe",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Legginsy biegowe",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Bielizna sportowa",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Skarpety do biegania",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Czapka biegowa",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Opaska na głowę",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Rękawiczki biegowe (cienkie)",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Kurtka biegowa",
+    categories: { connect: [{ id: ubrania_biegowe.id }] },
+},
+{
+    name: "Pasek na numer startowy",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Plecak biegowy",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Opaski kompresyjne",
+    categories: { connect: [{ id: akcesoria_biegowe.id }] },
+},
+{
+    name: "Woda",
+    categories: { connect: [{ id: zywienie.id }] },
+},
+{
+    name: "Izotonik w proszku",
+    categories: { connect: [{ id: zywienie.id }] },
+},
+{
+    name: "Batony energetyczne",
+    categories: { connect: [{ id: zywienie.id }] },
+},
+{
+    name: "Żele energetyczne",
+    categories: { connect: [{ id: zywienie.id }] },
+},
+{
+    name: "Słuchawki bezprzewodowe",
+    categories: { connect: [{ id: elektronika.id }] },
+},
+{
+    name: "Środki przeciw otarciom",
+    categories: { connect: [{ id: zdrowie.id }] },
+},
+{
+    name: "Mapy i plany tras biegowych",
+    categories: { connect: [{ id: podrozne.id }] },
+}
+
 
 
 
 
 // ACTIVE Żeglarstwo
-Odzież i Obuwie Żeglarskie
-Kurtka żeglarska - najlepiej wodoodporna i oddychająca.
-Spodnie żeglarskie - wodoodporne, najlepiej z wysokim stanem.
-Buty żeglarskie - antypoślizgowe, szybkoschnące.
-Rękawiczki żeglarskie - dla lepszej przyczepności i ochrony dłoni.
-Czapka z daszkiem lub bandana - ochrona przed słońcem i wiatrem.
-Okulary przeciwsłoneczne - z paskiem, aby nie spadły do wody.
-Warstwy termiczne - na chłodniejsze dni (bielizna termoaktywna, polar).
-Kamizelka ratunkowa - obowiązkowe wyposażenie dla bezpieczeństwa.
-Sprzęt Żeglarski i Akcesoria
-Śpiwór - jeśli planujesz nocować na łodzi.
-Ręczniki szybkoschnące.
-Mapy nawigacyjne i kompas - dla tradycyjnych nawigatorów.
-Lornetka - do obserwacji na wodzie.
-Nóż żeglarski - z ostrzem i narzędziami pomocniczymi.
-Latarka czołowa - przydatna na nocne zmiany.
-Elektronika
-Telefon komórkowy w wodoszczelnej obudowie i ładowarka.
-Power bank.
-GPS lub ploter nawigacyjny - jeśli dostępne na łodzi.
-Aparat fotograficzny - do dokumentowania przygody.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - z podstawowymi lekami i materiałami opatrunkowymi.
-Krem z filtrem UV - niezbędny podczas długich godzin na słońcu.
-Środki przeciwbólowe i przeciwchorobowe - na wypadek choroby morskiej.
-Artykuły higieniczne - szczoteczka do zębów, pasta, mydło, szampon.
-Prowiant i Kuchnia
-Woda pitna - w wystarczającej ilości.
-Łatwe w przygotowaniu jedzenie - konserwy, makarony, przekąski.
-Kuchenka gazowa lub elektryczna - jeśli jest dostępna na łodzi.
-Naczynia i sztućce.
-Różne
-Worki wodoszczelne - na odzież i sprzęt elektroniczny.
-Notatnik i długopis - do zapisywania nawigacyjnych notatek i wrażeń.
-Książki, e-booki, muzyka - na czas relaksu.
+{
+    name: "Kurtka żeglarska",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Spodnie żeglarskie",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Buty żeglarskie",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Rękawiczki żeglarskie",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Czapka z daszkiem",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Bandana",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Okulary przeciwsłoneczne",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Warstwy termiczne",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Kamizelka ratunkowa",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Ręczniki szybkoschnące",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Mapy nawigacyjne",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Kompas",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Lornetka",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Nóż żeglarski",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Latarka czołowa",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "GPS",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Ploter nawigacyjny",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Woda pitna",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Prowiant",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+},
+{
+    name: "Worki wodoszczelne",
+    categories: { connect: [{ id: zeglarstwo.id }] },
+}
+
+
 
 
 
 
 // ACTIVE Windsurfing
-Sprzęt Windsurfingowy
-Deska windsurfingowa - odpowiednia dla Twojego poziomu umiejętności i warunków.
-Żagiel - różne rozmiary w zależności od warunków wietrznych.
-Boom (drążek) i maszt.
-Uprząż - do długich sesji na wodzie.
-Pianka neoprenowa - odpowiednia do temperatury wody.
-Buty neoprenowe - ochrona stóp i lepsza przyczepność.
-Rękawiczki neoprenowe - jeśli woda jest zimna lub dla ochrony dłoni.
-Odzież i Akcesoria
-Kurtka przeciwdeszczowa/wiatrówka - na czas poza wodą.
-Strój kąpielowy - do noszenia pod pianką.
-Czapka z daszkiem lub bandana - ochrona przed słońcem.
-Okulary przeciwsłoneczne - najlepiej z paskiem, aby nie spadły do wody.
-Ręcznik szybkoschnący.
-Elektronika
-Zegarek wodoszczelny - najlepiej z funkcją pomiaru czasu.
-Aparat wodoszczelny lub kamera sportowa - do dokumentowania przygód.
-Telefon komórkowy w wodoszczelnej obudowie i ładowarka.
-Power bank.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, bandaże.
-Krem z filtrem UV - ochrona przed słońcem.
-Balsam do ust - ochrona przed wiatrem i słońcem.
-Środki higieniczne - mydło, szampon, szczoteczka i pasta do zębów.
-Żywność i Płyny
-Woda pitna - aby uniknąć odwodnienia.
-Przekąski energetyczne - batony, orzechy, owoce.
-Izotoniczne napoje sportowe - do uzupełnienia elektrolitów.
-Różne
-Plecak lub torba - do przenoszenia sprzętu i akcesoriów.
-Mapy i informacje o miejscu - zwłaszcza jeśli to nowe miejsce windsurfingowe.
-Notatnik i długopis - do zapisywania wrażeń i postępów.
-Dla początkujących
-Kurs windsurfingu - jeśli dopiero zaczynasz swoją przygodę.
-Instruktor - dla poprawy umiejętności i bezpieczeństwa na wodzie.
+{
+    name: "Deska windsurfingowa",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Żagiel do windsurfingu",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Boom do windsurfingu",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Uprząż windsurfingowa",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Pianka neoprenowa",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Buty neoprenowe",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Rękawiczki neoprenowe",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Wiatrówka",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Strój kąpielowy",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Ręcznik szybkoschnący",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Zegarek wodoszczelny",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Woda",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Batony energetyczne",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Energetyk w proszku",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Plecak lub torba",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Kurs windsurfingu",
+    categories: { connect: [{ id: windsurfing.id }] },
+},
+{
+    name: "Instruktor windsurfingu",
+    categories: { connect: [{ id: windsurfing.id }] },
+}
+
 
 
 
 
 // ACTIVE Nurkowanie
-Sprzęt Nurkowy
-Maska nurkowa - dobrze dopasowana, zapewniająca dobrą widoczność.
-Płetwy - odpowiednie do stylu nurkowania i warunków wodnych.
-Rurka do oddychania (snorkel) - przydatna podczas pływania na powierzchni.
-Skrzela (BCD) - uprząż z balastem, która pozwala kontrolować pływalność.
-Regulator - do oddychania pod wodą, z odpowiednimi wężykami.
-Kombinezon nurkowy - neoprenowy, dostosowany do temperatury wody.
-Komputer nurkowy - do monitorowania głębokości, czasu nurkowania i dekompresji.
-Butelka z powietrzem - jeśli nie wypożyczasz na miejscu.
-Dodatkowe Wyposażenie
-Latarka nurkowa - w przypadku nurkowań w ciemnych miejscach lub nocnych.
-Nóż nurkowy - jako środek bezpieczeństwa.
-Boja z linią - do sygnalizacji pozycji na powierzchni.
-Ręcznik szybkoschnący.
-Torba na sprzęt nurkowy - wodoodporna, do przenoszenia sprzętu.
-Odzież i Akcesoria
-Lekka odzież - na czas poza wodą.
-Kapelusz lub czapka - ochrona przed słońcem.
-Okulary przeciwsłoneczne.
-Wygodne obuwie - sandały lub klapki.
-Elektronika
-Aparat fotograficzny podwodny lub kamera - z wodoszczelną obudową.
-Telefon komórkowy i ładowarka.
-Power bank.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - z podstawowymi środkami opatrunkowymi.
-Krem z filtrem UV - do stosowania przed i po nurkowaniu.
-Środki higieniczne - mydło, szampon, dezodorant.
-Żywność i Płyny
-Woda pitna - aby uniknąć odwodnienia.
-Przekąski energetyczne - do szybkiego uzupełnienia energii.
-Dokumenty i Certyfikaty
-Certyfikat nurkowy - jeśli masz uprawnienia.
-Dziennik nurkowy - do zapisywania przebiegu nurkowań.
-Ubezpieczenie nurkowe - sprawdź, czy obejmuje specyficzne ryzyka związane z nurkowaniem.
-Różne
-Plecak lub torba - na osobiste rzeczy i dokumenty.
-Notatnik i długopis - do zapisywania wrażeń i szczegółów nurkowania.
+{
+    name: "Maska nurkowa",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Płetwy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Snorkel",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Skrzela (BCD)",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Regulator nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Kombinezon nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Komputer nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Butla z powietrzem",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Latarka nurkowa",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Nóż nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Boja z linią",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Ręcznik szybkoschnący",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Torba na sprzęt nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Aparat fotograficzny podwodny",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Woda",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Przekąski energetyczne",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Certyfikat nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Dziennik nurkowy",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Ubezpieczenie nurkowe",
+    categories: { connect: [{ id: nurkowanie.id }] },
+},
+{
+    name: "Plecak lub torba",
+    categories: { connect: [{ id: nurkowanie.id }] },
+}
+
+
 
 
 
 
 // ACTIVE Joga i medytacja
-Wyposażenie do Jogi i Medytacji
-Mata do jogi - lekka i łatwa do transportu.
-Blok do jogi i pasek - dla wsparcia w różnych pozycjach.
-Poduszka do medytacji - dla wygodniejszego siedzenia w ciszy.
-Koc lub szal - do przykrycia się podczas relaksacji lub medytacji.
-Odzież
-Wygodne ubrania do jogi - elastyczne legginsy, luźne spodnie, przewiewne koszulki.
-Ciepłe ubrania - swetry, bluzy, szczególnie jeśli sesje odbywają się na zewnątrz lub wcześnie rano.
-Kapelusz lub bandana - ochrona przed słońcem podczas praktyk na zewnątrz.
-Buty sportowe - jeśli planujesz także aktywność fizyczną poza jogą.
-Elektronika
-Telefon komórkowy i ładowarka - może być używany do prowadzenia sesji z aplikacji jogi/medytacji.
-Słuchawki - do słuchania muzyki relaksacyjnej lub prowadzonych medytacji.
-Power bank - do ładowania urządzeń elektronicznych.
-Zdrowie i Higiena
-Butelka na wodę - aby utrzymać nawodnienie.
-Krem z filtrem UV - jeśli planujesz praktykę na zewnątrz.
-Artykuły higieniczne - naturalne mydło, szampon, dezodorant.
-Ręcznik szybkoschnący.
-Różne
-Dziennik lub notatnik - do zapisywania myśli i refleksji.
-Książki o jodze i medytacji - dla inspiracji i pogłębiania praktyki.
-Muzyka relaksacyjna lub dźwięki natury - do stworzenia odpowiedniej atmosfery.
-Plecak lub torba - na osobiste rzeczy i sprzęt do jogi.
-Dla Początkujących
-Instrukcje lub przewodniki - książki lub aplikacje dla osób zaczynających swoją przygodę z jogą i medytacją.
+{
+    name: "Mata do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Blok do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Pasek do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Poduszka do medytacji",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Koc do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Szal do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Wygodne ubrania do jogi",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Ciepłe ubrania",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Kapelusz",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Bandana",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Buty sportowe",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Słuchawki",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Butelka na wodę",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Książki o jodze i medytacji",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Muzyka relaksacyjna",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Dźwięki natury",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Plecak",
+    categories: { connect: [{ id: joga.id }] },
+},
+{
+    name: "Torba",
+    categories: { connect: [{ id: joga.id }] },
+}
+
 
 
 
 
 // ACTIVE Survival
-Podstawowy Sprzęt Survivalowy
-Plecak turystyczny - wytrzymały i pojemny.
-Nóż survivalowy - najlepiej z dodatkowymi funkcjami.
-Multitool - wszechstronne narzędzie wielofunkcyjne.
-Koc ratunkowy - lekki, ale efektywnie utrzymujący ciepło.
-Kompas - podstawowe narzędzie do nawigacji.
-Mapa terenu - w wersji papierowej, na wypadek braku sygnału GPS.
-Latarka czołowa - z dodatkowymi bateriami lub akumulatorem.
-Odzież i Obuwie
-Wygodne, trwałe ubrania - najlepiej w warstwach, dostosowane do warunków pogodowych.
-Buty trekkingowe - dobrze wyprofilowane, wodoodporne.
-Czapka, rękawiczki, szalik - na chłodniejsze noce i poranki.
-Kurtka przeciwdeszczowa/wiatrówka.
-Sprzęt Biwakowy
-Namiot - lekki i łatwy w montażu.
-Śpiwór - dostosowany do temperatury, w której będziesz spać.
-Mata izolacyjna - do spania na twardym podłożu.
-Wyposażenie do Gotowania
-Kuchenka turystyczna - kompaktowa i przenośna.
-Naczynia turystyczne - lekkie i łatwe do czyszczenia.
-Proste, szybkie w przygotowaniu jedzenie - np. liofilizowane posiłki.
-Butelka na wodę - najlepiej z filtrem.
-Zdrowie i Higiena
-Apteczka pierwszej pomocy - z podstawowymi lekami i bandażami.
-Środek przeciw kleszczom i komarom.
-Filtr do wody lub tabletki do oczyszczania wody.
-Artykuły higieniczne - biodegradowalne mydło, papier toaletowy.
-Pozostałe Akcesoria
-Zapalniczka/Bidony na wodę - do rozpalania ogniska i przechowywania wody.
-Gwizdek ratunkowy - na wypadek awaryjnych sytuacji.
-Notatnik i długopis - do zapisywania ważnych informacji i refleksji.
-Siatka na owady - jeśli będziesz w miejscu o dużej liczbie owadów.
-Dodatkowo
-Książki lub przewodniki survivalowe - do nauki i rozwijania umiejętności.
-Pakiet energetyczny - batony energetyczne, orzechy.
+{
+    name: "Plecak turystyczny",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Nóż survivalowy",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Multitool",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Koc ratunkowy",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Kompas",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Mapa terenu",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Latarka czołowa",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Wygodne, trwałe ubrania",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Buty trekkingowe",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Czapka",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Rękawiczki",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Szalik",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Kurtka przeciwdeszczowa",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Namiot",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Śpiwór",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Mata izolacyjna",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Kuchenka turystyczna",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Naczynia turystyczne",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Liofilizowane posiłki",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Butelka na wodę",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Tabletki do oczyszczania wody",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Apteczka pierwszej pomocy",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Środek przeciw kleszczom i komarom",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Biodegradowalne mydło",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Papier toaletowy",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Zapalniczka",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Bidony na wodę",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Gwizdek ratunkowy",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Siatka na owady",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Książka",
+    categories: { connect: [{ id: survival.id }] },
+},
+{
+    name: "Pakiet energetyczny",
+    categories: { connect: [{ id: survival.id }] },
+}
+
 
 
 
 
 
 // ZIMA Narty
-Sprzęt Narciarski
-Narty i wiązania narciarskie lub snowboard.
-Buty narciarskie lub buty snowboardowe.
-Kijki narciarskie.
-Gogle narciarskie - ochrona przed słońcem i śniegiem.
-Kask narciarski - dla bezpieczeństwa.
-Wosk do nart - jeśli samodzielnie przygotowujesz narty.
-Odzież Narciarska
-Kurtka narciarska - najlepiej wodoodporna i oddychająca.
-Spodnie narciarskie - również wodoodporne.
-Warstwa termoaktywna - bielizna termiczna, która odprowadza wilgoć.
-Polar lub inna ciepła warstwa pośrednia.
-Skarpety narciarskie - długie, ciepłe, zapewniające komfort.
-Rękawice narciarskie - najlepiej wodoodporne.
-Czapka lub opaska na głowę - pod kask lub na czas po nartach.
-Szalik, komin lub maska na twarz - ochrona przed zimnem.
-Inne Akcesoria
-Okulary przeciwsłoneczne - na słoneczne dni.
-Plecak narciarski - na przekąski, wodę i dodatkowe warstwy ubrań.
-Krem z filtrem UV - silne słońce na stokach może szybko spowodować oparzenia.
-Balsam ochronny na usta.
-Osobiste i Bezpieczeństwo
-Dokumenty tożsamości i ubezpieczenie narciarskie.
-Telefon komórkowy i ładowarka.
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, bandaże.
-Gotówka i karty płatnicze.
-Dla Dzieci (jeśli podróżujesz z dziećmi)
-Kaski i gogle dla dzieci.
-Dodatkowe ubrania na zmianę - dzieci szybciej przemakają i marzną.
-Gry i zabawki - na czas poza stokiem.
-Różne
-Mapa tras narciarskich regionu, w którym będziesz jeździć.
-Książki, e-booki, muzyka - na relaks po dniu na stoku.
-Kamera sportowa - jeśli chcesz nagrywać swoje zjazdy.
+{
+    name: "Narty i wiązania narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Buty narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Kijki narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Gogle narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Kask narciarski",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Wosk do nart",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Kurtka narciarska",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Spodnie narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Bielizna termiczna",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Spodnie termiczne",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Koszulka termiczna",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Polar / Bluza narciarska",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Skarpety narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Rękawice narciarskie",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Czapka narciarska",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Szalik narciarski",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Komin narciarski",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Maska na twarz narciarska",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Plecak narciarski",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Balsam na usta",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Mapa tras narciarskich",
+    categories: { connect: [{ id: narty.id }] },
+},
+{
+    name: "Kamera sportowa",
+    categories: { connect: [{ id: narty.id }] },
+}
+
 
 
 
 
 // ZIMA Snowboard
-Sprzęt Snowboardowy
-Snowboard - odpowiednio dobrany do Twojego stylu jazdy i umiejętności.
-Buty snowboardowe - dobrze dopasowane, zapewniające komfort i wsparcie.
-Wiązania snowboardowe.
-Kask snowboardowy - dla bezpieczeństwa.
-Gogle snowboardowe - chroniące oczy przed śniegiem, wiatrem i promieniami UV.
-Pokrowiec na snowboard - ułatwia transport sprzętu.
-Odzież na Snowboard
-Kurtka snowboardowa - najlepiej wodoodporna i oddychająca.
-Spodnie snowboardowe - wodoodporne i wytrzymałe.
-Warstwa bazowa - termoaktywna bielizna, która odprowadza wilgoć.
-Warstwa izolacyjna - np. polar, dla dodatkowego ciepła.
-Rękawice snowboardowe - wodoodporne, z dobrą izolacją.
-Skarpety snowboardowe - ciepłe i komfortowe.
-Czapka lub opaska - pod kask lub na relaks po jeździe.
-Maska na twarz lub komin - ochrona przed mrozem.
-Akcesoria Dodatkowe
-Plecak snowboardowy - na wodę, przekąski i dodatkowe warstwy ubrań.
-Krem z filtrem UV - silne słońce na stokach może szybko spowodować oparzenia.
-Balsam ochronny na usta.
-Osobiste i Bezpieczeństwo
-Dokumenty tożsamości i ubezpieczenie sportowe.
-Telefon komórkowy i ładowarka.
-Apteczka pierwszej pomocy - plastry, środki przeciwbólowe, bandaże.
-Dla Dzieci (jeśli podróżujesz z dziećmi)
-Kaski i gogle dla dzieci.
-Dodatkowe ubrania na zmianę - dzieci szybciej przemakają i marzną.
-Zabawki i gry - na czas poza stokiem.
-Różne
-Mapa tras snowboardowych regionu, w którym będziesz jeździć.
-Książki, e-booki, muzyka - na relaks po dniu na stoku.
-Kamera sportowa - jeśli chcesz nagrywać swoje zjazdy.
+{
+    name: "Snowboard",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Buty snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Wiązania snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Kask snowboardowy",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Gogle snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Pokrowiec na snowboard",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Kurtka snowboardowa",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Spodnie snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Koszulka termiczna",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Spodnie termiczne",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Bielizna termiczna",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Polar / Bluza snowboardowa",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Rękawice snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Skarpety snowboardowe",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Czapka",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Plecak snowboardowy",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Mapa tras snowboardowych",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Komin narciarski",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Maska na twarz narciarska",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Plecak narciarski",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Balsam na usta",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Mapa tras narciarskich",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Kamera sportowa",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+{
+    name: "Balsam na usta",
+    categories: { connect: [{ id: snowboard.id }] },
+},
+
+
 
 
 
 
 
 // ZIMA Citybreak
-Odzież i Obuwie
-Ciepła kurtka - najlepiej puchowa lub z innym izolacyjnym wypełnieniem.
-Warstwy ubrań - bielizna termoaktywna, swetry, bluzy.
-Spodnie - wygodne, najlepiej ciepłe.
-Buty zimowe - wodoodporne i izolujące.
-Czapka, szalik, rękawiczki - niezbędne w chłodne dni.
-Okulary przeciwsłoneczne - zwłaszcza jeśli śnieg odbija światło słoneczne.
-Akcesoria
-Plecak lub torba - na zakupy i niezbędne przedmioty podczas zwiedzania.
-Parasolka - na wypadek śniegu lub deszczu.
-Ciepła czapka i szalik - dla dodatkowej ochrony przed zimnem.
-Termos - na gorące napoje, które pomogą Ci się ogrzać.
-Elektronika
-Smartfon i ładowarka - do nawigacji i robienia zdjęć.
-Power bank - na dłuższe dni poza hotelem.
-Adapter do gniazdka elektrycznego - jeśli podróżujesz za granicę.
-Zdrowie i Higiena
-Mała apteczka pierwszej pomocy - plastry, środki przeciwbólowe.
-Krem nawilżający i balsam do ust - ochrona skóry przed zimnem.
-Środki higieniczne - szczoteczka i pasta do zębów, dezodorant.
-Dokumenty i Bezpieczeństwo
-Dokumenty tożsamości i paszport - jeśli podróżujesz za granicę.
-Portfel z gotówką i kartami.
-Mapa miasta lub aplikacja z mapą - do łatwiejszego poruszania się.
-Różne
-Przewodnik po mieście - aby w pełni wykorzystać czas citybreaku.
-Notatnik i długopis - do zapisywania ważnych informacji i wrażeń.
-Książka lub e-book - na relaks w kawiarni lub w hotelu.
-
+{
+    name: "Ciepła kurtka",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Sweter",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Bluza",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Ciepłe spodnie",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Buty zimowe",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Czapka",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Szalik",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Rękawiczki",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Parasolka",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Termos",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+},
+{
+    name: "Balsam do ust",
+    categories: { connect: [{ id: citybreak_zima.id }] },
+}
 
 
 
 
 
 ]
-
-
-
-
