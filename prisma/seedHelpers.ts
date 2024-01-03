@@ -31,6 +31,7 @@ export type NameCategory =
     | "Crossfit"
     | "Kajak"
     | "Sztuki walki"
+    | "Obuwie"
 
 // Funkcja do tworzenia lub uzyskiwania dostępu do kategorii
 export async function createOrGetCategory(name: NameCategory) {

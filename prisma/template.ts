@@ -26,7 +26,7 @@ const test = [
 },
 {
     name: "Sweter",
-    categories: { connect: [{ id: odziez.id }] },
+    categories: { connect: [{ id: odziez.id }, { id: citybreak_zima.id }] },
 },
 {
     name: "Piżama",
@@ -54,11 +54,11 @@ const test = [
 },
 {
     name: "Czapka z daszkiem",
-    categories: { connect: [{ id: odziez.id }] },
+    categories: { connect: [{ id: odziez.id }, { id: zeglarstwo.id }] },
 },
 {
     name: "Kapelusz",
-    categories: { connect: [{ id: odziez.id }] },
+    categories: { connect: [{ id: odziez.id }, { id: joga.id }] },
 },
 {
     name: "Chusta na głowę",
@@ -83,7 +83,7 @@ const test = [
 },
 {
     name: "Rękawiczki",
-    categories: { connect: [{ id: odziez.id }] },
+    categories: { connect: [{ id: odziez.id }, { id: survival.id }, { id: citybreak_zima.id }] },
 },
 {
     name: "Czapka zimowa",
@@ -95,7 +95,7 @@ const test = [
 },
 {
     name: "Szalik",
-    categories: { connect: [{ id: odziez.id }] },
+    categories: { connect: [{ id: odziez.id }, { id: survival.id }, { id: citybreak_zima.id }] },
 },
 
 
@@ -118,7 +118,7 @@ const test = [
 // All-inclusive
 {
     name: "Strój kąpielowy",
-    categories: { connect: [{ id: plaza.id }, {id: sport.id}, {id: plywanie.id}, {id: allinclusive.id}] },
+    categories: { connect: [{ id: plaza.id }, {id: sport.id}, {id: plywanie.id}, {id: allinclusive.id}, { id: windsurfing.id }] },
 },
 {
     name: "Okulary pływackie",
@@ -138,11 +138,11 @@ const test = [
 },
 {
     name: "Dmuchany materac lub koło",
-    categories: { connect: [ {id: allinclusive.id}, {id: plaza.id}] },
+    categories: { connect: [{ id: allinclusive.id }, { id: plaza.id}] },
 },
 {
     name: "Przewodnik po okolicy",
-    categories: { connect: [ {id: allinclusive.id}] },
+    categories: { connect: [{ id: allinclusive.id }] },
 },
 {
     name: "Zabezpieczenie bagażu",
@@ -172,7 +172,7 @@ const test = [
 },
 {
     name: "Plecak na wycieczki",
-    categories: { connect: [{ id: tropikalnaWyspa.id }] },
+    categories: { connect: [{ id: tropikalnaWyspa.id }, { id: safari.id }] },
 },
 {
     name: "Mapa lokalna lub przewodnik",
@@ -229,11 +229,11 @@ const test = [
 },
 {
     name: "Okulary przeciwsłoneczne",
-    categories: { connect: [{ id: safari.id }] },
+    categories: { connect: [{ id: safari.id }, { id: akcesoria.id }, { id: rower.id }, { id: zeglarstwo.id }] },
 },
 {
     name: "Lornetka",
-    categories: { connect: [{ id: safari.id }] },
+    categories: { connect: [{ id: safari.id }, { id: zeglarstwo.id }] },
 },
 {
     name: "Plecak na wycieczki",
@@ -241,7 +241,7 @@ const test = [
 },
 {
     name: "Butelka na wodę",
-    categories: { connect: [{ id: safari.id }] },
+    categories: { connect: [{ id: safari.id }, { id: joga.id }, { id: survival.id }] },
 },
 {
     name: "Przewodnik po dzikiej przyrodzie",
@@ -327,7 +327,7 @@ const test = [
 // Trekking lato
 {
     name: "Bielizna termoaktywna",
-    categories: { connect: [{ id: trekking.id } ] },
+    categories: { connect: [{ id: sport.id }, { id: trekking.id }] },
 },
 {
     name: "Spodnie długie trekkingowe",
@@ -351,7 +351,7 @@ const test = [
 },
 {
     name: "Buty trekkingowe",
-    categories: { connect: [{ id: trekking.id }] },
+    categories: { connect: [{ id: trekking.id }, { id: survival.id }] },
 },
 {
     name: "Czołówka",
@@ -398,11 +398,7 @@ const test = [
 },
 {
     name: "Gogle narciarskie",
-    categories: { connect: [{ id: trekking.id }] },
-},
-{
-    name: "Rękawice cienkie 2x",
-    categories: { connect: [{ id: trekking.id }] },
+    categories: { connect: [{ id: trekking.id }, { id: narty.id }] },
 },
 {
     name: "Czapka zimowa gruba",
@@ -583,7 +579,7 @@ const test = [
 },
 {
     name: "Słuchawki",
-    categories: { connect: [{ id: elektronika.id }]},
+    categories: { connect: [{ id: elektronika.id }, {id: joga.id}]},
 },
 {
     name: "Głośnik przenośny (bezprzewodowy)",
@@ -787,7 +783,7 @@ const test = [
 },
 {
     name: "Papier toaletowy",
-    categories: { connect: [{ id: higiena.id }] },
+    categories: { connect: [{ id: higiena.id }, { id: survival.id }] },
 },
 {
     name: "Ręcznik",
@@ -890,7 +886,7 @@ const test = [
 },
 {
     name: "Namiot",
-    categories: { connect: [{ id: camping.id }, {id: spanie.id}] },
+    categories: { connect: [{ id: survival.id }, { id: camping.id }] },
 },
 {
     name: "Karimata",
@@ -960,8 +956,8 @@ const test = [
     categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}] },
 },
 {
-    name: "Woda pitna",
-    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}] },
+    name: "Woda",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Kajak (opcjonalnie)",
@@ -986,7 +982,7 @@ const test = [
 // Jedzenie
 {
     name: "Woda",
-    categories: { connect: [{ id: jedzenie.id }] },
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Makarony",
@@ -1010,10 +1006,6 @@ const test = [
 },
 {
     name: "Banany",
-    categories: { connect: [{ id: jedzenie.id }] },
-},
-{
-    name: "Konserwy",
     categories: { connect: [{ id: jedzenie.id }] },
 },
 {
@@ -1097,7 +1089,7 @@ const test = [
 },
 {
     name: "Książka",
-    categories: { connect: [{ id: inne.id }] },
+    categories: { connect: [{ id: inne.id }, { id: survival.id }] },
 },
 {
     name: "Planszówki",
@@ -1152,7 +1144,7 @@ const test = [
     categories: { connect: [{ id: akcesoria.id }, {id: akcesoria.id}, {id: biznes.id}] },
 },
 {
-    name: "Płaszcz",
+    name: "Płaszcz lub lekka kurtka",
     categories: { connect: [{ id: odziez.id }, {id: biznes.id}] },
 },
 {
@@ -1183,7 +1175,7 @@ const test = [
 },
 {
     name: "Bielizna termoaktywna",
-    categories: { connect: [{ id: sport.id }] },
+    categories: { connect: [{ id: sport.id }, { id: trekking.id }] },
 },
 {
     name: "Koszulka sportowa",
@@ -1195,7 +1187,7 @@ const test = [
 },
 {
     name: "Buty sportowe",
-    categories: { connect: [{ id: sport.id }] },
+    categories: { connect: [{ id: sport.id }, { id: joga.id }] },
 },
 {
     name: "Słuchawki sportowe",
@@ -1213,16 +1205,16 @@ const test = [
     name: "Rękawiczki treningowe (opcjonalnie)",
     categories: { connect: [{ id: sport.id }, { id: silownia.id }, { id: crossfit.id }] },
 },
+{
+    name: "Butelka z wodą",
+    categories: { connect: [{ id: sport.id }]},
+},
 
 
 // SPORT [prysznic]
 {
     name: "Ręcznik pod prysznic",
     categories: { connect: [{ id: sport.id }] },
-},
-{
-    name: "Butelka z wodą",
-    categories: { connect: [{ id: sport.id }]},
 },
 {
     name: "Żel pod prysznic",
@@ -1432,7 +1424,7 @@ const test = [
 // SPORT Morsowanie
 {
     name: "Buty neoprenowe",
-    categories: { connect: [{ id: sport.id }, {id: morsowanie.id}] },
+    categories: { connect: [{ id: windsurfing.id }, {id: morsowanie.id}] },
 },
 
 
@@ -1466,7 +1458,7 @@ const test = [
 // SPORT Joga
 {
     name: "Mata do jogi",
-    categories: { connect: [{ id: sport.id }, { id: joga.id }] },
+    categories: { connect: [{ id: sport.id }, { id: joga.id }, { id: joga.id }] },
 }, 
 {
     name: "Ręcznik na matę",
@@ -1491,7 +1483,7 @@ const test = [
 // SPORT Ścianka wspinaczkowa
 {
     name: "Buty wspinaczkowe",
-    categories: { connect: [{ id: sport.id }, { id: wspinaczka.id }] },
+    categories: { connect: [{ id: sport.id }, { id: wspinaczka.id }, { id: wspinaczka.id }] },
 },
 {
     name: "Magnezja",
@@ -1550,7 +1542,7 @@ const test = [
 },
 {
     name: "Kamizelka ratunkowa",
-    categories: { connect: [{ id: sport.id }] },
+    categories: { connect: [{ id: sport.id }, { id: zeglarstwo.id }] },
 },
 {
     name: "Pływający pojemnik na klucze i telefon",
@@ -1644,7 +1636,7 @@ const test = [
 },
 {
     name: "Bidon",
-    categories: { connect: [{ id: rower.id }] },
+    categories: { connect: [{ id: rower.id }, { id: wspinaczka.id }] },
 },
 {
     name: "Błotniki",
@@ -1656,15 +1648,15 @@ const test = [
 },
 {
     name: "Żele energetyczne",
-    categories: { connect: [{ id: rower.id }] },
+    categories: { connect: [{ id: rower.id }, { id: zywienie.id }] },
 },
 {
     name: "Batony energetyczne",
-    categories: { connect: [{ id: rower.id }] },
+    categories: { connect: [{ id: rower.id }, { id: zywienie.id }, { id: windsurfing.id }] },
 },
 {
     name: "Izotonik w proszku",
-    categories: { connect: [{ id: rower.id }] },
+    categories: { connect: [{ id: rower.id }, { id: zywienie.id }] },
 },
 {
     name: "Koszulka kolarska",
@@ -1716,7 +1708,7 @@ const test = [
 },
 {
     name: "Plecak",
-    categories: { connect: [{ id: rower.id }] },
+    categories: { connect: [{ id: rower.id }, { id: joga.id }] },
 },
 {
     name: "Licznik rowerowy",
@@ -1782,7 +1774,7 @@ const test = [
 },
 {
     name: "Koc ratunkowy",
-    categories: { connect: [{ id: wspinaczka.id }] },
+    categories: { connect: [{ id: wspinaczka.id }, { id: survival.id }] },
 },
 {
     name: "Elastyczne spodnie",
@@ -1834,7 +1826,7 @@ const test = [
 // ACTIVE Bieganie
 {
     name: "Buty do biegania",
-    categories: { connect: [{ id: obuwie_biegowe.id }] },
+    categories: { connect: [{ id: obuwie_biegowe.id }, {id: bieganie.id}] },
 },
 {
     name: "Koszulki biegowe",
@@ -1886,7 +1878,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: zywienie.id }] },
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Izotonik w proszku",
@@ -1940,7 +1932,7 @@ const test = [
 },
 {
     name: "Bandana",
-    categories: { connect: [{ id: zeglarstwo.id }] },
+    categories: { connect: [{ id: zeglarstwo.id }, { id: joga.id }] },
 },
 {
     name: "Okulary przeciwsłoneczne",
@@ -1964,7 +1956,7 @@ const test = [
 },
 {
     name: "Kompas",
-    categories: { connect: [{ id: zeglarstwo.id }] },
+    categories: { connect: [{ id: zeglarstwo.id }, { id: survival.id }] },
 },
 {
     name: "Lornetka",
@@ -1976,7 +1968,7 @@ const test = [
 },
 {
     name: "Latarka czołowa",
-    categories: { connect: [{ id: zeglarstwo.id }] },
+    categories: { connect: [{ id: zeglarstwo.id }, { id: survival.id }] },
 },
 {
     name: "GPS",
@@ -1987,8 +1979,8 @@ const test = [
     categories: { connect: [{ id: zeglarstwo.id }] },
 },
 {
-    name: "Woda pitna",
-    categories: { connect: [{ id: zeglarstwo.id }] },
+    name: "Woda",
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Prowiant",
@@ -2027,7 +2019,7 @@ const test = [
 },
 {
     name: "Buty neoprenowe",
-    categories: { connect: [{ id: windsurfing.id }] },
+    categories: { connect: [{ id: windsurfing.id }, {id: morsowanie.id}] },
 },
 {
     name: "Rękawiczki neoprenowe",
@@ -2043,7 +2035,7 @@ const test = [
 },
 {
     name: "Ręcznik szybkoschnący",
-    categories: { connect: [{ id: windsurfing.id }] },
+    categories: { connect: [{ id: windsurfing.id }, { id: nurkowanie.id }] },
 },
 {
     name: "Zegarek wodoszczelny",
@@ -2051,7 +2043,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: windsurfing.id }] },
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Batony energetyczne",
@@ -2063,7 +2055,7 @@ const test = [
 },
 {
     name: "Plecak lub torba",
-    categories: { connect: [{ id: windsurfing.id }] },
+    categories: { connect: [{ id: windsurfing.id }, { id: nurkowanie.id }] },
 },
 {
     name: "Kurs windsurfingu",
@@ -2137,7 +2129,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: nurkowanie.id }] },
+    categories: { connect: [{ id: campingRodzinny.id }, {id: camping.id}, {id: jedzenie.id}, { id: zeglarstwo.id }, { id: winsurfing.id }, { id: nurkowanie.id }, { id: sport.id }] },
 },
 {
     name: "Przekąski energetyczne",
@@ -2282,7 +2274,7 @@ const test = [
 },
 {
     name: "Czapka",
-    categories: { connect: [{ id: survival.id }] },
+    categories: { connect: [{ id: survival.id }, { id: snowboard.id }, { id: citybreak_zima.id }] },
 },
 {
     name: "Rękawiczki",
@@ -2389,7 +2381,7 @@ const test = [
 },
 {
     name: "Gogle narciarskie",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, {id: trekking.id}] },
 },
 {
     name: "Kask narciarski",
@@ -2409,15 +2401,15 @@ const test = [
 },
 {
     name: "Bielizna termiczna",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Spodnie termiczne",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Koszulka termiczna",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Polar / Bluza narciarska",
@@ -2441,28 +2433,28 @@ const test = [
 },
 {
     name: "Komin narciarski",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Maska na twarz narciarska",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Plecak narciarski",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
-    name: "Balsam na usta",
-    categories: { connect: [{ id: narty.id }] },
+    name: "Balsam do ust",
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }, { id: snowboard.id }, {id: citybreak_zima.id}] },
 },
 {
     name: "Mapa tras narciarskich",
-    categories: { connect: [{ id: narty.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Kamera sportowa",
-    categories: { connect: [{ id: narty.id }] },
-}
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
+},
 
 
 
@@ -2503,15 +2495,15 @@ const test = [
 },
 {
     name: "Koszulka termiczna",
-    categories: { connect: [{ id: snowboard.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Spodnie termiczne",
-    categories: { connect: [{ id: snowboard.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Bielizna termiczna",
-    categories: { connect: [{ id: snowboard.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Polar / Bluza snowboardowa",
@@ -2527,7 +2519,7 @@ const test = [
 },
 {
     name: "Czapka",
-    categories: { connect: [{ id: snowboard.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }] },
 },
 {
     name: "Plecak snowboardowy",
@@ -2615,7 +2607,7 @@ const test = [
 },
 {
     name: "Balsam do ust",
-    categories: { connect: [{ id: citybreak_zima.id }] },
+    categories: { connect: [{ id: narty.id }, { id: snowboard.id }, { id: snowboard.id }, {id: citybreak_zima.id}] },
 }
 
 
