@@ -2,25 +2,25 @@
 // npm run seed:sample
 // npm run seed:template
 
-import { createOrGetCategory, createOrGetType } from "../seedHelpers"
+import { getCategory, getType } from "../seedHelpers"
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie lub uzyskiwanie dostępu do kategorii
-    const odziez = await createOrGetCategory("Odzież")
-    const obuwie = await createOrGetCategory("Obuwie")
-    const akcesoria = await createOrGetCategory("Akcesoria")
-    const elektronika = await createOrGetCategory("Elektronika")
-    const inne = await createOrGetCategory("Inne")
-    const jedzenie = await createOrGetCategory("Jedzenie")
-    const dokumenty = await createOrGetCategory("Dokumenty")
-    const sprzet = await createOrGetCategory("Sprzęt sportowy")
-    const sport = await createOrGetCategory("Sport")
-    const higiena = await createOrGetCategory("Łazienka / Higiena")
+    const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
+    const akcesoria = await getCategory("Akcesoria")
+    const elektronika = await getCategory("Elektronika")
+    const inne = await getCategory("Inne")
+    const jedzenie = await getCategory("Jedzenie")
+    const dokumenty = await getCategory("Dokumenty")
+    const sprzet = await getCategory("Sprzęt sportowy")
+    const sport = await getCategory("Sport")
+    const higiena = await getCategory("Łazienka / Higiena")
 
-    const trainingTemplateType = await createOrGetType("active", "Trening")
+    const trainingTemplateType = await getType("active", "Trening")
     const training_silownia = await prisma.template.create({
         data: {
             name: "Siłownia",
@@ -29,80 +29,111 @@ async function main() {
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
-                        // Odzież
-                        {
-                            name: "Koszulka sportowa",
-                            categories: { connect: [{ id: odziez }, { id: sport }] },
+                    // Odzież
+                    {
+                        name: "Koszulka sportowa",
+                        categories: {
+                            connect: [{ id: odziez }, { id: sport }],
                         },
-                        {
-                            name: "Spodenki sportowe",
-                            categories: { connect: [{ id: odziez }, { id: sport }] },
+                    },
+                    {
+                        name: "Spodenki sportowe",
+                        categories: {
+                            connect: [{ id: odziez }, { id: sport }],
                         },
-                        {
-                            name: "Buty sportowe",
-                            categories: { connect: [{ id: obuwie }, { id: sport }] },
+                    },
+                    {
+                        name: "Buty sportowe",
+                        categories: {
+                            connect: [{ id: obuwie }, { id: sport }],
                         },
-                        
-                        // Akcesoria
-                        {
-                            name: "Ręcznik do ćwiczeń",
-                            categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                    },
+
+                    // Akcesoria
+                    {
+                        name: "Ręcznik do ćwiczeń",
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
                         },
-                        {
-                            name: "Butelka z wodą",
-                            categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                    },
+                    {
+                        name: "Butelka z wodą",
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
                         },
-                        {
-                            name: "Rękawiczki treningowe",
-                            categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                    },
+                    {
+                        name: "Rękawiczki treningowe",
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
                         },
-                        {
-                            name: "Słuchawki sportowe",
-                            categories: { connect: [{ id: elektronika }, { id: sport }] },
+                    },
+                    {
+                        name: "Słuchawki sportowe",
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
                         },
-                        {
-                            name: "Zegarek sportowy",
-                            categories: { connect: [{ id: elektronika }, { id: sport }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
                         },
-                        {
-                            name: "Czujnik pulsu na klatkę piersiową",
-                            categories: { connect: [{ id: elektronika }, { id: sport }] },
+                    },
+                    {
+                        name: "Czujnik pulsu na klatkę piersiową",
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
                         },
-                        // Prysznic
-                        {
-                            name: "Ręcznik pod prysznic",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    // Prysznic
+                    {
+                        name: "Ręcznik pod prysznic",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        {
-                            name: "Klapki pod prysznic",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        {
-                            name: "Żel pod prysznic",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    {
+                        name: "Żel pod prysznic",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        {
-                            name: "Dezodorant",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    {
+                        name: "Dezodorant",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        {
-                            name: "Bielizna na przebranie",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        {
-                            name: "Zamek do szafki (jeśli wymagany)",
-                            categories: { connect: [{ id: higiena }, { id: sport }] },
+                    },
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
                         },
-                        // Dodatki
-                        {
-                            name: "Karnet / Karta dostępu",
-                            categories: { connect: [{ id: dokumenty }, { id: sport }] },
+                    },
+                    // Dodatki
+                    {
+                        name: "Karnet / Karta dostępu",
+                        categories: {
+                            connect: [{ id: dokumenty }, { id: sport }],
                         },
-                        {
-                            name: "Zamek do szafki (jeśli wymagany)",
-                            categories: { connect: [{ id: inne }, { id: sport }] },
-                        },                 
-                        
+                    },
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }, { id: sport }] },
+                    },
                 ],
             },
         },
@@ -116,56 +147,54 @@ async function main() {
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
-                        {
-                            name: "Buty neoprenowe",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Ręcznik",
-                            categories: { connect: [{ id: inne }] },
-                        },
-                        {
-                            name: "Zegarek sportowy",
-                            categories: { connect: [{ id: elektronika }] },
-                        },
-                        {
-                            name: "Bielizna na przebranie",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Kieszonka wodoodporna na mokre rzeczy",
-                            categories: { connect: [{ id: inne }] },
-                        },
-                        {
-                            name: "Szalik",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Czapka zimowa",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Rękawiczki zimowe",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Strój kąpielowy",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Termos z ciepłą herbatą",
-                            categories: { connect: [{ id: inne }] },
-                        },
-                        {
-                            name: "Mata / dywanik plażowy",
-                            categories: { connect: [{ id: inne }] },
-                        },     
-                        {
-                            name: "Przekąski po treningu",
-                            categories: { connect: [{ id: jedzenie }] },
-                        },      
-
-                        
+                    {
+                        name: "Buty neoprenowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kieszonka wodoodporna na mokre rzeczy",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Szalik",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki zimowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Termos z ciepłą herbatą",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Mata / dywanik plażowy",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Przekąski po treningu",
+                        categories: { connect: [{ id: jedzenie }] },
+                    },
                 ],
             },
         },
@@ -179,42 +208,44 @@ async function main() {
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
-                        {
-                            name: "Ręcznik",
-                            categories: { connect: [{ id: higiena }] },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Kieszonka wodoodporna na mokre rzeczy",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: {
+                            connect: [{ id: odziez }, { id: sprzet }],
                         },
-                        {
-                            name: "Zegarek sportowy",
-                            categories: { connect: [{ id: elektronika }] },
-                        },
-                        {
-                            name: "Kieszonka wodoodporna na mokre rzeczy",
-                            categories: { connect: [{ id: inne }] },
-                        },
-                        {
-                            name: "Strój kąpielowy",
-                            categories: { connect: [{ id: odziez }, { id: sprzet }] },
-                        },
-                        {
-                            name: "Czepek",
-                            categories: { connect: [{ id: sprzet }] },
-                        },
-                        {
-                            name: "Okulary pływackie",
-                            categories: { connect: [{ id: sprzet }] },
-                        },                        
-                        {
-                            name: "Klapki basenowe",
-                            categories: { connect: [{ id: inne }] },
-                        },                        
-                        {
-                            name: "Karnet",
-                            categories: { connect: [{ id: dokumenty }] },
-                        },                 
-                        {
-                            name: "Zamek do szafki basenowej (jeśli wymagany)",
-                            categories: { connect: [{ id: inne }] },
-                        },                 
+                    },
+                    {
+                        name: "Czepek",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Okulary pływackie",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Klapki basenowe",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Karnet",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Zamek do szafki basenowej (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
                 ],
             },
         },
@@ -228,38 +259,38 @@ async function main() {
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
-                        {
-                            name: "Mata do jogi",
-                            categories: { connect: [{ id: sprzet }] },
-                        },        
-                        {
-                            name: "Ręcznik na matę",
-                            categories: { connect: [{ id: inne }] },
-                        },                        
-                        {
-                            name: "Karnet",
-                            categories: { connect: [{ id: dokumenty }] },
-                        },                 
-                        {
-                            name: "Zamek do szafki (jeśli wymagany)",
-                            categories: { connect: [{ id: inne }] },
-                        },                 
-                        {
-                            name: "Wygodne ubranie do jogi",
-                            categories: { connect: [{ id: odziez }] },
-                        }, 
-                        {
-                            name: "Bloki jogi",
-                            categories: { connect: [{ id: sprzet }] },
-                        },                 
-                        {
-                            name: "Woda i bidon",
-                            categories: { connect: [{ id: akcesoria }] },
-                        },                 
-                        {
-                            name: "Słuchawki do muzyki relaksacyjnej (opcjonalnie)",
-                            categories: { connect: [{ id: elektronika }] },
-                        },                 
+                    {
+                        name: "Mata do jogi",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Ręcznik na matę",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Karnet",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Wygodne ubranie do jogi",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bloki jogi",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Woda i bidon",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Słuchawki do muzyki relaksacyjnej (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
                 ],
             },
         },
@@ -273,69 +304,71 @@ async function main() {
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
-                        // Odzież
-                        {
-                            name: "Koszulka sportowa",
-                            categories: { connect: [{ id: odziez }] },
+                    // Odzież
+                    {
+                        name: "Koszulka sportowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Buty wspinaczkowe",
+                        categories: {
+                            connect: [{ id: sprzet }, { id: obuwie }],
                         },
-                        {
-                            name: "Buty wspinaczkowe",
-                            categories: { connect: [{ id: sprzet }, { id: obuwie }] },
-                        },
-                        // Ręczniki i akcesoria
-                        {
-                            name: "Ręcznik pod prysznic",
-                            categories: { connect: [{ id: higiena }] },
-                        },
-                        {
-                            name: "Magnezja",
-                            categories: { connect: [{ id: sprzet }] },
-                        },
-                        {
-                            name: "Uprząż",
-                            categories: { connect: [{ id: sprzet }] },
-                        },
-                        {
-                            name: "Karabinek",
-                            categories: { connect: [{ id: sprzet }] },
-                        },
-                        {
-                            name: "Przyrząd asekuracyjny",
-                            categories: { connect: [{ id: sprzet }] },
-                        },
-                        {
-                            name: "Woda",
-                            categories: { connect: [{ id: akcesoria }] },
-                        },
-                        // Dodatki
-                        {
-                            name: "Karnet / Karta dostępu",
-                            categories: { connect: [{ id: dokumenty }] },
-                        },
-                        {
-                            name: "Klapki pod prysznic",
-                            categories: { connect: [{ id: higiena }] },
-                        },
-                        {
-                            name: "Spodenki sportowe",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Bielizna na przebranie",
-                            categories: { connect: [{ id: odziez }] },
-                        },
-                        {
-                            name: "Żel pod prysznic",
-                            categories: { connect: [{ id: higiena }] },
-                        },
-                        {
-                            name: "Dezodorant",
-                            categories: { connect: [{ id: higiena }] },
-                        },
-                        {
-                            name: "Zamek do szafki (jeśli wymagany)",
-                            categories: { connect: [{ id: inne }] },
-                        },                  
+                    },
+                    // Ręczniki i akcesoria
+                    {
+                        name: "Ręcznik pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Magnezja",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Uprząż",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Karabinek",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Przyrząd asekuracyjny",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Woda",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    // Dodatki
+                    {
+                        name: "Karnet / Karta dostępu",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Spodenki sportowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Żel pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Dezodorant",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
                 ],
             },
         },
@@ -352,93 +385,124 @@ async function main() {
                     // Odzież
                     {
                         name: "Koszulka sportowa",
-                        categories: { connect: [{ id: odziez }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: sport }],
+                        },
                     },
                     {
                         name: "Spodenki sportowe",
-                        categories: { connect: [{ id: odziez }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: sport }],
+                        },
                     },
                     {
                         name: "Buty sportowe do CrossFit",
-                        categories: { connect: [{ id: obuwie }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: obuwie }, { id: sport }],
+                        },
                     },
-                    
+
                     // Akcesoria
                     {
                         name: "Ręcznik do ćwiczeń",
-                        categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
+                        },
                     },
                     {
                         name: "Butelka z wodą",
-                        categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
+                        },
                     },
                     {
                         name: "Rękawiczki treningowe",
-                        categories: { connect: [{ id: akcesoria }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: akcesoria }, { id: sport }],
+                        },
                     },
                     {
                         name: "Słuchawki sportowe",
-                        categories: { connect: [{ id: elektronika }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
+                        },
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: { connect: [{ id: elektronika }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
+                        },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: { connect: [{ id: elektronika }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: elektronika }, { id: sport }],
+                        },
                     },
                     // Prysznic
                     {
                         name: "Ręcznik pod prysznic",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     {
                         name: "Żel pod prysznic",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     {
                         name: "Dezodorant",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     {
                         name: "Bielizna na przebranie",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     {
                         name: "Zamek do szafki (jeśli wymagany)",
-                        categories: { connect: [{ id: higiena }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: sport }],
+                        },
                     },
                     // Dodatki
                     {
                         name: "Karnet / Karta dostępu",
-                        categories: { connect: [{ id: dokumenty }, { id: sport }] },
+                        categories: {
+                            connect: [{ id: dokumenty }, { id: sport }],
+                        },
                     },
                     {
                         name: "Zamek do szafki (jeśli wymagany)",
                         categories: { connect: [{ id: inne }, { id: sport }] },
-                    },                             
+                    },
                     {
                         name: "Pasek na telefon treningowy",
                         categories: { connect: [{ id: akcesoria }] },
-                    },               
+                    },
                     {
                         name: "Skakanka",
                         categories: { connect: [{ id: sprzet }] },
-                    },                 
+                    },
                     {
                         name: "Krem na otarcia (jeśli jest potrzebny)",
                         categories: { connect: [{ id: inne }] },
-                    },                 
+                    },
                     {
                         name: "Odpowiednie elementy osłonowe (jeśli są używane)",
                         categories: { connect: [{ id: sprzet }] },
-                    },                 
-                        
+                    },
                 ],
             },
         },
@@ -504,11 +568,11 @@ async function main() {
                     {
                         name: "Żeberko lub sprzęt naprawczy do kajaka (opcjonalnie)",
                         categories: { connect: [{ id: akcesoria }] },
-                    }, 
+                    },
                     {
                         name: "Klapki",
                         categories: { connect: [{ id: obuwie }] },
-                    },    
+                    },
                 ],
             },
         },
@@ -608,7 +672,7 @@ async function main() {
                     {
                         name: "Zamek do szafki (jeśli wymagany)",
                         categories: { connect: [{ id: inne }] },
-                    },                 
+                    },
                 ],
             },
         },

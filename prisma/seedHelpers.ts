@@ -34,7 +34,7 @@ export type NameCategory =
     | "Obuwie"
 
 // Funkcja do tworzenia lub uzyskiwania dostępu do kategorii
-export async function createOrGetCategory(name: NameCategory) {
+export async function getCategory(name: NameCategory) {
     let category = await prisma.templateCategory.findFirst({
         where: { name: name },
     })
@@ -48,12 +48,7 @@ export async function createOrGetCategory(name: NameCategory) {
     return category.id
 }
 
-type NameType =
-    | "training"
-    | "summer"
-    | "winter"
-    | "active"
-    | "other"
+type NameType = "training" | "summer" | "winter" | "active" | "other"
 
 type FullNameType =
     | "Trening"
@@ -63,10 +58,7 @@ type FullNameType =
     | "Inne"
 
 // Funkcja tworzenia lub wyszukiwania typu
-export async function createOrGetType(
-    nameType: NameType,
-    fullName: FullNameType
-) {
+export async function getType(nameType: NameType, fullName: FullNameType) {
     let templateType = await prisma.listType.findFirst({
         where: { name: nameType },
     })

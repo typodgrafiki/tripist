@@ -1,21 +1,21 @@
 // npx prisma db seed
 
 import { PrismaClient } from "@prisma/client"
-import { createOrGetCategory, createOrGetType } from "./seedHelpers"
+import { getCategory, getType } from "./seedHelpers"
 
 const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie typów wyjazdów i zapisywanie ich ID
-    const trainingType = await createOrGetType("training", "Trening")
-    const vacationSummerType = await createOrGetType("summer", "Wakacje letnie")
+    const trainingType = await getType("training", "Trening")
+    const vacationSummerType = await getType("summer", "Wakacje letnie")
 
     // Tworzenie kategorii
-    const odziezCategory = await createOrGetCategory("Odzież")
-    const akcesoriaCategory = await createOrGetCategory("Akcesoria")
-    const higienaCategory = await createOrGetCategory("Łazienka / Higiena")
-    const technologiaCategory = await createOrGetCategory("Elektronika")
-    const inneCategory = await createOrGetCategory("Inne")
+    const odziezCategory = await getCategory("Odzież")
+    const akcesoriaCategory = await getCategory("Akcesoria")
+    const higienaCategory = await getCategory("Łazienka / Higiena")
+    const technologiaCategory = await getCategory("Elektronika")
+    const inneCategory = await getCategory("Inne")
 
     // Tworzenie listy predefiniowanej dla treningu na siłowni
     const gymList = await prisma.template.create({
@@ -203,7 +203,6 @@ async function main() {
             },
         },
     })
-
 }
 
 main()
