@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie typu
-    const summerTemplateType = await getType("summer", "Wakacje letnie")
+    const activeTemplateType = await getType("active", "Wakacje aktywne")
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
@@ -25,25 +25,24 @@ async function main() {
     const dokumenty = await getCategory("Dokumenty")
 
     // Nazwy list
-    const egiptList = {
-        name: "Afryka / Egipt",
+    const nurkowanieList = {
+        name: "Nurkowanie",
         start: false,
-        type: summerTemplateType,
+        type: activeTemplateType,
     }
 
     // All Inclusive 14
-    const egipt14 = await prisma.template.create({
+    const nurkowanieN = await prisma.template.create({
         data: {
-            name: egiptList.name,
+            name: nurkowanieList.name,
             settingColor: "bg-blue-400",
-            start: egiptList.start,
-            listTypeId: egiptList.type,
-            tripLength: 14,
+            start: nurkowanieList.start,
+            listTypeId: nurkowanieList.type,
+            tripLength: null,
             elements: {
                 create: [
-                    
-// Odzież
-{
+ // Odzież
+ {
     name: "Koszulki",
     categories: { connect: [{ id: odziez }] },
 },
@@ -52,15 +51,11 @@ async function main() {
     categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Spodenki dresowe",
+    name: "Spodnie długie",
     categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Lekkie, przewiewne ubrania z długim rękawem",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
-{
-    name: "Bluza /Sweter",
+    name: "Bluza / Sweter",
     categories: { connect: [{ id: odziez }] },
 },
 {
@@ -79,68 +74,6 @@ async function main() {
     name: "Czapka z daszkiem",
     categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
 },
-{
-    name: "Kapelusz",
-    categories: { connect: [{ id: odziez }, { id: joga }] },
-},
-{
-    name: "Chusta na głowę",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Sandały",
-    categories: { connect: [{ id: egipt }] },
-},
-{
-    name: "Plecak na wycieczki",
-    categories: { connect: [{ id: safari }] },
-},
-{
-    name: "Butelka na wodę",
-    categories: { connect: [{ id: safari }, { id: joga }, { id: survival }] },
-},
-
-
-{
-    name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
-{
-    name: "Wodoodporny aparat fotograficzny",
-    categories: { connect: [{ id: plaza }, { id: nurkowanie }] },
-},
-{
-    name: "Pływający pojemnik na klucze i telefon",
-    categories: { connect: [{ id: jezioro }]},
-},
-{
-    name: "Mapa lokalna lub przewodnik",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
-
-{
-    name: "Krem z filtrem UV",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Strój kąpielowy",
-    categories: { connect: [{ id: plaza }, {id: sport}, {id: plywanie}] },
-},
-{
-    name: "Sandały/klapki plażowe",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Torba plażowa",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Balsam po opalaniu",
-    categories: { connect: [{ id: plaza }] },
-},
-
-
-
 
 
 // Dokumenty
@@ -161,34 +94,15 @@ async function main() {
     categories: { connect: [{ id: dokumenty }]},
 },
 {
-    name: "Paszport",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Kopie ważnych dokumentów",
-    categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-},
-{
-    name: "Bilety lotnicze",
-    categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-},
-{
     name: "Potwierdzenia rezerwacji",
     categories: { connect: [{ id: dokumenty }, {id: biznes}] },
 },
 
 
+
 // Elektronika
 {
     name: "Aparat fotograficzny",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Dodatkowa karta do aparatu (opcjonalnie)",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Dodatkowa bateria do aparatu (opcjonalnie)",
     categories: { connect: [{ id: elektronika }]},
 },
 {
@@ -200,10 +114,6 @@ async function main() {
     categories: { connect: [{ id: elektronika }]},
 },
 {
-    name: "Gimball + ładowarka + kabel",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
     name: "Słuchawki",
     categories: { connect: [{ id: elektronika }, {id: joga}]},
 },
@@ -211,6 +121,8 @@ async function main() {
     name: "Książka / Czytnik typu Kindle",
     categories: { connect: [{ id: elektronika }]},
 },
+
+
 
 // Apteczka
 {
@@ -245,7 +157,14 @@ async function main() {
     name: "Środek na komary i kleszcze",
     categories: {connect: [{ id: apteczka }]},
 },
-
+{
+    name: "Bandaż",
+    categories: {connect: [{ id: apteczka }]},
+},
+{
+    name: "Nożyczki",
+    categories: {connect: [{ id: apteczka }]},
+},
 
 
 
@@ -272,10 +191,6 @@ async function main() {
     name: "Zestaw do golenia lub depilacji",
     categories: { connect: [{ id: kosmetyczka }] },
 },
-// {
-//     name: "Kosmetyki do makijażu",
-//     categories: { connect: [{ id: kosmetyczka }] },
-// },
 {
     name: "Szczotka do włosów / Grzebień",
     categories: { connect: [{ id: kosmetyczka }] },
@@ -301,6 +216,9 @@ async function main() {
     categories: { connect: [{ id: kosmetyczka }] },
 },
 
+
+
+
 {
     name: "Ręcznik",
     categories: { connect: [{ id: higiena }] },
@@ -314,17 +232,124 @@ async function main() {
 
 
 {
+    name: "Batony",
+    categories: { connect: [{ id: jedzenie }, {id: trekking}] },
+},
+{
     name: "Okulary przeciwsłoneczne",
     categories: { connect: [{ id: akcesoria }] },
 },
 {
-    name: "Nerka (saszetka biodrowa)",
-    categories: { connect: [{ id: akcesoria }] },
+    name: "Worki na pranie",
+    categories: { connect: [{ id: inne }, {id: camping}] },
 },
+
+
+{
+    name: "Zegarek sportowy",
+    categories: { connect: [{ id: sport }, { id: elektronika}] },
+},
+{
+    name: "Czujnik pulsu na klatkę piersiową",
+    categories: { connect: [{ id: sport }, { id: elektronika}] },
+},
+{
+    name: "Bielizna termoaktywna",
+    categories: { connect: [{ id: sport }, { id: trekking }] },
+},
+
+
+
+// ACTIVE Nurkowanie
+{
+    name: "Maska nurkowa",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Płetwy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Snorkel",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Skrzela (BCD)",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Regulator nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Kombinezon nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Komputer nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Butla z powietrzem",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Latarka nurkowa",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Nóż nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Boja z linią",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Ręcznik szybkoschnący",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Torba na sprzęt nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Aparat fotograficzny podwodny",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Woda",
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+},
+{
+    name: "Przekąski energetyczne",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Certyfikat nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Dziennik nurkowy",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Ubezpieczenie nurkowe",
+    categories: { connect: [{ id: nurkowanie }] },
+},
+{
+    name: "Plecak lub torba",
+    categories: { connect: [{ id: nurkowanie }] },
+}
+
+
+
+
                 ],
             },
         },
     })
+
 }
 
 main()

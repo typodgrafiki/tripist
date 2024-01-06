@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie typu
-    const summerTemplateType = await getType("summer", "Wakacje letnie")
+    const winterTemplateType = await getType("winter", "Wakacje zimowe")
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
@@ -25,20 +25,21 @@ async function main() {
     const dokumenty = await getCategory("Dokumenty")
 
     // Nazwy list
-    const allInclusive = {
-        name: "All inclusive",
+    const nartyList = {
+        name: "Narty",
         start: false,
-        type: summerTemplateType,
+        type: winterTemplateType,
     }
 
-    // All Inclusive 14
-    const allinclusive14 = await prisma.template.create({
+    // Trekking 3, 7
+
+    const nartyN= await prisma.template.create({
         data: {
-            name: allInclusive.name,
+            name: nartyList.name,
             settingColor: "bg-blue-400",
-            start: allInclusive.start,
-            listTypeId: allInclusive.type,
-            tripLength: 14,
+            start: nartyList.start,
+            listTypeId: nartyList.type,
+            tripLength: null,
             elements: {
                 create: [
                     // Odzież
@@ -47,15 +48,11 @@ async function main() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Spodenki krótkie",
+                        name: "Spodnie dresowe",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza /Sweter",
+                        name: "Bluza / Sweter",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -70,70 +67,113 @@ async function main() {
                         name: "Bielizna (majtki)",
                         categories: { connect: [{ id: odziez }] },
                     },
+                    // Odzież zima
                     {
-                        name: "Czapka z daszkiem",
-                        categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
-                    },
-                    {
-                        name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }, { id: joga }] },
-                    },
-                    {
-                        name: "Chusta na głowę",
+                        name: "Kurtka",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Buty na zmianę",
+                        name: "Rękawiczki",
+                        categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Lekkie, przewiewne ubrania",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        name: "Szalik",
+                        categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
                     },
-                    // All-inclusive
+                    
+                    
+                    // ZIMA Narty
                     {
-                        name: "Strój kąpielowy",
-                        categories: { connect: [{ id: plaza }, {id: sport}, {id: plywanie}, {id: allinclusive}, { id: windsurfing }] },
-                    },
-                    {
-                        name: "Okulary pływackie",
-                        categories: { connect: [{ id: sport }, {id: plywanie}, {id: allinclusive}] },
-                    },                        
-                    {
-                        name: "Klapki basenowe",
-                        categories: { connect: [{ id: sport }, {id: plywanie}, {id: allinclusive}] },
+                        name: "Narty i wiązania narciarskie",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Adapter do gniazdka",
-                        categories: { connect: [{id: elektronika}, {id: allinclusive}] },
+                        name: "Buty narciarskie",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Przenośny wentylator",
-                        categories: { connect: [{id: elektronika}, {id: allinclusive}] },
+                        name: "Kijki narciarskie",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Dmuchany materac lub koło",
-                        categories: { connect: [{ id: allinclusive }, { id: plaza}] },
+                        name: "Gogle narciarskie",
+                        categories: { connect: [{ id: narty }, {id: trekking}] },
                     },
                     {
-                        name: "Przewodnik po okolicy",
-                        categories: { connect: [{ id: allinclusive }] },
+                        name: "Kask narciarski",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Zabezpieczenie bagażu",
-                        categories: { connect: [{ id: allinclusive }, { id: tropikalnawyspa }, { id: egipt }] },
+                        name: "Wosk do nart",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        name: "Kurtka narciarska",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        name: "Spodnie narciarskie",
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
-                        name: "Pływający pojemnik na klucze i telefon",
-                        categories: { connect: [{ id: jezioro }]},
+                        name: "Bielizna termiczna",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Spodnie termiczne",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Koszulka termiczna",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Polar / Bluza narciarska",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Skarpety narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Rękawice narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Czapka narciarska",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Szalik narciarski",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Komin narciarski",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Maska na twarz narciarska",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Plecak narciarski",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Balsam do ust",
+                        categories: { connect: [{ id: narty }, { id: snowboard }, { id: snowboard }, {id: citybreak_zima}] },
+                    },
+                    {
+                        name: "Mapa tras narciarskich",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                    },
+                    {
+                        name: "Kamera sportowa",
+                        categories: { connect: [{ id: narty }, { id: snowboard }] },
                     },
                     
                     
@@ -155,6 +195,10 @@ async function main() {
                         categories: { connect: [{ id: dokumenty }]},
                     },
                     {
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }]},
+                    },
+                    {
                         name: "Paszport",
                         categories: { connect: [{ id: dokumenty }]},
                     },
@@ -163,13 +207,11 @@ async function main() {
                         categories: { connect: [{ id: dokumenty }, {id: biznes}] },
                     },
                     {
-                        name: "Bilety lotnicze",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-                    },
-                    {
                         name: "Potwierdzenia rezerwacji",
                         categories: { connect: [{ id: dokumenty }, {id: biznes}] },
                     },
+                    
+                    
                     
                     
                     // Elektronika
@@ -190,9 +232,14 @@ async function main() {
                         categories: { connect: [{ id: elektronika }]},
                     },
                     {
-                        name: "Słuchawki",
-                        categories: { connect: [{ id: elektronika }, {id: joga}]},
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }]},
                     },
+                    {
+                        name: "Głośnik przenośny (bezprzewodowy)",
+                        categories: { connect: [{ id: elektronika }]},
+                    },
+                    
                     {
                         name: "Książka / Czytnik typu Kindle",
                         categories: { connect: [{ id: elektronika }]},
@@ -229,9 +276,6 @@ async function main() {
                         categories: {connect: [{ id: apteczka }]},
                     },
                     
-                    
-                    
-                    
                     // Kosmetyczka
                     {
                         name: "Mydło / Żel pod prysznic",
@@ -253,6 +297,10 @@ async function main() {
                         name: "Zestaw do golenia lub depilacji",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
+                    // {
+                    //     name: "Kosmetyki do makijażu",
+                    //     categories: { connect: [{ id: kosmetyczka }] },
+                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -277,19 +325,28 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
+                    
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
                     {
                         name: "Klapki pod prysznic",
                         categories: { connect: [{ id: higiena }, { id: odziez }] },
                     },
+                    
                     {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Batony",
+                        categories: { connect: [{ id: jedzenie }, {id: trekking}] },
                     },
                     {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Worki na pranie",
+                        categories: { connect: [{ id: inne }, {id: camping}] },
                     },
-                ],
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: sport }, { id: elektronika}] },
+                    },],
             },
         },
     })

@@ -1,3 +1,54 @@
+let odziez
+let akcesoria
+let apteczka
+let lazienkaHigiena
+let kosmetyczka
+let elektronika
+let samochod
+let inne
+let jedzenie
+let kuchnia
+let jezioro
+let plaza
+let trekking
+let dokumenty
+let biznes
+let sport
+let sprzetSportowy
+let odziezSportowa
+let bieganie
+let silownia
+let morsowanie
+let basen
+let joga
+let sciankaWspinaczkowa
+let crossfit
+let kajak
+let sztukiWalki
+let obuwie
+let miasto
+let zima
+let zeglarstwo
+let survival
+let wspinaczka
+let allInclusive
+let windsurfing
+let tropikalnaWyspa
+let safari
+let egipt
+let nurkowanie
+let rower
+let narty
+let snowboard
+let mazury
+let campervan
+let kemping
+let niemowle
+let zdrowie
+let zabawki
+
+
+
 const test = [
 
 // Podstawa
@@ -250,7 +301,7 @@ const test = [
 {
     name: "Aparat fotograficzny z zoomem",
     categories: { connect: [{ id: safari }] },
-}
+},
 
 
 
@@ -806,7 +857,7 @@ const test = [
 },
 {
     name: "Transmiter FM",
-    categories: { connect: [{ id: car }, {id:campping}]},  
+    categories: { connect: [{ id: car }, {id:camping}]},  
 },
 {
     name: "Klucz do kół, lewarek",
@@ -933,7 +984,7 @@ const test = [
 {
     name: "Worki na śmieci",
     categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: car}] },
-}
+},
 
 
 
@@ -963,19 +1014,19 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Kajak (opcjonalnie)",
-    categories: { connect: [{ id: campingRodzinny }, },
+    categories: { connect: [{ id: campingRodzinny }] },
 },
 {
     name: "Rowery (opcjonalnie)",
-    categories: { connect: [{ id: campingRodzinny }, },
+    categories: { connect: [{ id: campingRodzinny }] },
 },
 {
     name: "Parasol plażowy (opcjonalnie)",
-    categories: { connect: [{ id: campingRodzinny }, },
+    categories: { connect: [{ id: campingRodzinny }] },
 },
 
 
@@ -988,7 +1039,7 @@ const test = [
 // Jedzenie
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Makarony",
@@ -1122,7 +1173,7 @@ const test = [
 {
     name: "Mapy papierowe",
     categories: { connect: [{ id: inne }, {id: camping}, {id: car}] },
-}
+},
 
 
 
@@ -1316,7 +1367,7 @@ const test = [
 {
     name: "Niania elektroniczna",
     categories: { connect: [{ id: niemowle }] },
-}
+},
 
 
 
@@ -1727,7 +1778,7 @@ const test = [
 {
     name: "Zestaw do czyszczenia roweru",
     categories: { connect: [{ id: rower }] },
-}
+},
 
 
 
@@ -1821,7 +1872,11 @@ const test = [
 {
     name: "Przewodniki wspinaczkowe",
     categories: { connect: [{ id: wspinaczka }] },
-}
+},
+{
+    name: "Plastry wspinaczkowe",
+    categories: { connect: [{ id: wspinaczka }] },
+},
 
 
 
@@ -1884,7 +1939,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Izotonik w proszku",
@@ -1909,7 +1964,7 @@ const test = [
 {
     name: "Mapy i plany tras biegowych",
     categories: { connect: [{ id: podrozne }] },
-}
+},
 
 
 
@@ -1986,7 +2041,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Prowiant",
@@ -1995,7 +2050,7 @@ const test = [
 {
     name: "Worki wodoszczelne",
     categories: { connect: [{ id: zeglarstwo }] },
-}
+},
 
 
 
@@ -2049,7 +2104,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Batony energetyczne",
@@ -2070,7 +2125,7 @@ const test = [
 {
     name: "Instruktor windsurfingu",
     categories: { connect: [{ id: windsurfing }] },
-}
+},
 
 
 
@@ -2135,7 +2190,7 @@ const test = [
 },
 {
     name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
+    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: windsurfing }, { id: nurkowanie }, { id: sport }] },
 },
 {
     name: "Przekąski energetyczne",
@@ -2156,7 +2211,7 @@ const test = [
 {
     name: "Plecak lub torba",
     categories: { connect: [{ id: nurkowanie }] },
-}
+},
 
 
 
@@ -2235,7 +2290,7 @@ const test = [
 {
     name: "Torba",
     categories: { connect: [{ id: joga }] },
-}
+},
 
 
 
@@ -2365,7 +2420,7 @@ const test = [
 {
     name: "Pakiet energetyczny",
     categories: { connect: [{ id: survival }] },
-}
+},
 
 
 
@@ -2559,10 +2614,6 @@ const test = [
     name: "Kamera sportowa",
     categories: { connect: [{ id: snowboard }] },
 },
-{
-    name: "Balsam na usta",
-    categories: { connect: [{ id: snowboard }] },
-},
 
 
 
@@ -2614,10 +2665,5 @@ const test = [
 {
     name: "Balsam do ust",
     categories: { connect: [{ id: narty }, { id: snowboard }, { id: snowboard }, {id: citybreak_zima}] },
-}
-
-
-
-
-
+},
 ]

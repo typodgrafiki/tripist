@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 
 async function main() {
     // Tworzenie typu
-    const summerTemplateType = await getType("summer", "Wakacje letnie")
+    const winterTemplateType = await getType("winter", "Wakacje zimowe")
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
@@ -25,42 +25,35 @@ async function main() {
     const dokumenty = await getCategory("Dokumenty")
 
     // Nazwy list
-    const egiptList = {
-        name: "Afryka / Egipt",
+    const snowboardList = {
+        name: "Snowboard",
         start: false,
-        type: summerTemplateType,
+        type: winterTemplateType,
     }
 
-    // All Inclusive 14
-    const egipt14 = await prisma.template.create({
+    // Snowboard
+
+    const snowboardN= await prisma.template.create({
         data: {
-            name: egiptList.name,
+            name: snowboardList.name,
             settingColor: "bg-blue-400",
-            start: egiptList.start,
-            listTypeId: egiptList.type,
-            tripLength: 14,
+            start: snowboardList.start,
+            listTypeId: snowboardList.type,
+            tripLength: null,
             elements: {
                 create: [
-                    
+
 // Odzież
 {
     name: "Koszulki",
     categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Spodenki krótkie",
+    name: "Spodnie dresowe",
     categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Spodenki dresowe",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Lekkie, przewiewne ubrania z długim rękawem",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
-{
-    name: "Bluza /Sweter",
+    name: "Bluza / Sweter",
     categories: { connect: [{ id: odziez }] },
 },
 {
@@ -75,70 +68,123 @@ async function main() {
     name: "Bielizna (majtki)",
     categories: { connect: [{ id: odziez }] },
 },
+// Odzież zima
 {
-    name: "Czapka z daszkiem",
-    categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
-},
-{
-    name: "Kapelusz",
-    categories: { connect: [{ id: odziez }, { id: joga }] },
-},
-{
-    name: "Chusta na głowę",
+    name: "Kurtka",
     categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Sandały",
-    categories: { connect: [{ id: egipt }] },
+    name: "Rękawiczki",
+    categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
 },
 {
-    name: "Plecak na wycieczki",
-    categories: { connect: [{ id: safari }] },
+    name: "Czapka zimowa",
+    categories: { connect: [{ id: odziez }] },
 },
 {
-    name: "Butelka na wodę",
-    categories: { connect: [{ id: safari }, { id: joga }, { id: survival }] },
+    name: "Szalik",
+    categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
 },
 
 
-{
-    name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
-{
-    name: "Wodoodporny aparat fotograficzny",
-    categories: { connect: [{ id: plaza }, { id: nurkowanie }] },
-},
-{
-    name: "Pływający pojemnik na klucze i telefon",
-    categories: { connect: [{ id: jezioro }]},
-},
-{
-    name: "Mapa lokalna lub przewodnik",
-    categories: { connect: [{ id: tropikalnaWyspa }] },
-},
 
-{
-    name: "Krem z filtrem UV",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Strój kąpielowy",
-    categories: { connect: [{ id: plaza }, {id: sport}, {id: plywanie}] },
-},
-{
-    name: "Sandały/klapki plażowe",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Torba plażowa",
-    categories: { connect: [{ id: plaza }] },
-},
-{
-    name: "Balsam po opalaniu",
-    categories: { connect: [{ id: plaza }] },
-},
 
+
+
+
+// ZIMA Snowboard
+{
+    name: "Snowboard",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Buty snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Wiązania snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Kask snowboardowy",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Gogle snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Pokrowiec na snowboard",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Kurtka snowboardowa",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Spodnie snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Koszulka termiczna",
+    categories: { connect: [{ id: narty }, { id: snowboard }] },
+},
+{
+    name: "Spodnie termiczne",
+    categories: { connect: [{ id: narty }, { id: snowboard }] },
+},
+{
+    name: "Bielizna termiczna",
+    categories: { connect: [{ id: narty }, { id: snowboard }] },
+},
+{
+    name: "Polar / Bluza snowboardowa",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Rękawice snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Skarpety snowboardowe",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Czapka",
+    categories: { connect: [{ id: narty }, { id: snowboard }] },
+},
+{
+    name: "Plecak snowboardowy",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Mapa tras snowboardowych",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Komin narciarski",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Maska na twarz narciarska",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Plecak narciarski",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Balsam na usta",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Mapa tras narciarskich",
+    categories: { connect: [{ id: snowboard }] },
+},
+{
+    name: "Kamera sportowa",
+    categories: { connect: [{ id: snowboard }] },
+},
 
 
 
@@ -161,6 +207,10 @@ async function main() {
     categories: { connect: [{ id: dokumenty }]},
 },
 {
+    name: "Prawo jazdy",
+    categories: { connect: [{ id: dokumenty }]},
+},
+{
     name: "Paszport",
     categories: { connect: [{ id: dokumenty }]},
 },
@@ -169,13 +219,11 @@ async function main() {
     categories: { connect: [{ id: dokumenty }, {id: biznes}] },
 },
 {
-    name: "Bilety lotnicze",
-    categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-},
-{
     name: "Potwierdzenia rezerwacji",
     categories: { connect: [{ id: dokumenty }, {id: biznes}] },
 },
+
+
 
 
 // Elektronika
@@ -200,17 +248,15 @@ async function main() {
     categories: { connect: [{ id: elektronika }]},
 },
 {
-    name: "Gimball + ładowarka + kabel",
+    name: "Głośnik przenośny (bezprzewodowy)",
     categories: { connect: [{ id: elektronika }]},
 },
-{
-    name: "Słuchawki",
-    categories: { connect: [{ id: elektronika }, {id: joga}]},
-},
+
 {
     name: "Książka / Czytnik typu Kindle",
     categories: { connect: [{ id: elektronika }]},
 },
+
 
 // Apteczka
 {
@@ -241,15 +287,6 @@ async function main() {
     name: "Tabletki na alergie",
     categories: {connect: [{ id: apteczka }]},
 },
-{
-    name: "Środek na komary i kleszcze",
-    categories: {connect: [{ id: apteczka }]},
-},
-
-
-
-
-
 
 // Kosmetyczka
 {
@@ -310,18 +347,19 @@ async function main() {
     categories: { connect: [{ id: higiena }, { id: odziez }] },
 },
 
-
-
-
 {
-    name: "Okulary przeciwsłoneczne",
-    categories: { connect: [{ id: akcesoria }] },
+    name: "Batony",
+    categories: { connect: [{ id: jedzenie }, {id: trekking}] },
 },
 {
-    name: "Nerka (saszetka biodrowa)",
-    categories: { connect: [{ id: akcesoria }] },
+    name: "Worki na pranie",
+    categories: { connect: [{ id: inne }, {id: camping}] },
 },
-                ],
+{
+    name: "Zegarek sportowy",
+    categories: { connect: [{ id: sport }, { id: elektronika}] },
+},
+],
             },
         },
     })
