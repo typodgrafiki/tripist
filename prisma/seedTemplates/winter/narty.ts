@@ -33,7 +33,7 @@ async function main() {
 
     // Trekking 3, 7
 
-    const nartyN= await prisma.template.create({
+    const nartyN = await prisma.template.create({
         data: {
             name: nartyList.name,
             settingColor: "bg-blue-400",
@@ -74,7 +74,13 @@ async function main() {
                     },
                     {
                         name: "Rękawiczki",
-                        categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
+                        categories: {
+                            connect: [
+                                { id: odziez },
+                                { id: survival },
+                                { id: citybreak_zima },
+                            ],
+                        },
                     },
                     {
                         name: "Czapka zimowa",
@@ -82,10 +88,15 @@ async function main() {
                     },
                     {
                         name: "Szalik",
-                        categories: { connect: [{ id: odziez }, { id: survival }, { id: citybreak_zima }] },
+                        categories: {
+                            connect: [
+                                { id: odziez },
+                                { id: survival },
+                                { id: citybreak_zima },
+                            ],
+                        },
                     },
-                    
-                    
+
                     // ZIMA Narty
                     {
                         name: "Narty i wiązania narciarskie",
@@ -101,7 +112,9 @@ async function main() {
                     },
                     {
                         name: "Gogle narciarskie",
-                        categories: { connect: [{ id: narty }, {id: trekking}] },
+                        categories: {
+                            connect: [{ id: narty }, { id: trekking }],
+                        },
                     },
                     {
                         name: "Kask narciarski",
@@ -121,15 +134,21 @@ async function main() {
                     },
                     {
                         name: "Bielizna termiczna",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Spodnie termiczne",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Koszulka termiczna",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Polar / Bluza narciarska",
@@ -153,129 +172,145 @@ async function main() {
                     },
                     {
                         name: "Komin narciarski",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Maska na twarz narciarska",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Plecak narciarski",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Balsam do ust",
-                        categories: { connect: [{ id: narty }, { id: snowboard }, { id: snowboard }, {id: citybreak_zima}] },
+                        categories: {
+                            connect: [
+                                { id: narty },
+                                { id: snowboard },
+                                { id: snowboard },
+                                { id: citybreak_zima },
+                            ],
+                        },
                     },
                     {
                         name: "Mapa tras narciarskich",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
                     {
                         name: "Kamera sportowa",
-                        categories: { connect: [{ id: narty }, { id: snowboard }] },
+                        categories: {
+                            connect: [{ id: narty }, { id: snowboard }],
+                        },
                     },
-                    
-                    
+
                     // Dokumenty
                     {
                         name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Paszport",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
+                        categories: {
+                            connect: [{ id: dokumenty }, { id: biznes }],
+                        },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
+                        categories: {
+                            connect: [{ id: dokumenty }, { id: biznes }],
+                        },
                     },
-                    
-                    
-                    
-                    
+
                     // Elektronika
                     {
                         name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
-                    
+
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
-                    
-                    
+
                     // Apteczka
                     {
                         name: "Leki",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki przeciwbólowe",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na biegunkę",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na ból brzucha",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Plastry opatrunkowe",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Żel antybakteryjny",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na alergie",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
-                    
+
                     // Kosmetyczka
                     {
                         name: "Mydło / Żel pod prysznic",
@@ -325,28 +360,37 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    
+
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }, { id: odziez }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: odziez }],
+                        },
                     },
-                    
+
                     {
                         name: "Batony",
-                        categories: { connect: [{ id: jedzenie }, {id: trekking}] },
+                        categories: {
+                            connect: [{ id: jedzenie }, { id: trekking }],
+                        },
                     },
                     {
                         name: "Worki na pranie",
-                        categories: { connect: [{ id: inne }, {id: camping}] },
+                        categories: {
+                            connect: [{ id: inne }, { id: camping }],
+                        },
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: { connect: [{ id: sport }, { id: elektronika}] },
-                    },],
+                        categories: {
+                            connect: [{ id: sport }, { id: elektronika }],
+                        },
+                    },
+                ],
             },
         },
     })
