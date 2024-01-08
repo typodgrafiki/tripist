@@ -13,16 +13,15 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
 
     // Nazwy list
     const cityBreakList = {
@@ -103,15 +102,19 @@ async function main() {
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     // Dokumenty
                     {
@@ -141,19 +144,19 @@ async function main() {
                     {
                         name: "Kopie ważnych dokumentów",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Bilety lotnicze",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
 
@@ -242,10 +245,6 @@ async function main() {
                         name: "Zestaw do golenia lub depilacji",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -270,10 +269,6 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
@@ -281,7 +276,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Akcesoria
@@ -353,11 +348,15 @@ async function main() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     // Dokumenty
                     {
@@ -450,10 +449,6 @@ async function main() {
                         name: "Zestaw do golenia lub depilacji",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -474,11 +469,6 @@ async function main() {
                         name: "Dezodorant / Antyperspirant",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
@@ -486,7 +476,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Akcesoria

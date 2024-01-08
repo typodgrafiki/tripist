@@ -13,16 +13,20 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
+    const sport = await getCategory("Sport")
+    const jezioro = await getCategory("Jezioro")
+    const trekking = await getCategory("Trekking")
+    const nurkowanie = await getCategory("Nurkowanie")
 
     // Nazwy list
     const mazuryList = {
@@ -85,7 +89,7 @@ async function main() {
                     },
                     {
                         name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Leżak",
@@ -98,11 +102,7 @@ async function main() {
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [
-                                { id: plaza },
-                                { id: sport },
-                                { id: plywanie },
-                            ],
+                            connect: [{ id: plaza }],
                         },
                     },
                     {
@@ -119,12 +119,12 @@ async function main() {
                     },
                     {
                         name: "Sprzęt do nurkowania (maska, rurka)",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Dmuchany materac lub koło",
                         categories: {
-                            connect: [{ id: plaza }, { id: allinclusive }],
+                            connect: [{ id: plaza }],
                         },
                     },
                     {
@@ -136,7 +136,7 @@ async function main() {
                     {
                         name: "Ciepłe ubrania na wieczór",
                         categories: {
-                            connect: [{ id: jezioro }, { id: mazury }],
+                            connect: [{ id: odziez }],
                         },
                     },
                     // Jezioro
@@ -150,15 +150,15 @@ async function main() {
                     },
                     {
                         name: "Klapki",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Recznik",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butelka z wodą",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Pływający pojemnik na klucze i telefon",
@@ -166,39 +166,41 @@ async function main() {
                     },
                     {
                         name: "Przeciwdeszczowa odzież",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak na wycieczki",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Latarka lub czołówka",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Termos lub bidon",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Sprzęt do pływania",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: jezioro }],
+                        },
                     },
                     {
                         name: "Sprzęt wędkarski",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Rowery",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     {
                         name: "Kijki do nordic walking",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     {
                         name: "Kajak",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     // Dokumenty
                     {
@@ -246,7 +248,7 @@ async function main() {
                     {
                         name: "Słuchawki",
                         categories: {
-                            connect: [{ id: elektronika }, { id: joga }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                     {
@@ -324,10 +326,6 @@ async function main() {
                         name: "Zestaw do golenia lub depilacji",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -352,10 +350,6 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
 
                     // Łazienka / Higiena
                     {
@@ -367,13 +361,13 @@ async function main() {
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     {
@@ -437,7 +431,7 @@ async function main() {
                     },
                     {
                         name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Koc",
@@ -450,11 +444,7 @@ async function main() {
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [
-                                { id: plaza },
-                                { id: sport },
-                                { id: plywanie },
-                            ],
+                            connect: [{ id: plaza }],
                         },
                     },
                     {
@@ -472,7 +462,7 @@ async function main() {
                     {
                         name: "Ciepłe ubrania na wieczór",
                         categories: {
-                            connect: [{ id: jezioro }, { id: mazury }],
+                            connect: [{ id: odziez }],
                         },
                     },
                     // Jezioro
@@ -486,15 +476,15 @@ async function main() {
                     },
                     {
                         name: "Klapki",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Recznik",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butelka z wodą",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Pływający pojemnik na klucze i telefon",
@@ -502,13 +492,12 @@ async function main() {
                     },
                     {
                         name: "Plecak na wycieczki",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Latarka lub czołówka",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
-
                     // Dokumenty
                     {
                         name: "Gotówka",
@@ -591,7 +580,6 @@ async function main() {
                         name: "Pasta / Żel do włosów",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -617,7 +605,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     {

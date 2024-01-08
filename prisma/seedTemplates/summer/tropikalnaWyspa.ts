@@ -13,16 +13,16 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
+    const nurkowanie = await getCategory("Nurkowanie")
 
     // Nazwy list
     const tropikList = {
@@ -70,74 +70,74 @@ async function main() {
                     {
                         name: "Czapka z daszkiem",
                         categories: {
-                            connect: [{ id: odziez }, { id: zeglarstwo }],
+                            connect: [{ id: odziez }, { id: akcesoria }],
                         },
                     },
                     {
                         name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }, { id: joga }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Lekkie, przewiewne ubrania z długim rękawem",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Sandały, klapki, buty do wody",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Plecak na wycieczki",
                         categories: {
-                            connect: [{ id: tropikalnaWyspa }, { id: safari }],
+                            connect: [{ id: inne }],
                         },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Adapter do gniazdka elektrycznego",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Butelka na wodę",
                         categories: {
-                            connect: [
-                                { id: safari },
-                                { id: joga },
-                                { id: survival },
-                            ],
+                            connect: [{ id: inne }],
                         },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [
-                                { id: plaza },
-                                { id: sport },
-                                { id: plywanie },
-                            ],
+                            connect: [{ id: plaza }, { id: odziez }],
                         },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
 
                     // Dokumenty
@@ -168,19 +168,19 @@ async function main() {
                     {
                         name: "Kopie ważnych dokumentów",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Bilety lotnicze",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
 
@@ -212,7 +212,7 @@ async function main() {
                     {
                         name: "Słuchawki",
                         categories: {
-                            connect: [{ id: elektronika }, { id: joga }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                     {
@@ -365,70 +365,70 @@ async function main() {
                     {
                         name: "Czapka z daszkiem",
                         categories: {
-                            connect: [{ id: odziez }, { id: zeglarstwo }],
+                            connect: [{ id: odziez }, { id: akcesoria }],
                         },
                     },
                     {
                         name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }, { id: joga }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Lekkie, przewiewne ubrania z długim rękawem",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Sandały, klapki, buty do wody",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Plecak na wycieczki",
                         categories: {
-                            connect: [{ id: tropikalnaWyspa }, { id: safari }],
+                            connect: [{ id: inne }],
                         },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Adapter do gniazdka elektrycznego",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Butelka na wodę",
                         categories: {
-                            connect: [
-                                { id: safari },
-                                { id: joga },
-                                { id: survival },
-                            ],
+                            connect: [{ id: inne }],
                         },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [
-                                { id: plaza },
-                                { id: sport },
-                                { id: plywanie },
-                            ],
+                            connect: [{ id: plaza }, { id: odziez }],
                         },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
 
                     // Dokumenty
@@ -459,19 +459,19 @@ async function main() {
                     {
                         name: "Kopie ważnych dokumentów",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Bilety lotnicze",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
 
@@ -495,7 +495,7 @@ async function main() {
                     {
                         name: "Słuchawki",
                         categories: {
-                            connect: [{ id: elektronika }, { id: joga }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                     {
@@ -594,7 +594,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Akcesoria

@@ -12,26 +12,20 @@ async function main() {
     const summerTemplateType = await getType("summer", "Wakacje letnie")
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
-    const odziezCategory = await getCategory("Odzież")
-    const akcesoriaCategory = await getCategory("Akcesoria")
-    const technologiaCategory = await getCategory("Elektronika")
-    const inneCategory = await getCategory("Inne")
-    const jedzenieCategory = await getCategory("Jedzenie")
-    const kuchniaCategory = await getCategory("Kuchnia")
-    const higienaCategory = await getCategory("Łazienka / Higiena")
-    const campervanCategory = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
+    const akcesoria = await getCategory("Akcesoria")
+    const elektronika = await getCategory("Elektronika")
+    const inne = await getCategory("Inne")
+    const higiena = await getCategory("Łazienka / Higiena")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
 
     // Nazwy list
     const morze = {
         name: "Wakacje nad morzem",
-        start: false,
-        type: summerTemplateType,
-    }
-    const camperVan = {
-        name: "Camper Van",
         start: false,
         type: summerTemplateType,
     }
@@ -98,17 +92,21 @@ async function main() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [{ id: plaza }],
+                            connect: [{ id: plaza }, { id: odziez }],
                         },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: obuwie }],
+                        },
                     },
                     {
                         name: "Torba plażowa",
@@ -116,7 +114,9 @@ async function main() {
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Parasol plażowy",
@@ -369,7 +369,9 @@ async function main() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Strój kąpielowy",
@@ -387,7 +389,9 @@ async function main() {
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Parawan plażowy",
@@ -485,7 +489,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     {
@@ -544,181 +548,6 @@ async function main() {
             },
         },
     })
-
-    // const trekkingList = await prisma.template.create({
-    //     data: {
-    //         name: "Trekking w górach",
-    //         settingColor: "bg-blue-400",
-    //         start: false,
-    //         listTypeId: trekkingTemplateType,
-    //         tripLength: 5,
-    //         elements: {
-    //             create: [
-    //                 // Odzież i Akcesoria
-    //                 {
-    //                     name: "Stroje kąpielowe (kilka sztuk)",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Ręcznik plażowy",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Sandały/klapki plażowe",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Kapelusz przeciwsłoneczny",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Okulary przeciwsłoneczne",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Lekkie sukienki/spodenki",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Koszulki/T-shirty",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Lekka kurtka lub sweter na chłodniejsze wieczory",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Piżama",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Bielizna",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Torba plażowa",
-    //                     categories: { connect: [{ id: odziezCategory }] },
-    //                 },
-
-    //                 // Akcesoria Plażowe i Przeciwsłoneczne
-    //                 {
-    //                     name: "Krem z filtrem UV",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Balsam po opalaniu",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Mata plażowa lub leżak",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Parasol plażowy",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Sprzęt do nurkowania (maska, rurka)",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Pływadła/plażowa piłka",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Butelka na wodę",
-    //                     categories: {
-    //                         connect: [{ id: akcesoriaCategory }],
-    //                     },
-    //                 },
-
-    //                 // Elektronika
-    //                 {
-    //                     name: "Aparat fotograficzny/lustrzanka",
-    //                     categories: {
-    //                         connect: [{ id: technologiaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Smartfon i ładowarka",
-    //                     categories: {
-    //                         connect: [{ id: technologiaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Power bank",
-    //                     categories: {
-    //                         connect: [{ id: technologiaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "Głośnik przenośny (wodoodporny)",
-    //                     categories: {
-    //                         connect: [{ id: technologiaCategory }],
-    //                     },
-    //                 },
-    //                 {
-    //                     name: "E-book lub czytnik Kindle",
-    //                     categories: {
-    //                         connect: [{ id: technologiaCategory }],
-    //                     },
-    //                 },
-
-    //                 // Zdrowie i Higiena
-    //                 {
-    //                     name: "Apteczka pierwszej pomocy (plastry, środki przeciwbólowe, środki przeciw alergii)",
-    //                     categories: { connect: [{ id: higienaCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Produkty higieniczne (szampon, żel pod prysznic, dezodorant)",
-    //                     categories: { connect: [{ id: higienaCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Kosmetyki (krem nawilżający, balsam do ust)",
-    //                     categories: { connect: [{ id: higienaCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Repelent na komary",
-    //                     categories: { connect: [{ id: higienaCategory }] },
-    //                 },
-
-    //                 // Inne
-    //                 {
-    //                     name: "Dokumenty podróżne (paszport, dowód osobisty, bilety, ubezpieczenie)",
-    //                     categories: { connect: [{ id: inneCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Książki/planszówki/karty do gry",
-    //                     categories: { connect: [{ id: inneCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Notatnik i długopis",
-    //                     categories: { connect: [{ id: inneCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Mała apteczka z podstawowymi lekarstwami",
-    //                     categories: { connect: [{ id: inneCategory }] },
-    //                 },
-    //                 {
-    //                     name: "Składany parasol w razie deszczu",
-    //                     categories: { connect: [{ id: inneCategory }] },
-    //                 },
-    //             ],
-    //         },
-    //     },
-    // })
 }
 
 main()

@@ -13,16 +13,17 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const akcesoria = await getCategory("Akcesoria")
+    const obuwie = await getCategory("Obuwie")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const sport = await getCategory("Sport")
+    const trekking = await getCategory("Trekking")
+    const camping = await getCategory("Kemping")
 
     // Nazwy list
     const trekkingList = {
@@ -74,38 +75,46 @@ async function main() {
                     {
                         name: "Bielizna termoaktywna",
                         categories: {
-                            connect: [{ id: sport }, { id: trekking }],
+                            connect: [{ id: sport }, { id: odziez }],
                         },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Buty trekkingowe",
                         categories: {
-                            connect: [{ id: trekking }, { id: survival }],
+                            connect: [{ id: trekking }, { id: obuwie }],
                         },
                     },
                     {
                         name: "Czołówka",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Baterie do czołówki",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Kijki trekkingowe",
@@ -119,7 +128,9 @@ async function main() {
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: inne }],
+                        },
                     },
                     // Dokumenty
                     {
@@ -137,7 +148,7 @@ async function main() {
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
 
@@ -154,18 +165,11 @@ async function main() {
                         name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
-
-                    {
-                        name: "Czołówka (latarka)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Baterie do czołówki",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: {
+                            connect: [{ id: elektronika }, { id: inne }],
+                        },
                     },
 
                     // Apteczka
@@ -227,10 +231,6 @@ async function main() {
                         name: "Pasta / Żel do włosów",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -255,10 +255,6 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Mokre chusteczki",
                         categories: {
@@ -268,7 +264,7 @@ async function main() {
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -284,27 +280,19 @@ async function main() {
                     {
                         name: "Butla z gazem",
                         categories: {
-                            connect: [
-                                { id: camping },
-                                { id: trekking },
-                                { id: kuchnia },
-                            ],
+                            connect: [{ id: trekking }],
                         },
                     },
                     {
                         name: "Palnik do butli",
                         categories: {
-                            connect: [
-                                { id: camping },
-                                { id: trekking },
-                                { id: kuchnia },
-                            ],
+                            connect: [{ id: trekking }],
                         },
                     },
                     {
                         name: "Zapałki / zapalniczka",
                         categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
+                            connect: [{ id: inne }],
                         },
                     },
 
@@ -312,15 +300,7 @@ async function main() {
                     {
                         name: "Woda",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: jedzenie },
-                                { id: zeglarstwo },
-                                { id: winsurfing },
-                                { id: nurkowanie },
-                                { id: sport },
-                            ],
+                            connect: [{ id: jedzenie }],
                         },
                     },
                     {
@@ -404,38 +384,46 @@ async function main() {
                     {
                         name: "Bielizna termoaktywna",
                         categories: {
-                            connect: [{ id: sport }, { id: trekking }],
+                            connect: [{ id: sport }, { id: odziez }],
                         },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Buty trekkingowe",
                         categories: {
-                            connect: [{ id: trekking }, { id: survival }],
+                            connect: [{ id: trekking }, { id: obuwie }],
                         },
                     },
                     {
                         name: "Czołówka",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Baterie do czołówki",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Kijki trekkingowe",
@@ -449,7 +437,9 @@ async function main() {
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: inne }],
+                        },
                     },
                     // Dokumenty
                     {
@@ -467,7 +457,7 @@ async function main() {
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
 
@@ -482,10 +472,6 @@ async function main() {
                     },
                     {
                         name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Baterie do czołówki",
                         categories: { connect: [{ id: elektronika }] },
                     },
 
@@ -540,10 +526,6 @@ async function main() {
                         name: "Pasta / Żel do włosów",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -568,10 +550,6 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Mokre chusteczki",
                         categories: {
@@ -581,7 +559,7 @@ async function main() {
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -597,27 +575,19 @@ async function main() {
                     {
                         name: "Butla z gazem",
                         categories: {
-                            connect: [
-                                { id: camping },
-                                { id: trekking },
-                                { id: kuchnia },
-                            ],
+                            connect: [{ id: trekking }],
                         },
                     },
                     {
                         name: "Palnik do butli",
                         categories: {
-                            connect: [
-                                { id: camping },
-                                { id: trekking },
-                                { id: kuchnia },
-                            ],
+                            connect: [{ id: trekking }],
                         },
                     },
                     {
                         name: "Zapałki / zapalniczka",
                         categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
+                            connect: [{ id: inne }],
                         },
                     },
 
@@ -625,15 +595,7 @@ async function main() {
                     {
                         name: "Woda",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: jedzenie },
-                                { id: zeglarstwo },
-                                { id: winsurfing },
-                                { id: nurkowanie },
-                                { id: sport },
-                            ],
+                            connect: [{ id: jedzenie }],
                         },
                     },
                     {
