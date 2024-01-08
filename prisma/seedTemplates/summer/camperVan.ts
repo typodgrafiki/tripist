@@ -13,19 +13,26 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
+    const camperVan = await getCategory("Campervan")
+    const sport = await getCategory("Sport")
+    const jezioro = await getCategory("Jezioro")
+    const trekking = await getCategory("Trekking")
+    const kuchnia = await getCategory("Kuchnia")
+    const camping = await getCategory("Kemping")
+    const samochod = await getCategory("Samochód")
 
     // Nazwy list
-    const camperVan = {
+    const camperVanList = {
         name: "Camper Van",
         start: false,
         type: summerTemplateType,
@@ -34,10 +41,10 @@ async function main() {
     // Camper Van 3, 7
     const camperVan7 = await prisma.template.create({
         data: {
-            name: camperVan.name,
+            name: camperVanList.name,
             settingColor: "bg-blue-400",
-            start: camperVan.start,
-            listTypeId: camperVan.type,
+            start: camperVanList.start,
+            listTypeId: camperVanList.type,
             tripLength: 7,
             elements: {
                 create: [
@@ -76,17 +83,19 @@ async function main() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }, { id: joga }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Buty na zmianę",
@@ -95,11 +104,15 @@ async function main() {
 
                     {
                         name: "Strój kąpielowy",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: plaza }],
+                        },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Sandały/klapki plażowe",
@@ -107,39 +120,51 @@ async function main() {
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: {
+                            connect: [{ id: plaza }, { id: apteczka }],
+                        },
                     },
                     {
                         name: "Bielizna termoaktywna",
                         categories: {
-                            connect: [{ id: sport }, { id: trekking }],
+                            connect: [{ id: sport }, { id: odziez }],
                         },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Buty trekkingowe",
                         categories: {
-                            connect: [{ id: trekking }, { id: survival }],
+                            connect: [{ id: trekking }, { id: obuwie }],
                         },
                     },
                     {
                         name: "Czołówka",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: elektronika }],
+                        },
                     },
                     {
                         name: "Baterie do czołówki",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: elektronika }],
+                        },
                     },
                     {
                         name: "Plecak trekkingowy",
@@ -155,7 +180,7 @@ async function main() {
                     },
                     {
                         name: "Recznik",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Woda",
@@ -163,7 +188,7 @@ async function main() {
                     },
                     {
                         name: "Termos lub bidon",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     {
@@ -222,7 +247,7 @@ async function main() {
                     {
                         name: "Słuchawki",
                         categories: {
-                            connect: [{ id: elektronika }, { id: joga }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                     {
@@ -291,63 +316,63 @@ async function main() {
                     // Van Kuchnia
                     {
                         name: "Cebula",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Olej",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Sól",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Korkociąg",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Płyn do zmywania",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Gąbka do zmywania",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Szybkoschnący ręcznik kuchenny",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Miska do mycia naczyń",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Ręcznik papierowy",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Noże",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Sztućce",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Miski",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Talerze",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Garnek",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Patelnia",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
 
                     // Kosmetyczka
@@ -404,7 +429,7 @@ async function main() {
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -414,92 +439,80 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Samochód
                     {
                         name: "Dokumenty samochodu",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Ładowarka samochodowa + kabel",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Transmiter FM",
                         categories: {
-                            connect: [{ id: car }, { id: campping }],
+                            connect: [{ id: samochod }],
                         },
                     },
                     {
                         name: "Zestaw naprawczy do opon",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Lodówka turystyczna",
                         categories: {
-                            connect: [
-                                { id: car },
-                                { id: kuchnia },
-                                { id: camping },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
 
                     // Camping
                     {
                         name: "Prysznic ciśnieniowy",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Namiot do prysznica",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Lampka wisząca",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Krzesełka turystyczne (rozkładane)",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Stół turystyczny (rozkładany)",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
-                    // {
-                    //     name: "Butla z gazem",
-                    //     categories: { connect: [{ id: camping }, {id: trekking}, {id: kuchnia}] },
-                    // },
-                    // {
-                    //     name: "Palnik do butli",
-                    //     categories: { connect: [{ id: camping }, {id: trekking}, {id: kuchnia}] },
-                    // },
                     {
                         name: "Poduszki",
                         categories: {
-                            connect: [{ id: camping }, { id: spanie }],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Kołdra lub koc do spania",
                         categories: {
-                            connect: [{ id: camping }, { id: spanie }],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Zapałki / zapalniczka",
                         categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
+                            connect: [{ id: camperVan }, { id: kuchnia }],
                         },
                     },
                     {
-                        name: "Grill",
+                        name: "Grill jednorazowy",
                         categories: {
                             connect: [{ id: camping }, { id: jedzenie }],
                         },
@@ -513,47 +526,25 @@ async function main() {
                     {
                         name: "Śrubokręt",
                         categories: {
-                            connect: [{ id: campingRodzinny }, { id: camping }],
-                        },
-                    },
-                    {
-                        name: "Przenośny grill",
-                        categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: samochod }, { id: camping }],
                         },
                     },
                     {
                         name: "Kuchenka gazowa",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Gaz do kuchenki gazowej",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Worki na śmieci",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: car },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
 
@@ -648,7 +639,7 @@ async function main() {
                     {
                         name: "Worki na pranie",
                         categories: {
-                            connect: [{ id: inne }, { id: camping }],
+                            connect: [{ id: inne }, { id: camperVan }],
                         },
                     },
                     {
@@ -658,11 +649,7 @@ async function main() {
                     {
                         name: "Taśma izolacyjna",
                         categories: {
-                            connect: [
-                                { id: inne },
-                                { id: camping },
-                                { id: car },
-                            ],
+                            connect: [{ id: samochod }, { id: camping }],
                         },
                     },
                     {
@@ -678,13 +665,14 @@ async function main() {
 
     const camperVan3 = await prisma.template.create({
         data: {
-            name: camperVan.name,
+            name: camperVanList.name,
             settingColor: "bg-blue-400",
-            start: camperVan.start,
-            listTypeId: camperVan.type,
+            start: camperVanList.start,
+            listTypeId: camperVanList.type,
             tripLength: 3,
             elements: {
                 create: [
+                    // Odzież
                     {
                         name: "Koszulki",
                         categories: { connect: [{ id: odziez }] },
@@ -694,7 +682,7 @@ async function main() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Długie spodnie",
+                        name: "Spodnie długie",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -715,9 +703,7 @@ async function main() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
@@ -737,7 +723,9 @@ async function main() {
                     },
                     {
                         name: "Czołówka",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: elektronika }],
+                        },
                     },
                     {
                         name: "Plecak trekkingowy",
@@ -753,11 +741,15 @@ async function main() {
                     },
                     {
                         name: "Recznik",
-                        categories: { connect: [{ id: lazienka }] },
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Woda",
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Termos lub bidon",
-                        categories: { connect: [{ id: mazury }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     {
@@ -799,11 +791,19 @@ async function main() {
                     {
                         name: "Słuchawki",
                         categories: {
-                            connect: [{ id: elektronika }, { id: joga }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Czołówka (latarka)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Baterie do czołówki",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -856,63 +856,63 @@ async function main() {
                     // Van Kuchnia
                     {
                         name: "Cebula",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Olej",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Sól",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Korkociąg",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Płyn do zmywania",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Gąbka do zmywania",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Szybkoschnący ręcznik kuchenny",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Miska do mycia naczyń",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Ręcznik papierowy",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Noże",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Sztućce",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Miski",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Talerze",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Garnek",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Patelnia",
-                        categories: { connect: [{ id: kuchniaVan }] },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
 
                     // Kosmetyczka
@@ -961,7 +961,7 @@ async function main() {
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -971,82 +971,74 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Samochód
                     {
                         name: "Dokumenty samochodu",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Ładowarka samochodowa + kabel",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Transmiter FM",
                         categories: {
-                            connect: [{ id: car }, { id: campping }],
+                            connect: [{ id: samochod }],
                         },
                     },
                     {
                         name: "Zestaw naprawczy do opon",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
-                        categories: { connect: [{ id: car }] },
+                        categories: { connect: [{ id: samochod }] },
                     },
 
                     // Camping
                     {
                         name: "Prysznic ciśnieniowy",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Namiot do prysznica",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Lampka wisząca",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Krzesełka turystyczne (rozkładane)",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Stół turystyczny (rozkładany)",
-                        categories: { connect: [{ id: camping }] },
+                        categories: { connect: [{ id: camperVan }] },
                     },
-                    // {
-                    //     name: "Butla z gazem",
-                    //     categories: { connect: [{ id: camping }, {id: trekking}, {id: kuchnia}] },
-                    // },
-                    // {
-                    //     name: "Palnik do butli",
-                    //     categories: { connect: [{ id: camping }, {id: trekking}, {id: kuchnia}] },
-                    // },
                     {
                         name: "Poduszki",
                         categories: {
-                            connect: [{ id: camping }, { id: spanie }],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Kołdra lub koc do spania",
                         categories: {
-                            connect: [{ id: camping }, { id: spanie }],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Zapałki / zapalniczka",
                         categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
+                            connect: [{ id: camperVan }, { id: kuchnia }],
                         },
                     },
                     {
-                        name: "Grill",
+                        name: "Grill jednorazowy",
                         categories: {
                             connect: [{ id: camping }, { id: jedzenie }],
                         },
@@ -1060,55 +1052,29 @@ async function main() {
                     {
                         name: "Śrubokręt",
                         categories: {
-                            connect: [{ id: campingRodzinny }, { id: camping }],
-                        },
-                    },
-                    {
-                        name: "Przenośny grill",
-                        categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: samochod }, { id: camping }],
                         },
                     },
                     {
                         name: "Kuchenka gazowa",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Gaz do kuchenki gazowej",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: kuchniaVan },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
                     {
                         name: "Worki na śmieci",
                         categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: car },
-                            ],
+                            connect: [{ id: camperVan }],
                         },
                     },
 
                     // Jedzenie
-                    {
-                        name: "Woda",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
                     {
                         name: "Makarony",
                         categories: { connect: [{ id: jedzenie }] },
@@ -1191,7 +1157,7 @@ async function main() {
                     {
                         name: "Worki na pranie",
                         categories: {
-                            connect: [{ id: inne }, { id: camping }],
+                            connect: [{ id: inne }, { id: camperVan }],
                         },
                     },
                     {
@@ -1201,11 +1167,7 @@ async function main() {
                     {
                         name: "Taśma izolacyjna",
                         categories: {
-                            connect: [
-                                { id: inne },
-                                { id: camping },
-                                { id: car },
-                            ],
+                            connect: [{ id: samochod }, { id: camping }],
                         },
                     },
                     {

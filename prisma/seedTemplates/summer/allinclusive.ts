@@ -13,19 +13,20 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const plaza = await getCategory("Plaża")
+    const basen = await getCategory("Basen")
+    const allinclusive = await getCategory("All Inclusive")
 
     // Nazwy list
-    const allInclusive = {
+    const allInclusiveList = {
         name: "All inclusive",
         start: false,
         type: summerTemplateType,
@@ -34,10 +35,10 @@ async function main() {
     // All Inclusive 14
     const allinclusive14 = await prisma.template.create({
         data: {
-            name: allInclusive.name,
+            name: allInclusiveList.name,
             settingColor: "bg-blue-400",
-            start: allInclusive.start,
-            listTypeId: allInclusive.type,
+            start: allInclusiveList.start,
+            listTypeId: allInclusiveList.type,
             tripLength: 14,
             elements: {
                 create: [
@@ -72,48 +73,62 @@ async function main() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }, { id: joga }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: akcesoria }],
+                        },
                     },
                     {
                         name: "Buty na zmianę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Lekkie, przewiewne ubrania",
-                        categories: { connect: [{ id: tropikalnaWyspa }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: allinclusive }],
+                        },
                     },
                     // All-inclusive
                     {
                         name: "Strój kąpielowy",
-                        categories: { connect: [{ id: plaza }, {id: sport}, {id: plywanie}, {id: allinclusive}, { id: windsurfing }] },
+                        categories: {
+                            connect: [{ id: basen }, { id: odziez }],
+                        },
                     },
                     {
-                        name: "Okulary pływackie",
-                        categories: { connect: [{ id: sport }, {id: plywanie}, {id: allinclusive}] },
-                    },                        
-                    {
                         name: "Klapki basenowe",
-                        categories: { connect: [{ id: sport }, {id: plywanie}, {id: allinclusive}] },
+                        categories: {
+                            connect: [{ id: basen }, { id: obuwie }],
+                        },
                     },
                     {
                         name: "Adapter do gniazdka",
-                        categories: { connect: [{id: elektronika}, {id: allinclusive}] },
+                        categories: {
+                            connect: [{ id: elektronika }],
+                        },
                     },
                     {
                         name: "Przenośny wentylator",
-                        categories: { connect: [{id: elektronika}, {id: allinclusive}] },
+                        categories: {
+                            connect: [{ id: elektronika }],
+                        },
                     },
                     {
                         name: "Dmuchany materac lub koło",
-                        categories: { connect: [{ id: allinclusive }, { id: plaza}] },
+                        categories: {
+                            connect: [{ id: plaza }],
+                        },
                     },
                     {
                         name: "Przewodnik po okolicy",
@@ -121,7 +136,9 @@ async function main() {
                     },
                     {
                         name: "Zabezpieczenie bagażu",
-                        categories: { connect: [{ id: allinclusive }, { id: tropikalnawyspa }, { id: egipt }] },
+                        categories: {
+                            connect: [{ id: allinclusive }],
+                        },
                     },
                     {
                         name: "Krem z filtrem UV",
@@ -133,105 +150,109 @@ async function main() {
                     },
                     {
                         name: "Pływający pojemnik na klucze i telefon",
-                        categories: { connect: [{ id: jezioro }]},
+                        categories: { connect: [{ id: basen }] },
                     },
-                    
-                    
+
                     // Dokumenty
                     {
                         name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Paszport",
-                        categories: { connect: [{ id: dokumenty }]},
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
+                        categories: {
+                            connect: [{ id: dokumenty }],
+                        },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
+                        categories: {
+                            connect: [{ id: dokumenty }],
+                        },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: { connect: [{ id: dokumenty }, {id: biznes}] },
+                        categories: {
+                            connect: [{ id: dokumenty }],
+                        },
                     },
-                    
-                    
+
                     // Elektronika
                     {
                         name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Słuchawki",
-                        categories: { connect: [{ id: elektronika }, {id: joga}]},
+                        categories: {
+                            connect: [{ id: elektronika }],
+                        },
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }]},
+                        categories: {
+                            connect: [{ id: elektronika }, { id: inne }],
+                        },
                     },
-                    
-                    
+
                     // Apteczka
                     {
                         name: "Leki",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki przeciwbólowe",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na biegunkę",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na ból brzucha",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Plastry opatrunkowe",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Żel antybakteryjny",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Tabletki na alergie",
-                        categories: {connect: [{ id: apteczka }]},
+                        categories: { connect: [{ id: apteczka }] },
                     },
-                    
-                    
-                    
-                    
+
                     // Kosmetyczka
                     {
                         name: "Mydło / Żel pod prysznic",
@@ -279,7 +300,9 @@ async function main() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }, { id: odziez }] },
+                        categories: {
+                            connect: [{ id: higiena }, { id: obuwie }],
+                        },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",

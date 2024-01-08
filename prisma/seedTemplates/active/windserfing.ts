@@ -13,16 +13,17 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
     const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const sport = await getCategory("Sport")
+    const windsurfing = await getCategory("Windsurfing")
 
     // Nazwy list
     const windserfingList = {
@@ -41,302 +42,291 @@ async function main() {
             tripLength: null,
             elements: {
                 create: [
-              // Odzież
- {
-    name: "Koszulki",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Spodenki krótkie",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Spodnie długie",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Bluza / Sweter",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Piżama",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Skarpety",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Bielizna (majtki)",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Czapka z daszkiem",
-    categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
-},
+                    // Odzież
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    // Dokumenty
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    // Elektronika
+                    {
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: {
+                            connect: [{ id: elektronika }, { id: inne }],
+                        },
+                    },
+                    // Apteczka
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Środek na komary i kleszcze",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Bandaż",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Nożyczki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    // Kosmetyczka
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    // Łazienka / Higiena
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: {
+                            connect: [{ id: higiena }, { id: obuwie }],
+                        },
+                    },
+                    // Jedzenie
+                    {
+                        name: "Batony",
+                        categories: {
+                            connect: [{ id: jedzenie }],
+                        },
+                    },
+                    // Inne
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Worki na pranie",
+                        categories: {
+                            connect: [{ id: inne }],
+                        },
+                    },
+                    // Elektronika
+                    {
+                        name: "Zegarek sportowy",
+                        categories: {
+                            connect: [{ id: sport }, { id: elektronika }],
+                        },
+                    },
+                    {
+                        name: "Czujnik pulsu na klatkę piersiową",
+                        categories: {
+                            connect: [{ id: sport }, { id: elektronika }],
+                        },
+                    },
+                    {
+                        name: "Bielizna termoaktywna",
+                        categories: {
+                            connect: [{ id: sport }],
+                        },
+                    },
 
-
-// Dokumenty
-{
-    name: "Gotówka",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Dokumenty",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Ubezpieczenie podróżne",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Dowód osobisty",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Potwierdzenia rezerwacji",
-    categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-},
-
-
-
-// Elektronika
-{
-    name: "Aparat fotograficzny",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Ładowarka do telefonu + kabel",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Powerbank + kabel",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Słuchawki",
-    categories: { connect: [{ id: elektronika }, {id: joga}]},
-},
-{
-    name: "Książka / Czytnik typu Kindle",
-    categories: { connect: [{ id: elektronika }]},
-},
-
-
-
-// Apteczka
-{
-    name: "Leki",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki przeciwbólowe",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na biegunkę",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na ból brzucha",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Plastry opatrunkowe",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Żel antybakteryjny",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na alergie",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Środek na komary i kleszcze",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Bandaż",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Nożyczki",
-    categories: {connect: [{ id: apteczka }]},
-},
-
-
-
-
-
-// Kosmetyczka
-{
-    name: "Mydło / Żel pod prysznic",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szampon",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Odżywka do włosów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Pasta / Żel do włosów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Zestaw do golenia lub depilacji",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szczotka do włosów / Grzebień",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szczotka do zębów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Pasta do zębów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Nitka dentystyczna",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Dezodorant / Antyperspirant",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Nożyczki do paznokci",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-
-
-
-
-{
-    name: "Ręcznik",
-    categories: { connect: [{ id: higiena }] },
-},
-{
-    name: "Klapki pod prysznic",
-    categories: { connect: [{ id: higiena }, { id: odziez }] },
-},
-
-
-
-
-{
-    name: "Batony",
-    categories: { connect: [{ id: jedzenie }, {id: trekking}] },
-},
-{
-    name: "Okulary przeciwsłoneczne",
-    categories: { connect: [{ id: akcesoria }] },
-},
-{
-    name: "Worki na pranie",
-    categories: { connect: [{ id: inne }, {id: camping}] },
-},
-
-
-{
-    name: "Zegarek sportowy",
-    categories: { connect: [{ id: sport }, { id: elektronika}] },
-},
-{
-    name: "Czujnik pulsu na klatkę piersiową",
-    categories: { connect: [{ id: sport }, { id: elektronika}] },
-},
-{
-    name: "Bielizna termoaktywna",
-    categories: { connect: [{ id: sport }, { id: trekking }] },
-},
-
-
-
-// ACTIVE Windsurfing
-{
-    name: "Deska windsurfingowa",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Żagiel do windsurfingu",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Boom do windsurfingu",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Uprząż windsurfingowa",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Pianka neoprenowa",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Buty neoprenowe",
-    categories: { connect: [{ id: windsurfing }, {id: morsowanie}] },
-},
-{
-    name: "Rękawiczki neoprenowe",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Wiatrówka",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Strój kąpielowy",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Ręcznik szybkoschnący",
-    categories: { connect: [{ id: windsurfing }, { id: nurkowanie }] },
-},
-{
-    name: "Zegarek wodoszczelny",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Woda",
-    categories: { connect: [{ id: campingRodzinny }, {id: camping}, {id: jedzenie}, { id: zeglarstwo }, { id: winsurfing }, { id: nurkowanie }, { id: sport }] },
-},
-{
-    name: "Batony energetyczne",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Energetyk w proszku",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Plecak lub torba",
-    categories: { connect: [{ id: windsurfing }, { id: nurkowanie }] },
-},
-{
-    name: "Kurs windsurfingu",
-    categories: { connect: [{ id: windsurfing }] },
-},
-{
-    name: "Instruktor windsurfingu",
-    categories: { connect: [{ id: windsurfing }] },
-}
-
-
-
+                    // ACTIVE Windsurfing
+                    {
+                        name: "Deska windsurfingowa",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Żagiel do windsurfingu",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Boom do windsurfingu",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Uprząż windsurfingowa",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Pianka neoprenowa",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Buty neoprenowe",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Rękawiczki neoprenowe",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Wiatrówka",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Ręcznik szybkoschnący",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Zegarek wodoszczelny",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Woda",
+                        categories: { connect: [{ id: jedzenie }] },
+                    },
+                    {
+                        name: "Batony energetyczne",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Energetyk w proszku",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Plecak lub torba",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Kurs windsurfingu",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
+                    {
+                        name: "Instruktor windsurfingu",
+                        categories: { connect: [{ id: windsurfing }] },
+                    },
                 ],
             },
         },
     })
-
 }
 
 main()

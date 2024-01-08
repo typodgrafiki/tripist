@@ -13,16 +13,17 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
     const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const sport = await getCategory("Sport")
+    const wspinaczka = await getCategory("Ścianka wspinaczkowa")
 
     // Nazwy list
     const wspinaczkaList = {
@@ -41,323 +42,361 @@ async function main() {
             tripLength: null,
             elements: {
                 create: [
-                     // Odzież
- {
-    name: "Koszulki",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Spodenki krótkie",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Spodnie długie",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Bluza / Sweter",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Piżama",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Skarpety",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Bielizna (majtki)",
-    categories: { connect: [{ id: odziez }] },
-},
-{
-    name: "Czapka z daszkiem",
-    categories: { connect: [{ id: odziez }, { id: zeglarstwo }] },
-},
+                    // Odzież
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    // Dokumenty
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    // Elektronika
+                    {
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: {
+                            connect: [{ id: elektronika }, { id: inne }],
+                        },
+                    },
+                    // Apteczka
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Środek na komary i kleszcze",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Bandaż",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Nożyczki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    // Kosmetyczka
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    // Łazienka / Higiena
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: {
+                            connect: [{ id: higiena }, { id: obuwie }],
+                        },
+                    },
+                    // Jedzenie
+                    {
+                        name: "Batony",
+                        categories: {
+                            connect: [{ id: jedzenie }],
+                        },
+                    },
+                    // Inne
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Worki na pranie",
+                        categories: {
+                            connect: [{ id: inne }],
+                        },
+                    },
+                    // Elektronika
+                    {
+                        name: "Zegarek sportowy",
+                        categories: {
+                            connect: [{ id: sport }, { id: elektronika }],
+                        },
+                    },
+                    {
+                        name: "Czujnik pulsu na klatkę piersiową",
+                        categories: {
+                            connect: [{ id: sport }, { id: elektronika }],
+                        },
+                    },
+                    {
+                        name: "Bielizna termoaktywna",
+                        categories: {
+                            connect: [{ id: sport }],
+                        },
+                    },
 
-
-// Dokumenty
-{
-    name: "Gotówka",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Dokumenty",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Ubezpieczenie podróżne",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Dowód osobisty",
-    categories: { connect: [{ id: dokumenty }]},
-},
-{
-    name: "Potwierdzenia rezerwacji",
-    categories: { connect: [{ id: dokumenty }, {id: biznes}] },
-},
-
-
-
-// Elektronika
-{
-    name: "Aparat fotograficzny",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Ładowarka do telefonu + kabel",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Powerbank + kabel",
-    categories: { connect: [{ id: elektronika }]},
-},
-{
-    name: "Słuchawki",
-    categories: { connect: [{ id: elektronika }, {id: joga}]},
-},
-{
-    name: "Książka / Czytnik typu Kindle",
-    categories: { connect: [{ id: elektronika }]},
-},
-
-
-
-// Apteczka
-{
-    name: "Leki",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki przeciwbólowe",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na biegunkę",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na ból brzucha",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Plastry opatrunkowe",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Żel antybakteryjny",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Tabletki na alergie",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Środek na komary i kleszcze",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Bandaż",
-    categories: {connect: [{ id: apteczka }]},
-},
-{
-    name: "Nożyczki",
-    categories: {connect: [{ id: apteczka }]},
-},
-
-
-
-
-
-// Kosmetyczka
-{
-    name: "Mydło / Żel pod prysznic",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szampon",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Odżywka do włosów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Pasta / Żel do włosów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Zestaw do golenia lub depilacji",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szczotka do włosów / Grzebień",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Szczotka do zębów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Pasta do zębów",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Nitka dentystyczna",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Dezodorant / Antyperspirant",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-{
-    name: "Nożyczki do paznokci",
-    categories: { connect: [{ id: kosmetyczka }] },
-},
-
-
-
-
-{
-    name: "Ręcznik",
-    categories: { connect: [{ id: higiena }] },
-},
-{
-    name: "Klapki pod prysznic",
-    categories: { connect: [{ id: higiena }, { id: odziez }] },
-},
-
-
-
-
-{
-    name: "Batony",
-    categories: { connect: [{ id: jedzenie }, {id: trekking}] },
-},
-{
-    name: "Okulary przeciwsłoneczne",
-    categories: { connect: [{ id: akcesoria }] },
-},
-{
-    name: "Worki na pranie",
-    categories: { connect: [{ id: inne }, {id: camping}] },
-},
-
-
-{
-    name: "Zegarek sportowy",
-    categories: { connect: [{ id: sport }, { id: elektronika}] },
-},
-{
-    name: "Czujnik pulsu na klatkę piersiową",
-    categories: { connect: [{ id: sport }, { id: elektronika}] },
-},
-{
-    name: "Bielizna termoaktywna",
-    categories: { connect: [{ id: sport }, { id: trekking }] },
-},
-
-
-
-// ACTIVE wspinaczka
-{
-    name: "Uprząż wspinaczkowa",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Kask wspinaczkowy",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Karabinki",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Ekspresy",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Lina wspinaczkowa",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Przyrząd asekuracyjny",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Buty wspinaczkowe",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Magnesja",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Taśmy",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Pętle",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Przyrządy do zjazdów",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Koc ratunkowy",
-    categories: { connect: [{ id: wspinaczka }, { id: survival }] },
-},
-{
-    name: "Elastyczne spodnie",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Przewiewne koszulki",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Kurtka przeciwdeszczowa/wiatrówka",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Plecak wspinaczkowy",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Bidon",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Bukłak",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Energetyczne przekąski",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Środki do oczyszczania wody",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Mapy wspinaczkowe",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Przewodniki wspinaczkowe",
-    categories: { connect: [{ id: wspinaczka }] },
-},
-{
-    name: "Plastry wspinaczkowe",
-    categories: { connect: [{ id: wspinaczka }] },
-}
+                    // ACTIVE wspinaczka
+                    {
+                        name: "Uprząż wspinaczkowa",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Kask wspinaczkowy",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Karabinki",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Ekspresy",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Lina wspinaczkowa",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Przyrząd asekuracyjny",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Buty wspinaczkowe",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Magnesja",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Taśmy",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Pętle",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Przyrządy do zjazdów",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Koc ratunkowy",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: apteczka }],
+                        },
+                    },
+                    {
+                        name: "Elastyczne spodnie",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Przewiewne koszulki",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Kurtka przeciwdeszczowa/wiatrówka",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Plecak wspinaczkowy",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Bidon",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Bukłak",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Energetyczne przekąski",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Środki do oczyszczania wody",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Mapy wspinaczkowe",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Przewodniki wspinaczkowe",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
+                    {
+                        name: "Plastry wspinaczkowe",
+                        categories: {
+                            connect: [{ id: wspinaczka }, { id: sport }],
+                        },
+                    },
                 ],
             },
         },
     })
-
 }
 
 main()
