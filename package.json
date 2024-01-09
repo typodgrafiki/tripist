@@ -7,12 +7,10 @@
         "build": "prisma generate & next build",
         "start": "next start",
         "lint": "next lint",
-        "seed:sample": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedSampleList.ts",
-        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedTemplatesSummer.ts",
-        "seed:deleteAllUsers": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/deleteAllUsers.ts"
-    },
-    "prisma": {
-        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seedSampleList.ts"
+        "seed:sample": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedSample.ts",
+        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedtemplates/seed.ts",
+        "seed:deleteAllUsers": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteAllUsers.ts",
+        "seed:deleteAllTemplates": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteAllTemplates.ts"
     },
     "dependencies": {
         "@prisma/client": "^5.7.1",

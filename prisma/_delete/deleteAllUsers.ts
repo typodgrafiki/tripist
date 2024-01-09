@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-async function main() {
+export async function deleteUsers() {
     // delete categories
     await prisma.category.deleteMany({
         where: {},
@@ -46,7 +46,7 @@ async function main() {
     })
 }
 
-main()
+deleteUsers()
     .catch((e) => {
         throw e
     })

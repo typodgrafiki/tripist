@@ -2,12 +2,12 @@
 // npm run seed:sample
 // npm run seed:template
 
-import { getCategory, getType } from "../seedHelpers"
+import { getCategory, getType } from "../../_helpers/seedHelpers"
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-async function main() {
+export async function trainingType() {
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
     const obuwie = await getCategory("Obuwie")
@@ -20,7 +20,7 @@ async function main() {
     const sport = await getCategory("Sport")
     const higiena = await getCategory("Łazienka / Higiena")
 
-    const trainingTemplateType = await getType("active", "Trening")
+    const trainingTemplateType = await getType("training", "Trening")
     const training_silownia = await prisma.template.create({
         data: {
             name: "Siłownia",
@@ -670,11 +670,3 @@ async function main() {
         },
     })
 }
-
-main()
-    .catch((e) => {
-        throw e
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })

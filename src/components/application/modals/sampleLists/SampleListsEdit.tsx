@@ -2,7 +2,10 @@ import React, { useRef, useState, useEffect, useContext } from "react"
 import { getSampleList } from "@/actions/axiosActions"
 import { SampleContext } from "@/context/SampleListContext"
 import { changeSampleCustomDataToComponent, countItems } from "@/utils/utils"
-import { TSampleCustomCategoryApi, TPanelsCollapsedTypeProps } from "@/types/types"
+import {
+    TSampleCustomCategoryApi,
+    TPanelsCollapsedTypeProps,
+} from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
 import IconCheck from "../../icons/check"
 import ModalLoading from "@/components/ui/ModalLoading"
@@ -22,7 +25,7 @@ export default function SampleListsEdit() {
         importedList,
         dataCustomList: data,
         setDataCustomList: setData,
-        isPending
+        isPending,
     } = useContext(SampleContext)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -86,7 +89,7 @@ export default function SampleListsEdit() {
     return (
         <div>
             <ModalTitle>Dostosuj elementy na liście</ModalTitle>
-            <div>
+            <div className="overflow-y-auto max-h-inner-modal">
                 {Object.entries(data).map(([category, items], index) => (
                     <SampleListsCategoryEdit
                         key={category}

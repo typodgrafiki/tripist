@@ -2,12 +2,12 @@
 // npm run seed:sample
 // npm run seed:template
 
-import { getCategory, getType } from "../../seedHelpers"
+import { getCategory, getType } from "../../_helpers/seedHelpers"
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-async function main() {
+export async function activeBieg() {
     // Tworzenie typu
     const activeTemplateType = await getType("active", "Wakacje aktywne")
 
@@ -427,11 +427,3 @@ async function main() {
         },
     })
 }
-
-main()
-    .catch((e) => {
-        throw e
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })

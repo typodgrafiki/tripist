@@ -77,6 +77,8 @@ type FullNameType =
 
 // Funkcja tworzenia lub wyszukiwania typu
 export async function getType(nameType: NameType, fullName: FullNameType) {
+    console.log(nameType)
+
     let templateType = await prisma.listType.findFirst({
         where: { name: nameType },
     })

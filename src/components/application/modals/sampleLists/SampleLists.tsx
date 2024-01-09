@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, ReactNode } from "react"
+import { useState } from "react"
 import { useContext } from "react"
 import { SampleContext } from "@/context/SampleListContext"
 import ModalTitle from "@/components/ui/ModalTitle"
@@ -12,10 +12,9 @@ import {
     TSampleListOptions,
 } from "@/types/types"
 import ArrowDown from "../../icons/arrowDown"
-import { type } from "os"
 
 export default function ControlPanels({ data }: { data: TSampleType[] }) {
-    const { activePanel, togglePanel } = usePanelControl(1)
+    const { activePanel, togglePanel } = usePanelControl(null)
 
     return (
         <div className="mt-4 overflow-y-auto max-h-inner-modal">
@@ -100,8 +99,6 @@ const SampleList = ({ name: type, options }: TSampleList) => {
         const [id, days] = e.target.value.split("_").map(Number)
         setImportedList({ id, days, type })
         setSelectedRadioId(id)
-
-        console.log(name)
     }
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

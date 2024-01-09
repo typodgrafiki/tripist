@@ -1,11 +1,11 @@
 // npx prisma db seed
 
 import { PrismaClient } from "@prisma/client"
-import { getCategory, getType } from "./seedHelpers"
+import { getCategory, getType } from "../_helpers/seedHelpers"
 
 const prisma = new PrismaClient()
 
-async function main() {
+export async function sampleLists() {
     // Tworzenie typów wyjazdów i zapisywanie ich ID
     const trainingType = await getType("training", "Trening")
     const vacationSummerType = await getType("summer", "Wakacje letnie")
@@ -204,11 +204,3 @@ async function main() {
         },
     })
 }
-
-main()
-    .catch((e) => {
-        throw e
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })
