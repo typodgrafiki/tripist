@@ -13,16 +13,17 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const narty = await getCategory("Narty")
+    const zima = await getCategory("Zima")
 
     // Nazwy list
     const nartyList = {
@@ -48,7 +49,7 @@ async function main() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Spodnie dresowe",
+                        name: "Spodnie",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -70,33 +71,32 @@ async function main() {
                     // Odzież zima
                     {
                         name: "Kurtka",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: zima }],
+                        },
                     },
                     {
                         name: "Rękawiczki",
                         categories: {
-                            connect: [
-                                { id: odziez },
-                                { id: survival },
-                                { id: citybreak_zima },
-                            ],
+                            connect: [{ id: odziez }, { id: zima }],
                         },
                     },
                     {
                         name: "Czapka zimowa",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: {
+                            connect: [{ id: odziez }, { id: zima }],
+                        },
                     },
                     {
                         name: "Szalik",
                         categories: {
-                            connect: [
-                                { id: odziez },
-                                { id: survival },
-                                { id: citybreak_zima },
-                            ],
+                            connect: [{ id: odziez }, { id: zima }],
                         },
                     },
-
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
                     // ZIMA Narty
                     {
                         name: "Narty i wiązania narciarskie",
@@ -112,9 +112,7 @@ async function main() {
                     },
                     {
                         name: "Gogle narciarskie",
-                        categories: {
-                            connect: [{ id: narty }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Kask narciarski",
@@ -134,21 +132,15 @@ async function main() {
                     },
                     {
                         name: "Bielizna termiczna",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Spodnie termiczne",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Koszulka termiczna",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Polar / Bluza narciarska",
@@ -172,44 +164,29 @@ async function main() {
                     },
                     {
                         name: "Komin narciarski",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Maska na twarz narciarska",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Plecak narciarski",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Balsam do ust",
                         categories: {
-                            connect: [
-                                { id: narty },
-                                { id: snowboard },
-                                { id: snowboard },
-                                { id: citybreak_zima },
-                            ],
+                            connect: [{ id: narty }, { id: zima }],
                         },
                     },
                     {
                         name: "Mapa tras narciarskich",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
                     {
                         name: "Kamera sportowa",
-                        categories: {
-                            connect: [{ id: narty }, { id: snowboard }],
-                        },
+                        categories: { connect: [{ id: narty }] },
                     },
 
                     // Dokumenty
@@ -239,15 +216,11 @@ async function main() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -332,10 +305,6 @@ async function main() {
                         name: "Zestaw do golenia lub depilacji",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -360,7 +329,6 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
@@ -368,26 +336,25 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
-
                     {
                         name: "Batony",
                         categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
+                            connect: [{ id: jedzenie }],
                         },
                     },
                     {
                         name: "Worki na pranie",
                         categories: {
-                            connect: [{ id: inne }, { id: camping }],
+                            connect: [{ id: inne }],
                         },
                     },
                     {
                         name: "Zegarek sportowy",
                         categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
+                            connect: [{ id: elektronika }],
                         },
                     },
                 ],

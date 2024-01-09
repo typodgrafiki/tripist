@@ -13,16 +13,17 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchnia = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const camping = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
+    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
+    const apteczka = await getCategory("Apteczka")
+    const kosmetyczka = await getCategory("Kosmetyczka")
+    const trekking = await getCategory("Trekking")
+    const zima = await getCategory("Zima")
 
     // Nazwy list
     const trekkingList = {
@@ -33,7 +34,7 @@ async function main() {
 
     // Trekking 3, 7
 
-    const trekkingN= await prisma.template.create({
+    const trekkingN = await prisma.template.create({
         data: {
             name: trekkingList.name,
             settingColor: "bg-blue-400",
@@ -58,38 +59,41 @@ async function main() {
                         name: "Bielizna (majtki)",
                         categories: { connect: [{ id: odziez }] },
                     },
-                    
                     {
                         name: "Bielizna termoaktywna",
                         categories: {
-                            connect: [{ id: sport }, { id: trekking }],
+                            connect: [{ id: trekking }, { id: odziez }],
                         },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: odziez }],
+                        },
                     },
                     {
                         name: "Buty trekkingowe",
                         categories: {
-                            connect: [{ id: trekking }, { id: survival }],
+                            connect: [{ id: trekking }, { id: odziez }],
                         },
-                    },
-                    {
-                        name: "Baterie do czołówki",
-                        categories: { connect: [{ id: trekking }] },
                     },
                     {
                         name: "Kijki trekkingowe",
@@ -105,57 +109,85 @@ async function main() {
                         name: "Plecak trekkingowy",
                         categories: { connect: [{ id: trekking }] },
                     },
-                    
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+
                     // Trekking + zima
                     {
                         name: "Raki",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Raczki",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Stuptuty",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Rękawice grube 2x",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Rękawice cienkie 2x",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Gogle narciarskie",
-                        categories: { connect: [{ id: trekking }, { id: narty }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Czapka zimowa gruba",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Czapka zimowa cienka",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Komin polarowy (na szyję)",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Tłusty krem do twarzy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Kurtka puchowa (opcjonalnie)",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
                     {
                         name: "Termos z ciepłą herbatą",
-                        categories: { connect: [{ id: trekking }, {id: sport}] },
+                        categories: {
+                            connect: [{ id: trekking }, { id: zima }],
+                        },
                     },
-                    
+
                     // Dokumenty
                     {
                         name: "Gotówka",
@@ -172,10 +204,10 @@ async function main() {
                     {
                         name: "Potwierdzenia rezerwacji",
                         categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
+                            connect: [{ id: dokumenty }],
                         },
                     },
-                    
+
                     // Elektronika
                     {
                         name: "Aparat fotograficzny",
@@ -189,7 +221,7 @@ async function main() {
                         name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
-                    
+
                     {
                         name: "Czołówka (latarka)",
                         categories: { connect: [{ id: elektronika }] },
@@ -200,9 +232,11 @@ async function main() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: {
+                            connect: [{ id: elektronika }, { id: inne }],
+                        },
                     },
-                    
+
                     // Apteczka
                     {
                         name: "Leki",
@@ -240,7 +274,7 @@ async function main() {
                         name: "Nożyczki",
                         categories: { connect: [{ id: apteczka }] },
                     },
-                    
+
                     // Kosmetyczka
                     {
                         name: "Mydło / Żel pod prysznic",
@@ -258,10 +292,6 @@ async function main() {
                         name: "Pasta / Żel do włosów",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Kosmetyki do makijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Szczotka do włosów / Grzebień",
                         categories: { connect: [{ id: kosmetyczka }] },
@@ -286,20 +316,16 @@ async function main() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // {
-                    //     name: "Płyn do demakijażu",
-                    //     categories: { connect: [{ id: kosmetyczka }] },
-                    // },
                     {
                         name: "Mokre chusteczki",
                         categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
                         name: "Papier toaletowy",
                         categories: {
-                            connect: [{ id: higiena }, { id: survival }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -309,25 +335,14 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
-                    
-                    
+
                     // Jedzenie
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [
-                                { id: campingRodzinny },
-                                { id: camping },
-                                { id: jedzenie },
-                                { id: zeglarstwo },
-                                { id: winsurfing },
-                                { id: nurkowanie },
-                                { id: sport },
-                            ],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Pieczywo",
@@ -343,12 +358,9 @@ async function main() {
                             connect: [{ id: jedzenie }, { id: trekking }],
                         },
                     },
-                    
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Karty do gry",
@@ -357,9 +369,10 @@ async function main() {
                     {
                         name: "Zegarek sportowy",
                         categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
+                            connect: [{ id: elektronika }],
                         },
-                    },                ],
+                    },
+                ],
             },
         },
     })

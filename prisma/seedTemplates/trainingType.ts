@@ -25,7 +25,6 @@ async function main() {
         data: {
             name: "Siłownia",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -143,7 +142,6 @@ async function main() {
         data: {
             name: "Morsowanie",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -204,7 +202,6 @@ async function main() {
         data: {
             name: "Basen",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -255,7 +252,6 @@ async function main() {
         data: {
             name: "Joga",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -300,7 +296,6 @@ async function main() {
         data: {
             name: "Ścianka wspinaczkowa",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -378,7 +373,6 @@ async function main() {
         data: {
             name: "Crossfit",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -512,7 +506,6 @@ async function main() {
         data: {
             name: "Kajak",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [
@@ -582,7 +575,6 @@ async function main() {
         data: {
             name: "Sztuki walki",
             settingColor: "bg-blue-400",
-            start: false,
             listTypeId: trainingTemplateType,
             elements: {
                 create: [

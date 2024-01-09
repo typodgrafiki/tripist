@@ -22,6 +22,7 @@ async function main() {
     const kosmetyczka = await getCategory("Kosmetyczka")
     const sport = await getCategory("Sport")
     const trekking = await getCategory("Trekking")
+    const zima = await getCategory("Zima")
 
     // Nazwy list
     const cityBreakList = {
@@ -68,27 +69,23 @@ async function main() {
                     },
                     {
                         name: "Kurtka / Płaszcz",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: { connect: [{ id: odziez }, { id: zima }] },
                     },
                     {
                         name: "Rękawiczki",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }, { id: zima }] },
                     },
                     {
                         name: "Czapka zimowa",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: { connect: [{ id: odziez }, { id: zima }] },
                     },
                     {
                         name: "Rajstopy / kalesony",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: { connect: [{ id: odziez }, { id: zima }] },
                     },
                     {
                         name: "Szalik",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }, { id: zima }] },
                     },
 
                     // Citybreak
@@ -104,7 +101,11 @@ async function main() {
                     {
                         name: "Termos z ciepłą herbatą",
                         categories: {
-                            connect: [{ id: trekking }, { id: sport }],
+                            connect: [
+                                { id: trekking },
+                                { id: sport },
+                                { id: zima },
+                            ],
                         },
                     },
                     // Dokumenty

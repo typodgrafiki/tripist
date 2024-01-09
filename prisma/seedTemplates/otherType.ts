@@ -12,25 +12,20 @@ async function main() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
+    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const jedzenie = await getCategory("Jedzenie")
-    const kuchniaCategory = await getCategory("Kuchnia")
     const higiena = await getCategory("Łazienka / Higiena")
-    const campervanCategory = await getCategory("Camping")
-    const plaza = await getCategory("Plaża")
-    const trekking = await getCategory("Trekking")
     const dokumenty = await getCategory("Dokumenty")
-    const biznes = await getCategory("Biznes")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
+    const biznes = await getCategory("Biznes")
 
     const businessTripList = await prisma.template.create({
         data: {
             name: "Podróż biznesowa",
             settingColor: "bg-violet-400",
-            start: false,
             listTypeId: inneType,
             tripLength: 3,
             elements: {
@@ -74,21 +69,15 @@ async function main() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     // Apteczka
                     {
@@ -164,7 +153,7 @@ async function main() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }, { id: obuwie }],
                         },
                     },
                     // Akcesoria
