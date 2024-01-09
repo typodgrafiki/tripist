@@ -28,7 +28,7 @@ export async function sampleLists() {
                 create: [
                     {
                         name: "Słuchawki",
-                        categories: { connect: [{ id: inneCategory }] },
+                        categories: { connect: [{ id: technologiaCategory }] },
                     },
                     {
                         name: "Kłódka do szafki",
@@ -48,21 +48,15 @@ export async function sampleLists() {
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: technologiaCategory }] },
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: akcesoriaCategory }] },
                     },
                     {
                         name: "Ręcznik",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: higienaCategory }] },
                     },
                     {
                         name: "Buty",
@@ -113,21 +107,15 @@ export async function sampleLists() {
                     },
                     {
                         name: "Powerbank",
-                        categories: {
-                            connect: [{ id: technologiaCategory }],
-                        },
+                        categories: { connect: [{ id: technologiaCategory }] },
                     },
                     {
                         name: "Adapter do gniazdek",
-                        categories: {
-                            connect: [{ id: technologiaCategory }],
-                        },
+                        categories: { connect: [{ id: technologiaCategory }] },
                     },
                     {
                         name: "Telefon komórkowy i ładowarka",
-                        categories: {
-                            connect: [{ id: technologiaCategory }],
-                        },
+                        categories: { connect: [{ id: technologiaCategory }] },
                     },
                     {
                         name: "Krem z filtrem UV",
@@ -147,21 +135,15 @@ export async function sampleLists() {
                     },
                     {
                         name: "Plecak lub torba na dzień",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: akcesoriaCategory }] },
                     },
                     {
                         name: "Kapelusz lub czapka",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: akcesoriaCategory }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
-                        categories: {
-                            connect: [{ id: akcesoriaCategory }],
-                        },
+                        categories: { connect: [{ id: akcesoriaCategory }] },
                     },
                     {
                         name: "Kurtka lub sweter",

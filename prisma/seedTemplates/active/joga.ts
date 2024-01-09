@@ -115,9 +115,7 @@ export async function activeJoga() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +210,12 @@ export async function activeJoga() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,102 +224,94 @@ export async function activeJoga() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE Joga i medytacja
                     {
                         name: "Mata do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     {
                         name: "Blok do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     {
                         name: "Pasek do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: sport }] },
                     },
                     {
                         name: "Poduszka do medytacji",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Koc do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Szal do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Wygodne ubrania do jogi",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Ciepłe ubrania",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bandana",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty sportowe",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Słuchawki",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Książki o jodze i medytacji",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Muzyka relaksacyjna",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dźwięki natury",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Plecak",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Torba",
-                        categories: { connect: [{ id: joga }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                 ],
             },

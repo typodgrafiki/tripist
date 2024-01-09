@@ -115,9 +115,7 @@ export async function activeBieg() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +210,12 @@ export async function activeBieg() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,183 +224,89 @@ export async function activeBieg() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // ACTIVE Bieganie
                     {
                         name: "Buty do biegania",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: obuwie },
-                            ],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Koszulki biegowe",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodenki biegowe",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Legginsy biegowe",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bielizna sportowa",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpety do biegania",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka biegowa",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Opaska na głowę",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki biegowe (cienkie)",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka biegowa",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Pasek na numer startowy",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: akcesoria },
-                            ],
-                        },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Plecak biegowy",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: inne },
-                            ],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Opaski kompresyjne",
-                        categories: {
-                            connect: [
-                                { id: bieganie },
-                                { id: sport },
-                                { id: odziez },
-                            ],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Izotonik w proszku",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Batony energetyczne",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Żele energetyczne",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Słuchawki bezprzewodowe",
@@ -414,13 +314,11 @@ export async function activeBieg() {
                     },
                     {
                         name: "Środki przeciw otarciom",
-                        categories: {
-                            connect: [{ id: sport }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Mapy i plany tras biegowych",
-                        categories: { connect: [{ id: sport }, { id: inne }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                 ],
             },
