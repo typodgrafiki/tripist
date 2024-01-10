@@ -13,7 +13,6 @@ export async function activeZeglarstwo() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeZeglarstwo() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const zeglarstwo = await getCategory("Żeglarstwo")
 
     // Nazwy list
@@ -115,9 +113,7 @@ export async function activeZeglarstwo() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +208,12 @@ export async function activeZeglarstwo() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,144 +222,94 @@ export async function activeZeglarstwo() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE Żeglarstwo
                     {
                         name: "Kurtka żeglarska",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie żeglarskie",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty żeglarskie",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki żeglarskie",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bandana",
-                        categories: {
-                            connect: [{ id: zeglarstwo }, { id: odziez }],
-                        },
-                    },
-                    {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: {
-                            connect: [{ id: zeglarstwo }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Warstwy termiczne",
-                        categories: {
-                            connect: [{ id: zeglarstwo }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kamizelka ratunkowa",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Ręczniki szybkoschnące",
-                        categories: {
-                            connect: [{ id: zeglarstwo }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapy nawigacyjne",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Kompas",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Lornetka",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Nóż żeglarski",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Latarka czołowa",
-                        categories: {
-                            connect: [{ id: zeglarstwo }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "GPS",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Ploter nawigacyjny",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: zeglarstwo }] },
                     },
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Prowiant",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Worki wodoszczelne",
-                        categories: {
-                            connect: [{ id: zeglarstwo }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                 ],
             },

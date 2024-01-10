@@ -18,12 +18,9 @@ export async function summerSafari() {
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
     const higiena = await getCategory("Łazienka / Higiena")
-    const jedzenie = await getCategory("Jedzenie")
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const plaza = await getCategory("Plaża")
-    const safari = await getCategory("Safari")
 
     // Nazwy list
     const safariList = {
@@ -75,15 +72,15 @@ export async function summerSafari() {
                     // Safari
                     {
                         name: "Przewiewne ubrania w kolorach neutralnych",
-                        categories: { connect: [{ id: safari }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Obuwie trekkingowe",
-                        categories: { connect: [{ id: safari }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Kapelusz z szerokim rondem",
-                        categories: { connect: [{ id: safari }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -91,19 +88,15 @@ export async function summerSafari() {
                     },
                     {
                         name: "Lornetka",
-                        categories: { connect: [{ id: safari }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plecak na wycieczki",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Butelka na wodę",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
                         name: "Przewodnik po dzikiej przyrodzie",
-                        categories: { connect: [{ id: safari }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Aparat fotograficzny z zoomem",
@@ -120,21 +113,15 @@ export async function summerSafari() {
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Dokumenty
@@ -164,21 +151,15 @@ export async function summerSafari() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -204,15 +185,11 @@ export async function summerSafari() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -301,9 +278,7 @@ export async function summerSafari() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {

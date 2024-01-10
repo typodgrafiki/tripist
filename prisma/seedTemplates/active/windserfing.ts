@@ -13,7 +13,6 @@ export async function activeWindsurfing() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeWindsurfing() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const windsurfing = await getCategory("Windsurfing")
 
     // Nazwy list
@@ -115,9 +113,7 @@ export async function activeWindsurfing() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +208,12 @@ export async function activeWindsurfing() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,28 +222,20 @@ export async function activeWindsurfing() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE Windsurfing
@@ -285,19 +269,19 @@ export async function activeWindsurfing() {
                     },
                     {
                         name: "Wiatrówka",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Ręcznik szybkoschnący",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Zegarek wodoszczelny",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Woda",
@@ -305,15 +289,15 @@ export async function activeWindsurfing() {
                     },
                     {
                         name: "Batony energetyczne",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Energetyk w proszku",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Plecak lub torba",
-                        categories: { connect: [{ id: windsurfing }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kurs windsurfingu",

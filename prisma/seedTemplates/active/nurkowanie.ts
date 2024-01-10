@@ -13,7 +13,6 @@ export async function activeNurkowanie() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeNurkowanie() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const nurkowanie = await getCategory("Nurkowanie")
 
     // Nazwy list
@@ -115,9 +113,7 @@ export async function activeNurkowanie() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +208,12 @@ export async function activeNurkowanie() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,150 +222,102 @@ export async function activeNurkowanie() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE Nurkowanie
                     {
                         name: "Maska nurkowa",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Płetwy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Snorkel",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Skrzela (BCD)",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Regulator nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Kombinezon nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Komputer nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Butla z powietrzem",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Latarka nurkowa",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Nóż nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Boja z linią",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Ręcznik szybkoschnący",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Torba na sprzęt nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Aparat fotograficzny podwodny",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Przekąski energetyczne",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Certyfikat nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Dziennik nurkowy",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Ubezpieczenie nurkowe",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Plecak lub torba",
-                        categories: {
-                            connect: [{ id: nurkowanie }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                 ],
             },

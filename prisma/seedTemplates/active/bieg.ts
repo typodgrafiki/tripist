@@ -22,8 +22,6 @@ export async function activeBieg() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
-    const bieganie = await getCategory("Bieganie")
 
     // Nazwy list
     const biegList = {

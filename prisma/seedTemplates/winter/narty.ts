@@ -13,7 +13,6 @@ export async function winterNarty() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -23,7 +22,6 @@ export async function winterNarty() {
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
     const narty = await getCategory("Narty")
-    const zima = await getCategory("Zima")
 
     // Nazwy list
     const nartyList = {
@@ -71,27 +69,19 @@ export async function winterNarty() {
                     // Odzież zima
                     {
                         name: "Kurtka",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka zimowa",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Szalik",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -124,69 +114,67 @@ export async function winterNarty() {
                     },
                     {
                         name: "Kurtka narciarska",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie narciarskie",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bielizna termiczna",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie termiczne",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Koszulka termiczna",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Polar / Bluza narciarska",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpety narciarskie",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawice narciarskie",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka narciarska",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Szalik narciarski",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Komin narciarski",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Maska na twarz narciarska",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak narciarski",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Balsam do ust",
-                        categories: {
-                            connect: [{ id: narty }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Mapa tras narciarskich",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kamera sportowa",
-                        categories: { connect: [{ id: narty }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
 
                     // Dokumenty
@@ -251,7 +239,7 @@ export async function winterNarty() {
 
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -335,27 +323,19 @@ export async function winterNarty() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },

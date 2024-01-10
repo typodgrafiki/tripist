@@ -13,7 +13,6 @@ export async function winterSnowboard() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -23,7 +22,6 @@ export async function winterSnowboard() {
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
     const snowboard = await getCategory("Snowboard")
-    const zima = await getCategory("Zima")
 
     // Nazwy list
     const snowboardList = {
@@ -71,27 +69,19 @@ export async function winterSnowboard() {
                     // Odzież zima
                     {
                         name: "Kurtka",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka zimowa",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Szalik",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -125,71 +115,63 @@ export async function winterSnowboard() {
                     },
                     {
                         name: "Kurtka snowboardowa",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie snowboardowe",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Koszulka termiczna",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie termiczne",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bielizna termiczna",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Polar / Bluza snowboardowa",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawice snowboardowe",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpety snowboardowe",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak snowboardowy",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa tras snowboardowych",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Komin narciarski",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Maska na twarz narciarska",
-                        categories: { connect: [{ id: snowboard }] },
-                    },
-                    {
-                        name: "Plecak narciarski",
-                        categories: { connect: [{ id: snowboard }] },
+                        name: "Maska na twarz snowboardowa",
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Balsam na usta",
-                        categories: { connect: [{ id: snowboard }] },
-                    },
-                    {
-                        name: "Mapa tras narciarskich",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Kamera sportowa",
-                        categories: { connect: [{ id: snowboard }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
 
                     // Dokumenty
@@ -254,7 +236,7 @@ export async function winterSnowboard() {
 
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -338,9 +320,7 @@ export async function winterSnowboard() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
 
                     {
@@ -349,15 +329,11 @@ export async function winterSnowboard() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },

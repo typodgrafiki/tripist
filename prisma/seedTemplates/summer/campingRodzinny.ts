@@ -23,16 +23,11 @@ export async function summerCamping() {
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
     const plaza = await getCategory("Plaża")
-    const camperVan = await getCategory("Campervan")
-    const sport = await getCategory("Sport")
     const jezioro = await getCategory("Jezioro")
-    const trekking = await getCategory("Trekking")
     const kuchnia = await getCategory("Kuchnia")
     const camping = await getCategory("Kemping")
     const samochod = await getCategory("Samochód")
-    const zima = await getCategory("Zima")
     const dzieci = await getCategory("Dzieci")
-    const zabawki = await getCategory("Zabawki")
 
     // Nazwy list
     const campingList = {
@@ -78,9 +73,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Sweter",
-                        categories: {
-                            connect: [{ id: odziez }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Piżama",
@@ -96,21 +89,15 @@ export async function summerCamping() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty na zmianę",
@@ -128,19 +115,15 @@ export async function summerCamping() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: odziez }, { id: plaza }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Torba plażowa",
@@ -148,9 +131,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Jezioro
@@ -216,9 +197,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -234,9 +213,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -391,15 +368,11 @@ export async function summerCamping() {
                     // Łazienka / Higiena
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -407,9 +380,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
 
                     // Samochód
@@ -423,9 +394,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Transmiter FM",
-                        categories: {
-                            connect: [{ id: samochod }],
-                        },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Klucz do kół, lewarek",
@@ -439,30 +408,21 @@ export async function summerCamping() {
                         name: "Kabel elektryczny dla kampera",
                         categories: { connect: [{ id: samochod }] },
                     },
-
                     {
                         name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
                         categories: { connect: [{ id: samochod }] },
                     },
-
                     {
                         name: "Butla z gazem",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
-
                     {
                         name: "Poduszki",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Kołdra lub śpiwory",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Namiot rodzinny",
@@ -472,66 +432,37 @@ export async function summerCamping() {
                         name: "Materac nadmuchiwany lub maty izolacyjne",
                         categories: { connect: [{ id: camping }] },
                     },
-
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
-                        },
-                    },
-                    {
-                        name: "Grill",
-                        categories: {
-                            connect: [{ id: camping }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Peleryna przeciwdeszczowa",
-                        categories: {
-                            connect: [{ id: camping }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Młotek do śledzi",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
-                    },
-                    {
-                        name: "Nóż",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Śrubokręt",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Przenośny grill",
-                        categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
-                        },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Worki na śmieci",
-                        categories: {
-                            connect: [{ id: camping }, { id: samochod }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Lampki kempingowe",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Krzesła i stół kempingowy",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Woda",
@@ -547,11 +478,8 @@ export async function summerCamping() {
                     },
                     {
                         name: "Parasol plażowy (opcjonalnie)",
-                        categories: {
-                            connect: [{ id: camping }, { id: plaza }],
-                        },
+                        categories: { connect: [{ id: plaza }] },
                     },
-
                     {
                         name: "Makarony",
                         categories: { connect: [{ id: jedzenie }] },
@@ -622,9 +550,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -640,9 +566,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Planszówki",
@@ -658,19 +582,11 @@ export async function summerCamping() {
                     },
                     {
                         name: "Taśma izolacyjna",
-                        categories: {
-                            connect: [
-                                { id: inne },
-                                { id: camping },
-                                { id: samochod },
-                            ],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapy papierowe",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Dzieci
@@ -696,9 +612,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Składany, lekki namiot",
-                        categories: {
-                            connect: [{ id: plaza }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne dla dzieci",
@@ -706,15 +620,11 @@ export async function summerCamping() {
                     },
                     {
                         name: "Butelki z filtrem na wodę",
-                        categories: {
-                            connect: [{ id: dzieci }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zabawki do zabawy na świeżym powietrzu",
-                        categories: {
-                            connect: [{ id: zabawki }, { id: dzieci }],
-                        },
+                        categories: { connect: [{ id: dzieci }] },
                     },
                     {
                         name: "Nosidełko",
@@ -726,9 +636,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Dziecięce środki przeciwsłoneczne",
-                        categories: {
-                            connect: [{ id: dzieci }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                 ],
             },
@@ -784,7 +692,7 @@ export async function summerCamping() {
                     {
                         name: "Czapka z daszkiem lub kapelusz",
                         categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
+                            connect: [{ id: odziez }],
                         },
                     },
                     {
@@ -795,23 +703,19 @@ export async function summerCamping() {
                     // Plaża
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: odziez }, { id: plaza }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Dokumenty
@@ -859,9 +763,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -877,9 +779,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -1034,15 +934,11 @@ export async function summerCamping() {
                     // Łazienka / Higiena
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -1050,9 +946,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
 
                     // Samochód
@@ -1066,9 +960,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Transmiter FM",
-                        categories: {
-                            connect: [{ id: samochod }],
-                        },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Klucz do kół, lewarek",
@@ -1082,30 +974,21 @@ export async function summerCamping() {
                         name: "Kabel elektryczny dla kampera",
                         categories: { connect: [{ id: samochod }] },
                     },
-
                     {
                         name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
                         categories: { connect: [{ id: samochod }] },
                     },
-
                     {
                         name: "Butla z gazem",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
-
                     {
                         name: "Poduszki",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Kołdra lub śpiwory",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Namiot rodzinny",
@@ -1115,66 +998,37 @@ export async function summerCamping() {
                         name: "Materac nadmuchiwany lub maty izolacyjne",
                         categories: { connect: [{ id: camping }] },
                     },
-
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
-                        },
-                    },
-                    {
-                        name: "Grill",
-                        categories: {
-                            connect: [{ id: camping }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Peleryna przeciwdeszczowa",
-                        categories: {
-                            connect: [{ id: camping }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Młotek do śledzi",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
-                    },
-                    {
-                        name: "Nóż",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Śrubokręt",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Przenośny grill",
-                        categories: {
-                            connect: [{ id: camping }, { id: kuchnia }],
-                        },
+                        categories: { connect: [{ id: kuchnia }] },
                     },
                     {
                         name: "Worki na śmieci",
-                        categories: {
-                            connect: [{ id: camping }, { id: samochod }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Lampki kempingowe",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Krzesła i stół kempingowy",
-                        categories: {
-                            connect: [{ id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Woda",
@@ -1190,11 +1044,8 @@ export async function summerCamping() {
                     },
                     {
                         name: "Parasol plażowy (opcjonalnie)",
-                        categories: {
-                            connect: [{ id: camping }, { id: plaza }],
-                        },
+                        categories: { connect: [{ id: plaza }] },
                     },
-
                     {
                         name: "Makarony",
                         categories: { connect: [{ id: jedzenie }] },
@@ -1265,9 +1116,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -1283,9 +1132,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Planszówki",
@@ -1301,19 +1148,11 @@ export async function summerCamping() {
                     },
                     {
                         name: "Taśma izolacyjna",
-                        categories: {
-                            connect: [
-                                { id: inne },
-                                { id: camping },
-                                { id: samochod },
-                            ],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapy papierowe",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Dzieci
@@ -1339,9 +1178,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Składany, lekki namiot",
-                        categories: {
-                            connect: [{ id: plaza }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: camping }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne dla dzieci",
@@ -1349,15 +1186,11 @@ export async function summerCamping() {
                     },
                     {
                         name: "Butelki z filtrem na wodę",
-                        categories: {
-                            connect: [{ id: dzieci }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zabawki do zabawy na świeżym powietrzu",
-                        categories: {
-                            connect: [{ id: zabawki }, { id: dzieci }],
-                        },
+                        categories: { connect: [{ id: dzieci }] },
                     },
                     {
                         name: "Nosidełko",
@@ -1369,9 +1202,7 @@ export async function summerCamping() {
                     },
                     {
                         name: "Dziecięce środki przeciwsłoneczne",
-                        categories: {
-                            connect: [{ id: dzieci }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                 ],
             },

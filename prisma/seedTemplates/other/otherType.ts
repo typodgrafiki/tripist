@@ -12,7 +12,6 @@ export async function otherType() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -20,7 +19,7 @@ export async function otherType() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const biznes = await getCategory("Biznes")
+    const jedzenie = await getCategory("Jedzenie")
 
     const businessTripList = await prisma.template.create({
         data: {
@@ -152,9 +151,7 @@ export async function otherType() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Akcesoria
                     {
@@ -168,61 +165,43 @@ export async function otherType() {
                     // Biznes Odzież
                     {
                         name: "Elegancki strój",
-                        categories: {
-                            connect: [{ id: odziez }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Koszule",
-                        categories: {
-                            connect: [{ id: odziez }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty eleganckie",
-                        categories: {
-                            connect: [{ id: odziez }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Pasek do spodni",
-                        categories: {
-                            connect: [{ id: akcesoria }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Płaszcz lub lekka kurtka",
-                        categories: {
-                            connect: [{ id: odziez }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Laptop",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Adapter do gniazdek",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: biznes }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Wizytówki",
-                        categories: { connect: [{ id: biznes }] },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Telefon komórkowy i ładowarka",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Notatnik i długopisy",
@@ -233,8 +212,12 @@ export async function otherType() {
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
+                        name: "Teczka",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
                         name: "Przekąski i butelka na wodę",
-                        categories: { connect: [{ id: inne }] },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Książka lub e-czytnik",

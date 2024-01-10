@@ -11,11 +11,11 @@ export async function sampleLists() {
     const vacationSummerType = await getType("summer", "Wakacje letnie")
 
     // Tworzenie kategorii
-    const odziezCategory = await getCategory("Odzież")
-    const akcesoriaCategory = await getCategory("Akcesoria")
-    const higienaCategory = await getCategory("Łazienka / Higiena")
-    const technologiaCategory = await getCategory("Elektronika")
-    const inneCategory = await getCategory("Inne")
+    const odziez = await getCategory("Odzież")
+    const akcesoria = await getCategory("Akcesoria")
+    const higiena = await getCategory("Łazienka / Higiena")
+    const elektronika = await getCategory("Elektronika")
+    const inne = await getCategory("Inne")
 
     // Tworzenie listy predefiniowanej dla treningu na siłowni
     const gymList = await prisma.template.create({
@@ -28,55 +28,55 @@ export async function sampleLists() {
                 create: [
                     {
                         name: "Słuchawki",
-                        categories: { connect: [{ id: technologiaCategory }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Kłódka do szafki",
-                        categories: { connect: [{ id: inneCategory }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Dezodorant",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Szampon",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Żel pod prysznic",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: { connect: [{ id: technologiaCategory }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: { connect: [{ id: akcesoriaCategory }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Ręcznik",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Buty",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bokserki",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpety",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodenki",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Koszulka",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },
@@ -95,91 +95,91 @@ export async function sampleLists() {
                 create: [
                     {
                         name: "Parasol",
-                        categories: { connect: [{ id: inneCategory }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Dokumenty podróży",
-                        categories: { connect: [{ id: inneCategory }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Przewodnik turystyczny lub aplikacja z mapą",
-                        categories: { connect: [{ id: inneCategory }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Powerbank",
-                        categories: { connect: [{ id: technologiaCategory }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Adapter do gniazdek",
-                        categories: { connect: [{ id: technologiaCategory }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Telefon komórkowy i ładowarka",
-                        categories: { connect: [{ id: technologiaCategory }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Leki osobiste",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Szczoteczka i pasta do zębów",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Podstawowe kosmetyki",
-                        categories: { connect: [{ id: higienaCategory }] },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Plecak lub torba na dzień",
-                        categories: { connect: [{ id: akcesoriaCategory }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Kapelusz lub czapka",
-                        categories: { connect: [{ id: akcesoriaCategory }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoriaCategory }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Kurtka lub sweter",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty na wieczorne wyjścia",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Wygodne buty do chodzenia",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpety",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Piżama",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bielizna",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Ubrania na wieczór",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Wygodne spodnie lub spódnice",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Lekkie ubrania na dzień",
-                        categories: { connect: [{ id: odziezCategory }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

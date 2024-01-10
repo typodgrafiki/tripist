@@ -21,9 +21,6 @@ export async function summerTrekking() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
-    const trekking = await getCategory("Trekking")
-    const camping = await getCategory("Kemping")
 
     // Nazwy list
     const trekkingList = {
@@ -74,39 +71,27 @@ export async function summerTrekking() {
 
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Czołówka",
@@ -118,19 +103,15 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Kijki trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lub przewodnik",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Dokumenty
                     {
@@ -147,9 +128,7 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -167,9 +146,7 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -257,15 +234,11 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -273,35 +246,25 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butla z gazem",
-                        categories: {
-                            connect: [{ id: trekking }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Palnik do butli",
-                        categories: {
-                            connect: [{ id: trekking }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Jedzenie
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Jedzenie liofizolowane",
@@ -317,16 +280,12 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
 
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Karty do gry",
@@ -334,9 +293,7 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },
@@ -383,39 +340,27 @@ export async function summerTrekking() {
 
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Czołówka",
@@ -427,19 +372,15 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Kijki trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lub przewodnik",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Dokumenty
                     {
@@ -456,9 +397,7 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -552,15 +491,11 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -568,35 +503,25 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butla z gazem",
-                        categories: {
-                            connect: [{ id: trekking }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Palnik do butli",
-                        categories: {
-                            connect: [{ id: trekking }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Jedzenie
                     {
                         name: "Woda",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Jedzenie liofizolowane",
@@ -612,16 +537,12 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
 
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Karty do gry",
@@ -629,9 +550,7 @@ export async function summerTrekking() {
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },

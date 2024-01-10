@@ -21,8 +21,6 @@ export async function summerTropikalnaWyspa() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const plaza = await getCategory("Plaża")
-    const nurkowanie = await getCategory("Nurkowanie")
 
     // Nazwy list
     const tropikList = {
@@ -69,21 +67,15 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Lekkie, przewiewne ubrania z długim rękawem",
@@ -99,13 +91,11 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-                        categories: { connect: [{ id: nurkowanie }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plecak na wycieczki",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
@@ -117,27 +107,19 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: plaza }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Dokumenty
@@ -167,21 +149,15 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -211,9 +187,7 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -221,7 +195,7 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -310,9 +284,7 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {
@@ -364,21 +336,15 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Lekkie, przewiewne ubrania z długim rękawem",
@@ -390,13 +356,11 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Sandały, klapki, buty do wody",
-                        categories: { connect: [{ id: nurkowanie }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Plecak na wycieczki",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
@@ -408,27 +372,19 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: plaza }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Dokumenty
@@ -458,21 +414,15 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -494,9 +444,7 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -593,9 +541,7 @@ export async function summerTropikalnaWyspa() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {

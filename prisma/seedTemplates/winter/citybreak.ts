@@ -13,16 +13,13 @@ export async function winterCitybreak() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const higiena = await getCategory("Łazienka / Higiena")
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
-    const trekking = await getCategory("Trekking")
-    const zima = await getCategory("Zima")
+    const inne = await getCategory("Inne")
 
     // Nazwy list
     const cityBreakList = {
@@ -68,44 +65,38 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Kurtka / Płaszcz",
-                        categories: { connect: [{ id: odziez }, { id: zima }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki",
-                        categories: { connect: [{ id: odziez }, { id: zima }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka zimowa",
-                        categories: { connect: [{ id: odziez }, { id: zima }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rajstopy / kalesony",
-                        categories: { connect: [{ id: odziez }, { id: zima }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Szalik",
-                        categories: { connect: [{ id: odziez }, { id: zima }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // Citybreak
 
                     {
                         name: "Plecak miejski",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Termos z ciepłą herbatą",
-                        categories: {
-                            connect: [
-                                { id: trekking },
-                                { id: sport },
-                                { id: zima },
-                            ],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Dokumenty
                     {
@@ -134,21 +125,15 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -262,9 +247,7 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {
@@ -320,9 +303,7 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Rękawiczki",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka zimowa",
@@ -334,26 +315,22 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Szalik",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // Citybreak
 
                     {
                         name: "Plecak miejski",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Termos z ciepłą herbatą",
-                        categories: {
-                            connect: [{ id: trekking }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Dokumenty
@@ -473,9 +450,7 @@ export async function winterCitybreak() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {

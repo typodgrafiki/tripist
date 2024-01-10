@@ -22,13 +22,9 @@ export async function summerCampervan() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const plaza = await getCategory("Plaża")
     const camperVan = await getCategory("Campervan")
-    const sport = await getCategory("Sport")
     const jezioro = await getCategory("Jezioro")
-    const trekking = await getCategory("Trekking")
     const kuchnia = await getCategory("Kuchnia")
-    const camping = await getCategory("Kemping")
     const samochod = await getCategory("Samochód")
 
     // Nazwy list
@@ -87,88 +83,56 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty na zmianę",
-                        categories: { connect: [{ id: odziez }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
 
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: odziez }, { id: plaza }],
-                        },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Krem z filtrem UV",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: obuwie }],
-                        },
-                    },
-                    {
-                        name: "Czołówka",
-                        categories: {
-                            connect: [{ id: trekking }, { id: elektronika }],
-                        },
-                    },
-                    {
-                        name: "Baterie do czołówki",
-                        categories: {
-                            connect: [{ id: trekking }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "SUP",
@@ -190,7 +154,6 @@ export async function summerCampervan() {
                         name: "Termos lub bidon",
                         categories: { connect: [{ id: inne }] },
                     },
-
                     {
                         name: "Gotówka",
                         categories: { connect: [{ id: dokumenty }] },
@@ -223,7 +186,6 @@ export async function summerCampervan() {
                         name: "Aparat fotograficzny",
                         categories: { connect: [{ id: elektronika }] },
                     },
-
                     {
                         name: "Dodatkowa karta do aparatu (opcjonalnie)",
                         categories: { connect: [{ id: elektronika }] },
@@ -246,9 +208,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -263,8 +223,8 @@ export async function summerCampervan() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -422,15 +382,11 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -438,9 +394,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     // Samochód
                     {
@@ -453,9 +407,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Transmiter FM",
-                        categories: {
-                            connect: [{ id: samochod }],
-                        },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Zestaw naprawczy do opon",
@@ -467,9 +419,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Lodówka turystyczna",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
 
                     // Camping
@@ -483,7 +433,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Lampka wisząca",
-                        categories: { connect: [{ id: camperVan }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Krzesełka turystyczne (rozkładane)",
@@ -495,57 +445,39 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Poduszki",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Kołdra lub koc do spania",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: camperVan }, { id: kuchnia }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Grill jednorazowy",
-                        categories: {
-                            connect: [{ id: camping }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Peleryna przeciwdeszczowa",
-                        categories: {
-                            connect: [{ id: camping }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Śrubokręt",
-                        categories: {
-                            connect: [{ id: samochod }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kuchenka gazowa",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Gaz do kuchenki gazowej",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Worki na śmieci",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Jedzenie
@@ -590,10 +522,6 @@ export async function summerCampervan() {
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Kinderki",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
                         name: "Kawa",
                         categories: { connect: [{ id: jedzenie }] },
                     },
@@ -619,9 +547,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Akcesoria
                     {
@@ -638,9 +564,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camperVan }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Karty do gry",
@@ -648,15 +572,11 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Taśma izolacyjna",
-                        categories: {
-                            connect: [{ id: samochod }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zegarek",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },
@@ -711,25 +631,19 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Sandały/klapki",
-                        categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Czołówka",
-                        categories: {
-                            connect: [{ id: trekking }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "SUP",
@@ -790,9 +704,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -954,15 +866,11 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -970,9 +878,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     // Samochód
                     {
@@ -985,9 +891,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Transmiter FM",
-                        categories: {
-                            connect: [{ id: samochod }],
-                        },
+                        categories: { connect: [{ id: samochod }] },
                     },
                     {
                         name: "Zestaw naprawczy do opon",
@@ -1009,7 +913,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Lampka wisząca",
-                        categories: { connect: [{ id: camperVan }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Krzesełka turystyczne (rozkładane)",
@@ -1021,57 +925,39 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Poduszki",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Kołdra lub koc do spania",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Zapałki / zapalniczka",
-                        categories: {
-                            connect: [{ id: camperVan }, { id: kuchnia }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Grill jednorazowy",
-                        categories: {
-                            connect: [{ id: camping }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Peleryna przeciwdeszczowa",
-                        categories: {
-                            connect: [{ id: camping }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Śrubokręt",
-                        categories: {
-                            connect: [{ id: samochod }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kuchenka gazowa",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Gaz do kuchenki gazowej",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: camperVan }] },
                     },
                     {
                         name: "Worki na śmieci",
-                        categories: {
-                            connect: [{ id: camperVan }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Jedzenie
@@ -1137,9 +1023,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Akcesoria
                     {
@@ -1156,9 +1040,7 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }, { id: camperVan }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Karty do gry",
@@ -1166,15 +1048,11 @@ export async function summerCampervan() {
                     },
                     {
                         name: "Taśma izolacyjna",
-                        categories: {
-                            connect: [{ id: samochod }, { id: camping }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zegarek",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },

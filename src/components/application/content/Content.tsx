@@ -162,7 +162,7 @@ export default function Content({ id }: { id: string }) {
 
             {elements?.length > 0 ? (
                 <>
-                    <div className="hidden sm:flex mb-3 justify-between">
+                    <div className="hidden sm:flex mb-3 justify-between gap-2">
                         <FilterCategories
                             categoriesUnique={categoriesUnique}
                             handleCategoryChange={handleCategoryChange}

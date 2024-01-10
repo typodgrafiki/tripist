@@ -13,7 +13,6 @@ export async function activeWspinaczka() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeWspinaczka() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const wspinaczka = await getCategory("Ścianka wspinaczkowa")
 
     // Nazwy list
@@ -115,9 +113,7 @@ export async function activeWspinaczka() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +208,12 @@ export async function activeWspinaczka() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,168 +222,114 @@ export async function activeWspinaczka() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE wspinaczka
                     {
                         name: "Uprząż wspinaczkowa",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Kask wspinaczkowy",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Karabinki",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Ekspresy",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Lina wspinaczkowa",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Przyrząd asekuracyjny",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Buty wspinaczkowe",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Magnesja",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Taśmy",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Pętle",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Przyrządy do zjazdów",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                     {
                         name: "Koc ratunkowy",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Elastyczne spodnie",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Przewiewne koszulki",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka przeciwdeszczowa/wiatrówka",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak wspinaczkowy",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Bidon",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Bukłak",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Energetyczne przekąski",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Środki do oczyszczania wody",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapy wspinaczkowe",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Przewodniki wspinaczkowe",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plastry wspinaczkowe",
-                        categories: {
-                            connect: [{ id: wspinaczka }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: wspinaczka }] },
                     },
                 ],
             },

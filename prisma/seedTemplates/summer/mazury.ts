@@ -22,11 +22,7 @@ export async function summerMazury() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const plaza = await getCategory("Plaża")
-    const sport = await getCategory("Sport")
     const jezioro = await getCategory("Jezioro")
-    const trekking = await getCategory("Trekking")
-    const nurkowanie = await getCategory("Nurkowanie")
 
     // Nazwy list
     const mazuryList = {
@@ -93,51 +89,43 @@ export async function summerMazury() {
                     },
                     {
                         name: "Leżak",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: plaza }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Torba plażowa",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Sprzęt do nurkowania (maska, rurka)",
-                        categories: { connect: [{ id: nurkowanie }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Dmuchany materac lub koło",
-                        categories: {
-                            connect: [{ id: plaza }],
-                        },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Mapa lub przewodnik",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Ciepłe ubrania na wieczór",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jezioro
                     {
@@ -147,14 +135,6 @@ export async function summerMazury() {
                     {
                         name: "Wiosło",
                         categories: { connect: [{ id: jezioro }] },
-                    },
-                    {
-                        name: "Klapki",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Recznik",
-                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butelka z wodą",
@@ -182,9 +162,7 @@ export async function summerMazury() {
                     },
                     {
                         name: "Sprzęt do pływania",
-                        categories: {
-                            connect: [{ id: plaza }, { id: jezioro }],
-                        },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Sprzęt wędkarski",
@@ -192,15 +170,15 @@ export async function summerMazury() {
                     },
                     {
                         name: "Rowery",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kijki do nordic walking",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kajak",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     // Dokumenty
                     {
@@ -247,9 +225,7 @@ export async function summerMazury() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Głośnik przenośny (bezprzewodowy)",
@@ -354,21 +330,15 @@ export async function summerMazury() {
                     // Łazienka / Higiena
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -435,35 +405,31 @@ export async function summerMazury() {
                     },
                     {
                         name: "Koc",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: plaza }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Torba plażowa",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Ciepłe ubrania na wieczór",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jezioro
                     {
@@ -473,14 +439,6 @@ export async function summerMazury() {
                     {
                         name: "Wiosło",
                         categories: { connect: [{ id: jezioro }] },
-                    },
-                    {
-                        name: "Klapki",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Recznik",
-                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Butelka z wodą",
@@ -603,10 +561,12 @@ export async function summerMazury() {
 
                     // Łazienka / Higiena
                     {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",

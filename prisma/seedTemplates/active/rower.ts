@@ -13,7 +13,6 @@ export async function activeRower() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeRower() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const rower = await getCategory("Rower")
 
     // Nazwy list
@@ -115,9 +113,7 @@ export async function activeRower() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Apteczka
                     {
@@ -212,16 +208,12 @@ export async function activeRower() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Jedzenie
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     // Inne
                     {
@@ -230,166 +222,150 @@ export async function activeRower() {
                     },
                     {
                         name: "Worki na pranie",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     // Elektronika
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Czujnik pulsu na klatkę piersiową",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: sport }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
 
                     // ACTIVE Rower
                     {
                         name: "Rower",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Kask rowerowy",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Dętka",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Łatki do dętek",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Klej do łatek",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Pompka rowerowa",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Łyżki do opon",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Skuwacz łańcucha",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Zapasowy łańcuch",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Oświetlenie rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Bidon",
-                        categories: {
-                            connect: [{ id: rower }, { id: sport }],
-                        },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Błotniki",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Zapięcie rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Żele energetyczne",
-                        categories: {
-                            connect: [{ id: rower }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Batony energetyczne",
-                        categories: {
-                            connect: [{ id: rower }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Izotonik w proszku",
-                        categories: {
-                            connect: [{ id: rower }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Koszulka kolarska",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodenki rowerowe z wkładką",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Wiatrówka rowerowa",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka przeciwdeszczowa rowerowa",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Warstwa termiczna",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Czapka pod kask",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Opaska pod kask",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Skarpetki rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sakwy rowerowe",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Plecak rowerowy",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Licznik rowerowy",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Mapy i plany tras",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zestaw do czyszczenia roweru",
-                        categories: { connect: [{ id: rower }, { id: sport }] },
+                        categories: { connect: [{ id: rower }] },
                     },
                 ],
             },

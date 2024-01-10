@@ -58,9 +58,7 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Lekkie, przewiewne ubrania z długim rękawem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: egipt }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bluza /Sweter",
@@ -80,25 +78,15 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
-                    },
-                    {
-                        name: "Sandały",
-                        categories: { connect: [{ id: egipt }, { id: plaza }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak na wycieczki",
@@ -106,28 +94,19 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
-
                     {
                         name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-                        categories: {
-                            connect: [{ id: egipt }, { id: nurkowanie }],
-                        },
+                        categories: { connect: [{ id: nurkowanie }] },
                     },
                     {
                         name: "Wodoodporny aparat fotograficzny",
-                        categories: {
-                            connect: [{ id: egipt }, { id: nurkowanie }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Pływający pojemnik na klucze i telefon",
-                        categories: {
-                            connect: [{ id: basen }, { id: nurkowanie }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
@@ -135,29 +114,23 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: plaza }, { id: basen }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Torba plażowa",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
 
                     // Dokumenty
@@ -183,21 +156,15 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -227,15 +194,11 @@ export async function summerEgipt() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -317,18 +280,14 @@ export async function summerEgipt() {
                         name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
-
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },

@@ -13,7 +13,6 @@ export async function summerCitybreak() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -21,7 +20,6 @@ export async function summerCitybreak() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const plaza = await getCategory("Plaża")
 
     // Nazwy list
     const cityBreakList = {
@@ -94,11 +92,11 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Strój kąpielowy",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak miejski",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
@@ -106,15 +104,11 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     // Dokumenty
                     {
@@ -143,21 +137,15 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -187,7 +175,7 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: elektronika }] },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -275,9 +263,7 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // Akcesoria
                     {
@@ -340,23 +326,19 @@ export async function summerCitybreak() {
 
                     {
                         name: "Plecak miejski",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lokalna lub przewodnik",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     // Dokumenty
                     {
@@ -475,9 +457,7 @@ export async function summerCitybreak() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     // Akcesoria
                     {

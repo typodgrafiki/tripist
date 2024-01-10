@@ -13,7 +13,6 @@ export async function winterTrekking() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -23,7 +22,6 @@ export async function winterTrekking() {
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
     const trekking = await getCategory("Trekking")
-    const zima = await getCategory("Zima")
 
     // Nazwy list
     const trekkingList = {
@@ -61,53 +59,39 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Bielizna termoaktywna",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Spodnie długie trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kamizelka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Bluza trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka trekkingowa",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty trekkingowe",
-                        categories: {
-                            connect: [{ id: trekking }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: trekking }] },
                     },
                     {
                         name: "Kijki trekkingowe",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mapa lub przewodnik",
-                        categories: {
-                            connect: [{ id: trekking }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: trekking }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
@@ -117,75 +101,51 @@ export async function winterTrekking() {
                     // Trekking + zima
                     {
                         name: "Raki",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: trekking }] },
                     },
                     {
                         name: "Raczki",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: trekking }] },
                     },
                     {
                         name: "Stuptuty",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawice grube 2x",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawice cienkie 2x",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Gogle narciarskie",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: trekking }] },
                     },
                     {
                         name: "Czapka zimowa gruba",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka zimowa cienka",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Komin polarowy (na szyję)",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Tłusty krem do twarzy",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Kurtka puchowa (opcjonalnie)",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Termos z ciepłą herbatą",
-                        categories: {
-                            connect: [{ id: trekking }, { id: zima }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Dokumenty
@@ -203,9 +163,7 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -232,9 +190,7 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -318,15 +274,11 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Mokre chusteczki",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
@@ -334,9 +286,7 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
 
                     // Jedzenie
@@ -354,9 +304,7 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Batony",
-                        categories: {
-                            connect: [{ id: jedzenie }, { id: trekking }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Worki na pranie",
@@ -368,9 +316,7 @@ export async function winterTrekking() {
                     },
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                 ],
             },

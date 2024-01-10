@@ -93,19 +93,19 @@ export async function summerMorze() {
                     {
                         name: "Krem z filtrem UV",
                         categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
+                            connect: [{ id: kosmetyczka }],
                         },
                     },
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [{ id: plaza }, { id: odziez }],
+                            connect: [{ id: odziez }],
                         },
                     },
                     {
                         name: "Sandały/klapki plażowe",
                         categories: {
-                            connect: [{ id: plaza }, { id: obuwie }],
+                            connect: [{ id: obuwie }],
                         },
                     },
                     {
@@ -115,7 +115,7 @@ export async function summerMorze() {
                     {
                         name: "Balsam po opalaniu",
                         categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
+                            connect: [{ id: kosmetyczka }],
                         },
                     },
                     {
@@ -132,7 +132,7 @@ export async function summerMorze() {
                     },
                     {
                         name: "Buty do wody",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Chłodna torba",
@@ -203,7 +203,7 @@ export async function summerMorze() {
                     {
                         name: "Książka / Czytnik typu Kindle",
                         categories: {
-                            connect: [{ id: inne }, { id: elektronika }],
+                            connect: [{ id: inne }],
                         },
                     },
 
@@ -258,7 +258,7 @@ export async function summerMorze() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: odziez }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {
@@ -370,18 +370,18 @@ export async function summerMorze() {
                     {
                         name: "Krem z filtrem UV",
                         categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
+                            connect: [{ id: kosmetyczka }],
                         },
                     },
                     {
                         name: "Strój kąpielowy",
                         categories: {
-                            connect: [{ id: plaza }],
+                            connect: [{ id: odziez }],
                         },
                     },
                     {
                         name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Torba plażowa",
@@ -390,7 +390,7 @@ export async function summerMorze() {
                     {
                         name: "Balsam po opalaniu",
                         categories: {
-                            connect: [{ id: plaza }, { id: apteczka }],
+                            connect: [{ id: kosmetyczka }],
                         },
                     },
                     {
@@ -442,7 +442,7 @@ export async function summerMorze() {
                     {
                         name: "Książka / Czytnik typu Kindle",
                         categories: {
-                            connect: [{ id: inne }, { id: elektronika }],
+                            connect: [{ id: inne }],
                         },
                     },
 
@@ -489,7 +489,7 @@ export async function summerMorze() {
                     {
                         name: "Klapki pod prysznic",
                         categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
+                            connect: [{ id: higiena }],
                         },
                     },
                     {

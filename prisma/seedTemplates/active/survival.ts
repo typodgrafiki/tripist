@@ -13,7 +13,6 @@ export async function activeSurvival() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeSurvival() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const survival = await getCategory("Survival")
 
     // Nazwy list
@@ -140,12 +138,10 @@ export async function activeSurvival() {
                         name: "Dezodorant / Antyperspirant",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
                     {
                         name: "Ręcznik szybkoschnący",
                         categories: { connect: [{ id: higiena }] },
                     },
-
                     {
                         name: "Batony",
                         categories: { connect: [{ id: jedzenie }] },
@@ -161,19 +157,17 @@ export async function activeSurvival() {
 
                     {
                         name: "Zegarek sportowy",
-                        categories: {
-                            connect: [{ id: sport }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
 
                     // ACTIVE Survival
                     {
                         name: "Bielizna termoaktywna",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Plecak turystyczny",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Nóż survivalowy",
@@ -185,7 +179,7 @@ export async function activeSurvival() {
                     },
                     {
                         name: "Koc ratunkowy",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Kompas",
@@ -193,103 +187,87 @@ export async function activeSurvival() {
                     },
                     {
                         name: "Mapa terenu",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Latarka czołowa",
-                        categories: {
-                            connect: [{ id: survival }, { id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Wygodne, trwałe ubrania",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty trekkingowe",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Czapka",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Rękawiczki",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Szalik",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kurtka przeciwdeszczowa",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Namiot",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Śpiwór",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Mata izolacyjna",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kuchenka turystyczna",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Naczynia turystyczne",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Liofilizowane posiłki",
-                        categories: {
-                            connect: [{ id: survival }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
                         name: "Butelka na wodę",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Tabletki do oczyszczania wody",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Apteczka pierwszej pomocy",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Środek przeciw kleszczom i komarom",
-                        categories: { connect: [{ id: survival }] },
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
                         name: "Biodegradowalne mydło",
-                        categories: {
-                            connect: [{ id: survival }, { id: kosmetyczka }],
-                        },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Papier toaletowy",
-                        categories: {
-                            connect: [{ id: survival }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Zapalniczka",
-                        categories: {
-                            connect: [{ id: survival }, { id: inne }],
-                        },
-                    },
-                    {
-                        name: "Bidony na wodę",
-                        categories: {
-                            connect: [{ id: survival }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Gwizdek ratunkowy",
@@ -305,9 +283,7 @@ export async function activeSurvival() {
                     },
                     {
                         name: "Pakiet energetyczny",
-                        categories: {
-                            connect: [{ id: survival }, { id: jedzenie }],
-                        },
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                 ],
             },

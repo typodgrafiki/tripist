@@ -13,7 +13,6 @@ export async function activeJoga() {
 
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
-    const obuwie = await getCategory("Obuwie")
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
@@ -22,7 +21,6 @@ export async function activeJoga() {
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
-    const sport = await getCategory("Sport")
     const joga = await getCategory("Joga")
 
     // Nazwy list
@@ -243,15 +241,15 @@ export async function activeJoga() {
                     // ACTIVE Joga i medytacja
                     {
                         name: "Mata do jogi",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: joga }] },
                     },
                     {
                         name: "Blok do jogi",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: joga }] },
                     },
                     {
                         name: "Pasek do jogi",
-                        categories: { connect: [{ id: sport }] },
+                        categories: { connect: [{ id: joga }] },
                     },
                     {
                         name: "Poduszka do medytacji",

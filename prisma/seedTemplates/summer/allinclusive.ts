@@ -17,13 +17,10 @@ export async function summerAllInclusive() {
     const akcesoria = await getCategory("Akcesoria")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
-    const higiena = await getCategory("Łazienka / Higiena")
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")
     const plaza = await getCategory("Plaża")
-    const basen = await getCategory("Basen")
-    const allinclusive = await getCategory("All Inclusive")
 
     // Nazwy list
     const allInclusiveList = {
@@ -73,21 +70,15 @@ export async function summerAllInclusive() {
                     },
                     {
                         name: "Czapka z daszkiem",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Kapelusz",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Chusta na głowę",
-                        categories: {
-                            connect: [{ id: odziez }, { id: akcesoria }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Buty na zmianę",
@@ -95,62 +86,48 @@ export async function summerAllInclusive() {
                     },
                     {
                         name: "Lekkie, przewiewne ubrania",
-                        categories: {
-                            connect: [{ id: odziez }, { id: allinclusive }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     // All-inclusive
                     {
                         name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: basen }, { id: odziez }],
-                        },
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
                         name: "Klapki basenowe",
-                        categories: {
-                            connect: [{ id: basen }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Adapter do gniazdka",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Przenośny wentylator",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Dmuchany materac lub koło",
-                        categories: {
-                            connect: [{ id: plaza }],
-                        },
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
                         name: "Przewodnik po okolicy",
-                        categories: { connect: [{ id: allinclusive }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Zabezpieczenie bagażu",
-                        categories: {
-                            connect: [{ id: allinclusive }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: plaza }] },
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Pływający pojemnik na klucze i telefon",
-                        categories: { connect: [{ id: basen }] },
+                        categories: { connect: [{ id: plaza }] },
                     },
 
                     // Dokumenty
@@ -176,21 +153,15 @@ export async function summerAllInclusive() {
                     },
                     {
                         name: "Kopie ważnych dokumentów",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Bilety lotnicze",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
                         name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
+                        categories: { connect: [{ id: dokumenty }] },
                     },
 
                     // Elektronika
@@ -212,15 +183,11 @@ export async function summerAllInclusive() {
                     },
                     {
                         name: "Słuchawki",
-                        categories: {
-                            connect: [{ id: elektronika }],
-                        },
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: elektronika }, { id: inne }],
-                        },
+                        categories: { connect: [{ id: inne }] },
                     },
 
                     // Apteczka
@@ -300,9 +267,7 @@ export async function summerAllInclusive() {
                     },
                     {
                         name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }, { id: obuwie }],
-                        },
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
