@@ -40,94 +40,12 @@ export async function summerMorze() {
             tripLength: 10,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki dresowe",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Długie spodnie dżinsowe",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem lub kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-
-                    {
-                        name: "Koc/Mata na plażę",
+                        name: "Dmuchany materac lub koło",
                         categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Leżak",
-                        categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: kosmetyczka }],
-                        },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
-                        categories: {
-                            connect: [{ id: obuwie }],
-                        },
-                    },
-                    {
-                        name: "Torba plażowa",
-                        categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: kosmetyczka }],
-                        },
-                    },
-                    {
-                        name: "Parasol plażowy",
-                        categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Parawan lub namiot plażowy",
-                        categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Piłka plażowa",
+                        name: "Chłodna torba",
                         categories: { connect: [{ id: plaza }] },
                     },
                     {
@@ -135,61 +53,39 @@ export async function summerMorze() {
                         categories: { connect: [{ id: obuwie }] },
                     },
                     {
-                        name: "Chłodna torba",
+                        name: "Piłka plażowa",
                         categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Dmuchany materac lub koło",
-                        categories: {
-                            connect: [{ id: plaza }],
-                        },
-                    },
-
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Parawan lub namiot plażowy",
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Parasol plażowy",
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Torba plażowa",
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Leżak",
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Koc/Mata na plażę",
+                        categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
-                    },
-
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Karty do gry",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
+                        name: "Głośnik przenośny (bezprzewodowy)",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -197,116 +93,51 @@ export async function summerMorze() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Głośnik przenośny (bezprzewodowy)",
+                        name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
-                    },
-
-                    {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Nożyczki do paznokci",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
-                    },
-                    {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Składany parasol",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Karty do gry",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Żel antybakteryjny",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Środek na komary i kleszcze",
+                        name: "Nożyczki",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -314,8 +145,156 @@ export async function summerMorze() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Nożyczki",
+                        name: "Środek na komary i kleszcze",
                         categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Balsam po opalaniu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Krem z filtrem UV",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Składany parasol",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Nerka (saszetka biodrowa)",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Sandały/klapki plażowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Chusta na głowę",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem lub kapelusz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Długie spodnie dżinsowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki dresowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },
@@ -332,103 +311,27 @@ export async function summerMorze() {
             elements: {
                 create: [
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem lub kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Koc/Mata na plażę",
+                        name: "Parawan lub namiot plażowy",
                         categories: { connect: [{ id: plaza }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: {
-                            connect: [{ id: kosmetyczka }],
-                        },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: {
-                            connect: [{ id: odziez }],
-                        },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
                         name: "Torba plażowa",
                         categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Balsam po opalaniu",
-                        categories: {
-                            connect: [{ id: kosmetyczka }],
-                        },
-                    },
-                    {
-                        name: "Parawan plażowy",
+                        name: "Koc/Mata na plażę",
                         categories: { connect: [{ id: plaza }] },
                     },
                     {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Karty do gry",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Potwierdzenia rezerwacji",
-                        categories: {
-                            connect: [{ id: dokumenty }],
-                        },
-                    },
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
+                        name: "Głośnik przenośny (bezprzewodowy)",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -436,104 +339,39 @@ export async function summerMorze() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Głośnik przenośny (bezprzewodowy)",
+                        name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
-                        categories: {
-                            connect: [{ id: inne }],
-                        },
-                    },
-
-                    {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Klapki pod prysznic",
-                        categories: {
-                            connect: [{ id: higiena }],
-                        },
-                    },
-                    {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Żel antybakteryjny",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Maść/spray przeciw oparzeniom słonecznm",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Środek na komary i kleszcze",
+                        name: "Nożyczki",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -541,8 +379,140 @@ export async function summerMorze() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Nożyczki",
+                        name: "Środek na komary i kleszcze",
                         categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Balsam po opalaniu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Krem z filtrem UV",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Sandały/klapki plażowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem lub kapelusz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

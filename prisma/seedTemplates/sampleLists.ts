@@ -135,7 +135,7 @@ export async function sampleLists() {
                     },
                     {
                         name: "Plecak lub torba na dzień",
-                        categories: { connect: [{ id: akcesoria }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Kapelusz lub czapka",

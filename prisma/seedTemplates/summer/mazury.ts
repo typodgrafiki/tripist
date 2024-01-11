@@ -42,98 +42,56 @@ export async function summerMazury() {
             tripLength: 10,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie dresowe / długie ",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem lub kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Buty na zmianę",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Leżak",
+                        name: "Mapa lub przewodnik",
                         categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Torba plażowa",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Sprzęt do nurkowania (maska, rurka)",
-                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Dmuchany materac lub koło",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
-                        name: "Mapa lub przewodnik",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Ciepłe ubrania na wieczór",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    // Jezioro
-                    {
-                        name: "SUP",
+                        name: "Sprzęt do nurkowania (maska, rurka)",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
-                        name: "Wiosło",
+                        name: "Torba plażowa",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Leżak",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Kajak",
+                        categories: { connect: [{ id: jezioro }] },
+                    },
+                    {
+                        name: "Kijki do nordic walking",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Rowery",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Sprzęt wędkarski",
+                        categories: { connect: [{ id: jezioro }] },
+                    },
+                    {
+                        name: "Sprzęt do pływania",
+                        categories: { connect: [{ id: jezioro }] },
+                    },
+                    {
+                        name: "Termos lub bidon",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Plecak na wycieczki",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Pływający pojemnik na klucze i telefon",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
@@ -141,86 +99,35 @@ export async function summerMazury() {
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Pływający pojemnik na klucze i telefon",
+                        name: "Wiosło",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
-                        name: "Przeciwdeszczowa odzież",
-                        categories: { connect: [{ id: odziez }] },
+                        name: "SUP",
+                        categories: { connect: [{ id: jezioro }] },
                     },
                     {
-                        name: "Plecak na wycieczki",
+                        name: "Karty do gry",
                         categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Planszówki",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Baterie do czołówki",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Latarka lub czołówka",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Termos lub bidon",
+                        name: "Książka / Czytnik typu Kindle",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Sprzęt do pływania",
-                        categories: { connect: [{ id: jezioro }] },
-                    },
-                    {
-                        name: "Sprzęt wędkarski",
-                        categories: { connect: [{ id: jezioro }] },
-                    },
-                    {
-                        name: "Rowery",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Kijki do nordic walking",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Kajak",
-                        categories: { connect: [{ id: jezioro }] },
-                    },
-                    // Dokumenty
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Gimball + ładowarka + kabel",
+                        name: "Głośnik przenośny (bezprzewodowy)",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -228,48 +135,47 @@ export async function summerMazury() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Głośnik przenośny (bezprzewodowy)",
+                        name: "Gimball + ładowarka + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Baterie do czołówki",
+                        name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
+                        name: "Ładowarka do telefonu + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
-                    // Apteczka
                     {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Żel antybakteryjny",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Środek na komary i kleszcze",
+                        name: "Nożyczki",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -277,59 +183,39 @@ export async function summerMazury() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Nożyczki",
+                        name: "Środek na komary i kleszcze",
                         categories: { connect: [{ id: apteczka }] },
                     },
-
-                    // Kosmetyczka
                     {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nożyczki do paznokci",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-
-                    // Łazienka / Higiena
-                    {
-                        name: "Mokre chusteczki",
+                        name: "Klapki pod prysznic",
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
@@ -337,20 +223,124 @@ export async function summerMazury() {
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Klapki pod prysznic",
+                        name: "Mokre chusteczki",
                         categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Balsam po opalaniu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Krem z filtrem UV",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
-                        name: "Planszówki",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Sandały/klapki plażowe",
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
-                        name: "Karty do gry",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Lekkie buty trekkingowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Buty na zmianę",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Przeciwdeszczowa odzież",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Chusta na głowę",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem lub kapelusz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Ciepłe ubrania na wieczór",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie dresowe / długie ",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },
@@ -366,78 +356,32 @@ export async function summerMazury() {
             tripLength: 3,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
+                        name: "Mapa lub przewodnik",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie dresowe / długie ",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem lub kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Lekkie buty trekkingowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Koc",
-                        categories: { connect: [{ id: jezioro }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
+                        name: "Dmuchany materac lub koło",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
                         name: "Torba plażowa",
-                        categories: { connect: [{ id: jezioro }] },
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Leżak",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Ciepłe ubrania na wieczór",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    // Jezioro
-                    {
-                        name: "SUP",
-                        categories: { connect: [{ id: jezioro }] },
+                        name: "Termos lub bidon",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Wiosło",
+                        name: "Plecak na wycieczki",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Pływający pojemnik na klucze i telefon",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
@@ -445,38 +389,39 @@ export async function summerMazury() {
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Pływający pojemnik na klucze i telefon",
+                        name: "Wiosło",
                         categories: { connect: [{ id: jezioro }] },
                     },
                     {
-                        name: "Plecak na wycieczki",
+                        name: "SUP",
+                        categories: { connect: [{ id: jezioro }] },
+                    },
+                    {
+                        name: "Karty do gry",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Latarka lub czołówka",
+                        name: "Planszówki",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Głośnik przenośny (bezprzewodowy)",
                         categories: { connect: [{ id: elektronika }] },
                     },
-                    // Dokumenty
                     {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Gimball + ładowarka + kabel",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
+                        name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -484,32 +429,31 @@ export async function summerMazury() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
+                        name: "Aparat fotograficzny",
                         categories: { connect: [{ id: elektronika }] },
                     },
-                    // Apteczka
                     {
-                        name: "Leki",
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Bandaż",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Żel antybakteryjny",
+                        name: "Środek na komary i kleszcze",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -517,37 +461,55 @@ export async function summerMazury() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Środek na komary i kleszcze",
+                        name: "Żel antybakteryjny",
                         categories: { connect: [{ id: apteczka }] },
                     },
-
-                    // Kosmetyczka
                     {
-                        name: "Mydło / Żel pod prysznic",
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Papier toaletowy",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Mokre chusteczki",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Balsam po opalaniu",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Szampon",
+                        name: "Krem z filtrem UV",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Odżywka do włosów",
+                        name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
+                        name: "Dezodorant / Antyperspirant",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
@@ -555,30 +517,88 @@ export async function summerMazury() {
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Dezodorant / Antyperspirant",
+                        name: "Pasta do zębów",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
-
-                    // Łazienka / Higiena
                     {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
-                        name: "Planszówki",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Sandały/klapki plażowe",
+                        categories: { connect: [{ id: obuwie }] },
                     },
                     {
-                        name: "Karty do gry",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Lekkie buty trekkingowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Przeciwdeszczowa odzież",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem lub kapelusz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Ciepłe ubrania na wieczór",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie ",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

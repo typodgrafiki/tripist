@@ -38,56 +38,8 @@ export async function winterCitybreak() {
             tripLength: 7,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza lub Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Ciepłe skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Kurtka / Płaszcz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rękawiczki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka zimowa",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rajstopy / kalesony",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Szalik",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-
-                    // Citybreak
-
-                    {
-                        name: "Plecak miejski",
+                        name: "Termos z ciepłą herbatą",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
@@ -95,62 +47,15 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Termos z ciepłą herbatą",
+                        name: "Plecak miejski",
                         categories: { connect: [{ id: inne }] },
                     },
-                    // Dokumenty
                     {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Paszport",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Wiza",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Kopie ważnych dokumentów",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Bilety lotnicze",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Potwierdzenia rezerwacji",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
+                        name: "Gimball + ładowarka + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -158,33 +63,59 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Gimball + ładowarka + kabel",
+                        name: "Ładowarka do telefonu + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
+                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
                         categories: { connect: [{ id: elektronika }] },
                     },
-
-                    // Apteczka
                     {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Bilety lotnicze",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Plastry opatrunkowe",
+                        name: "Kopie ważnych dokumentów",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Wiza",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Paszport",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -192,45 +123,35 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Tabletki na alergie",
+                        name: "Plastry opatrunkowe",
                         categories: { connect: [{ id: apteczka }] },
                     },
-
-                    // Kosmetyczka
                     {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
+                        name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
@@ -238,25 +159,92 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Nożyczki do paznokci",
+                        name: "Nitka dentystyczna",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // Akcesoria
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nerka (saszetka biodrowa)",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Szalik",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rajstopy / kalesony",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kurtka / Płaszcz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Ciepłe skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza lub Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },
@@ -272,56 +260,8 @@ export async function winterCitybreak() {
             tripLength: 3,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza lub Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Ciepłe skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Kurtka / Płaszcz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rękawiczki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka zimowa",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rajstopy / kalesony",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Szalik",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-
-                    // Citybreak
-
-                    {
-                        name: "Plecak miejski",
+                        name: "Termos z ciepłą herbatą",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
@@ -329,31 +269,15 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Termos z ciepłą herbatą",
+                        name: "Plecak miejski",
                         categories: { connect: [{ id: inne }] },
                     },
-
-                    // Dokumenty
                     {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
+                        name: "Gimball + ładowarka + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -361,33 +285,47 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Gimball + ładowarka + kabel",
+                        name: "Ładowarka do telefonu + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
+                        name: "Aparat fotograficzny",
                         categories: { connect: [{ id: elektronika }] },
                     },
-
-                    // Apteczka
                     {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Bilety lotnicze",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Kopie ważnych dokumentów",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Wiza",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Plastry opatrunkowe",
+                        name: "Paszport",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -395,49 +333,35 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Tabletki na alergie",
+                        name: "Plastry opatrunkowe",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Środek na komary i kleszcze",
+                        name: "Tabletki na ból brzucha",
                         categories: { connect: [{ id: apteczka }] },
                     },
-
-                    // Kosmetyczka
                     {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
+                        name: "Nożyczki do paznokci",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
@@ -445,21 +369,84 @@ export async function winterCitybreak() {
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
-                    // Akcesoria
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
-                        name: "Parasol",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Szalik",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rajstopy / kalesony",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kurtka / Płaszcz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Ciepłe skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza lub Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

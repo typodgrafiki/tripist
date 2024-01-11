@@ -40,259 +40,24 @@ export async function activeRower() {
             tripLength: null,
             elements: {
                 create: [
-                    // Odzież
-                    {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    // Dokumenty
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Potwierdzenia rezerwacji",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Słuchawki",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    // Apteczka
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Żel antybakteryjny",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Środek na komary i kleszcze",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Bandaż",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Nożyczki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    // Kosmetyczka
-                    {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nożyczki do paznokci",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    // Łazienka / Higiena
-                    {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    // Jedzenie
-                    {
-                        name: "Batony",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    // Inne
-                    {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
                     {
                         name: "Worki na pranie",
                         categories: { connect: [{ id: inne }] },
                     },
-                    // Elektronika
                     {
-                        name: "Zegarek sportowy",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Batony",
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Czujnik pulsu na klatkę piersiową",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Mapy i plany tras",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Bielizna termoaktywna",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-
-                    // ACTIVE Rower
-                    {
-                        name: "Rower",
-                        categories: { connect: [{ id: rower }] },
+                        name: "Plecak rowerowy",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Kask rowerowy",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Dętka",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Łatki do dętek",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Klej do łatek",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Pompka rowerowa",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Łyżki do opon",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Skuwacz łańcucha",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Zapasowy łańcuch",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Oświetlenie rowerowe",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Bidon",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Błotniki",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Zapięcie rowerowe",
-                        categories: { connect: [{ id: rower }] },
-                    },
-                    {
-                        name: "Żele energetyczne",
+                        name: "Izotonik w proszku",
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
@@ -300,31 +65,227 @@ export async function activeRower() {
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Izotonik w proszku",
+                        name: "Żele energetyczne",
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Koszulka kolarska",
-                        categories: { connect: [{ id: odziez }] },
+                        name: "Zestaw do czyszczenia roweru",
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
-                        name: "Spodenki rowerowe z wkładką",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rękawiczki rowerowe",
-                        categories: { connect: [{ id: odziez }] },
+                        name: "Sakwy rowerowe",
+                        categories: { connect: [{ id: rower }] },
                     },
                     {
                         name: "Buty rowerowe",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Wiatrówka rowerowa",
+                        name: "Zapięcie rowerowe",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Błotniki",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Bidon",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Oświetlenie rowerowe",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Zapasowy łańcuch",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Skuwacz łańcucha",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Łyżki do opon",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Pompka rowerowa",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Klej do łatek",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Łatki do dętek",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Dętka",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Kask rowerowy",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Rower",
+                        categories: { connect: [{ id: rower }] },
+                    },
+                    {
+                        name: "Licznik rowerowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Czujnik pulsu na klatkę piersiową",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Nożyczki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Bandaż",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Środek na komary i kleszcze",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne rowerowe",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Opaska pod kask",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Kurtka przeciwdeszczowa rowerowa",
+                        name: "Czapka pod kask",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -332,15 +293,35 @@ export async function activeRower() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Okulary przeciwsłoneczne rowerowe",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Czapka pod kask",
+                        name: "Kurtka przeciwdeszczowa rowerowa",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Opaska pod kask",
+                        name: "Wiatrówka rowerowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki rowerowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki rowerowe z wkładką",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulka kolarska",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -348,24 +329,32 @@ export async function activeRower() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Sakwy rowerowe",
-                        categories: { connect: [{ id: rower }] },
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Plecak rowerowy",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Licznik rowerowy",
-                        categories: { connect: [{ id: elektronika }] },
+                        name: "Bielizna termoaktywna",
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Mapy i plany tras",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Zestaw do czyszczenia roweru",
-                        categories: { connect: [{ id: rower }] },
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

@@ -43,69 +43,8 @@ export async function summerEgipt() {
             tripLength: 14,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki dresowe",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Lekkie, przewiewne ubrania z długim rękawem",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza /Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Chusta na głowę",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Plecak na wycieczki",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Butelka na wodę",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
-                        categories: { connect: [{ id: nurkowanie }] },
-                    },
-                    {
-                        name: "Wodoodporny aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Pływający pojemnik na klucze i telefon",
+                        name: "Torba plażowa",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
@@ -113,79 +52,27 @@ export async function summerEgipt() {
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Torba plażowa",
+                        name: "Pływający pojemnik na klucze i telefon",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-
-                    // Dokumenty
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Sprzęt do snorkelingu - maska, rurka, płetwy",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Butelka na wodę",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Ubezpieczenie podróżne",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Plecak na wycieczki",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Paszport",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Kopie ważnych dokumentów",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Bilety lotnicze",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Potwierdzenia rezerwacji",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
+                        name: "Słuchawki",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -193,37 +80,59 @@ export async function summerEgipt() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Słuchawki",
+                        name: "Powerbank + kabel",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: inne }] },
-                    },
-
-                    // Apteczka
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
                     },
                     {
-                        name: "Żel antybakteryjny",
+                        name: "Bilety lotnicze",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Kopie ważnych dokumentów",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Paszport",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Środek na komary i kleszcze",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
@@ -231,49 +140,43 @@ export async function summerEgipt() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Środek na komary i kleszcze",
+                        name: "Żel antybakteryjny",
                         categories: { connect: [{ id: apteczka }] },
                     },
-
-                    // Kosmetyczka
                     {
-                        name: "Mydło / Żel pod prysznic",
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Balsam po opalaniu",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
+                        name: "Krem z filtrem UV",
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
@@ -281,20 +184,104 @@ export async function summerEgipt() {
                         categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Sandały/klapki plażowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Strój kąpielowy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Nerka (saszetka biodrowa)",
+                        categories: { connect: [{ id: akcesoria }] },
                     },
                     {
                         name: "Okulary przeciwsłoneczne",
                         categories: { connect: [{ id: akcesoria }] },
                     },
                     {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Chusta na głowę",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kapelusz",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza /Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Lekkie, przewiewne ubrania z długim rękawem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki dresowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },

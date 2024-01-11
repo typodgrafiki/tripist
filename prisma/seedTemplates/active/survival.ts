@@ -40,193 +40,64 @@ export async function activeSurvival() {
             tripLength: null,
             elements: {
                 create: [
-                    // Odzież
                     {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-
-                    // Dokumenty
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-
-                    // Elektronika
-                    {
-                        name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Słuchawki",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-
-                    // Apteczka
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Środek na komary i kleszcze",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Bandaż",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-
-                    // Kosmetyczka
-                    {
-                        name: "Mydło / Żel pod prysznic / Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Ręcznik szybkoschnący",
-                        categories: { connect: [{ id: higiena }] },
+                        name: "Worki na pranie",
+                        categories: { connect: [{ id: inne }] },
                     },
                     {
                         name: "Batony",
                         categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
+                        name: "Pakiet energetyczny",
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Worki na pranie",
-                        categories: { connect: [{ id: inne }] },
-                    },
-
-                    {
-                        name: "Zegarek sportowy",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-
-                    // ACTIVE Survival
-                    {
-                        name: "Bielizna termoaktywna",
-                        categories: { connect: [{ id: odziez }] },
+                        name: "Liofilizowane posiłki",
+                        categories: { connect: [{ id: jedzenie }] },
                     },
                     {
-                        name: "Plecak turystyczny",
+                        name: "Tabletki do oczyszczania wody",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Nóż survivalowy",
+                        name: "Butelka na wodę",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Książka",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Siatka na owady",
                         categories: { connect: [{ id: survival }] },
                     },
                     {
-                        name: "Multitool",
+                        name: "Gwizdek ratunkowy",
                         categories: { connect: [{ id: survival }] },
                     },
                     {
-                        name: "Koc ratunkowy",
+                        name: "Zapalniczka",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Papier toaletowy",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Biodegradowalne mydło",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Środek przeciw kleszczom i komarom",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Kompas",
-                        categories: { connect: [{ id: survival }] },
+                        name: "Apteczka pierwszej pomocy",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Mapa terenu",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Latarka czołowa",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Wygodne, trwałe ubrania",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Buty trekkingowe",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Czapka",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Rękawiczki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Szalik",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Kurtka przeciwdeszczowa",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Namiot",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Śpiwór",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Mata izolacyjna",
+                        name: "Naczynia turystyczne",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
@@ -234,56 +105,160 @@ export async function activeSurvival() {
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Naczynia turystyczne",
+                        name: "Mata izolacyjna",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Liofilizowane posiłki",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Butelka na wodę",
+                        name: "Śpiwór",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Tabletki do oczyszczania wody",
+                        name: "Namiot",
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Apteczka pierwszej pomocy",
+                        name: "Mapa terenu",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Kompas",
+                        categories: { connect: [{ id: survival }] },
+                    },
+                    {
+                        name: "Koc ratunkowy",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Środek przeciw kleszczom i komarom",
+                        name: "Multitool",
+                        categories: { connect: [{ id: survival }] },
+                    },
+                    {
+                        name: "Nóż survivalowy",
+                        categories: { connect: [{ id: survival }] },
+                    },
+                    {
+                        name: "Plecak turystyczny",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Latarka czołowa",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Słuchawki",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Bandaż",
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Biodegradowalne mydło",
-                        categories: { connect: [{ id: kosmetyczka }] },
+                        name: "Środek na komary i kleszcze",
+                        categories: { connect: [{ id: apteczka }] },
                     },
                     {
-                        name: "Papier toaletowy",
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Ręcznik szybkoschnący",
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Zapalniczka",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Gwizdek ratunkowy",
-                        categories: { connect: [{ id: survival }] },
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Siatka na owady",
-                        categories: { connect: [{ id: survival }] },
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Książka",
-                        categories: { connect: [{ id: inne }] },
+                        name: "Mydło / Żel pod prysznic / Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
-                        name: "Pakiet energetyczny",
-                        categories: { connect: [{ id: jedzenie }] },
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Kurtka przeciwdeszczowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka z daszkiem",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna termoaktywna",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie długie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki krótkie",
+                        categories: { connect: [{ id: odziez }] },
                     },
                 ],
             },
