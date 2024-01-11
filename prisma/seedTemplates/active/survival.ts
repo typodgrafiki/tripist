@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -26,7 +26,6 @@ export async function activeSurvival() {
     // Nazwy list
     const survivalList = {
         name: "Obóz survivalowy",
-        start: false,
         type: activeTemplateType,
     }
 
@@ -35,9 +34,8 @@ export async function activeSurvival() {
         data: {
             name: survivalList.name,
             settingColor: "bg-blue-400",
-            start: survivalList.start,
             listTypeId: survivalList.type,
-            tripLength: null,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {

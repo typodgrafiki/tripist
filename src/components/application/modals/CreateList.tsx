@@ -170,55 +170,55 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 onSubmit={handleSubmit}
             >
                 {!isCreateSample && (
-                    <>
-                        <div className="flex justify-between gap-4 mb-5">
-                            <div className="grow">
-                                <FormLabel>Nazwa listy:</FormLabel>
-                                <input
-                                    type="text"
-                                    value={title}
-                                    placeholder="np. Madryt '23, Siłownia..."
-                                    className="form-control w-full"
-                                    onChange={(e) => setTitle(e.target.value)}
-                                    disabled={isPending || isSuccess}
-                                    ref={inputRef}
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                <FormLabel>Kolor:</FormLabel>
-                                <Select
-                                    options={optionsColor}
-                                    select={selectedColor}
-                                    setSelect={setSelectedColor}
-                                    className="grow"
-                                />
-                            </div>
+                    <div className="flex justify-between gap-4 mb-5">
+                        <div className="grow">
+                            <FormLabel>Nazwa listy:</FormLabel>
+                            <input
+                                type="text"
+                                value={title}
+                                placeholder="np. Madryt '23, Siłownia..."
+                                className="form-control w-full"
+                                onChange={(e) => setTitle(e.target.value)}
+                                disabled={isPending || isSuccess}
+                                ref={inputRef}
+                            />
                         </div>
-                        <button
-                            type="submit"
-                            className={`flex justify-center items-center w-full btn btn-primary ${
-                                isSuccess && "btn-green"
-                            }`}
-                            disabled={titleIsEmpty}
-                        >
-                            {isPending ? (
-                                <div className="loader small"></div>
-                            ) : isSuccess ? (
-                                "Dodano"
-                            ) : duplicate ? (
-                                "Duplikuj listę"
-                            ) : editList ? (
-                                "Zapisz"
-                            ) : (
-                                <>
-                                    Stwórz pustą listę
-                                    <ArrowRight className="ml-2" />
-                                </>
-                            )}
-                        </button>
-                    </>
+                        <div className="flex flex-col">
+                            <FormLabel>Kolor:</FormLabel>
+                            <Select
+                                options={optionsColor}
+                                select={selectedColor}
+                                setSelect={setSelectedColor}
+                                className="grow"
+                            />
+                        </div>
+                    </div>
                 )}
                 {!duplicate && !editList && <Sample />}
+                {!isCreateSample && (
+                    <button
+                        type="submit"
+                        className={`flex justify-center items-center w-full btn btn-big btn-primary ${
+                            isSuccess && "btn-green"
+                        }`}
+                        disabled={titleIsEmpty}
+                    >
+                        {isPending ? (
+                            <div className="loader small"></div>
+                        ) : isSuccess ? (
+                            "Dodano"
+                        ) : duplicate ? (
+                            "Duplikuj listę"
+                        ) : editList ? (
+                            "Zapisz"
+                        ) : (
+                            <>
+                                Stwórz pustą listę
+                                <ArrowRight className="ml-2" />
+                            </>
+                        )}
+                    </button>
+                )}
                 {isError && (
                     <div className="text-red-600 text-sm mt-2 text-center">
                         Nie zapisano zmian. Spróbuj ponownie.

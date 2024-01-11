@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -30,7 +30,6 @@ export async function summerCampervan() {
     // Nazwy list
     const camperVanList = {
         name: "Camper Van",
-        start: false,
         type: summerTemplateType,
     }
 
@@ -39,9 +38,9 @@ export async function summerCampervan() {
         data: {
             name: camperVanList.name,
             settingColor: "bg-blue-400",
-            start: camperVanList.start,
             listTypeId: camperVanList.type,
-            tripLength: 7,
+            gender: Gender.MALE,
+            // tripLength: 7,
             elements: {
                 create: [
                     {
@@ -561,441 +560,441 @@ export async function summerCampervan() {
         },
     })
 
-    const camperVan3 = await prisma.template.create({
-        data: {
-            name: camperVanList.name,
-            settingColor: "bg-blue-400",
-            start: camperVanList.start,
-            listTypeId: camperVanList.type,
-            tripLength: 3,
-            elements: {
-                create: [
-                    {
-                        name: "Plecak trekkingowy",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Taśma izolacyjna",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Karty do gry",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Worki na pranie",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Nerka (saszetka biodrowa)",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Termos lub butelka na wodę",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Woda",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Batony",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Herbata",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Chrupki",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Przyprawy",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Ketchup",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Kawa",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Mleko UHT",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Płatki śniadaniowe",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Jajka",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Zupki instant",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Banany",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Pieczywo",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Gotowe sosy w proszku",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Konserwy",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Makarony",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Sól",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Olej",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Cebula",
-                        categories: { connect: [{ id: jedzenie }] },
-                    },
-                    {
-                        name: "Worki na śmieci",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Gaz do kuchenki gazowej",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Kuchenka gazowa",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Śrubokręt",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Zapałki / zapalniczka",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Kołdra lub koc do spania",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Poduszki",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Stół turystyczny (rozkładany)",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Krzesełka turystyczne (rozkładane)",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Lampka wisząca",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Namiot do prysznica",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Prysznic ciśnieniowy",
-                        categories: { connect: [{ id: camperVan }] },
-                    },
-                    {
-                        name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
-                        categories: { connect: [{ id: samochod }] },
-                    },
-                    {
-                        name: "Zestaw naprawczy do opon",
-                        categories: { connect: [{ id: samochod }] },
-                    },
-                    {
-                        name: "Transmiter FM",
-                        categories: { connect: [{ id: samochod }] },
-                    },
-                    {
-                        name: "Ładowarka samochodowa + kabel",
-                        categories: { connect: [{ id: samochod }] },
-                    },
-                    {
-                        name: "Dokumenty samochodu",
-                        categories: { connect: [{ id: samochod }] },
-                    },
-                    {
-                        name: "Patelnia",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Garnek",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Talerze",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Miski",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Sztućce",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Noże",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Ręcznik papierowy",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Miska do mycia naczyń",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Szybkoschnący ręcznik kuchenny",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Gąbka do zmywania",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Płyn do zmywania",
-                        categories: { connect: [{ id: kuchnia }] },
-                    },
-                    {
-                        name: "Książka / Czytnik typu Kindle",
-                        categories: { connect: [{ id: inne }] },
-                    },
-                    {
-                        name: "Zegarek",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Baterie do czołówki",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Czołówka (latarka)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Głośnik przenośny (bezprzewodowy)",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Słuchawki",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Gimball + ładowarka + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Powerbank + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Ładowarka do telefonu + kabel",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Aparat fotograficzny",
-                        categories: { connect: [{ id: elektronika }] },
-                    },
-                    {
-                        name: "Prawo jazdy",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dowód osobisty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Dokumenty",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Gotówka",
-                        categories: { connect: [{ id: dokumenty }] },
-                    },
-                    {
-                        name: "Środek na komary i kleszcze",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na alergie",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Żel antybakteryjny",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Plastry opatrunkowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na ból brzucha",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki na biegunkę",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Tabletki przeciwbólowe",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Leki",
-                        categories: { connect: [{ id: apteczka }] },
-                    },
-                    {
-                        name: "Klapki pod prysznic",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Recznik",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Balsam po opalaniu",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Krem z filtrem UV",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Ręcznik",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Papier toaletowy",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Mokre chusteczki",
-                        categories: { connect: [{ id: higiena }] },
-                    },
-                    {
-                        name: "Nożyczki do paznokci",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Dezodorant / Antyperspirant",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Nitka dentystyczna",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do zębów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szczotka do włosów / Grzebień",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Zestaw do golenia lub depilacji",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Pasta / Żel do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Odżywka do włosów",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Szampon",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Mydło / Żel pod prysznic",
-                        categories: { connect: [{ id: kosmetyczka }] },
-                    },
-                    {
-                        name: "Buty trekkingowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Sandały/klapki plażowe",
-                        categories: { connect: [{ id: obuwie }] },
-                    },
-                    {
-                        name: "Strój kąpielowy",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Okulary przeciwsłoneczne",
-                        categories: { connect: [{ id: akcesoria }] },
-                    },
-                    {
-                        name: "Czapka z daszkiem lub kapelusz",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Peleryna przeciwdeszczowa",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bielizna (majtki)",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Skarpety",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Piżama",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Bluza / Sweter",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodnie długie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Spodenki krótkie",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                    {
-                        name: "Koszulki",
-                        categories: { connect: [{ id: odziez }] },
-                    },
-                ],
-            },
-        },
-    })
+    // const camperVan3 = await prisma.template.create({
+    //     data: {
+    //         name: camperVanList.name,
+    //         settingColor: "bg-blue-400",
+    //         start: camperVanList.start,
+    //         listTypeId: camperVanList.type,
+    //         tripLength: 3,
+    //         elements: {
+    //             create: [
+    //                 {
+    //                     name: "Plecak trekkingowy",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Taśma izolacyjna",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Karty do gry",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Worki na pranie",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Nerka (saszetka biodrowa)",
+    //                     categories: { connect: [{ id: akcesoria }] },
+    //                 },
+    //                 {
+    //                     name: "Termos lub butelka na wodę",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Woda",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Batony",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Herbata",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Chrupki",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Przyprawy",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Ketchup",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Kawa",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Mleko UHT",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Płatki śniadaniowe",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Jajka",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Zupki instant",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Banany",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Pieczywo",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Gotowe sosy w proszku",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Konserwy",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Makarony",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Sól",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Olej",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Cebula",
+    //                     categories: { connect: [{ id: jedzenie }] },
+    //                 },
+    //                 {
+    //                     name: "Worki na śmieci",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Gaz do kuchenki gazowej",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Kuchenka gazowa",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Śrubokręt",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Zapałki / zapalniczka",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Kołdra lub koc do spania",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Poduszki",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Stół turystyczny (rozkładany)",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Krzesełka turystyczne (rozkładane)",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Lampka wisząca",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Namiot do prysznica",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Prysznic ciśnieniowy",
+    //                     categories: { connect: [{ id: camperVan }] },
+    //                 },
+    //                 {
+    //                     name: "Trójkąt ostrzegawczy i kamizelki odblaskowe",
+    //                     categories: { connect: [{ id: samochod }] },
+    //                 },
+    //                 {
+    //                     name: "Zestaw naprawczy do opon",
+    //                     categories: { connect: [{ id: samochod }] },
+    //                 },
+    //                 {
+    //                     name: "Transmiter FM",
+    //                     categories: { connect: [{ id: samochod }] },
+    //                 },
+    //                 {
+    //                     name: "Ładowarka samochodowa + kabel",
+    //                     categories: { connect: [{ id: samochod }] },
+    //                 },
+    //                 {
+    //                     name: "Dokumenty samochodu",
+    //                     categories: { connect: [{ id: samochod }] },
+    //                 },
+    //                 {
+    //                     name: "Patelnia",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Garnek",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Talerze",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Miski",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Sztućce",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Noże",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Ręcznik papierowy",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Miska do mycia naczyń",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Szybkoschnący ręcznik kuchenny",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Gąbka do zmywania",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Płyn do zmywania",
+    //                     categories: { connect: [{ id: kuchnia }] },
+    //                 },
+    //                 {
+    //                     name: "Książka / Czytnik typu Kindle",
+    //                     categories: { connect: [{ id: inne }] },
+    //                 },
+    //                 {
+    //                     name: "Zegarek",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Baterie do czołówki",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Czołówka (latarka)",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Głośnik przenośny (bezprzewodowy)",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Słuchawki",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Gimball + ładowarka + kabel",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Powerbank + kabel",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Ładowarka do telefonu + kabel",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Aparat fotograficzny",
+    //                     categories: { connect: [{ id: elektronika }] },
+    //                 },
+    //                 {
+    //                     name: "Prawo jazdy",
+    //                     categories: { connect: [{ id: dokumenty }] },
+    //                 },
+    //                 {
+    //                     name: "Dowód osobisty",
+    //                     categories: { connect: [{ id: dokumenty }] },
+    //                 },
+    //                 {
+    //                     name: "Dokumenty",
+    //                     categories: { connect: [{ id: dokumenty }] },
+    //                 },
+    //                 {
+    //                     name: "Gotówka",
+    //                     categories: { connect: [{ id: dokumenty }] },
+    //                 },
+    //                 {
+    //                     name: "Środek na komary i kleszcze",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Tabletki na alergie",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Żel antybakteryjny",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Plastry opatrunkowe",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Tabletki na ból brzucha",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Tabletki na biegunkę",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Tabletki przeciwbólowe",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Leki",
+    //                     categories: { connect: [{ id: apteczka }] },
+    //                 },
+    //                 {
+    //                     name: "Klapki pod prysznic",
+    //                     categories: { connect: [{ id: higiena }] },
+    //                 },
+    //                 {
+    //                     name: "Recznik",
+    //                     categories: { connect: [{ id: higiena }] },
+    //                 },
+    //                 {
+    //                     name: "Balsam po opalaniu",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Krem z filtrem UV",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Ręcznik",
+    //                     categories: { connect: [{ id: higiena }] },
+    //                 },
+    //                 {
+    //                     name: "Papier toaletowy",
+    //                     categories: { connect: [{ id: higiena }] },
+    //                 },
+    //                 {
+    //                     name: "Mokre chusteczki",
+    //                     categories: { connect: [{ id: higiena }] },
+    //                 },
+    //                 {
+    //                     name: "Nożyczki do paznokci",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Dezodorant / Antyperspirant",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Nitka dentystyczna",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Pasta do zębów",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Szczotka do zębów",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Szczotka do włosów / Grzebień",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Zestaw do golenia lub depilacji",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Pasta / Żel do włosów",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Odżywka do włosów",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Szampon",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Mydło / Żel pod prysznic",
+    //                     categories: { connect: [{ id: kosmetyczka }] },
+    //                 },
+    //                 {
+    //                     name: "Buty trekkingowe",
+    //                     categories: { connect: [{ id: obuwie }] },
+    //                 },
+    //                 {
+    //                     name: "Sandały/klapki plażowe",
+    //                     categories: { connect: [{ id: obuwie }] },
+    //                 },
+    //                 {
+    //                     name: "Strój kąpielowy",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Okulary przeciwsłoneczne",
+    //                     categories: { connect: [{ id: akcesoria }] },
+    //                 },
+    //                 {
+    //                     name: "Czapka z daszkiem lub kapelusz",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Peleryna przeciwdeszczowa",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Bielizna (majtki)",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Skarpety",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Piżama",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Bluza / Sweter",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Spodnie długie",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Spodenki krótkie",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //                 {
+    //                     name: "Koszulki",
+    //                     categories: { connect: [{ id: odziez }] },
+    //                 },
+    //             ],
+    //         },
+    //     },
+    // })
 }

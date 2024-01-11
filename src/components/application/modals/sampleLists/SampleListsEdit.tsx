@@ -103,7 +103,7 @@ export default function SampleListsEdit() {
                 ))}
             </div>
             <Button
-                className="btn btn-primary w-full justify-center mt-3"
+                className="btn btn-big btn-primary w-full justify-center mt-3"
                 type="submit"
             >
                 Stwórz listę

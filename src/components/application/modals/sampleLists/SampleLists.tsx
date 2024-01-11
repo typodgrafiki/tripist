@@ -123,19 +123,21 @@ const SampleList = ({ name: type, options }: TSampleList) => {
             >
                 {type}
             </label>
-            <select
-                className="dark animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer"
-                disabled={isPending}
-                value={`${importedList.id}_${importedList.days}`}
-                onChange={handleSelectChange}
-            >
-                {options.map((element) => (
-                    <Option
-                        key={element.id}
-                        {...element}
-                    />
-                ))}
-            </select>
+            {options[0].tripLength && (
+                <select
+                    className="dark animated rounded-full bg-[var(--primary)] text-white border-0 text-sm py-1 cursor-pointer"
+                    disabled={isPending}
+                    value={`${importedList.id}_${importedList.days}`}
+                    onChange={handleSelectChange}
+                >
+                    {options.map((element) => (
+                        <Option
+                            key={element.id}
+                            {...element}
+                        />
+                    ))}
+                </select>
+            )}
         </li>
     )
 }

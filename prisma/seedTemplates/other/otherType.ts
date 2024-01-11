@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -26,7 +26,8 @@ export async function otherType() {
             name: "Podróż biznesowa",
             settingColor: "bg-violet-400",
             listTypeId: inneType,
-            tripLength: 3,
+            gender: Gender.MALE,
+            // tripLength: 3,
             elements: {
                 create: [
                     {

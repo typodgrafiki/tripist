@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -29,7 +29,6 @@ export async function summerEgipt() {
     // Nazwy list
     const egiptList = {
         name: "Afryka / Egipt",
-        start: false,
         type: summerTemplateType,
     }
 
@@ -38,9 +37,9 @@ export async function summerEgipt() {
         data: {
             name: egiptList.name,
             settingColor: "bg-blue-400",
-            start: egiptList.start,
             listTypeId: egiptList.type,
-            tripLength: 14,
+            gender: Gender.MALE,
+            // tripLength: 14,
             elements: {
                 create: [
                     {

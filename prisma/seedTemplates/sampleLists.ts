@@ -1,6 +1,6 @@
 // npx prisma db seed
 
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 import { getCategory, getType } from "../_helpers/seedHelpers"
 
 const prisma = new PrismaClient()
@@ -24,6 +24,7 @@ export async function sampleLists() {
             settingColor: "bg-red-500",
             start: true,
             listTypeId: trainingType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -90,6 +91,7 @@ export async function sampleLists() {
             settingColor: "bg-emerald-500",
             start: true,
             listTypeId: vacationSummerType,
+            gender: Gender.MALE,
             tripLength: 2,
             elements: {
                 create: [

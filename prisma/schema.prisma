@@ -11,8 +11,9 @@ datasource db {
 }
 
 enum Gender {
-  Female
-  Male
+  FEMALE
+  MALE
+  OTHER
 }
 
 enum ActionType {
@@ -132,10 +133,11 @@ model Template {
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
   settingColor  String
   tripLength    Int?                                        // liczba dni
-  listTypeId Int                                            // rodzaj wycieczki, np. "citybreak"]
-  listType     ListType   @relation(fields: [listTypeId], references: [id])
-  elements     TemplateItem[] 
-  tags         ListTags[]
+  gender        Gender?                                     // lista dla płci
+  listTypeId    Int                                         // rodzaj wycieczki, np. "citybreak"]
+  listType      ListType   @relation(fields: [listTypeId], references: [id])
+  elements      TemplateItem[] 
+  tags          ListTags[]
 }
 
 model TemplateItem {

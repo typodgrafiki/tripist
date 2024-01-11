@@ -208,3 +208,5 @@ export type TPanelsCollapsedTypeProps = {
     activePanel: TPanelsCollapsedType
     togglePanel: (panelIndex: number) => void
 }
+
+export type TGender = "MALE" | "FEMALE" | "OTHER" | null

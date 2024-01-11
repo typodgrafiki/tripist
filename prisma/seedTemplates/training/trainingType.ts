@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -26,6 +26,7 @@ export async function trainingType() {
             name: "Siłownia",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -102,6 +103,7 @@ export async function trainingType() {
             name: "Morsowanie",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -162,6 +164,7 @@ export async function trainingType() {
             name: "Basen",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -210,6 +213,7 @@ export async function trainingType() {
             name: "Joga",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -254,6 +258,7 @@ export async function trainingType() {
             name: "Ścianka wspinaczkowa",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -326,6 +331,7 @@ export async function trainingType() {
             name: "Crossfit",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -418,6 +424,7 @@ export async function trainingType() {
             name: "Kajak",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -486,6 +493,7 @@ export async function trainingType() {
             name: "Sztuki walki",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {

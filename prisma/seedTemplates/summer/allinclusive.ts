@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -24,7 +24,6 @@ export async function summerAllInclusive() {
     // Nazwy list
     const allInclusiveList = {
         name: "All inclusive",
-        start: false,
         type: summerTemplateType,
     }
 
@@ -33,9 +32,9 @@ export async function summerAllInclusive() {
         data: {
             name: allInclusiveList.name,
             settingColor: "bg-blue-400",
-            start: allInclusiveList.start,
             listTypeId: allInclusiveList.type,
-            tripLength: 14,
+            gender: Gender.MALE,
+            // tripLength: 14,
             elements: {
                 create: [
                     {

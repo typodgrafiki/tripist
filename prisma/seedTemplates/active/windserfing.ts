@@ -3,7 +3,7 @@
 // npm run seed:template
 
 import { getCategory, getType } from "../../_helpers/seedHelpers"
-import { PrismaClient } from "@prisma/client"
+import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
@@ -26,7 +26,6 @@ export async function activeWindsurfing() {
     // Nazwy list
     const windserfingList = {
         name: "Windserfing",
-        start: false,
         type: activeTemplateType,
     }
 
@@ -35,9 +34,8 @@ export async function activeWindsurfing() {
         data: {
             name: windserfingList.name,
             settingColor: "bg-blue-400",
-            start: windserfingList.start,
             listTypeId: windserfingList.type,
-            tripLength: null,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
