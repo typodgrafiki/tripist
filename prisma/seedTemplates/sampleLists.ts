@@ -48,7 +48,7 @@ export async function sampleLists() {
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
-                        name: "Zegarek sportowy",
+                        name: "Zegarek sportowy lub smartwatch",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {

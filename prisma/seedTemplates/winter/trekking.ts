@@ -40,7 +40,11 @@ export async function winterTrekking() {
             elements: {
                 create: [
                     {
-                        name: "Zegarek sportowy",
+                        name: "Ładowarka do zegarka / smartwatcha",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Zegarek sportowy lub smartwatch",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
@@ -102,6 +106,10 @@ export async function winterTrekking() {
                     {
                         name: "Książka / Czytnik typu Kindle",
                         categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Statyw do smartfona",
+                        categories: { connect: [{ id: elektronika }] },
                     },
                     {
                         name: "Baterie do czołówki",

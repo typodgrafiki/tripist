@@ -88,7 +88,11 @@ export async function winterSnowboard() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Zegarek sportowy",
+                        name: "Ładowarka do zegarka / smartwatcha",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Zegarek sportowy lub smartwatch",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {

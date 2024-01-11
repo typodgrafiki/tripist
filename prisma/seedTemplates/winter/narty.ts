@@ -88,7 +88,11 @@ export async function winterNarty() {
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
-                        name: "Zegarek sportowy",
+                        name: "Zegarek sportowy lub smartwatch",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do zegarka / smartwatcha",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {

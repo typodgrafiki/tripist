@@ -30,7 +30,7 @@ export async function activeSurvival() {
     }
 
     // All Inclusive 14
-    const survivalN = await prisma.template.create({
+    const survival_MALE = await prisma.template.create({
         data: {
             name: survivalList.name,
             settingColor: "bg-blue-400",
@@ -144,6 +144,10 @@ export async function activeSurvival() {
                     },
                     {
                         name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do zegarka",
                         categories: { connect: [{ id: elektronika }] },
                     },
                     {
