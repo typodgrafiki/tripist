@@ -152,6 +152,10 @@ export async function winterSnowboard() {
                         categories: { connect: [{ id: dokumenty }] },
                     },
                     {
+                        name: "Tabletki antykoncepcyjne",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
                         name: "Tabletki na alergie",
                         categories: { connect: [{ id: apteczka }] },
                     },
@@ -180,12 +184,56 @@ export async function winterSnowboard() {
                         categories: { connect: [{ id: apteczka }] },
                     },
                     {
+                        name: "Prostownica / lokówka",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Suszarka do włosów",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Chusteczki higieniczne do intymnej higieny",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Tampony lub podpaski",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
                         name: "Klapki pod prysznic",
                         categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Ręcznik",
                         categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Biżuteria (kolczyki, bransoletki)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Perfumy w podróżnym formacie",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Kosmetyki do makijażu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Płyn do demakijażu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Waciki i patyczki kosmetyczne",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Gumki do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pilnik do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
                     },
                     {
                         name: "Balsam do ust",
@@ -296,7 +344,19 @@ export async function winterSnowboard() {
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
-                        name: "Bielizna (majtki)",
+                        name: "Opaska na włosy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rajstopy / pończochy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Biustonosze (w tym sportowy)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {

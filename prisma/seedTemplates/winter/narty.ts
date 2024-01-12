@@ -29,9 +29,7 @@ export async function winterNarty() {
         type: winterTemplateType,
     }
 
-    // Narty
-
-    const nartyN = await prisma.template.create({
+    const narty_MALE = await prisma.template.create({
         data: {
             name: nartyList.name,
             settingColor: "bg-blue-400",
@@ -305,6 +303,367 @@ export async function winterNarty() {
                     },
                     {
                         name: "Bielizna (majtki)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Piżama",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bluza / Sweter",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                ],
+            },
+        },
+    })
+
+    const narty_FEMALE = await prisma.template.create({
+        data: {
+            name: nartyList.name,
+            settingColor: "bg-blue-400",
+            listTypeId: nartyList.type,
+            gender: Gender.FEMALE,
+            elements: {
+                create: [
+                    {
+                        name: "Batony energetyczne",
+                        categories: { connect: [{ id: jedzenie }] },
+                    },
+                    {
+                        name: "Worki na pranie",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Mapa tras narciarskich",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Plecak narciarski",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Wosk do nart",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Kask narciarski",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Gogle narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Kijki narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Buty narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Narty i wiązania narciarskie",
+                        categories: { connect: [{ id: narty }] },
+                    },
+                    {
+                        name: "Książka / Czytnik typu Kindle",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Kamera sportowa",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Zegarek sportowy lub smartwatch",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do zegarka / smartwatcha",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Głośnik przenośny (bezprzewodowy)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Powerbank + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ładowarka do telefonu + kabel",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Dodatkowa bateria do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Dodatkowa karta do aparatu (opcjonalnie)",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Aparat fotograficzny",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Potwierdzenia rezerwacji",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Kopie ważnych dokumentów",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Paszport",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Prawo jazdy",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dowód osobisty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Ubezpieczenie podróżne",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dokumenty",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Gotówka",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Tabletki antykoncepcyjne",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na alergie",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Żel antybakteryjny",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Plastry opatrunkowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na ból brzucha",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki na biegunkę",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Tabletki przeciwbólowe",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Leki",
+                        categories: { connect: [{ id: apteczka }] },
+                    },
+                    {
+                        name: "Prostownica / lokówka",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Suszarka do włosów",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Chusteczki higieniczne do intymnej higieny",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Tampony lub podpaski",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Biżuteria (kolczyki, bransoletki)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Perfumy w podróżnym formacie",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Kosmetyki do makijażu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Płyn do demakijażu",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Waciki i patyczki kosmetyczne",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Gumki do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pilnik do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Balsam do ust",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nożyczki do paznokci",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Dezodorant / Antyperspirant",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Nitka dentystyczna",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do zębów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szczotka do włosów / Grzebień",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Zestaw do golenia lub depilacji",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Pasta / Żel do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Odżywka do włosów",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Szampon",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Mydło / Żel pod prysznic",
+                        categories: { connect: [{ id: kosmetyczka }] },
+                    },
+                    {
+                        name: "Okulary przeciwsłoneczne",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Maska na twarz narciarska",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Komin narciarski",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Szalik narciarski",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka narciarska",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawice narciarskie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Skarpety narciarskie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Polar / Bluza narciarska",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulka termiczna",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie termiczne",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna termiczna",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodnie narciarskie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kurtka narciarska",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Szalik",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Czapka zimowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rękawiczki",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kurtka",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Opaska na włosy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Rajstopy / pończochy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Biustonosze (w tym sportowy)",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Bielizna",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
