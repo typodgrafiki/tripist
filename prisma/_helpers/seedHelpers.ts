@@ -1,5 +1,3 @@
-// prisma/prismaHelper.ts
-
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
 
@@ -8,7 +6,7 @@ export type NameCategory =
     | "Obuwie"
     | "Akcesoria"
     | "Apteczka"
-    | "Łazienka / Higiena"
+    | "Higiena"
     | "Kosmetyczka"
     | "Elektronika"
     | "Samochód"

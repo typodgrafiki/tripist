@@ -1,7 +1,3 @@
-// npx prisma db seed
-// npm run seed:sample
-// npm run seed:template
-
 import { getCategory, getType } from "../../_helpers/seedHelpers"
 import { Gender, PrismaClient } from "@prisma/client"
 
@@ -18,7 +14,7 @@ export async function activeBieg() {
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
     const jedzenie = await getCategory("Jedzenie")
-    const higiena = await getCategory("Łazienka / Higiena")
+    const higiena = await getCategory("Higiena")
     const dokumenty = await getCategory("Dokumenty")
     const apteczka = await getCategory("Apteczka")
     const kosmetyczka = await getCategory("Kosmetyczka")

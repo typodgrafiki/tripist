@@ -13,7 +13,7 @@ export async function sampleLists() {
     // Tworzenie kategorii
     const odziez = await getCategory("Odzież")
     const akcesoria = await getCategory("Akcesoria")
-    const higiena = await getCategory("Łazienka / Higiena")
+    const higiena = await getCategory("Higiena")
     const elektronika = await getCategory("Elektronika")
     const inne = await getCategory("Inne")
 
@@ -24,7 +24,7 @@ export async function sampleLists() {
             settingColor: "bg-red-500",
             start: true,
             listTypeId: trainingType,
-            gender: Gender.MALE,
+            gender: Gender.OTHER,
             elements: {
                 create: [
                     {
@@ -91,7 +91,7 @@ export async function sampleLists() {
             settingColor: "bg-emerald-500",
             start: true,
             listTypeId: vacationSummerType,
-            gender: Gender.MALE,
+            gender: Gender.OTHER,
             tripLength: 2,
             elements: {
                 create: [

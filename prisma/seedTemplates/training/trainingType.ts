@@ -1,13 +1,11 @@
-// npx prisma db seed
-// npm run seed:sample
-// npm run seed:template
-
 import { getCategory, getType } from "../../_helpers/seedHelpers"
 import { Gender, PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
 export async function trainingType() {
+    const trainingTemplateType = await getType("training", "Trening")
+
     // Tworzenie lub uzyskiwanie dostępu do kategorii
     const odziez = await getCategory("Odzież")
     const obuwie = await getCategory("Obuwie")
@@ -18,14 +16,14 @@ export async function trainingType() {
     const dokumenty = await getCategory("Dokumenty")
     const sprzet = await getCategory("Sprzęt sportowy")
     const sport = await getCategory("Sport")
-    const higiena = await getCategory("Łazienka / Higiena")
+    const higiena = await getCategory("Higiena")
 
-    const trainingTemplateType = await getType("training", "Trening")
-    const training_silownia = await prisma.template.create({
+    const training_silownia_MALE = await prisma.template.create({
         data: {
             name: "Siłownia",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -86,6 +84,90 @@ export async function trainingType() {
                     },
                     {
                         name: "Spodenki sportowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulka sportowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                ],
+            },
+        },
+    })
+    const training_silownia_FEMALE = await prisma.template.create({
+        data: {
+            name: "Siłownia",
+            settingColor: "bg-blue-400",
+            listTypeId: trainingTemplateType,
+            gender: Gender.FEMALE,
+            elements: {
+                create: [
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Karnet / Karta dostępu",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dezodorant",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Żel pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Krem do rąk",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Kosmetyki do makijażu",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Ręcznik pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Słuchawki sportowe",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Rękawiczki treningowe",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Butelka z wodą",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Opaska na włosy / Gumka do włosów",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Buty sportowe",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Ręcznik do ćwiczeń",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Spodenki sportowe lub leginsy",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -249,11 +331,12 @@ export async function trainingType() {
         },
     })
 
-    const training_scianka = await prisma.template.create({
+    const training_scianka_MALE = await prisma.template.create({
         data: {
             name: "Ścianka wspinaczkowa",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {
@@ -321,11 +404,93 @@ export async function trainingType() {
         },
     })
 
-    const training_crossfit = await prisma.template.create({
+    const training_scianka_FEMALE = await prisma.template.create({
+        data: {
+            name: "Ścianka wspinaczkowa",
+            settingColor: "bg-blue-400",
+            listTypeId: trainingTemplateType,
+            gender: Gender.FEMALE,
+            elements: {
+                create: [
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Dezodorant",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Żel pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Spodenki sportowe lub leginsy",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Opaska na włosy / Gumka do włosów",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kosmetyki do makijażu",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Butelka z wodą",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Karnet / Karta dostępu",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Przyrząd asekuracyjny",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Karabinek",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Uprząż",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Magnezja",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Buty wspinaczkowe",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Ręcznik pod prysznic",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Koszulka sportowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                ],
+            },
+        },
+    })
+
+    const training_crossfit_MALE = await prisma.template.create({
         data: {
             name: "Crossfit",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.FEMALE,
             elements: {
                 create: [
                     {
@@ -355,6 +520,14 @@ export async function trainingType() {
                     {
                         name: "Karnet / Karta dostępu",
                         categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Opaska na włosy / Gumka do włosów",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Kosmetyki do makijażu",
+                        categories: { connect: [{ id: higiena }] },
                     },
                     {
                         name: "Dezodorant",
@@ -401,7 +574,7 @@ export async function trainingType() {
                         categories: { connect: [{ id: inne }] },
                     },
                     {
-                        name: "Spodenki sportowe",
+                        name: "Spodenki sportowe lub leginsy",
                         categories: { connect: [{ id: odziez }] },
                     },
                     {
@@ -481,11 +654,12 @@ export async function trainingType() {
         },
     })
 
-    const training_mma = await prisma.template.create({
+    const training_mma_MALE = await prisma.template.create({
         data: {
             name: "Sztuki walki",
             settingColor: "bg-blue-400",
             listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
             elements: {
                 create: [
                     {

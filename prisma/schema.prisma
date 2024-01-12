@@ -14,6 +14,7 @@ enum Gender {
   FEMALE
   MALE
   OTHER
+  null
 }
 
 enum ActionType {
@@ -39,7 +40,7 @@ model User {
   confirmed       Boolean      @default(false)
   image           String?
   password        String
-  gender          Gender       @default(OTHER)
+  gender          Gender       @default(null)
   darkTheme       Boolean      @default(false)
   categories      Category[]
   preferences     String[]
@@ -102,7 +103,7 @@ model ListItem {
   status        Boolean   @default(false)
   createAt      DateTime  @default(now())
   listId        String
-  gender        Gender       @default(OTHER)
+  gender        Gender    @default(null)   
   list          List      @relation(fields: [listId], references: [id])
   categories    Category[]
 
@@ -134,7 +135,7 @@ model Template {
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
   settingColor  String
   tripLength    Int?                                        // liczba dni
-  gender          Gender     @default(OTHER)                // lista dla płci
+  gender        Gender       @default(null)                 // lista dla płci
   listTypeId    Int                                         // rodzaj wycieczki, np. "citybreak"]
   listType      ListType     @relation(fields: [listTypeId], references: [id])
   elements      TemplateItem[] 
@@ -145,6 +146,7 @@ model TemplateItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
+  gender        Gender    @default(null)   
   categories    TemplateCategory[]
   templateId    Int
   template      Template  @relation(fields: [templateId], references: [id])

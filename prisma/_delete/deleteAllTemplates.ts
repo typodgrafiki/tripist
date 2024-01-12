@@ -1,5 +1,3 @@
-// npx prisma db seed
-
 import { PrismaClient } from "@prisma/client"
 import { deleteUsers } from "./deleteAllUsers"
 

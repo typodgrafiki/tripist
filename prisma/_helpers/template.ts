@@ -733,7 +733,7 @@
 //     //     categories: { connect: [{ id: kosmetyczka }] },
 //     // },
 
-//     // Łazienka / Higiena
+//     // Higiena
 //     {
 //         name: "Mokre chusteczki",
 //         categories: { connect: [{ id: higiena }, { id: kosmetyczka }] },
