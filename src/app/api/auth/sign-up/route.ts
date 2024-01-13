@@ -19,19 +19,23 @@ function generateCode4() {
 
 export async function POST(request: Request) {
     const data = await request.json()
-    const { name, surname, email, password } = data
+    const { name, surname, email, password, gender } = data
     const userId = `user_${uuidv4()}`
 
     email.trim()
     password.trim()
+    gender.trim()
+
+    const correctGender = ["MALE", "FEMALE", "OTHER", null].includes(gender)
 
     try {
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !correctGender) {
             return NextResponse.json(
                 { message: "Nie uzupełniono danych" },
                 { status: 422 }
             )
         }
+        
 
         // check if email already exist
         const checkEmailExist = await prisma.user.findUnique({
@@ -53,6 +57,7 @@ export async function POST(request: Request) {
                 surname: surname,
                 email: email,
                 password: hashPassword,
+                gender: gender,
             },
         })
 

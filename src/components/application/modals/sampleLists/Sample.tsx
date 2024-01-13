@@ -51,7 +51,7 @@ export default function Sample() {
                 onClick={() => setIsCreateSample(true)}
                 disabled={titleIsEmpty}
             >
-                Stwórz gotową listę z szablonu
+                Przejrzyj gotowe listy
                 <ArrowDown className="ml-2" />
             </button>
             <p className="text-center my-3">lub</p>

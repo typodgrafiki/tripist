@@ -80,6 +80,7 @@ export interface ILoginUser {
 export interface ICreateUser extends ILoginUser {
     name: string
     surname?: string
+    gender?: TGender
 }
 
 export type TCreateUserApi = {

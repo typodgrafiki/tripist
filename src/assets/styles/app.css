@@ -260,6 +260,19 @@ select.dark {
     padding-right: 26px;
 }
 
+.genderSignUpForm label svg 
+{
+    stroke: currentColor;
+}
+
+.genderSignUpForm label:has(input:checked)
+{
+    border-color: var(--primary);
+    outline: var(--primary);
+    outline-width: 2px;
+    color: var(--primary);
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
