@@ -5,10 +5,7 @@ import Toastify from "toastify-js"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import ModalTitle from "@/components/ui/ModalTitle"
-import IconFemale from "@/assets/images/user/Female"
-import IconMale from "@/assets/images/user/Male"
-
-type TGender = "MALE" | "FEMALE"
+import ModalLoading from "@/components/ui/ModalLoading"
 
 export default function ShowCode({
     userId,
@@ -19,7 +16,6 @@ export default function ShowCode({
 }) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
-    const [gender, setGender] = useState<null | TGender>(null)
 
     const { register, handleSubmit, formState } = useForm({
         defaultValues: {
@@ -50,48 +46,23 @@ export default function ShowCode({
             setLoading(false)
         }
     }
+
+    if (loading) {
+        return (
+            <ModalLoading>
+                <div className="text-center">
+                    <div>Trwa tworzenie konta i list przykładowych...</div>
+                    <div className="text-xs mt-3">Za chwilę zostaniesz przekierowany<br />na stronę aplikacji.</div>
+                </div>
+            </ModalLoading>
+        )
+    }
+
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-center p-1"
         >
-            {/* {gender ? (
-                <>
-                    <ModalTitle>Wybierz swoją płeć</ModalTitle>
-                    <div className="flex gap-2 mt-1 mb-6 justify-center">
-                        <label className="block text-center">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="FEMALE"
-                            />
-                            <span className="block bg-slate-200 rounded-md mb-2">
-                                <IconFemale />
-                            </span>
-                            <span>Kobieta</span>
-                        </label>
-                        <label className="block text-center">
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="MALE"
-                            />
-                            <span className="block bg-slate-200 rounded-md mb-2">
-                                <IconMale />
-                            </span>
-                            <span>Mężczyzna</span>
-                        </label>
-                    </div>
-                    <button
-                        className="btn btn-primary w-full"
-                        disabled={loading}
-                        type="submit"
-                    >
-                        Zapisz
-                    </button>
-                </>
-            ) : ( */}
-            <>
                 <ModalTitle>Potwierdź email</ModalTitle>
                 <p className="mb-4">
                     Sprawdź email jaki wysłaliśmy na{" "}
@@ -124,22 +95,11 @@ export default function ShowCode({
                     <div className="error-message">{errors.code.message}</div>
                 )}
                 <button
-                    className="btn btn-primary w-full"
+                    className="btn btn-primary w-full mt-4"
                     disabled={loading}
-                    // type="button"
                 >
                     Potwierdź
                 </button>
-                {loading && (
-                    <div className="absolute inset-0 bg-white text-center flex flex-col justify-center items-center">
-                        Tworzymy dla Ciebie przykładowe listy.
-                        <br />
-                        Może to potrwać chwilę.
-                        <div className="loader mt-5"></div>
-                    </div>
-                )}
-            </>
-            {/* )} */}
         </form>
     )
 }

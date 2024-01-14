@@ -133,7 +133,7 @@ body {
 .modal:has(.modal-account),
 .modal.modal-account {
     width: 90%;
-    max-width: 445px;
+    max-width: 460px;
     overflow-y: auto;
 }
 

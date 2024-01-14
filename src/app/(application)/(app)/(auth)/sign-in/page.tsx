@@ -54,7 +54,6 @@ export default function RegisterForm() {
 
     return (
         <>
-            <ModalTitle>Zaloguj się</ModalTitle>
             {!emailConfirmed ? (
                 <ConfirmEmail
                     loading={loading}
@@ -62,6 +61,8 @@ export default function RegisterForm() {
                     email={email}
                 />
             ) : (
+                <>
+                <ModalTitle>Zaloguj się</ModalTitle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col justify-between gap-3 mb-1">
                         <div>
@@ -128,6 +129,7 @@ export default function RegisterForm() {
                         </Button>
                     </div>
                 </form>
+                </>
             )}
 
             <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
@@ -193,19 +195,20 @@ const ConfirmEmail = ({
         <>
             {showCode ? (
                 <ShowCode
-                    showCode={showCode}
                     userId={userId}
                     email={email}
                 />
             ) : (
+                <>
+                <ModalTitle>Wyślij kod email</ModalTitle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col justify-between gap-3 mb-1">
                         <div>
-                            <span className="text-red-600 text-sm">
+                            <span className="text-red-500 text-sm">
                                 Twój email nie został potwierdzony.
                             </span>
                             <br />
-                            Wyślij ponownie kod na adres email
+                            Wyślij ponownie kod na adres email:
                         </div>
                         <div>
                             <input
@@ -235,10 +238,11 @@ const ConfirmEmail = ({
                             className={`flex justify-center items-center btn btn-primary`}
                             isLoading={loading}
                         >
-                            Wyślij kod ponownie
+                            {loading ? "Wysyłanie..." : "Wyślij kod ponownie"}
                         </Button>
                     </div>
                 </form>
+                </>
             )}
         </>
     )
