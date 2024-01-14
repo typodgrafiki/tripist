@@ -39,7 +39,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:px-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-20 lg:pr-[10%] py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Twórz listy z gotowych propozycji
                             </h3>
@@ -62,7 +62,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
+                        <div className="caption md:w-7/12 lg:pl-[10%] md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Kopiuj pozycje
                             </h3>
@@ -84,7 +84,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:px-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-20 lg:pr-[10%] py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Korzystaj z podpowiedzi
                             </h3>
@@ -106,7 +106,7 @@ export default function Home() {
                             />
                             <span className="image-plus"></span>
                         </div>
-                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
+                        <div className="caption md:w-7/12 lg:pl-[10%] md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Zaznaczanie spakowanych przedmiotów
                             </h3>

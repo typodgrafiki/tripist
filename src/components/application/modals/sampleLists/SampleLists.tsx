@@ -53,7 +53,7 @@ function Types({
             }`}
         >
             <button
-                className="animated flex w-full justify-between items-center py-3 cursor-pointer"
+                className="animated flex w-full justify-between items-center py-3 cursor-pointer hover:text-[var(--primary)]"
                 onClick={() => togglePanel(index)}
                 disabled={isPending}
                 type="button"

@@ -1,6 +1,6 @@
 export default function IconMale() {
     return (
-        <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ikona mężczyzny" role="img">
             <path d="M15.4508 24.0323L17.2572 22.6774L15.4508 21.0968L13.8701 22.6774L15.4508 24.0323ZM15.4508 24.0323L13.8701 29M15.4508 24.0323L17.2572 29" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M1 27.4192C1 22.6773 3.03225 23.1289 10.258 20.8708" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M30.1294 27.4192C30.1294 22.6773 28.0971 23.1289 20.8714 20.8708" strokeLinecap="round" strokeLinejoin="round"/>

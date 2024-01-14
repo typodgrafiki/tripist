@@ -42,7 +42,7 @@ export default function Lists() {
 
     // sortowanie listy createdAt
     const sortedLists = lists?.sort((a, b) => {
-        return new Date(b.createAt).getTime() - new Date(a.createAt).getTime()
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     })
 
     if (isLoading) return <LoadingLists />

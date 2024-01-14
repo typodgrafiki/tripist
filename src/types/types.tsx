@@ -9,7 +9,7 @@ export interface IListBasic {
 }
 
 export interface ILists extends IListBasic {
-    createAt: Date
+    createdAt: Date
     lastChangeAt: Date
     userId: string
     predefined: boolean
@@ -23,7 +23,7 @@ export interface IElements {
     id: number
     name: string
     status: boolean
-    createAt: Date
+    createdAt: Date
     listId: string
     categories: ICategories[]
 }
@@ -210,4 +210,4 @@ export type TPanelsCollapsedTypeProps = {
     togglePanel: (panelIndex: number) => void
 }
 
-export type TGender = "MALE" | "FEMALE" | "OTHER" | null
+export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"

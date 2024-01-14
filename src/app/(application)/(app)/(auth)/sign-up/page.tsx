@@ -5,7 +5,7 @@ import Link from "next/link"
 import Toastify from "toastify-js"
 import { useState } from "react"
 import ShowCode from "@/components/application/user/UserSignShowCode"
-import { ICreateUser, TCreateUserApi } from "@/types/types"
+import { ICreateUser } from "@/types/types"
 import { createUserFetch } from "@/actions/axiosActions"
 import Button from "@/components/ui/Button"
 import ModalTitle from "@/components/ui/ModalTitle"
@@ -18,6 +18,7 @@ export default function RegisterForm() {
     const [showCode, setShowCode] = useState(false)
     const [userId, setUserId] = useState("")
     const [userEmail, setUserEmail] = useState("")
+    const [errorMessege, setErrorMessege] = useState("")
 
     const { register, handleSubmit, formState } = useForm<ICreateUser>({
         defaultValues: {
@@ -25,13 +26,14 @@ export default function RegisterForm() {
             surname: "",
             email: "",
             password: "",
-            gender: null,
+            gender: "UNDEFINED",
         },
     })
     const { errors } = formState
 
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
+        setErrorMessege("")
 
         const result = await createUserFetch(data)
 
@@ -45,6 +47,7 @@ export default function RegisterForm() {
                 className: "toastify-error",
                 text: message,
             }).showToast()
+            setErrorMessege(message)
             setLoading(false)
         }
     }
@@ -187,11 +190,11 @@ export default function RegisterForm() {
                                 Zarejestruj się
                             </Button>
                         </div>
-                        {/* {errors && (
-                            <div className="text-red-600 text-sm mt-2">
-                                Nie zapisano zmian. Spróbuj ponownie.
+                        {errorMessege && (
+                            <div className="text-red-600 text-sm mt-2 text-center">
+                                {errorMessege}
                             </div>
-                        )} */}
+                        )}
                     </form>
                     <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
                         lub

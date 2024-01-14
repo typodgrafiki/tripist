@@ -14,7 +14,7 @@ enum Gender {
   FEMALE
   MALE
   OTHER
-  null
+  UNDEFINED
 }
 
 enum ActionType {
@@ -40,7 +40,7 @@ model User {
   confirmed       Boolean      @default(false)
   image           String?
   password        String
-  gender          Gender       @default(null)
+  gender          Gender       @default(UNDEFINED)
   darkTheme       Boolean      @default(false)
   categories      Category[]
   preferences     String[]
@@ -84,7 +84,7 @@ model Session {
 model List {
   id              String    @id @default(uuid())
   name            String
-  createAt        DateTime  @default(now())
+  createdAt        DateTime  @default(now())
   lastChangeAt    DateTime  @default(now())
   settingColor    String?
   url             String?
@@ -101,9 +101,9 @@ model ListItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
-  createAt      DateTime  @default(now())
+  createdAt      DateTime  @default(now())
   listId        String
-  gender        Gender    @default(null)   
+  gender        Gender    @default(UNDEFINED)   
   list          List      @relation(fields: [listId], references: [id])
   categories    Category[]
 
@@ -135,7 +135,7 @@ model Template {
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
   settingColor  String
   tripLength    Int?                                        // liczba dni
-  gender        Gender       @default(null)                 // lista dla płci
+  gender        Gender       @default(UNDEFINED)                 // lista dla płci
   listTypeId    Int                                         // rodzaj wycieczki, np. "citybreak"]
   listType      ListType     @relation(fields: [listTypeId], references: [id])
   elements      TemplateItem[] 
@@ -146,7 +146,7 @@ model TemplateItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
-  gender        Gender    @default(null)   
+  gender        Gender    @default(UNDEFINED)   
   categories    TemplateCategory[]
   templateId    Int
   template      Template  @relation(fields: [templateId], references: [id])
