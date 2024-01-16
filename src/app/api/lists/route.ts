@@ -37,7 +37,7 @@ export async function GET() {
 export async function POST(request: Request) {
     const { userId } = await useAuth()
     const data = await request.json()
-    const { name, duplicateId, color, customData } = data
+    const { name, duplicateId, color, customData, listNameFrom } = data
     const newItems = []
 
     try {
@@ -53,6 +53,7 @@ export async function POST(request: Request) {
                 name: name,
                 userId: userId,
                 settingColor: color,
+                fromTemplate: listNameFrom ? listNameFrom : "",
             },
         })
 

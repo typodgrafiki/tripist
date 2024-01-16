@@ -65,10 +65,16 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 return createListCustom(
                     title,
                     changeSampleCustomDataToApi(dataCustomList),
-                    selectedColor
+                    selectedColor,
+                    importedList.type
                 )
             }
-            return createList(title, idToDuplicate, selectedColor)
+            return createList(
+                title,
+                idToDuplicate,
+                selectedColor,
+                importedList.type
+            )
         },
         onSuccess: async (response) => {
             const { id: listId, name: listName } = response.data.body.list

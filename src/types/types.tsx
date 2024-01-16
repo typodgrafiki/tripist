@@ -12,7 +12,7 @@ export interface ILists extends IListBasic {
     createdAt: Date
     lastChangeAt: Date
     userId: string
-    predefined: boolean
+    fromTemplate: string
 }
 
 export interface IList extends IListBasic, ILists {

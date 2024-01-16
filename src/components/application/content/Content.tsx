@@ -99,7 +99,7 @@ export default function Content({ id }: { id: string }) {
     if (isError) return <ContentErrorLoading />
     if (!elements || !listData) return <ContentNoData />
 
-    const { name, id: listId } = listData
+    const { name, id: listId, fromTemplate: titleFromTemplate } = listData
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category)
@@ -133,7 +133,10 @@ export default function Content({ id }: { id: string }) {
         <>
             {/* Header view */}
             <div className="flex justify-between gap-2 mb-1">
-                <Title title={name} />
+                <Title
+                    title={name}
+                    subTitle={titleFromTemplate}
+                />
                 <div className="flex">
                     <MobileMore
                         handleSortChange={handleSortChange}
