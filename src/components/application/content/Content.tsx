@@ -110,6 +110,7 @@ export default function Content({ id }: { id: string }) {
             <AddElements
                 listId={listData.id}
                 listName={listData.name}
+                listColor={listData.settingColor}
             />
         )
         setIsModalOpen(true)

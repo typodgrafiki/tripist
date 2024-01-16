@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { useState, useRef, useEffect } from "react"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import Toastify from "toastify-js"
@@ -6,19 +7,27 @@ import { createItem } from "@/actions/axiosActions"
 import { IElements } from "@/types/types"
 import IconCheck from "../icons/check"
 import IconPlus from "../icons/plus"
+import ModalTitleSample from "@/components/ui/ModalTitleSample"
+import ModalTitle from "@/components/ui/ModalTitle"
+import Label from "@/components/ui/Label"
+import SearchElements from "./searchElements/searchElements"
 
 export default function CreateLAddElements({
     listId,
     listName,
+    listColor,
 }: {
     listId: string
     listName: string
+    listColor: string
 }) {
     const [name, setName] = useState("")
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [isSuccessFallback, setIsSuccessFallback] = useState(false)
     const queryClient = useQueryClient()
+
+    console.log("render")
 
     const { mutate, isPending, isError, isSuccess } = useMutation({
         mutationFn: async () => createItem(name, listId),
@@ -68,16 +77,23 @@ export default function CreateLAddElements({
 
     return (
         <>
-            <h3 className="title mb-3 font-medium text-base">{listName}</h3>
+            <ModalTitleSample
+                titleData={{ title: listName, titleColor: listColor }}
+            />
+            <ModalTitle>Dodaj element do listy</ModalTitle>
             <form
                 ref={formRef}
                 onSubmit={handleSubmit}
             >
+                <Label
+                    htmlFor="name"
+                    name="Nazwa elementu:"
+                />
                 <div className="flex justify-between gap-3 mb-1">
                     <input
                         type="text"
                         value={name}
-                        placeholder="np. Suszarka"
+                        placeholder="np. Suszarka, nożyczki, perfum"
                         className={`animated form-control grow ${
                             isSuccessFallback &&
                             "focus:border-green-500 focus:ring-green-500"
@@ -85,7 +101,6 @@ export default function CreateLAddElements({
                         onChange={(e) => setName(e.target.value)}
                         ref={inputRef}
                     />
-
                     <button
                         type="submit"
                         className={`flex justify-center items-center btn btn-primary ${
@@ -111,6 +126,7 @@ export default function CreateLAddElements({
                     </div>
                 )}
             </form>
+            <SearchElements />
         </>
     )
 }
