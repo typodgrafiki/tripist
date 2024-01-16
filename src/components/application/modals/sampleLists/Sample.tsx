@@ -118,8 +118,6 @@ const SampleOn = () => {
             </ModalSuccess>
         )
 
-    console.log(sampleLists)
-
     return (
         <>
             {customList ? (

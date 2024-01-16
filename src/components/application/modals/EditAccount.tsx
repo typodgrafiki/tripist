@@ -35,8 +35,6 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
         },
     })
 
-    console.log(gender)
-
     const { errors } = formState
 
     const onSubmit = async (data: IUserData) => {

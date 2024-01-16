@@ -128,8 +128,6 @@ export async function PATCH(request: Request, context: IApiContext) {
             list: updatedList,
         }
 
-        console.log(result)
-
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
         return NextResponse.json(

@@ -12,8 +12,6 @@ export async function POST(request: Request) {
     const data = await request.json()
     const { name, surname, email, password, gender } = data
 
-    console.log(gender)
-
     await email.trim()
     await password.trim()
 
