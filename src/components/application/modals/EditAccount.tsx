@@ -13,6 +13,8 @@ import { updateUserFetch } from "@/actions/axiosActions"
 import iconUser from "@/assets/images/user/boy.png"
 import DeleteAccount from "./DeleteAccount"
 import Label from "@/components/ui/Label"
+import IconFemale from "@/assets/images/user/Female"
+import IconMale from "@/assets/images/user/Male"
 
 type EditAccountProps = {
     data: IUserData
@@ -21,17 +23,19 @@ type EditAccountProps = {
 
 export default function EditAccount({ data, setData }: EditAccountProps) {
     const { closeModal } = useModal()
-    const { name, surname, image, email } = data
+    const { name, image, email, gender } = data
     const [loading, setLoading] = useState(false)
 
     const { register, handleSubmit, formState } = useForm<IUserData>({
         defaultValues: {
             name: name,
-            surname: surname,
             email: email,
             password: "",
+            gender: gender,
         },
     })
+
+    console.log(gender)
 
     const { errors } = formState
 
@@ -49,6 +53,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
             setData({
                 name: result.data.name,
                 surname: result.data.surname,
+                gender: result.data.gender,
                 email: result.data.email,
             })
             closeModal()
@@ -78,10 +83,11 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         alt="Zdjęcie użytkownika"
                     />
                 </div> */}
-                <div className="flex gap-2 w-full mb-4">
-                    <div className="w-1/2">
+
+                <div className="flex gap-2 mb-4">
+                    <div className="grow">
                         <Label
-                            name="Imię"
+                            name="Imię i nazwisko"
                             htmlFor="formName"
                         />
                         <input
@@ -91,23 +97,67 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                             }`}
                             id="formName"
                             disabled={loading}
-                            {...register("name")}
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: "Imię jest wymagane",
+                                },
+                            })}
                         />
+                        {errors.name && (
+                            <div className="error-message text-sm mt-1">
+                                {errors.name.message}
+                            </div>
+                        )}
                     </div>
-                    <div className="w-1/2">
+                    <div>
                         <Label
-                            name="Nazwisko"
-                            htmlFor="formSurname"
+                            name="Płeć"
+                            htmlFor="formGender"
                         />
-                        <input
-                            type="text"
-                            className={`form-control w-full ${
-                                errors.surname ? "error" : ""
-                            }`}
-                            id="formSurname"
-                            disabled={loading}
-                            {...register("surname")}
-                        />
+                        <div className="flex gap-2 genderSignUpForm">
+                            <label
+                                className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${
+                                    errors.gender
+                                        ? "border-red-500"
+                                        : "text-slate-500"
+                                }`}
+                            >
+                                <input
+                                    type="radio"
+                                    value="FEMALE"
+                                    defaultChecked={gender === "FEMALE"}
+                                    className="hidden"
+                                    {...register("gender", {
+                                        required: "Wybierz płeć",
+                                    })}
+                                />
+                                <IconFemale />
+                            </label>
+                            <label
+                                className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${
+                                    errors.gender
+                                        ? "border-red-500"
+                                        : "text-slate-500"
+                                }`}
+                            >
+                                <input
+                                    type="radio"
+                                    value="MALE"
+                                    defaultChecked={gender === "MALE"}
+                                    className="hidden"
+                                    {...register("gender", {
+                                        required: "Wybierz płeć",
+                                    })}
+                                />
+                                <IconMale />
+                            </label>
+                        </div>
+                        {errors.gender && (
+                            <div className="error-message text-sm mt-1">
+                                {errors.gender.message}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="w-full mb-4">

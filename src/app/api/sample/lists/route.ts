@@ -10,7 +10,7 @@ import prisma from "@/lib/prismaClient"
 import { TSampleTypeFull, TSampleType } from "@/types/types"
 
 export async function GET() {
-    const { userId } = await useAuth()
+    const { userId, gender } = await useAuth()
 
     try {
         if (!userId)
@@ -34,7 +34,22 @@ export async function GET() {
             },
         })
 
-        const listFiltered = changeStructure(lists)
+        const filteredGender = lists
+            .map((listType) => {
+                const filteredTemplates = listType.templates.filter(
+                    (template) =>
+                        template.gender === gender ||
+                        template.gender === "UNDEFINED"
+                )
+
+                return {
+                    ...listType,
+                    templates: filteredTemplates,
+                }
+            })
+            .filter((listType) => listType.templates.length > 0)
+
+        const listFiltered = changeStructure(filteredGender)
 
         return NextResponse.json({ body: listFiltered }, { status: 200 })
     } catch (error) {

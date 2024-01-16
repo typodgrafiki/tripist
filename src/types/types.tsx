@@ -95,6 +95,7 @@ export interface IUserData {
     image?: string
     surname?: string
     password?: string
+    gender?: TGender
 }
 
 export type TSampleTypeFull = {
