@@ -24,7 +24,7 @@ export async function sampleLists() {
             settingColor: "bg-red-500",
             start: true,
             listTypeId: trainingType,
-            gender: Gender.OTHER,
+            gender: Gender.UNDEFINED,
             elements: {
                 create: [
                     {
@@ -91,7 +91,7 @@ export async function sampleLists() {
             settingColor: "bg-emerald-500",
             start: true,
             listTypeId: vacationSummerType,
-            gender: Gender.OTHER,
+            gender: Gender.UNDEFINED,
             tripLength: 2,
             elements: {
                 create: [
