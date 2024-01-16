@@ -237,7 +237,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     )
 }
 
-const getRandomElement = (list) => {
+const getRandomElement = (list: string[]) => {
     const randomIndex = Math.floor(Math.random() * list.length)
     return list[randomIndex]
 }
