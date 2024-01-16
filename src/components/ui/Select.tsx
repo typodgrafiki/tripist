@@ -6,8 +6,9 @@ interface ISelectProps {
     options: string[]
     select: string
     setSelect: (color: string) => void
+    className?: string
 }
-export default function Select({ options, select, setSelect }: ISelectProps) {
+export default function Select({ options, select, setSelect, className }: ISelectProps) {
     const { isOpen, toggleDropdown, dropdownRef, closeDropdown } = useDropdown()
 
     const handleChangeColor = (color: string) => {
@@ -17,7 +18,7 @@ export default function Select({ options, select, setSelect }: ISelectProps) {
 
     return (
         <div
-            className="flex relative"
+            className={`flex relative ${className}`}
             ref={dropdownRef}
         >
             <button
@@ -31,7 +32,7 @@ export default function Select({ options, select, setSelect }: ISelectProps) {
                 <span className="hidden">Wybierz kolor</span>
             </button>
             {isOpen && (
-                <div className="options absolute top-full mt-1 left-0 right-0 bg-[#ecedf1] flex flex-col items-stretch rounded-[7px] overflow-hidden p-1">
+                <div className="options absolute top-full mt-1 left-0 right-0 z-10 bg-[#ecedf1] flex flex-col items-stretch rounded-[7px] overflow-hidden p-1">
                     {options.map((color) => (
                         <div
                             key={color}

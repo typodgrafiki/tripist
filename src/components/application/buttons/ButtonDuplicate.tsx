@@ -3,6 +3,7 @@
 import { useModal } from "@/context/ModalContext"
 import CreateListModal from "@/components/application/modals/CreateList"
 import IconCopy from "@/components/application/icons/copy"
+import Tooltip from "@/components/ui/Tooltip"
 
 export default function ButtonDuplicate({
     listId,
@@ -24,13 +25,16 @@ export default function ButtonDuplicate({
     }
 
     return (
-        <>
+        <Tooltip
+            text="Duplikuj"
+            className="hidden sm:flex mb-2 "
+        >
             <button
-                className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
+                className="animated px-3 hover:text-[var(--primary)] rounded-full"
                 onClick={handleClick}
             >
                 <IconCopy />
             </button>
-        </>
+        </Tooltip>
     )
 }

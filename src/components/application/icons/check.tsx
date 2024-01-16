@@ -1,4 +1,4 @@
-export default function IconCheck() {
+export default function IconCheck({ className }: { className?: string }) {
     return (
         <svg
             width="9"
@@ -6,7 +6,7 @@ export default function IconCheck() {
             viewBox="0 0 9 7"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="svg-stroke"
+            className={`svg-stroke ${className}`}
         >
             <path
                 d="M1 3.08333L3.57895 6L8 1"

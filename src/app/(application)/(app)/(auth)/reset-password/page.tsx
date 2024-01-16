@@ -8,6 +8,7 @@ import { resetPasswordSend } from "@/actions/axiosActions"
 import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
 import Button from "@/components/ui/Button"
+import ModalTitle from "@/components/ui/ModalTitle"
 
 export default function RemindPassword() {
     const router = useRouter()
@@ -29,10 +30,9 @@ export default function RemindPassword() {
         setLoading(true)
         const result = await resetPasswordSend(data)
 
-        // TODO to nie dziala
-
         if (result?.status === 200) {
             router.push("/dashboard")
+        } else if (result?.status === 401) {
         } else {
             const { message } = result?.data
             Toastify({
@@ -43,11 +43,11 @@ export default function RemindPassword() {
         }
     }
 
+    if (!userEmail || !userToken) return <>Niepoprawny link zmiany hasła</>
+
     return (
         <>
-            <h3 className="truncate text-xl font-medium mb-4">
-                Utwórz nowe hasło
-            </h3>
+            <ModalTitle>Utwórz nowe hasło</ModalTitle>
             <p className="mb-4">
                 Wpisz nowe hasło dla{" "}
                 <span className="text-[var(--primary)]">{userEmail}</span>
@@ -100,7 +100,7 @@ export default function RemindPassword() {
                 </div>
                 <Button
                     type="submit"
-                    className={`flex justify-center items-center btn btn-primary`}
+                    className={`flex justify-center items-center btn btn-primary mt-2`}
                     isLoading={loading}
                 >
                     Zapisz hasło

@@ -4,7 +4,11 @@ import { useState, useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { getListData } from "@/actions/axiosActions"
 import { IElements, IList, SortBy, SortDirection } from "@/types/types"
-import { findUniqueCategories, sortElements } from "@/utils/utils"
+import {
+    calculateStatusPercentage,
+    findUniqueCategories,
+    sortElements,
+} from "@/utils/utils"
 import Title from "@/components/application/title/Title"
 import ContentElement from "@/components/application/content/ContentElement"
 import ButtonDisableAll from "@/components/application/content/ButtonDisableAll"
@@ -22,6 +26,8 @@ import Sort from "../buttons/Sort"
 import ContentErrorLoading from "./ErrorContent"
 import ContentNoData from "./NoDataContent"
 import MobileMore from "../buttons/MobileMore"
+import PercentageBar from "./PercentageBar"
+import Tooltip from "@/components/ui/Tooltip"
 
 export type TSortProps = {
     sortBy: SortBy
@@ -121,8 +127,11 @@ export default function Content({ id }: { id: string }) {
         setSortCriteria({ sortBy: newSortBy, sortDirection: newSortDirection })
     }
 
+    const percentagePackedItems = calculateStatusPercentage(elements)
+
     return (
         <>
+            {/* Header view */}
             <div className="flex justify-between gap-2 mb-1">
                 <Title title={name} />
                 <div className="flex">
@@ -132,12 +141,17 @@ export default function Content({ id }: { id: string }) {
                         listId={listId}
                         name={name}
                     />
-                    <Button
-                        className="animated hidden sm:inline-block px-3 mb-2 hover:text-[var(--primary)] hover:bg-white rounded-full"
-                        onClick={handleEditList}
+                    <Tooltip
+                        text="Edytuj"
+                        className="hidden sm:flex mb-2 "
                     >
-                        <IconPen />
-                    </Button>
+                        <Button
+                            className="animated px-3 hover:text-[var(--primary)] rounded-full"
+                            onClick={handleEditList}
+                        >
+                            <IconPen />
+                        </Button>
+                    </Tooltip>
                     <ButtonDuplicate
                         listId={listId}
                         name={name}
@@ -148,7 +162,7 @@ export default function Content({ id }: { id: string }) {
 
             {elements?.length > 0 ? (
                 <>
-                    <div className="hidden sm:flex mb-3 justify-between">
+                    <div className="hidden sm:flex mb-3 justify-between gap-2">
                         <FilterCategories
                             categoriesUnique={categoriesUnique}
                             handleCategoryChange={handleCategoryChange}
@@ -161,8 +175,9 @@ export default function Content({ id }: { id: string }) {
                             sortCriteria={sortCriteria}
                         />
                     </div>
+                    <PercentageBar percent={percentagePackedItems} />
                     <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
-                        <ul className="">
+                        <ul>
                             {sortedAndFilteredElements.map((element) => (
                                 <ContentElement
                                     key={element.id}
@@ -175,7 +190,7 @@ export default function Content({ id }: { id: string }) {
                         <ButtonDisableAll listId={listId} />
                         <button
                             onClick={handleOpenModal}
-                            className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 -mt-7 z-1 text-white block rounded-full bottom-[70px] right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto"
+                            className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 -mt-7 z-1 text-white block rounded-full bottom-[70px] right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto z-10"
                         >
                             Dodaj element
                         </button>

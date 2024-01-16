@@ -9,7 +9,7 @@ import { sendEmailSignCode } from "@/email/sendEmailCode"
 function generateCode4() {
     const signUpCode = Math.floor(Math.random() * 9000) + 1000
     const expiryDate = new Date()
-    expiryDate.setHours(expiryDate.getHours() + 24) // Ustawienie czasu wygaśnięcia na 24 godziny od teraz
+    expiryDate.setMinutes(expiryDate.getMinutes() + 15) // Ustawienie czasu wygaśnięcia na 15 minut od teraz
 
     return {
         signUpCode: signUpCode,
@@ -19,19 +19,23 @@ function generateCode4() {
 
 export async function POST(request: Request) {
     const data = await request.json()
-    const { name, surname, email, password } = data
+    const { name, surname, email, password, gender } = data
     const userId = `user_${uuidv4()}`
 
-    await email.trim()
-    await password.trim()
+    email.trim()
+    password.trim()
+    gender.trim()
+
+    const correctGender = ["MALE", "FEMALE", "OTHER", null].includes(gender)
 
     try {
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !correctGender) {
             return NextResponse.json(
                 { message: "Nie uzupełniono danych" },
-                { status: 400 }
+                { status: 422 }
             )
         }
+        
 
         // check if email already exist
         const checkEmailExist = await prisma.user.findUnique({
@@ -41,7 +45,7 @@ export async function POST(request: Request) {
         if (checkEmailExist) {
             return NextResponse.json(
                 { message: "Użytkownik o takim email już istnieje" },
-                { status: 401 }
+                { status: 409 }
             )
         }
 
@@ -53,13 +57,14 @@ export async function POST(request: Request) {
                 surname: surname,
                 email: email,
                 password: hashPassword,
+                gender: gender,
             },
         })
 
         if (!newUser) {
             return NextResponse.json(
                 { message: "Nie udało się dodać użytkownika" },
-                { status: 402 }
+                { status: 500 }
             )
         }
 
@@ -81,13 +86,17 @@ export async function POST(request: Request) {
         if (!sendEmail) {
             return NextResponse.json(
                 { message: "Nie wysłano kodu" },
-                { status: 403 }
+                { status: 500 }
             )
         }
 
-        return NextResponse.json(userId, { status: 200 })
+        const result = {
+            userId: userId,
+            email: newUser.email,
+        }
+
+        return NextResponse.json(result, { status: 200 })
     } catch (e) {
-        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }
@@ -111,6 +120,13 @@ export async function PATCH(request: Request) {
 
         // Sprawdź, czy kod się zgadza i użytkownik istnieje
         if (signUpCode && signUpCode.code === codeNumber && user) {
+            if (new Date(signUpCode.expiresAt) < new Date()) {
+                return NextResponse.json(
+                    { message: "Kod stracił ważność" },
+                    { status: 401 }
+                )
+            }
+
             await prisma.user.update({
                 where: { id: userId },
                 data: { confirmed: true },
@@ -140,7 +156,7 @@ export async function PATCH(request: Request) {
             )
         } else {
             return NextResponse.json(
-                { body: "Niepoprawky kod" },
+                { message: "Niepoprawky kod" },
                 { status: 400 }
             )
         }

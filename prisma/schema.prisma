@@ -10,6 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Gender {
+  FEMALE
+  MALE
+  OTHER
+  UNDEFINED
+}
+
+enum ActionType {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum EntityType {
+  LISTITEM
+  LIST
+  CATEGORY
+}
+
+
 model User {
   id              String       @id @default(uuid())
   createdAt       DateTime     @default(now())
@@ -20,6 +40,7 @@ model User {
   confirmed       Boolean      @default(false)
   image           String?
   password        String
+  gender          Gender       @default(UNDEFINED)
   darkTheme       Boolean      @default(false)
   categories      Category[]
   preferences     String[]
@@ -63,7 +84,7 @@ model Session {
 model List {
   id              String    @id @default(uuid())
   name            String
-  createAt        DateTime  @default(now())
+  createdAt        DateTime  @default(now())
   lastChangeAt    DateTime  @default(now())
   settingColor    String?
   url             String?
@@ -71,6 +92,7 @@ model List {
   user            User      @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
   fromTemplate    Boolean     @default(false)
+  tags            ListTags[]
 
   @@index([userId], name: "idx_userId")
 }
@@ -79,8 +101,9 @@ model ListItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
-  createAt      DateTime  @default(now())
+  createdAt      DateTime  @default(now())
   listId        String
+  gender        Gender    @default(UNDEFINED)   
   list          List      @relation(fields: [listId], references: [id])
   categories    Category[]
 
@@ -100,27 +123,30 @@ model ChangeLog {
   createdAt     DateTime  @default(now())
   userId        String
   user          User      @relation(fields: [userId], references: [id])
-  action        String    // np. "DELETE", "UPDATE"
-  entityType    String    // np. "LISTITEM", "LIST", "CATEGORY"
-  entityId      Int       // ID encji, którą zmieniliśmy
-  previousData  Json      // Dane przed zmianą
+  action        ActionType    // np. "DELETE", "UPDATE"
+  entityType    EntityType    // np. "LISTITEM", "LIST", "CATEGORY"
+  entityId      Int           // ID encji, którą zmieniliśmy
+  previousData  Json          // Dane przed zmianą
 }
 
 model Template {
   id            Int          @id @default(autoincrement())
   name          String                                      // np. "2 dni citybreak"
   start         Boolean      @default(false)                // jesli ma być ładowana po rejestracji
-  settingColor  String?
+  settingColor  String
   tripLength    Int?                                        // liczba dni
-  templateTypeId Int                                        // rodzaj wycieczki, np. "citybreak"]
-  templateType TemplateType   @relation(fields: [templateTypeId], references: [id])
-  elements     TemplateItem[]
+  gender        Gender       @default(UNDEFINED)                 // lista dla płci
+  listTypeId    Int                                         // rodzaj wycieczki, np. "citybreak"]
+  listType      ListType     @relation(fields: [listTypeId], references: [id])
+  elements      TemplateItem[] 
+  tags          ListTags[]
 }
 
 model TemplateItem {
   id            Int       @id @default(autoincrement())
   name          String
   status        Boolean   @default(false)
+  gender        Gender    @default(UNDEFINED)   
   categories    TemplateCategory[]
   templateId    Int
   template      Template  @relation(fields: [templateId], references: [id])
@@ -132,8 +158,21 @@ model TemplateCategory {
   items    TemplateItem[]
 }
 
-model TemplateType {
+model ListType {
   id          Int          @id @default(autoincrement())
-  name        String       // Nazwa typu, np. "City Break"
+  name        String       // Nazwa typu, np. "SUMMER, WINTER, CAMPING, ACTIVE, TRAINING, OTHER"
+  fullName    String       // Pełna nazwa np. "Wakacje letnie, Camping"
   templates   Template[]
+}
+
+model ListTags {
+  id          Int          @id @default(autoincrement())
+  tag         String
+  list        List     @relation(fields: [listId], references: [id])
+  listId      String
+  template    Template @relation(fields: [templateId], references: [id])
+  templateId  Int
+
+  @@index([listId], name: "idx_listTags_listId")
+  @@index([templateId], name: "idx_listTags_templateId")
 }

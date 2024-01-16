@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="logo hidden lg:block lg:w-3/12 lg:px-20">
                     <Link
                         href="/#hero"
-                        className="relative inline-block"
+                        className="animated relative inline-block hover:opacity-50"
                     >
                         <Image
                             src={logo}

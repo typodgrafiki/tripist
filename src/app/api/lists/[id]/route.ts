@@ -117,11 +117,18 @@ export async function PATCH(request: Request, context: IApiContext) {
                 lastChangeAt: new Date(),
                 settingColor: color,
             },
+            select: {
+                id: true,
+                name: true,
+                settingColor: true,
+            },
         })
 
         const result = {
             list: updatedList,
         }
+
+        console.log(result)
 
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {

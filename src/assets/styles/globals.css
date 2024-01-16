@@ -12,7 +12,6 @@
 
 @layer base {
     html {
-        font-family: "Poppins", system-ui, sans-serif;
         scroll-behavior: smooth;
         background-color: var(--bg);
     }
@@ -43,7 +42,7 @@
 
     .btn {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 10px 15px;
         border-width: 1px;
         border-style: solid;
         border-radius: 7px;
@@ -55,6 +54,10 @@
 
     .btn-small {
         padding: 5px 10px;
+    }
+
+    .btn-big {
+        padding: 14px 20px;
     }
 
     .btn-default {
@@ -113,6 +116,7 @@
     .btn[disabled] {
         pointer-events: none;
         cursor: not-allowed;
+        opacity: 0.5;
     }
 
     .form-control {
@@ -120,6 +124,7 @@
         border-color: transparent;
         border-radius: 7px;
         padding: 10px 20px;
+        font-size: 0.9rem;
     }
 
     .form-control.success:focus {

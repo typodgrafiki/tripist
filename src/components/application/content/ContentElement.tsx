@@ -13,6 +13,7 @@ import { changeStatusLocaly } from "@/utils/utils"
 import Categories from "./ItemCategories"
 import ButtonDelete from "../buttons/ButtonDeleteItem"
 import Button from "@/components/ui/Button"
+import Tooltip from "@/components/ui/Tooltip"
 
 export default function ContentElement({
     id,
@@ -82,35 +83,43 @@ export default function ContentElement({
 
     return (
         <>
-            <li className="element-row animated relative border-t border-gray-200 flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 hover:shadow-md hover:sm:pl-3 hover:rounded first:border-0">
-                <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer hover:text-[var(--primary)] sm:px-0">
+            <li className="element-row animated relative border-t border-gray-200 flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 sm:hover:shadow-md sm:hover:sm:pl-3 hover:rounded first:border-0">
+                <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer sm:hover:text-[var(--primary)] sm:px-0">
                     <span className="relative round w-[21px] h-[21px]">
-                        <>
-                            <input
-                                type="checkbox"
-                                checked={status}
-                                className="mr-2"
-                                id={`element-${id}`}
-                                onChange={(e) => mutate(e.target.checked)}
-                            />
-                            <span className="label"></span>
-                        </>
+                        <input
+                            type="checkbox"
+                            checked={status}
+                            className="mr-2"
+                            id={`element-${id}`}
+                            onChange={() => mutate(!status)}
+                        />
+                        <span className="label"></span>
                     </span>
                     <span className="grow">{name}</span>
                 </label>
                 <Categories categories={categories} />
-                <div className="element-edit flex absolute top-0 bottom-0 right-0">
+                <div className="element-edit flex pr-2 sm:absolute sm:top-0 sm:bottom-0 sm:right-0 sm:opacity-0 sm:pr-0">
+                    {/* <Tooltip
+                        text="Edytuj"
+                        className="flex"
+                    > */}
                     <Button
-                        className="px-1 items-center hover:text-[var(--primary)]"
+                        className="px-2 items-center hover:text-[var(--primary)] sm:px-1"
                         onClick={handleEdit}
                     >
                         <IconPen />
                     </Button>
+                    {/* </Tooltip>
+                    <Tooltip
+                        text="Usuń"
+                        className="flex"
+                    > */}
                     <ButtonDelete
                         id={id}
                         listId={listId}
                         icon
                     />
+                    {/* </Tooltip> */}
                 </div>
             </li>
         </>

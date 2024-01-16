@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation"
 import { generateEmailSignCode, loginUserFetch } from "@/actions/axiosActions"
 import ShowCode from "@/components/application/user/UserSignShowCode"
 import Button from "@/components/ui/Button"
+import ModalTitle from "@/components/ui/ModalTitle"
+import Label from "@/components/ui/Label"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -52,7 +54,6 @@ export default function RegisterForm() {
 
     return (
         <>
-            <h3 className="truncate text-xl font-medium mb-4">Zaloguj się</h3>
             {!emailConfirmed ? (
                 <ConfirmEmail
                     loading={loading}
@@ -60,9 +61,15 @@ export default function RegisterForm() {
                     email={email}
                 />
             ) : (
+                <>
+                <ModalTitle>Zaloguj się</ModalTitle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col justify-between gap-3 mb-1">
                         <div>
+                            <Label
+                                name="Email"
+                                htmlFor="formEmail"
+                            />
                             <input
                                 type="email"
                                 className={`form-control grow w-full ${
@@ -87,6 +94,10 @@ export default function RegisterForm() {
                             )}
                         </div>
                         <div>
+                            <Label
+                                name="Hasło"
+                                htmlFor="formPassword"
+                            />
                             <input
                                 type="password"
                                 className={`form-control grow w-full ${
@@ -111,13 +122,14 @@ export default function RegisterForm() {
                         </div>
                         <Button
                             type="submit"
-                            className={`flex justify-center items-center btn btn-primary`}
+                            className={`flex justify-center items-center btn btn-primary mt-4`}
                             isLoading={loading}
                         >
                             {loading ? "Logowanie..." : "Zaloguj się"}
                         </Button>
                     </div>
                 </form>
+                </>
             )}
 
             <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
@@ -135,7 +147,7 @@ export default function RegisterForm() {
             <div className="flex text-muted justify-center mt-3 text-xs">
                 <Link
                     href="/remind-password"
-                    className="hover:text-[var(--primary)]"
+                    className="text-muted hover:text-[var(--primary)]"
                 >
                     Zapomniałeś hasła?
                 </Link>
@@ -168,7 +180,7 @@ const ConfirmEmail = ({
         const result = await generateEmailSignCode(data)
 
         if (result?.status === 200) {
-            setUserId(result.data)
+            setUserId(result.data.userId)
             setShowCode(true)
         } else {
             const { message } = result?.data
@@ -180,59 +192,58 @@ const ConfirmEmail = ({
         }
     }
     return (
-        <div className="relative overflow-hidden">
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className={`w-full relative ${
-                    showCode ? "-left-full" : "left-0"
-                }`}
-            >
-                <div className="flex flex-col justify-between gap-3 mb-1">
-                    <div>
-                        <span className="text-red-600 text-sm">
-                            Twój email nie został potwierdzony.
-                        </span>
-                        <br />
-                        Wyślij ponownie kod na adres email
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            className={`form-control grow w-full ${
-                                errors.email ? "error" : ""
-                            }`}
-                            {...register("email", {
-                                required: {
-                                    value: true,
-                                    message: "Email jest wymagany",
-                                },
-                            })}
-                            placeholder="john@example.com"
-                            id="formEmail"
-                            autoComplete="username"
-                            disabled={loading}
-                        />
-                        {errors.email && (
-                            <div className="error-message">
-                                {errors.email.message}
-                            </div>
-                        )}
-                    </div>
-                    <Button
-                        type="submit"
-                        className={`flex justify-center items-center btn btn-primary`}
-                        isLoading={loading}
-                    >
-                        Wyślij kod ponownie
-                    </Button>
-                </div>
-            </form>
-            {showCode && (
+        <>
+            {showCode ? (
                 <ShowCode
-                    showCode={showCode}
                     userId={userId}
+                    email={email}
                 />
+            ) : (
+                <>
+                <ModalTitle>Wyślij kod email</ModalTitle>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex flex-col justify-between gap-3 mb-1">
+                        <div>
+                            <span className="text-red-500 text-sm">
+                                Twój email nie został potwierdzony.
+                            </span>
+                            <br />
+                            Wyślij ponownie kod na adres email:
+                        </div>
+                        <div>
+                            <input
+                                type="email"
+                                className={`form-control grow w-full ${
+                                    errors.email ? "error" : ""
+                                }`}
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: "Email jest wymagany",
+                                    },
+                                })}
+                                placeholder="john@example.com"
+                                id="formEmail"
+                                autoComplete="username"
+                                disabled={loading}
+                            />
+                            {errors.email && (
+                                <div className="error-message">
+                                    {errors.email.message}
+                                </div>
+                            )}
+                        </div>
+                        <Button
+                            type="submit"
+                            className={`flex justify-center items-center btn btn-primary`}
+                            isLoading={loading}
+                        >
+                            {loading ? "Wysyłanie..." : "Wyślij kod ponownie"}
+                        </Button>
+                    </div>
+                </form>
+                </>
             )}
-        </div>
+        </>
     )
 }

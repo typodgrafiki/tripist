@@ -12,6 +12,7 @@ import where6 from "@/assets/images/where6.jpg"
 import devices from "@/assets/images/devices.png"
 import Title from "@/components/homepage/content/title"
 import Baner from "@/components/homepage/content/Baner"
+import ButtonSignUp from "@/components/homepage/content/ButtonSignUp"
 
 export default function Home() {
     return (
@@ -38,7 +39,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:px-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-20 lg:pr-[10%] py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Twórz listy z gotowych propozycji
                             </h3>
@@ -61,7 +62,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
+                        <div className="caption md:w-7/12 lg:pl-[10%] md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Kopiuj pozycje
                             </h3>
@@ -83,7 +84,7 @@ export default function Home() {
                                 className="shadow-2xl rounded-2xl"
                             />
                         </div>
-                        <div className="caption md:w-7/12 md:px-20 py-8">
+                        <div className="caption md:w-7/12 md:pl-20 lg:pr-[10%] py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Korzystaj z podpowiedzi
                             </h3>
@@ -105,7 +106,7 @@ export default function Home() {
                             />
                             <span className="image-plus"></span>
                         </div>
-                        <div className="caption md:w-7/12 md:pl-40 md:pr-20 py-8">
+                        <div className="caption md:w-7/12 lg:pl-[10%] md:pr-20 py-8">
                             <h3 className="font-semibold text-3xl mb-4">
                                 Zaznaczanie spakowanych przedmiotów
                             </h3>
@@ -132,14 +133,7 @@ export default function Home() {
                                 idealną listę. Bo każdy wyjazd i każdy trening
                                 zasługują na pełne przygotowanie.
                             </p>
-                            {/* <SignedOut>
-                                <Link
-                                    href="/sign-up"
-                                    className="btn btn-primary transition-colors"
-                                >
-                                    Załóż konto
-                                </Link>
-                            </SignedOut> */}
+                            <ButtonSignUp />
                         </hgroup>
                     </div>
                     <div className="container container-md px-2 mx-auto mb-14 flex justify-center items-start mt-[-9rem] md:mb-28 md:px-14">

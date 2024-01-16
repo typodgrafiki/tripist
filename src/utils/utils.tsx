@@ -7,6 +7,10 @@ import {
     ISortTypes,
     SortBy,
     SortDirection,
+    TSampleCustomItems,
+    TSampleCustomItemsToApi,
+    TSampleCustomCategoryApi,
+    TSampleCustomItemsCount,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -125,3 +129,79 @@ export const sortTypes: ISortTypes[] = [
         direction: "desc",
     },
 ]
+
+export const optionsColor = [
+    "bg-red-500",
+    "bg-yellow-500",
+    "bg-emerald-500",
+    "bg-cyan-500",
+    "bg-violet-400",
+    "bg-purple-700",
+    "bg-pink-600",
+]
+
+/**
+ * Oblicza procentową wartość elementów z aktywnym (true) statusem.
+ *
+ * @param {IElements[]} items - Tablica elementów, dla których ma być obliczony procent.
+ *                              Zakłada się, że każdy element ma pole 'status'.
+ * @returns {number} Procentowa wartość elementów z aktywnym statusem w stosunku do całkowitej liczby elementów.
+ *                   Wynik jest zaokrąglany do najbliższej liczby całkowitej.
+ */
+export function calculateStatusPercentage(items: IElements[]) {
+    const totalItems = items.length
+
+    if (totalItems === 0) {
+        return 0
+    }
+
+    const trueStatusItems = items.reduce(
+        (count, item) => count + (item.status ? 1 : 0),
+        0
+    )
+
+    return Math.round((trueStatusItems / totalItems) * 100)
+}
+
+export function changeSampleCustomDataToComponent(
+    data: TSampleCustomItems[]
+): TSampleCustomItemsToApi {
+    const groupedItems = data.reduce<TSampleCustomItemsToApi>((acc, item) => {
+        const itemWithChecked: TSampleCustomCategoryApi = {
+            ...item,
+            checked: true,
+        }
+        item.categories.forEach((category) => {
+            if (!acc[category.name]) {
+                acc[category.name] = []
+            }
+            acc[category.name].push(itemWithChecked)
+        })
+        return acc
+    }, {} as TSampleCustomItemsToApi)
+
+    return groupedItems
+}
+
+export function changeSampleCustomDataToApi(
+    data: TSampleCustomItemsToApi
+): TSampleCustomItems[] {
+    const flattenedData: TSampleCustomItems[] = []
+
+    Object.values(data).forEach((categoryItems) => {
+        categoryItems.forEach((item) => {
+            if (item.checked) {
+                flattenedData.push(item)
+            }
+        })
+    })
+
+    return flattenedData
+}
+
+export function countItems(items: TSampleCustomCategoryApi[]) {
+    let totalCount = items.length
+    let checkedCount = items.filter((item) => item.checked).length
+
+    return { totalCount, checkedCount } as TSampleCustomItemsCount
+}

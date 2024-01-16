@@ -1,5 +1,6 @@
 import Header from "@/components/homepage/header"
 import Footer from "@/components/homepage/footer"
+import Top from "@/components/homepage/header/Top"
 import "@/assets/styles/homepage.css"
 
 export default function MarketingLayout({
@@ -8,9 +9,11 @@ export default function MarketingLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="homepage">
+        <div className="homepage h-full">
             <div className="flex flex-col h-full">
-                <Header />
+                <Header>
+                    <Top />
+                </Header>
                 <div className="w-full flex-1">{children}</div>
                 <Footer />
             </div>

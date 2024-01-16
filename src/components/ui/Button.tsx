@@ -6,6 +6,7 @@ export default function Button({
     children,
     isLoading,
     isSuccess,
+    isDisabled,
     onClick,
     className,
     textSuccess,
@@ -14,6 +15,7 @@ export default function Button({
     children: React.ReactNode
     isLoading?: boolean
     isSuccess?: boolean
+    isDisabled?: boolean
     onClick?: () => void
     className?: string
     textSuccess?: string
@@ -26,7 +28,7 @@ export default function Button({
         <button
             className={`flex items-center ${className}`}
             onClick={onClick}
-            disabled={isLoading || isSuccess}
+            disabled={isLoading || isSuccess || isDisabled}
             {...props}
         >
             {textSuccess && isSuccess ? textSuccess : children}

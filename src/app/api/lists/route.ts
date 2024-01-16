@@ -34,12 +34,10 @@ export async function GET() {
     }
 }
 
-export async function HEAD(request: Request) {}
-
 export async function POST(request: Request) {
     const { userId } = await useAuth()
     const data = await request.json()
-    const { name, duplicateId, color } = data
+    const { name, duplicateId, color, customData } = data
     const newItems = []
 
     try {
@@ -58,12 +56,14 @@ export async function POST(request: Request) {
             },
         })
 
-        // Jeśli duplikat
-        if (duplicateId) {
+        // Jeśli duplikat lub nowy szablon z template (po id) / lub customList (zmieniony template)
+        if (duplicateId || customData) {
             let originalItems
 
-            // Sprawdzanie, czy duplicateId jest liczbą (jest Template)
-            if (typeof duplicateId === "number") {
+            // Sprawdzanie, czy duplicateId jest liczbą (jest Template) lub czy jest customList
+            if (customData) {
+                originalItems = customData
+            } else if (typeof duplicateId === "number") {
                 originalItems = await prisma.templateItem.findMany({
                     where: {
                         templateId: duplicateId,
@@ -134,6 +134,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {
+        console.log(error)
         return NextResponse.json(
             { error: "Internal Server Error" },
             { status: 500 }

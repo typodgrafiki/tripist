@@ -68,7 +68,7 @@ export default function ButtonDelete({
                 type="button"
                 className={`${
                     icon
-                        ? "px-1 hover:text-[var(--primary)]"
+                        ? "px-2 hover:text-[var(--primary)] sm:px-1"
                         : "btn btn-error btn-error-no-border"
                 } ${!icon && isPending ? "bg-red-600 text-white" : ""}`}
                 onClick={() => mutate()}

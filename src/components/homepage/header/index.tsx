@@ -1,29 +1,37 @@
-import Image from "next/image"
-import Link from "next/link"
-import SignBtn from "./SignBtn"
-import Menu from "./Menu"
+"use client"
 
-export default function Header() {
+"use client"
+
+import React from "react"
+import { useState, useEffect } from "react"
+
+export default function Header({ children }: { children: React.ReactNode }) {
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 100
+            if (isScrolled !== scrolled) {
+                setScrolled(isScrolled)
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll)
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [scrolled])
+
     return (
-        <header className="fixed top-0 left-0 right-0 z-20 py-5 px-8 lg:py-7 lg:px-14">
-            <div className="flex justify-between items-center md:gap-4 lg:justify-center">
-                <div className="logo grow lg:grow-0">
-                    <Link href="/#hero">
-                        <Image
-                            src="/tripist.svg"
-                            width={172}
-                            height={43}
-                            alt="Tripist"
-                            priority
-                            className="w-[87px] h-[35px] md:w-[172px] md:h-[43px]"
-                        />
-                    </Link>
-                </div>
-                <Menu />
-                <div className="hidden space-x-4 md:flex">
-                    <SignBtn />
-                </div>
-            </div>
+        <header
+            className={`animated fixed top-0 left-0 right-0 z-20 px-8 lg:px-14 ${
+                scrolled
+                    ? "bg-white bg-opacity-70 backdrop-blur-md shadow-top py-3 lg:py-3"
+                    : "py-5 lg:py-7"
+            }`}
+        >
+            {children}
         </header>
     )
 }

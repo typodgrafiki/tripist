@@ -90,16 +90,11 @@ body {
     opacity: 1;
 }
 
-.element-row:not(:has(.element-categories)) {
-    padding-right: 4rem;
-}
-
 .element-row .element-edit,
 .element-row .element-categories {
     transition: opacity 0.2s ease;
 }
 
-.element-row .element-edit,
 .element-row:hover .element-categories {
     opacity: 0;
 }
@@ -138,7 +133,7 @@ body {
 .modal:has(.modal-account),
 .modal.modal-account {
     width: 90%;
-    max-width: 445px;
+    max-width: 460px;
     overflow-y: auto;
 }
 
@@ -201,6 +196,83 @@ svg {
     border-radius: 5px;
 }
 
+.percentage-items-track {
+    height: 5px;
+    min-height: 5px;
+    width: 100%;
+}
+
+.percentage-items-track,
+.percentage-items-tick {
+    background-color: #dee0e8;
+}
+
+.percentage-items-tick {
+    transform: translate(-50%, -50%);
+    margin-top: 1px;
+}
+
+.sample-list.open {
+    border-color: transparent;
+}
+
+.sample-select-type-row input + label + select {
+    opacity: 0;
+    visibility: hidden;
+}
+.sample-select-type-row input:checked + label + select {
+    opacity: 1;
+    visibility: visible;
+}
+
+.panel-collapse {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.panel-content.open {
+    max-height: 100vh;
+}
+
+.tooltip-content {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, 3px) rotate(45deg);
+}
+
+select.dark {
+    background-image: url(../images/dashboard/select-arrow.svg);
+    background-size: 13px 9px;
+    padding-right: 26px;
+}
+
+.genderSignUpForm label svg 
+{
+    stroke: currentColor;
+}
+
+.genderSignUpForm label:has(input:checked)
+{
+    border-color: var(--primary);
+    outline: var(--primary);
+    outline-width: 2px;
+    color: var(--primary);
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -222,6 +294,10 @@ svg {
 @media screen and (min-width: 640px) {
     .list-link {
         border-radius: 0 5px 5px 0;
+    }
+
+    .element-row:not(:has(.element-categories)) {
+        padding-right: 4rem;
     }
 }
 

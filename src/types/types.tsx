@@ -9,7 +9,7 @@ export interface IListBasic {
 }
 
 export interface ILists extends IListBasic {
-    createAt: Date
+    createdAt: Date
     lastChangeAt: Date
     userId: string
     predefined: boolean
@@ -23,7 +23,7 @@ export interface IElements {
     id: number
     name: string
     status: boolean
-    createAt: Date
+    createdAt: Date
     listId: string
     categories: ICategories[]
 }
@@ -53,6 +53,25 @@ export type TListItemUpdate = {
     categories: TListItemCategoriesUpdate
 }
 
+type TSampleCustomCategories = {
+    name: string
+}
+
+export type TSampleCustomItems = {
+    name: string
+    categories: TSampleCustomCategories[]
+}
+
+export type TSampleCustomCategoryApi = {
+    name: string
+    categories: TSampleCustomCategories[]
+    checked: boolean
+}
+
+export type TSampleCustomItemsToApi = {
+    [categoryName: string]: TSampleCustomCategoryApi[]
+}
+
 export interface ILoginUser {
     email: string
     password: string
@@ -61,6 +80,12 @@ export interface ILoginUser {
 export interface ICreateUser extends ILoginUser {
     name: string
     surname?: string
+    gender?: TGender
+}
+
+export type TCreateUserApi = {
+    userId: string
+    email: string
 }
 
 export interface IUserData {
@@ -72,20 +97,70 @@ export interface IUserData {
     password?: string
 }
 
-export interface ISampleList {
+export type TSampleTypeFull = {
     id: number
     name: string
+    fullName: string
+    templates: TSampleTypeFullTemplates[]
+}
+
+export type TSampleTypeFullTemplates = {
+    id: number
+    name: string
+    start: boolean
     settingColor: string
-    tripLength?: number
+    tripLength: number | null
+    listTypeId: number
 }
 
-export interface ISampleListElement {
-    name: string
-    categories: ISampleListElement[]
+export type TSampleType = {
+    fullName: string
+    templates: TSampleList[]
 }
 
-export interface ISampleListElement {
+export type TSampleList = {
     name: string
+    options: TSampleListOptions[]
+}
+
+export type TSampleListOptions = {
+    id: number
+    tripLength: number
+}
+
+export type TSampleTitle = {
+    titleData: {
+        title: string
+        titleColor: string
+        type?: string
+        length?: number
+        custom?: boolean
+    }
+}
+
+export type TSampleContextType = {
+    title: string
+    titleIsEmpty: boolean
+    titleColor: string
+    isCreateSample: boolean
+    setIsCreateSample: React.Dispatch<React.SetStateAction<boolean>>
+    dataCustomList: TSampleCustomItemsToApi
+    setDataCustomList: React.Dispatch<
+        React.SetStateAction<TSampleCustomItemsToApi>
+    >
+    customList: boolean
+    setCustomList: React.Dispatch<React.SetStateAction<boolean>>
+    importedList: TImportedList
+    setImportedList: React.Dispatch<React.SetStateAction<TImportedList>>
+    isPending: boolean
+    isError: boolean
+    isSuccess: boolean
+}
+
+export type TImportedList = {
+    id: number
+    days: number
+    type: string
 }
 
 export interface ICodeSignUp {
@@ -111,3 +186,28 @@ export interface ISortTypes {
 
 export type SortBy = "createdAt" | "name"
 export type SortDirection = "asc" | "desc"
+
+export type TSampleCustomItemsCount = {
+    checkedCount: number
+    totalCount: number
+}
+
+export type TDuplicatProps = {
+    duplicate?: {
+        id: string
+        name: string
+    }
+    editList?: {
+        id: string
+        name: string
+    }
+}
+
+export type TPanelsCollapsedType = number | null
+
+export type TPanelsCollapsedTypeProps = {
+    activePanel: TPanelsCollapsedType
+    togglePanel: (panelIndex: number) => void
+}
+
+export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"
