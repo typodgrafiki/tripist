@@ -1,0 +1,367 @@
+{
+    "Odzież": [
+        "Koszulki",
+        "Spodenki krótkie",
+        "Spodnie długie",
+        "Spodnie drsowe",
+        "Spodnie jeansowe",
+        "Piżama",
+        "Bielizna",
+        "Bluza",
+        "Sweter",
+        "Skarpety",
+        "Kurtka przeciwdeszczowa",
+        "Kurtka jeansowa",
+        "Odzież elegancka na wieczór",
+        "Strój kąpielowy"
+    ], 
+    "Akcesoria": [
+        "Czapka z daszkiem",
+        "Kapelusz",
+        "Bandana",
+        "Okulary przeciwsłoneczne",
+        "Nerka"
+    ], 
+    "Obuwie": [
+        "Wygodne buty na spacery",
+        "Lekkie buty trekkingowe",
+        "Sandały",
+        "Parasol" 
+    ], 
+    "Apteczka": [
+        "Leki",
+        "Tabletki przeciwbólowe",
+        "Tabletki przeciwgorączkowe",
+        "Tabletki przeciwzapalne",
+        "Tabletki przeciwalergiczne",
+        "Tabletki przeciwwymiotne",
+        "Tabletki przeciwbiegunkowe",
+        "Tabletki przeciwzaparciowe",
+        "Tabletki na uspokojenie",
+        "Tabletki na sen",
+        "Tabletki na trawienie",
+        "Tabletki na gardło",
+        "Plastry na odciski",
+        "Plastry na otarcia",
+        "Plastry na rany",
+        "Żel antybakteryjny",
+        "Środek na komary i kleszcze",
+        "Bandaż",
+        "Nożyczki",
+    ], 
+    "Higiena": [
+        "Ręcznik",
+        "Papier toaletowy",
+        "Chusteczki higieniczne",
+        "Chusteczki nawilżane",
+        "Klapki pod prysznic"
+    ], 
+    "Kosmetyczka": [
+        "Mydło",
+        "Żel pod prysznic",
+        "Szampon",
+        "Odżywka do włosów",
+        "Pasta do zębów",
+        "Szczoteczka do zębów",
+        "Płyn do płukania ust",
+        "Nić dentystyczna",    
+        "Maszynka do golenia",
+        "Krem do golenia",
+        "Krem do twarzy",
+        "Kosmetyki do makijażu",
+        "Chusteczki do demakijażu",
+        "Płyn do demakijażu",
+        "Szczotka do włosów",
+        "Grzebień",
+        "Dezodorant",
+        "Antyperspirant"
+    ], 
+    "Elektronika": [
+        "Aparat fotograficzny",
+        "Dodatkowe baterie do aparatu",
+        "Ładowarka do aparatu",
+        "Dodatkowa karta pamięci",
+        "Powerbank",
+        "Ładowarka do powerbanku",
+        "Ładowarka do telefonu",
+        "Laptop",
+        "Ładowarka do laptopa",
+        "Tablet",
+        "Ładowarka do tabletu",
+        "Gimball",
+        "Ładowarka do gimballa",
+        "Słuchawki",
+        "Głośnik przenośny (bezprzewodowy)",
+        "Latarka czołowa",
+        "Baterie do latarki",
+        "Kabel USB",
+        "Czytnik typu Kindle",
+        "Adapter do gniazdka"
+    ], 
+    "Samochód": [
+        "Dowód rejestracyjny",
+        "Ładowarka samochodowa + kabel",
+        "Kamera samochodowa",
+        "Kamizelka odblaskowa",
+        "Transmiter FM",
+        "Klucz do kół",
+        "Zestaw naprawczy do opon",
+        "Kabel rozruchowy",
+        "Trójkąt ostrzegawczy",
+        "Latarka i baterie zapasowe",
+        "Lodówka samochodowa",
+        "Wygodne ubrania na dłuższą podróż"
+    ], 
+    "Inne": [
+        "Plecak",
+        "Przewodnik po okolicy"
+    ], 
+    "Jedzenie": [
+        "Cebula",
+        "Olej",
+        "Sól",
+        "Makaron",
+        "Ryż",
+        "Gotowe sosy",
+        "Konserwy",
+        "Fasolka po bretońsku",
+        "Zupki instant",
+        "Pieczywo",
+        "Banany",
+        "Kawa",
+        "Jajka",
+        "Woda",
+        "Herbata",
+        "Cukier",
+        "Płatki śniadaniowe",
+        "Mleko UHT",
+        "Kasza",
+        "Masło orzechowe",
+        "Musli",
+        "Ketchup",
+        "Przyprawy",
+        "Chipsy",
+        "Batony",
+        "Czekolada",
+        "Orzechy",
+        "Słodycze",
+        "Wafle ryżowe"
+    ], 
+    "Kuchnia": [
+        "Korkociąg",    
+        "Płyn do zmywania naczyń",
+        "Gąbka do zmywania naczyń",
+        "Szybkoschnąca ściereczka",
+        "Nóż",
+        "Miska do mycia naczyń",
+        "Ręcznik papierowy",
+        "Sztućce",
+        "Miseczki do dań",
+        "Kubki",
+        "Talerze",
+        "Garnek",
+        "Patelnia"
+    ], 
+    "Kemping": [
+        "SUP",
+        "Wiosło",
+        "Kajak",
+        "Namiot",
+        "Młotek do śledzi",
+        "Namiot prysznicowy",
+        "prysznic ciśnieniowy",
+        "Lampka kempingowa",
+        "Krzesła kempingowe",
+        "Stół kempingowy",
+        "Śpiwór",
+        "Kuchenka turystyczna",
+        "Butla z gazem",
+        "Zapałki / zapalniczka",
+        "Grill",
+        "Naczynia turystyczne",
+        "Poduszki",
+        "Kołdra",
+        "Karimata",
+        "Koc",
+        "Peleryna przeciwdeszczowa",
+        "Śrubokręt",
+        "Worki na śmieci",
+        "Materac dmuchany",
+        "Woda",
+        "Kajak",
+        "Rowery",
+        "Parasol plażowy",
+    ], 
+    "Jezioro": [
+        "Strój kąpielowy",
+        "Okulary pływackie",
+        "Dmuchany materac lub koło",
+        "SUP",
+        "Wiosło",
+        "Kajak",
+        "Klapki",
+        "Ręcznik",
+        "Butelka z wodą",
+        "Pływający pojemnik na klucze / telefon / dokumenty",
+        "Ciepłe ubranie na wieczór",
+        "Sprzęt wędkarski"
+    ], 
+    "Plaża": [
+        "Strój kąpielowy",
+        "Dmuchany materac lub koło",
+        "Koc/Mata na plażę",
+        "Leżak",
+        "Parawan",
+        "Namiot plażowy",
+        "Klapki plażowe",
+        "Buty do wody",
+        "Torba plażowa",
+        "Parasol plażowy",
+        "Sprzęt do snorkelingu - maska, rurka, płetwy",
+        "Wodoodporny pokrowiec na telefon",
+        "Piłka plażowa",
+        "Chłodna torba"
+    ], 
+    "Trekking": [
+        "Bielizna termoaktywna",
+        "Spodnie trekkingowe",
+        "Kamizelka trekkingowa",
+        "Bluza trekkingowa",
+        "Kurtka z membraną",
+        "Softshell",
+        "Rękawiczki trekkingowe",
+        "Buty trekkingowe",
+        "Latarka czołowa",
+        "Baterie do latarki",
+        "Kijki trekkingowe",
+        "Mapa papierowa",
+        "Raki",
+        "Raczki",
+        "Rakiety śnieżne",
+        "Stuptuty",
+        "Kask",
+        "Kompas",
+        "Gogle narciarskie",
+        "Namiot",
+        "Śpiwór",
+        "Karimata",
+        "Kuchenka turystyczna",
+        "Gaz do kuchenki",
+        "Naczynia turystyczne",
+        "Kubek termiczny",
+        "Tłusty krem do twarzy",
+        "Jedzenie liofilizowane",
+    ], 
+    "Dokumenty": [
+        "Gotówka",
+        "Dokumenty",
+        "Ubezpieczenie podróżne",
+        "Karta kredytowa",
+        "Dowód osobisty",
+        "Prawo jazdy",
+        "Bilety lotnicze",
+        "Paszport",
+        "Wiza",
+        "Karta EKUZ",
+        "Kopie ważnych dokumentów",
+        "Potwierdzenie rezerwacji"    
+    ], 
+    "Bieganie": [
+        "..."    
+    ], 
+    "Siłownia": [
+        "..."    
+    ], 
+    "Morsowanie": [
+        "Strój kąpielowy",
+        "Klapki basenowe"
+    ], 
+    "Basen": [
+        "Strój kąpielowy",
+        "Okulary pływackie",
+        "Klapki basenowe"   
+    ], 
+    "Joga": [
+        "..."    
+    ], 
+    "Ścianka wspinaczkowa": [
+        "..."    
+    ], 
+    "Crossfit": [
+        "..."    
+    ], 
+    "Kajak": [
+        "..."    
+    ], 
+    "Sztuki walki": [
+        "..."    
+    ], 
+    "Zima": [
+        "Kurtka puchowa",
+        "Płaszcz",
+        "Rękawiczki",
+        "Czapka zimowa",
+        "Szalik",
+        "Rajstopy",
+        "Kalesony",
+        "Krem do twarzy",
+        "Ocieplacze"
+    ], 
+    "All Inclusive": [
+        "Okulary pływackie",
+        "Klapki basenowe",
+        "Dmuchany materac lub koło",
+        "Przewodnik po okolicy",
+        "Zabezpieczenie bagażu",
+        "Lekkie, przewiewne ubrania",
+        "Sprzęt do snorkelingu - maska, rurka, płetwy"
+    ], 
+    "Windsurfing": [
+        "Strój kąpielowy"  
+    ], 
+    "Safari": [
+        "Zabezpieczenie bagażu",
+        "Przewiewne ubrania w kolorach neutralnych",
+        "Kapelusz z szerokim rondem",
+        "Lornetka",
+        "Butelka na wodę",
+        "Przewodnik po dzikiej przyrodzie",
+        "Aparat fotograficzny z zoomem"
+    ], 
+    "Egipt": [
+        "Zabezpieczenie bagażu",
+        "Sprzęt do snorkelingu - maska, rurka, płetwy",
+        "Lekkie ubrania z długimi rękawami i nogawkami",
+        "Sandały"
+    ], 
+
+    "Żeglarstwo": [
+        "Klapki basenowe"
+    ], 
+    "Survival": [
+        "..."    
+    ], 
+    "Nurkowanie": [
+        "Klapki basenowe",
+        "Sprzęt do snorkelingu - maska, rurka, płetwy"
+    ], 
+    "Rower": [
+        "..."    
+    ], 
+    "Narty": [
+        "..."    
+    ], 
+    "Snowboard": [
+        "..."    
+    ], 
+
+    "Niemowle": [
+        "..."    
+    ], 
+    "Zabawki": [
+        "..."
+    ], 
+    "Dzieci": [
+        "..."
+    ]
+}
