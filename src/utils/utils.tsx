@@ -205,3 +205,58 @@ export function countItems(items: TSampleCustomCategoryApi[]) {
 
     return { totalCount, checkedCount } as TSampleCustomItemsCount
 }
+
+export function findStringsInListElements(
+    array: string[],
+    substring: string,
+    elements: IElements[]
+) {
+    if (substring.trim().length < 2) {
+        return []
+    }
+
+    const normalizeString = (str: string) => {
+        const map: { [key: string]: string } = {
+            ą: "a",
+            ć: "c",
+            ę: "e",
+            ł: "l",
+            ń: "n",
+            ó: "o",
+            ś: "s",
+            ż: "z",
+            ź: "z",
+            Ą: "A",
+            Ć: "C",
+            Ę: "E",
+            Ł: "L",
+            Ń: "N",
+            Ó: "O",
+            Ś: "S",
+            Ż: "Z",
+            Ź: "Z",
+        }
+
+        return str
+            .split("")
+            .map((c) => map[c] || c)
+            .join("")
+            .toLowerCase()
+    }
+
+    const normalizedSubstring = normalizeString(substring)
+
+    return array
+        .filter((item) => normalizeString(item).includes(normalizedSubstring))
+        .map((itemName) => {
+            const matchedElement = elements.find(
+                (element) =>
+                    normalizeString(element.name) === normalizeString(itemName)
+            )
+
+            return {
+                name: itemName,
+                id: matchedElement?.id ? matchedElement.id : null,
+            }
+        })
+}

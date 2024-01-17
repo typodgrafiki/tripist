@@ -212,3 +212,8 @@ export type TPanelsCollapsedTypeProps = {
 }
 
 export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"
+
+export type TSearchItem = {
+    name: string
+    id: number | null
+}
