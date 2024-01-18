@@ -260,3 +260,13 @@ export function findStringsInListElements(
             }
         })
 }
+
+export function checkElementIsOnList(array1, array2) {
+    return array2.map((category) => ({
+        ...category,
+        items: category.items.map((item) => ({
+            name: item,
+            checked: array1.some((obj) => obj.name === item),
+        })),
+    }))
+}

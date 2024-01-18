@@ -118,7 +118,7 @@ export default function CreateLAddElements({
             <ModalTitle>Dodaj element do listy</ModalTitle>
 
             {openCategories ? (
-                <SearchByCategories />
+                <SearchByCategories elements={elements} />
             ) : (
                 <>
                     <form
