@@ -240,7 +240,7 @@ export type TActionsAddElementByCategory = {
     deleteElement: (id: number) => void
 }
 
-interface ErrorResponse extends Error {
+export interface ErrorResponse extends Error {
     response?: {
         data?: {
             message?: string
