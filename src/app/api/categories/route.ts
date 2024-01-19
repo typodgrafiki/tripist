@@ -6,7 +6,7 @@
  */
 
 import { NextResponse } from "next/server"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import prisma from "@/lib/prismaClient"
 
 export async function GET() {
@@ -33,7 +33,6 @@ export async function GET() {
         )
     }
 }
-
 
 export async function POST(request: Request) {
     const { userId } = await useAuth()

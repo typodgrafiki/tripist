@@ -14,7 +14,7 @@ import IconLogout from "@/assets/images/user/iconLogout.svg"
 import IconCategories from "@/assets/images/user/iconCategories.svg"
 import Image from "next/image"
 import EditCategories from "../modals/EditCategories"
-import useDropdown from "@/utils/useDropdown"
+import useDropdown from "@/hooks/useDropdown"
 
 export default function UserContent({ user }: { user: IUserData }) {
     const router = useRouter()

@@ -13,7 +13,7 @@ import ModalError from "@/components/ui/ModalError"
 import Button from "@/components/ui/Button"
 import ArrowRight from "../../icons/arrowRight"
 import ModalTitle from "@/components/ui/ModalTitle"
-import { usePanelControl, usePanel } from "@/lib/usePanels"
+import { usePanelControl, usePanel } from "@/hooks/usePanels"
 
 interface HandleItemToggle {
     (categoryName: string, itemName: string): void

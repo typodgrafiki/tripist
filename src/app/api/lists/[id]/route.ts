@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 

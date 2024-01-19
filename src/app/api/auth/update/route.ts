@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import { hash } from "bcrypt"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 
 export async function POST(request: Request) {
     // TODO dodac zabezpiecenie autoryzacje

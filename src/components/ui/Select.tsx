@@ -1,6 +1,6 @@
 "use client"
 
-import useDropdown from "@/utils/useDropdown"
+import useDropdown from "@/hooks/useDropdown"
 
 interface ISelectProps {
     options: string[]

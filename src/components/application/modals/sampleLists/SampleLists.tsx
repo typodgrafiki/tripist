@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useContext } from "react"
 import { SampleContext } from "@/context/SampleListContext"
 import ModalTitle from "@/components/ui/ModalTitle"
-import { usePanelControl, usePanel } from "@/lib/usePanels"
+import { usePanelControl, usePanel } from "@/hooks/usePanels"
 import {
     TSampleType,
     TPanelsCollapsedTypeProps,

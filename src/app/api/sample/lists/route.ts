@@ -5,7 +5,7 @@
  */
 
 import { NextResponse } from "next/server"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import prisma from "@/lib/prismaClient"
 import { TSampleTypeFull, TSampleType } from "@/types/types"
 

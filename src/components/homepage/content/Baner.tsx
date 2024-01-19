@@ -3,7 +3,7 @@ import Image from "next/image"
 import React from "react"
 import hero1 from "@/assets/images/hero1.png"
 import hero2 from "@/assets/images/hero2.jpg"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 
 export default async function Baner() {
     const { userId } = await useAuth()
