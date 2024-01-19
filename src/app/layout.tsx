@@ -1,6 +1,7 @@
 import React from "react"
 import { Poppins } from "next/font/google"
 import type { Metadata } from "next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/assets/styles/globals.css"
 import "@/assets/styles/app-loading.css"
 
@@ -29,7 +30,10 @@ export default function RootLayout({
             lang="pl"
             className={`scroll-smooth ${poppins.className}`}
         >
-            <body>{children}</body>
+            <body>
+                {children}
+                <SpeedInsights/>
+            </body>
         </html>
     )
 }
