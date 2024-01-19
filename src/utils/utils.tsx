@@ -11,6 +11,7 @@ import {
     TSampleCustomItemsToApi,
     TSampleCustomCategoryApi,
     TSampleCustomItemsCount,
+    TSearchItemCategory,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -206,6 +207,35 @@ export function countItems(items: TSampleCustomCategoryApi[]) {
     return { totalCount, checkedCount } as TSampleCustomItemsCount
 }
 
+const normalizeString = (str: string) => {
+    const map: { [key: string]: string } = {
+        ą: "a",
+        ć: "c",
+        ę: "e",
+        ł: "l",
+        ń: "n",
+        ó: "o",
+        ś: "s",
+        ż: "z",
+        ź: "z",
+        Ą: "A",
+        Ć: "C",
+        Ę: "E",
+        Ł: "L",
+        Ń: "N",
+        Ó: "O",
+        Ś: "S",
+        Ż: "Z",
+        Ź: "Z",
+    }
+
+    return str
+        .split("")
+        .map((c) => map[c] || c)
+        .join("")
+        .toLowerCase()
+}
+
 export function findStringsInListElements(
     array: string[],
     substring: string,
@@ -213,35 +243,6 @@ export function findStringsInListElements(
 ) {
     if (substring.trim().length < 2) {
         return []
-    }
-
-    const normalizeString = (str: string) => {
-        const map: { [key: string]: string } = {
-            ą: "a",
-            ć: "c",
-            ę: "e",
-            ł: "l",
-            ń: "n",
-            ó: "o",
-            ś: "s",
-            ż: "z",
-            ź: "z",
-            Ą: "A",
-            Ć: "C",
-            Ę: "E",
-            Ł: "L",
-            Ń: "N",
-            Ó: "O",
-            Ś: "S",
-            Ż: "Z",
-            Ź: "Z",
-        }
-
-        return str
-            .split("")
-            .map((c) => map[c] || c)
-            .join("")
-            .toLowerCase()
     }
 
     const normalizedSubstring = normalizeString(substring)
@@ -261,12 +262,21 @@ export function findStringsInListElements(
         })
 }
 
-export function checkElementIsOnList(array1, array2) {
+export function checkElementIsOnList(
+    array1: IElements[],
+    array2: TSearchItemCategory[]
+) {
     return array2.map((category) => ({
         ...category,
-        items: category.items.map((item) => ({
-            name: item,
-            checked: array1.some((obj) => obj.name === item),
-        })),
+        items: category.items.map((item) => {
+            const matchingElement = array1.find(
+                (obj) => normalizeString(obj.name) === normalizeString(item)
+            )
+
+            return {
+                name: item,
+                id: matchingElement ? matchingElement.id : null,
+            }
+        }),
     }))
 }

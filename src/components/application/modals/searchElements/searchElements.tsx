@@ -10,38 +10,16 @@ import { deleteElementsAction } from "@/actions/axiosActions"
 export default function SearchElements({
     searchItems,
     addElement,
+    deleteElement,
     listId,
     setOpenCategories,
 }: {
     searchItems: TSearchItem[]
     addElement: (name: string) => void
+    deleteElement: (id: number) => void
     listId: string
     setOpenCategories: (value: boolean) => void
 }) {
-    const queryClient = useQueryClient()
-    const { mutate, isPending, isError, isSuccess } = useMutation({
-        mutationFn: async (id: number) => deleteElementsAction(id),
-        onSuccess: async (response) => {
-            queryClient.invalidateQueries({ queryKey: ["elements", listId] })
-            Toastify({
-                className: "toastify-success",
-                text: `Usunięto element`,
-                duration: 2000,
-            }).showToast()
-        },
-        onError: (error) => {
-            Toastify({
-                className: "toastify-error",
-                text: `Nie udało się usunąć elementu`,
-                duration: 2000,
-            }).showToast()
-        },
-    })
-
-    const deleteElement = async (id: number) => {
-        mutate(id)
-    }
-
     if (searchItems.length === 0) {
         return <EmptySearch setOpenCategories={setOpenCategories} />
     }

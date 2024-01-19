@@ -209,6 +209,7 @@ export type TPanelsCollapsedType = number | null
 export type TPanelsCollapsedTypeProps = {
     activePanel: TPanelsCollapsedType
     togglePanel: (panelIndex: number) => void
+    index: number
 }
 
 export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"
@@ -216,4 +217,19 @@ export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"
 export type TSearchItem = {
     name: string
     id: number | null
+}
+
+export type TSearchItemCategory = {
+    name: string
+    items: string[]
+}
+
+export type TSearchItemCategoryChangedItem = {
+    name: string
+    id: number | null
+}
+
+export type TSearchItemCategoryChanged = {
+    name: string
+    items: TSearchItemCategoryChangedItem[]
 }

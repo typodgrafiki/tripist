@@ -1,21 +1,32 @@
-import data from "@/lib/elementsData3.json"
 import { usePanelControl, usePanel } from "@/lib/usePanels"
 import ArrowDown from "../../icons/arrowDown"
-import { TPanelsCollapsedTypeProps } from "@/types/types"
-import { checkElementIsOnList } from "@/utils/utils"
+import {
+    TPanelsCollapsedTypeProps,
+    TSearchItemCategoryChanged,
+    TSearchItemCategoryChangedItem,
+} from "@/types/types"
 
-export default function SearchByCategories({ elements }) {
+export default function SearchByCategories({
+    elements,
+    addElement,
+    deleteElement,
+}: {
+    elements: TSearchItemCategoryChanged[]
+    addElement: (name: string) => void
+    deleteElement: (id: number) => void
+}) {
     const { activePanel, togglePanel } = usePanelControl(0)
-    const newData = checkElementIsOnList(elements, data)
 
     return (
         <div className="mt-4 overflow-y-auto max-h-inner-modal">
-            {newData.map((element, index) => (
+            {elements.map((element, index) => (
                 <Category
                     key={index}
                     index={index}
                     activePanel={activePanel}
                     togglePanel={togglePanel}
+                    addElement={addElement}
+                    deleteElement={deleteElement}
                     {...element}
                 />
             ))}
@@ -23,18 +34,19 @@ export default function SearchByCategories({ elements }) {
     )
 }
 
-type TCategoryProps = {
-    index: number
-    name: string
-    items: string[]
-}
 const Category = ({
     activePanel,
     togglePanel,
     index,
     name,
     items,
-}: TPanelsCollapsedTypeProps & TCategoryProps) => {
+    addElement,
+    deleteElement,
+}: TPanelsCollapsedTypeProps &
+    TSearchItemCategoryChanged & {
+        addElement: (name: string) => void
+        deleteElement: (id: number) => void
+    }) => {
     const { panelContentRef, maxHeight, isOpen } = usePanel(
         activePanel === index
     )
@@ -51,7 +63,12 @@ const Category = ({
                 // disabled={isPending}
                 type="button"
             >
-                <span className="font-medium">{name}</span>
+                <span className="font-medium">
+                    {name}
+                    <span className="text-gray-400 text-xs font-normal ml-1">
+                        [0/{items.length}]
+                    </span>
+                </span>
                 <span className="animated text-gray-500 hover:text-gray-950">
                     {isOpen ? "zwiń" : "rozwin"}
                     <ArrowDown
@@ -72,7 +89,9 @@ const Category = ({
                 >
                     {items.map((element, index) => (
                         <Items
-                            key={element + index}
+                            key={element.name.trim() + index}
+                            addElement={addElement}
+                            deleteElement={deleteElement}
                             {...element}
                         />
                     ))}
@@ -82,17 +101,37 @@ const Category = ({
     )
 }
 
-const Items = ({ name, checked }) => {
+const Items = ({
+    name,
+    id,
+    addElement,
+    deleteElement,
+}: TSearchItemCategoryChangedItem & {
+    addElement: (name: string) => void
+    deleteElement: (id: number) => void
+}) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { checked, value } = e.target
+
+        if (checked) {
+            addElement(value)
+        } else if (id) {
+            deleteElement(id)
+        }
+    }
+
+    const isChecked = id ? true : false
+
     return (
         <div className="element-row border-t border-gray-300 first:border-0">
             <label className="flex px-5 py-2 gap-2 grow text-sm cursor-pointer sm:hover:text-[var(--primary)] sm:px-0">
                 <span className="relative round w-[21px] h-[21px]">
                     <input
                         type="checkbox"
-                        // checked={status}
-                        defaultChecked={checked}
+                        value={name}
+                        defaultChecked={isChecked}
                         className="mr-2"
-                        // onChange={() => mutate(!status)}
+                        onChange={handleChange}
                     />
                     <span className="label"></span>
                 </span>

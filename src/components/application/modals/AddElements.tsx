@@ -1,9 +1,21 @@
 import { useState, useRef, useEffect } from "react"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import Toastify from "toastify-js"
-import { focusInput, findStringsInListElements } from "@/utils/utils"
-import { createItem, getListData } from "@/actions/axiosActions"
-import { IElements, TSearchItem } from "@/types/types"
+import {
+    focusInput,
+    findStringsInListElements,
+    checkElementIsOnList,
+} from "@/utils/utils"
+import {
+    createItem,
+    getListData,
+    deleteElementsAction,
+} from "@/actions/axiosActions"
+import {
+    IElements,
+    TSearchItem,
+    TSearchItemCategoryChanged,
+} from "@/types/types"
 import IconCheck from "../icons/check"
 import IconPlus from "../icons/plus"
 import ModalTitleSample from "@/components/ui/ModalTitleSample"
@@ -11,6 +23,7 @@ import ModalTitle from "@/components/ui/ModalTitle"
 import Label from "@/components/ui/Label"
 import SearchElements from "./searchElements/searchElements"
 import jsonElements from "@/lib/elementsData.json"
+import jsonCategories from "@/lib/elementsDataCategory.json"
 import { useQuery } from "@tanstack/react-query"
 import SearchByCategories from "./searchElements/searchByCategories"
 
@@ -29,6 +42,9 @@ export default function CreateLAddElements({
     const formRef = useRef<HTMLFormElement | null>(null)
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [searchItems, setSearchItems] = useState<TSearchItem[]>([])
+    const [itemsByCategory, setItemsByCategory] = useState<
+        TSearchItemCategoryChanged[]
+    >([])
     const [isSuccessFallback, setIsSuccessFallback] = useState(false)
     const [openCategories, setOpenCategories] = useState(false)
     const queryClient = useQueryClient()
@@ -47,54 +63,82 @@ export default function CreateLAddElements({
         mutationFn: async ({
             nameToCreate,
             clear,
+            id,
         }: {
-            nameToCreate: string
+            nameToCreate?: string
             clear: boolean
-        }) => createItem(nameToCreate, listId),
-        onSuccess: async (response, variables) => {
-            const { clear } = variables
-            setIsSuccessFallback(true)
-
-            // TODO Podczas szybkiego pisania nie nadąża. Nalezy dodac Optimistic
-
-            const newElement = response.data.body
-
-            queryClient.setQueryData(
-                ["elements", listId],
-                (oldData: IElements[]) => {
-                    return [...oldData, newElement]
-                }
-            )
-            if (clear) {
-                setName("")
-                focusInput(inputRef)
+            id?: number
+        }) => {
+            if (id) {
+                return deleteElementsAction(id)
+            } else if (nameToCreate) {
+                return createItem(nameToCreate, listId)
             }
-            Toastify({
-                className: "toastify-success",
-                text: `Utworzono element ${response.data.body.name}`,
-                duration: 2000,
-            }).showToast()
-
-            setTimeout(() => {
-                setIsSuccessFallback(false)
-            }, 1500)
         },
-        onError: (error) => {
+        onSuccess: async (response, variables) => {
+            if (response) {
+                const { clear, id } = variables
+                const newElement = response.data.body
+
+                if (id) {
+                    // Jeśli delete
+                    queryClient.invalidateQueries({
+                        queryKey: ["elements", listId],
+                    })
+                    Toastify({
+                        className: "toastify-success",
+                        text: `Usunięto element`,
+                        duration: 2000,
+                    }).showToast()
+                } else {
+                    // Jesli add
+                    const newId = response.data.body.id
+                    setIsSuccessFallback(true)
+
+                    // TODO Podczas szybkiego pisania nie nadąża. Nalezy dodac Optimistic
+                    queryClient.setQueryData(
+                        ["elements", listId],
+                        (oldData: IElements[]) => {
+                            return [...oldData, newElement]
+                        }
+                    )
+                    if (clear) {
+                        setName("")
+                        focusInput(inputRef)
+                    }
+                    Toastify({
+                        className: "toastify-success",
+                        text: `Utworzono element ${response.data.body.name}`,
+                        duration: 2000,
+                    }).showToast()
+
+                    setTimeout(() => {
+                        setIsSuccessFallback(false)
+                    }, 1500)
+                }
+            }
+        },
+        onError: (error, variables) => {
+            const text = variables.id ? "usunąć elementu" : "utworzyć elementu"
             Toastify({
                 className: "toastify-error",
-                text: `Nie udało się utworzyć elementu`,
+                text: `Nie udało się ${text} ${variables.nameToCreate}`,
                 duration: 2000,
             }).showToast()
         },
     })
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        mutate({ nameToCreate: name, clear: true })
+    const addElement = async (nameToCreate: string, clear: boolean = false) => {
+        mutate({ nameToCreate: nameToCreate, clear: clear })
     }
 
-    const addElement = async (nameRow: string) => {
-        mutate({ nameToCreate: nameRow, clear: false })
+    const deleteElement = async (id: number) => {
+        mutate({ id: id, clear: false })
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        addElement(name, true)
     }
 
     useEffect(() => {
@@ -107,7 +151,12 @@ export default function CreateLAddElements({
             name,
             elements ?? []
         )
+        const dataCategory = checkElementIsOnList(
+            elements ?? [],
+            jsonCategories
+        )
         setSearchItems(result)
+        setItemsByCategory(dataCategory)
     }, [name, elements])
 
     return (
@@ -118,7 +167,11 @@ export default function CreateLAddElements({
             <ModalTitle>Dodaj element do listy</ModalTitle>
 
             {openCategories ? (
-                <SearchByCategories elements={elements} />
+                <SearchByCategories
+                    elements={itemsByCategory ?? []}
+                    addElement={addElement}
+                    deleteElement={deleteElement}
+                />
             ) : (
                 <>
                     <form
@@ -166,6 +219,7 @@ export default function CreateLAddElements({
                     <SearchElements
                         searchItems={searchItems}
                         addElement={addElement}
+                        deleteElement={deleteElement}
                         listId={listId}
                         setOpenCategories={setOpenCategories}
                     />
