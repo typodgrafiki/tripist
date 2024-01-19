@@ -13,7 +13,7 @@ import ModalError from "@/components/ui/ModalError"
 import Button from "@/components/ui/Button"
 import ArrowRight from "../../icons/arrowRight"
 import ModalTitle from "@/components/ui/ModalTitle"
-import { usePanelControl, usePanel } from "@/lib/usePanels"
+import { usePanelControl, usePanel } from "@/hooks/usePanels"
 
 interface HandleItemToggle {
     (categoryName: string, itemName: string): void
@@ -193,15 +193,18 @@ const SampleListsElementEdit = ({
     handleItemToggle: HandleItemToggle
 }) => {
     return (
-        <li className="sample-select-type-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
-            <input
-                id={`items[${item.name}]`}
-                type="checkbox"
-                name={`items[${item.name}]`}
-                onChange={() => handleItemToggle(categoryName, item.name)}
-                className="mr-2"
-                checked={item.checked}
-            />
+        <li className="sample-select-type-row element-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0 sm:hover:text-[var(--primary)]">
+            <span className="relative round w-[21px] h-[21px]">
+                <input
+                    id={`items[${item.name}]`}
+                    type="checkbox"
+                    name={`items[${item.name}]`}
+                    onChange={() => handleItemToggle(categoryName, item.name)}
+                    className="mr-2"
+                    checked={item.checked}
+                />
+                <span className="label"></span>
+            </span>
             <label
                 className="py-3 grow cursor-pointer"
                 htmlFor={`items[${item.name}]`}

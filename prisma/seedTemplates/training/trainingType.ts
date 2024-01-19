@@ -404,6 +404,99 @@ export async function trainingType() {
         },
     })
 
+    const training_crossfit_MALE = await prisma.template.create({
+        data: {
+            name: "Crossfit",
+            settingColor: "bg-blue-400",
+            listTypeId: trainingTemplateType,
+            gender: Gender.MALE,
+            elements: {
+                create: [
+                    {
+                        name: "Odpowiednie elementy osłonowe (jeśli są używane)",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Krem na otarcia (jeśli jest potrzebny)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Skakanka",
+                        categories: { connect: [{ id: sprzet }] },
+                    },
+                    {
+                        name: "Pasek na telefon treningowy",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Zamek do szafki (jeśli wymagany)",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Bielizna na przebranie",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Karnet / Karta dostępu",
+                        categories: { connect: [{ id: dokumenty }] },
+                    },
+                    {
+                        name: "Dezodorant",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Żel pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Klapki pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Czujnik pulsu na klatkę piersiową",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Ręcznik pod prysznic",
+                        categories: { connect: [{ id: higiena }] },
+                    },
+                    {
+                        name: "Zegarek sportowy",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Słuchawki sportowe",
+                        categories: { connect: [{ id: elektronika }] },
+                    },
+                    {
+                        name: "Rękawiczki treningowe",
+                        categories: { connect: [{ id: akcesoria }] },
+                    },
+                    {
+                        name: "Butelka z wodą",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Buty sportowe do CrossFit",
+                        categories: { connect: [{ id: obuwie }] },
+                    },
+                    {
+                        name: "Ręcznik do ćwiczeń",
+                        categories: { connect: [{ id: inne }] },
+                    },
+                    {
+                        name: "Spodenki sportowe",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                    {
+                        name: "Koszulka sportowa",
+                        categories: { connect: [{ id: odziez }] },
+                    },
+                ],
+            },
+        },
+    })
+
     const training_scianka_FEMALE = await prisma.template.create({
         data: {
             name: "Ścianka wspinaczkowa",
@@ -485,7 +578,7 @@ export async function trainingType() {
         },
     })
 
-    const training_crossfit_MALE = await prisma.template.create({
+    const training_crossfit_FEMALE = await prisma.template.create({
         data: {
             name: "Crossfit",
             settingColor: "bg-blue-400",

@@ -1,4 +1,4 @@
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import UserContent from "./UserContent"
 import Image from "next/image"
 import logo from "../../../../public/tripist-sygnature.svg"

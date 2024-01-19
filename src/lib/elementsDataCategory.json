@@ -1,0 +1,403 @@
+[
+    {
+        "name": "Odzież",
+        "items": [
+            "Koszulki",
+            "Spodenki krótkie",
+            "Spodnie długie",
+            "Spodnie drsowe",
+            "Spodnie jeansowe",
+            "Piżama",
+            "Bielizna",
+            "Bluza",
+            "Sweter",
+            "Skarpety",
+            "Koszule",
+            "Spódnice",
+            "Sukienki",
+            "Kurtka przeciwdeszczowa",
+            "Kurtka jeansowa",
+            "Odzież elegancka na wieczór",
+            "Strój kąpielowy",
+            "Lekka kurtka"
+        ]
+    },
+    {
+        "name": "Akcesoria",
+        "items": [
+            "Czapka z daszkiem",
+            "Kapelusz",
+            "Bandana",
+            "Okulary przeciwsłoneczne",
+            "Nerka (saszetka biodrowa)",
+            "Parasol składany",
+            "Pasek do spodni",
+            "Zegarek"
+        ]
+    },
+    {
+        "name": "Obuwie",
+        "items": [
+            "Wygodne buty na spacery",
+            "Lekkie buty trekkingowe",
+            "Sandały",
+            "Buty eleganckie"
+        ]
+    },
+    {
+        "name": "Apteczka",
+        "items": [
+            "Leki",
+            "Tabletki przeciwbólowe",
+            "Tabletki przeciwgorączkowe",
+            "Tabletki przeciwzapalne",
+            "Tabletki przeciwalergiczne",
+            "Tabletki przeciwwymiotne",
+            "Tabletki przeciwbiegunkowe",
+            "Tabletki przeciwzaparciowe",
+            "Tabletki na uspokojenie",
+            "Tabletki na sen",
+            "Tabletki na trawienie",
+            "Tabletki na gardło",
+            "Plastry na odciski",
+            "Plastry na otarcia",
+            "Plastry na rany",
+            "Żel antybakteryjny",
+            "Środek na komary i kleszcze",
+            "Bandaż",
+            "Nożyczki"
+        ]
+    },
+    {
+        "name": "Higiena",
+        "items": [
+            "Ręcznik",
+            "Papier toaletowy",
+            "Chusteczki higieniczne",
+            "Chusteczki nawilżane",
+            "Klapki pod prysznic"
+        ]
+    },
+    {
+        "name": "Kosmetyczka",
+        "items": [
+            "Mydło",
+            "Żel pod prysznic",
+            "Szampon",
+            "Odżywka do włosów",
+            "Pasta do zębów",
+            "Szczoteczka do zębów",
+            "Płyn do płukania ust",
+            "Nić dentystyczna",
+            "Maszynka do golenia",
+            "Krem do golenia",
+            "Krem do twarzy",
+            "Kosmetyki do makijażu",
+            "Chusteczki do demakijażu",
+            "Płyn do demakijażu",
+            "Szczotka do włosów",
+            "Grzebień",
+            "Dezodorant",
+            "Antyperspirant"
+        ]
+    },
+    {
+        "name": "Elektronika",
+        "items": [
+            "Aparat fotograficzny",
+            "Dodatkowe baterie do aparatu",
+            "Ładowarka do aparatu",
+            "Dodatkowa karta pamięci",
+            "Powerbank",
+            "Ładowarka do powerbanku",
+            "Ładowarka do telefonu",
+            "Laptop",
+            "Ładowarka do laptopa",
+            "Tablet",
+            "Ładowarka do tabletu",
+            "Gimball",
+            "Ładowarka do gimballa",
+            "Słuchawki",
+            "Głośnik przenośny (bezprzewodowy)",
+            "Latarka czołowa",
+            "Baterie do latarki",
+            "Kabel USB",
+            "Czytnik typu Kindle",
+            "Adapter do gniazdka",
+            "Zegarek sportowy lub smartwatch",
+            "Ładowarka do smartwatcha"
+        ]
+    },
+    {
+        "name": "Samochód",
+        "items": [
+            "Dowód rejestracyjny",
+            "Ładowarka samochodowa + kabel",
+            "Kamera samochodowa",
+            "Kamizelka odblaskowa",
+            "Transmiter FM",
+            "Klucz do kół",
+            "Zestaw naprawczy do opon",
+            "Kabel rozruchowy",
+            "Trójkąt ostrzegawczy",
+            "Latarka i baterie zapasowe",
+            "Lodówka samochodowa",
+            "Wygodne ubrania na dłuższą podróż"
+        ]
+    },
+    {
+        "name": "Inne",
+        "items": [
+            "Plecak",
+            "Przewodnik po okolicy",
+            "Worki na pranie",
+            "Książka",
+            "Planszówki",
+            "Karty do gry",
+            "Notatnik i długopis",
+            "Taśma izolacyjna"
+        ]
+    },
+    {
+        "name": "Jedzenie",
+        "items": [
+            "Cebula",
+            "Olej",
+            "Sól",
+            "Makaron",
+            "Ryż",
+            "Gotowe sosy",
+            "Konserwy",
+            "Fasolka po bretońsku",
+            "Zupki instant",
+            "Pieczywo",
+            "Banany",
+            "Kawa",
+            "Jajka",
+            "Woda",
+            "Herbata",
+            "Cukier",
+            "Płatki śniadaniowe",
+            "Mleko UHT",
+            "Kasza",
+            "Masło orzechowe",
+            "Musli",
+            "Ketchup",
+            "Przyprawy",
+            "Chipsy",
+            "Batony",
+            "Czekolada",
+            "Orzechy",
+            "Słodycze",
+            "Wafle ryżowe"
+        ]
+    },
+    {
+        "name": "Kuchnia",
+        "items": [
+            "Korkociąg",
+            "Płyn do zmywania naczyń",
+            "Gąbka do zmywania naczyń",
+            "Szybkoschnąca ściereczka",
+            "Nóż",
+            "Miska do mycia naczyń",
+            "Ręcznik papierowy",
+            "Sztućce",
+            "Miseczki do dań",
+            "Kubki",
+            "Talerze",
+            "Garnek",
+            "Patelnia"
+        ]
+    },
+    {
+        "name": "Kemping",
+        "items": [
+            "SUP",
+            "Wiosło",
+            "Kajak",
+            "Namiot",
+            "Młotek do śledzi",
+            "Namiot prysznicowy",
+            "prysznic ciśnieniowy",
+            "Lampka kempingowa",
+            "Krzesła kempingowe",
+            "Stół kempingowy",
+            "Śpiwór",
+            "Kuchenka turystyczna",
+            "Butla z gazem",
+            "Zapałki / zapalniczka",
+            "Grill",
+            "Naczynia turystyczne",
+            "Poduszki",
+            "Kołdra",
+            "Karimata",
+            "Koc",
+            "Peleryna przeciwdeszczowa",
+            "Śrubokręt",
+            "Worki na śmieci",
+            "Materac dmuchany",
+            "Woda",
+            "Kajak",
+            "Rowery",
+            "Parasol plażowy"
+        ]
+    },
+    {
+        "name": "Jezioro",
+        "items": [
+            "Strój kąpielowy",
+            "Okulary pływackie",
+            "Dmuchany materac lub koło",
+            "SUP",
+            "Wiosło",
+            "Kajak",
+            "Klapki",
+            "Ręcznik",
+            "Butelka z wodą",
+            "Pływający pojemnik na klucze / telefon / dokumenty",
+            "Ciepłe ubranie na wieczór",
+            "Sprzęt wędkarski"
+        ]
+    },
+    {
+        "name": "Plaża",
+        "items": [
+            "Strój kąpielowy",
+            "Dmuchany materac lub koło",
+            "Koc/Mata na plażę",
+            "Leżak",
+            "Parawan",
+            "Namiot plażowy",
+            "Klapki plażowe",
+            "Buty do wody",
+            "Torba plażowa",
+            "Parasol plażowy",
+            "Sprzęt do snorkelingu - maska, rurka, płetwy",
+            "Wodoodporny pokrowiec na telefon",
+            "Piłka plażowa",
+            "Chłodna torba"
+        ]
+    },
+    {
+        "name": "Trekking",
+        "items": [
+            "Bielizna termoaktywna",
+            "Spodnie trekkingowe",
+            "Kamizelka trekkingowa",
+            "Bluza trekkingowa",
+            "Kurtka z membraną",
+            "Softshell",
+            "Rękawiczki trekkingowe",
+            "Buty trekkingowe",
+            "Latarka czołowa",
+            "Baterie do latarki",
+            "Kijki trekkingowe",
+            "Mapa papierowa",
+            "Raki",
+            "Raczki",
+            "Rakiety śnieżne",
+            "Stuptuty",
+            "Kask",
+            "Kompas",
+            "Gogle narciarskie",
+            "Namiot",
+            "Śpiwór",
+            "Karimata",
+            "Kuchenka turystyczna",
+            "Gaz do kuchenki",
+            "Naczynia turystyczne",
+            "Kubek termiczny",
+            "Tłusty krem do twarzy",
+            "Jedzenie liofilizowane",
+            "Zegarek sportowy lub smartwatch",
+            "Czujnik pulsu na klatkę piersiową"
+        ]
+    },
+    {
+        "name": "Dokumenty",
+        "items": [
+            "Gotówka",
+            "Dokumenty",
+            "Ubezpieczenie podróżne",
+            "Karta kredytowa",
+            "Dowód osobisty",
+            "Prawo jazdy",
+            "Bilety lotnicze",
+            "Paszport",
+            "Wiza",
+            "Karta EKUZ",
+            "Kopie ważnych dokumentów",
+            "Potwierdzenie rezerwacji"
+        ]
+    },
+    {
+        "name": "Zima",
+        "items": [
+            "Kurtka puchowa",
+            "Płaszcz",
+            "Rękawiczki",
+            "Czapka zimowa",
+            "Szalik",
+            "Rajstopy",
+            "Kalesony",
+            "Krem do twarzy",
+            "Ocieplacze"
+        ]
+    },
+    {
+        "name": "All Inclusive",
+        "items": [
+            "Okulary pływackie",
+            "Klapki basenowe",
+            "Dmuchany materac lub koło",
+            "Przewodnik po okolicy",
+            "Zabezpieczenie bagażu",
+            "Lekkie, przewiewne ubrania",
+            "Sprzęt do snorkelingu - maska, rurka, płetwy"
+        ]
+    },
+    {
+        "name": "Niemowle",
+        "items": [
+            "Smoczek",
+            "Ulubiona zabawka",
+            "Pieluszki standardowe",
+            "Pieluszki wodoodporne",
+            "Chusteczki nawilżone",
+            "Nakrycie głowy",
+            "Krem z filtrem przeciwsłonecznym (SPF50 lub SPF70)",
+            "Butelka do mleka",
+            "Mleko modyfikowane lub kaszka",
+            "Śliniak",
+            "Leki przeciwgorączkowe dla niemowląt",
+            "Leki przeciwbólowe dla niemowląt",
+            "Sól fizjologiczna w jednorazowych ampułkach",
+            "Termometr",
+            "Plastry",
+            "Żel na ząbkowanie",
+            "Żel na ukąszenia owadów",
+            "Niania elektroniczna"
+        ]
+    },
+    {
+        "name": "Dzieci",
+        "items": [
+            "Apteczka dla dzieci",
+            "Artykuły higieniczne dla dzieci",
+            "Buty do wody dla dzieci",
+            "Zabawki na plażę",
+            "Książeczki",
+            "Kolorowanki",
+            "Gry dla dzieci",
+            "Składany, lekki namiot",
+            "Okulary przeciwsłoneczne dla dzieci",
+            "Butelki z filtrem na wodę",
+            "Zabawki do zabawy na świeżym powietrzu",
+            "Nosidełko",
+            "Wózek terenowy",
+            "Kojec podróżny",
+            "Dziecięce środki przeciwsłoneczne"
+        ]
+    }
+]

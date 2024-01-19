@@ -35,7 +35,9 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const router = useRouter()
     const [title, setTitle] = useState(initialTitle)
     const titleIsEmpty = title === ""
-    const [selectedColor, setSelectedColor] = useState(optionsColor[0])
+    const [selectedColor, setSelectedColor] = useState(
+        getRandomElement(optionsColor)
+    )
 
     // TODO to mozna do obiektu wrzucic
     const [isCreateSample, setIsCreateSample] = useState(false)
@@ -65,10 +67,16 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 return createListCustom(
                     title,
                     changeSampleCustomDataToApi(dataCustomList),
-                    selectedColor
+                    selectedColor,
+                    importedList.type
                 )
             }
-            return createList(title, idToDuplicate, selectedColor)
+            return createList(
+                title,
+                idToDuplicate,
+                selectedColor,
+                importedList.type
+            )
         },
         onSuccess: async (response) => {
             const { id: listId, name: listName } = response.data.body.list
@@ -227,4 +235,9 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
             </form>
         </SampleProvider>
     )
+}
+
+const getRandomElement = (list: string[]) => {
+    const randomIndex = Math.floor(Math.random() * list.length)
+    return list[randomIndex]
 }

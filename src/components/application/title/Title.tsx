@@ -1,16 +1,23 @@
 export default function Title({
     title,
     loading,
+    subTitle,
 }: {
     title?: string
     loading?: boolean
+    subTitle?: string
 }) {
     return (
-        <>
-            <h1 className="font-semibold text-xl truncate pt-0 pb-1 pl-5 mb-1 sm:mb-3 sm:mt-1 sm:py-0 sm:pl-0 sm:text-2xl">
+        <div className="pt-0 pb-1 pl-5 mb-1 sm:mb-3 sm:mt-1 sm:py-0 sm:pl-0">
+            <h1 className="font-semibold text-xl truncate  sm:text-2xl">
                 {title ? title : loading ? <Loading /> : "Witaj w Triplist 🎉"}
             </h1>
-        </>
+            {/* {subTitle && (
+                <p className="text-gray-500 text-xs bg-gray-200 py-[2px] px-1 rounded-lg mt-1">
+                    Utworzono z <i>&quot;{subTitle}&quot;</i>
+                </p>
+            )} */}
+        </div>
     )
 }
 

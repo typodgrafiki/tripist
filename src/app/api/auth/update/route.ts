@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaClient"
 import { hash } from "bcrypt"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 
 export async function POST(request: Request) {
     // TODO dodac zabezpiecenie autoryzacje
@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const { userId } = await useAuth()
 
     const data = await request.json()
-    const { name, surname, email, password } = data
+    const { name, surname, email, password, gender } = data
 
     await email.trim()
     await password.trim()
@@ -25,8 +25,8 @@ export async function POST(request: Request) {
 
         const dataToUpdate: Record<string, any> = {
             name: name,
-            surname: surname,
             email: email,
+            gender: gender,
         }
 
         if (password && password.trim() !== "") {

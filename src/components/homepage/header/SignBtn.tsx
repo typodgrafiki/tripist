@@ -1,6 +1,6 @@
 "use server"
 
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import Link from "next/link"
 
 async function SignBtn() {

@@ -1,4 +1,4 @@
-import Confetti from "@/lib/useConfetti"
+import Confetti from "@/hooks/useConfetti"
 import React, { useEffect } from "react"
 
 export default function ModalSuccess({

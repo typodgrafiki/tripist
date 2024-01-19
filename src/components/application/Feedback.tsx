@@ -64,7 +64,7 @@ export default function Feedback() {
     return (
         <>
             <div className="feedback-form fixed bottom-3 right-3 hidden sm:block">
-                {open ? (
+                {open && !loading ? (
                     <form
                         className="p-4 flex flex-col gap-3 bg-white rounded-lg shadow-2xl max-w-sm"
                         onSubmit={handleSubmit(onSubmit)}
@@ -108,7 +108,6 @@ export default function Feedback() {
                             <Button
                                 type="submit"
                                 className="btn btn-primary justify-center"
-                                isLoading={loading}
                             >
                                 Wyślij
                             </Button>
@@ -118,8 +117,16 @@ export default function Feedback() {
                     <button
                         className="btn btn-default"
                         onClick={() => setOpen(true)}
+                        disabled={loading}
                     >
-                        Zgłoś problem lub sugestię
+                        {loading ? (
+                            <>
+                                Wysyłanie
+                                <span className="loader small inline-block ml-2 relative top-[2px]"></span>
+                            </>
+                        ) : (
+                            "Zgłoś problem lub sugestię"
+                        )}
                     </button>
                 )}
             </div>

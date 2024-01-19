@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useContext } from "react"
 import { SampleContext } from "@/context/SampleListContext"
 import ModalTitle from "@/components/ui/ModalTitle"
-import { usePanelControl, usePanel } from "@/lib/usePanels"
+import { usePanelControl, usePanel } from "@/hooks/usePanels"
 import {
     TSampleType,
     TPanelsCollapsedTypeProps,
@@ -107,16 +107,19 @@ const SampleList = ({ name: type, options }: TSampleList) => {
     }
 
     return (
-        <li className="sample-select-type-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0">
-            <input
-                id={`${options[0].id}_${options[0].tripLength}`}
-                type="radio"
-                name="listSampleId"
-                value={`${options[0].id}_${options[0].tripLength}`}
-                onChange={handleRadioChange}
-                className="mr-2"
-                disabled={isPending}
-            />
+        <li className="sample-select-type-row element-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0 sm:hover:text-[var(--primary)]">
+            <span className="relative round w-[21px] h-[21px]">
+                <input
+                    id={`${options[0].id}_${options[0].tripLength}`}
+                    type="radio"
+                    name="listSampleId"
+                    value={`${options[0].id}_${options[0].tripLength}`}
+                    onChange={handleRadioChange}
+                    className="mr-2"
+                    disabled={isPending}
+                />
+                <span className="label"></span>
+            </span>
             <label
                 className="py-3 grow cursor-pointer"
                 htmlFor={`${options[0].id}_${options[0].tripLength}`}

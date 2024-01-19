@@ -18,12 +18,13 @@ import { cookies } from "next/headers"
 export const createList = async (
     name: string,
     duplicateId?: string | number,
-    color?: string
+    color?: string,
+    listNameFrom?: string
 ) => {
     let query
 
     if (duplicateId) {
-        query = { name, duplicateId, color }
+        query = { name, duplicateId, color, listNameFrom }
     } else {
         query = { name, color }
     }
@@ -39,9 +40,10 @@ export const createList = async (
 export const createListCustom = async (
     name: string,
     customData: TSampleCustomItems[],
-    color?: string
+    color?: string,
+    listNameFrom?: string
 ) => {
-    const query = { name, customData, color }
+    const query = { name, customData, color, listNameFrom }
     if (!name || !customData) {
         throw "Nie uzupełniono danych"
     }
@@ -126,12 +128,17 @@ export const deleteList = async (id: string) => {
     return response
 }
 
-export const createItem = async (name: string, listId: string) => {
+export const createItem = async (
+    name: string,
+    listId: string,
+    nameCategory: string = ""
+) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
     const response = await axios.post(`/api/lists/${listId}/items`, {
         name: name,
+        nameCategory: nameCategory,
     })
     return response
 }

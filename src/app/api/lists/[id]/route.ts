@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
@@ -127,8 +127,6 @@ export async function PATCH(request: Request, context: IApiContext) {
         const result = {
             list: updatedList,
         }
-
-        console.log(result)
 
         return NextResponse.json({ body: result }, { status: 200 })
     } catch (error) {

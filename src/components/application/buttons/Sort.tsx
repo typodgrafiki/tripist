@@ -8,7 +8,7 @@
 import Button from "@/components/ui/Button"
 import { SortBy, SortDirection, ISortTypes } from "@/types/types"
 import { TSortProps } from "../content/Content"
-import useDropdown from "@/utils/useDropdown"
+import useDropdown from "@/hooks/useDropdown"
 import { sortTypes } from "@/utils/utils"
 
 export interface ISortChangeProp {

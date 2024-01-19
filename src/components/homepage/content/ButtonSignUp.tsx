@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 
 export default async function ButtonSignUp() {
     const { userId } = await useAuth()

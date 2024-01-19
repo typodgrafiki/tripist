@@ -12,7 +12,7 @@ export interface ILists extends IListBasic {
     createdAt: Date
     lastChangeAt: Date
     userId: string
-    predefined: boolean
+    fromTemplate: string
 }
 
 export interface IList extends IListBasic, ILists {
@@ -95,6 +95,7 @@ export interface IUserData {
     image?: string
     surname?: string
     password?: string
+    gender?: TGender
 }
 
 export type TSampleTypeFull = {
@@ -208,6 +209,41 @@ export type TPanelsCollapsedType = number | null
 export type TPanelsCollapsedTypeProps = {
     activePanel: TPanelsCollapsedType
     togglePanel: (panelIndex: number) => void
+    index: number
 }
 
 export type TGender = "MALE" | "FEMALE" | "OTHER" | "UNDEFINED"
+
+export type TSearchItem = {
+    name: string
+    id: number | null
+}
+
+export type TSearchItemCategory = {
+    name: string
+    items: string[]
+}
+
+export type TSearchItemCategoryChangedItem = {
+    name: string
+    id: number | null
+    nameCategory?: string
+}
+
+export type TSearchItemCategoryChanged = {
+    name: string
+    items: TSearchItemCategoryChangedItem[]
+}
+
+export type TActionsAddElementByCategory = {
+    addElement: (name: string, clear?: boolean, nameCategory?: string) => void
+    deleteElement: (id: number) => void
+}
+
+export interface ErrorResponse extends Error {
+    response?: {
+        data?: {
+            message?: string
+        }
+    }
+}

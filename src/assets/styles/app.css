@@ -75,18 +75,21 @@ body {
     width: 9px;
 }
 
-.element-row .round input[type="checkbox"] {
+.element-row .round input[type="checkbox"],
+.element-row .round input[type="radio"] {
     visibility: hidden;
     display: none;
     opacity: 0;
 }
 
-.element-row .round input[type="checkbox"]:checked + .label {
+.element-row .round input[type="checkbox"]:checked + .label,
+.element-row .round input[type="radio"]:checked + .label {
     background-color: var(--primary);
     border-color: var(--primary);
 }
 
-.element-row .round input[type="checkbox"]:checked + .label:after {
+.element-row .round input[type="checkbox"]:checked + .label:after,
+.element-row .round input[type="radio"]:checked + .label:after {
     opacity: 1;
 }
 
@@ -260,13 +263,11 @@ select.dark {
     padding-right: 26px;
 }
 
-.genderSignUpForm label svg 
-{
+.genderSignUpForm label svg {
     stroke: currentColor;
 }
 
-.genderSignUpForm label:has(input:checked)
-{
+.genderSignUpForm label:has(input:checked) {
     border-color: var(--primary);
     outline: var(--primary);
     outline-width: 2px;

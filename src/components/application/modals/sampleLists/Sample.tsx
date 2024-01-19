@@ -118,8 +118,6 @@ const SampleOn = () => {
             </ModalSuccess>
         )
 
-    console.log(sampleLists)
-
     return (
         <>
             {customList ? (
@@ -153,7 +151,7 @@ const SampleOn = () => {
                             </>
                         ) : (
                             <>
-                                Stwórz listę z szablonu
+                                Stwórz listę
                                 <ArrowRight className="ml-2" />
                             </>
                         )}

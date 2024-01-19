@@ -82,16 +82,16 @@ model Session {
 
 
 model List {
-  id              String    @id @default(uuid())
+  id              String     @id @default(uuid())
   name            String
   createdAt        DateTime  @default(now())
-  lastChangeAt    DateTime  @default(now())
+  lastChangeAt    DateTime   @default(now())
   settingColor    String?
   url             String?
   userId          String
-  user            User      @relation("UserLists", fields: [userId], references: [id])
+  user            User       @relation("UserLists", fields: [userId], references: [id])
   elements        ListItem[]
-  fromTemplate    Boolean     @default(false)
+  fromTemplate    String     @default("")
   tags            ListTags[]
 
   @@index([userId], name: "idx_userId")

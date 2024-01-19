@@ -11,6 +11,7 @@ import {
     TSampleCustomItemsToApi,
     TSampleCustomCategoryApi,
     TSampleCustomItemsCount,
+    TSearchItemCategory,
 } from "@/types/types"
 
 export function focusInput(reference: React.RefObject<HTMLInputElement>) {
@@ -204,4 +205,78 @@ export function countItems(items: TSampleCustomCategoryApi[]) {
     let checkedCount = items.filter((item) => item.checked).length
 
     return { totalCount, checkedCount } as TSampleCustomItemsCount
+}
+
+const normalizeString = (str: string) => {
+    const map: { [key: string]: string } = {
+        ą: "a",
+        ć: "c",
+        ę: "e",
+        ł: "l",
+        ń: "n",
+        ó: "o",
+        ś: "s",
+        ż: "z",
+        ź: "z",
+        Ą: "A",
+        Ć: "C",
+        Ę: "E",
+        Ł: "L",
+        Ń: "N",
+        Ó: "O",
+        Ś: "S",
+        Ż: "Z",
+        Ź: "Z",
+    }
+
+    return str
+        .split("")
+        .map((c) => map[c] || c)
+        .join("")
+        .toLowerCase()
+}
+
+export function findStringsInListElements(
+    array: string[],
+    substring: string,
+    elements: IElements[]
+) {
+    if (substring.trim().length < 2) {
+        return []
+    }
+
+    const normalizedSubstring = normalizeString(substring)
+
+    return array
+        .filter((item) => normalizeString(item).includes(normalizedSubstring))
+        .map((itemName) => {
+            const matchedElement = elements.find(
+                (element) =>
+                    normalizeString(element.name) === normalizeString(itemName)
+            )
+
+            return {
+                name: itemName,
+                id: matchedElement?.id ? matchedElement.id : null,
+            }
+        })
+}
+
+export function checkElementIsOnList(
+    array1: IElements[],
+    array2: TSearchItemCategory[]
+) {
+    return array2.map((category) => ({
+        ...category,
+        items: category.items.map((item) => {
+            const matchingElement = array1.find(
+                (obj) => normalizeString(obj.name) === normalizeString(item)
+            )
+
+            return {
+                name: item,
+                id: matchingElement ? matchingElement.id : null,
+            }
+        }),
+    }))
 }

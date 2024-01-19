@@ -1,6 +1,6 @@
 "use client"
 
-import useDropdown from "@/utils/useDropdown"
+import useDropdown from "@/hooks/useDropdown"
 
 interface ISelectProps {
     options: string[]
@@ -8,7 +8,12 @@ interface ISelectProps {
     setSelect: (color: string) => void
     className?: string
 }
-export default function Select({ options, select, setSelect, className }: ISelectProps) {
+export default function Select({
+    options,
+    select,
+    setSelect,
+    className,
+}: ISelectProps) {
     const { isOpen, toggleDropdown, dropdownRef, closeDropdown } = useDropdown()
 
     const handleChangeColor = (color: string) => {

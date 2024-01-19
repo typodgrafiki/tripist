@@ -35,7 +35,6 @@ export async function POST(request: Request) {
                 { status: 422 }
             )
         }
-        
 
         // check if email already exist
         const checkEmailExist = await prisma.user.findUnique({
@@ -189,7 +188,7 @@ async function copyPredefinedListsToUser(userId: string) {
                 name: predefinedList.name,
                 settingColor: predefinedList.settingColor,
                 userId: userId,
-                fromTemplate: true,
+                fromTemplate: predefinedList.name,
             },
         })
 
