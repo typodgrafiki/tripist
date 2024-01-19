@@ -22,14 +22,14 @@ export default function ModalTitleSample({ titleData }: TSampleTitle) {
                         <span className="text-mute text-gray-500">Typ:</span>
                         <span>{type}</span>
                     </div>
-                    {length && (
+                    {/* {length && (
                         <div className="flex gap-1 items-center">
                             <span className="text-mute text-gray-500">
                                 Długość:
                             </span>
                             <span>{length} dni</span>
                         </div>
-                    )}
+                    )} */}
                 </>
             )}
         </div>

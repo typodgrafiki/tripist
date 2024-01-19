@@ -239,3 +239,11 @@ export type TActionsAddElementByCategory = {
     addElement: (name: string, clear?: boolean, nameCategory?: string) => void
     deleteElement: (id: number) => void
 }
+
+interface ErrorResponse extends Error {
+    response?: {
+        data?: {
+            message?: string
+        }
+    }
+}

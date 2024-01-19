@@ -1,11 +1,7 @@
 import Image from "next/image"
-import { useState, useEffect } from "react"
-import { useQueryClient, useMutation } from "@tanstack/react-query"
-import Toastify from "toastify-js"
+import { TSearchItem } from "@/types/types"
 import iconSearch from "@/assets/images/dashboard/search.svg"
-import { IElements, TSearchItem } from "@/types/types"
 import IconCheck from "../../icons/check"
-import { deleteElementsAction } from "@/actions/axiosActions"
 
 export default function SearchElements({
     searchItems,
@@ -26,7 +22,7 @@ export default function SearchElements({
 
     return (
         <>
-            <div className="mt-4 overflow-y-auto max-h-inner-modal">
+            <div className="mt-4 overflow-y-auto max-h-[25vh]">
                 {searchItems.map((item, index) => (
                     <Element
                         key={item.name + index}

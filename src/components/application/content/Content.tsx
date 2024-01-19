@@ -110,7 +110,6 @@ export default function Content({ id }: { id: string }) {
             <AddElements
                 listId={listData.id}
                 listName={listData.name}
-                // elements={elements}
                 listColor={listData.settingColor}
             />
         )

@@ -29,6 +29,18 @@ export async function POST(request: Request, context: IApiContext) {
                 { status: 402 }
             )
 
+        const item = await prisma.listItem.findFirst({
+            where: {
+                name: name,
+            },
+        })
+
+        if (item)
+            return NextResponse.json(
+                { message: "Taki element już istnieje" },
+                { status: 403 }
+            )
+
         let newItem
         let category
 

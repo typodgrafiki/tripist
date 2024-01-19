@@ -15,6 +15,7 @@ import {
     IElements,
     TSearchItem,
     TSearchItemCategoryChanged,
+    ErrorResponse,
 } from "@/types/types"
 import IconCheck from "../icons/check"
 import IconPlus from "../icons/plus"
@@ -31,12 +32,10 @@ export default function CreateLAddElements({
     listId,
     listName,
     listColor,
-    // elements,
 }: {
     listId: string
     listName: string
     listColor: string
-    // elements: IElements[]
 }) {
     const [name, setName] = useState("")
     const formRef = useRef<HTMLFormElement | null>(null)
@@ -46,6 +45,9 @@ export default function CreateLAddElements({
         TSearchItemCategoryChanged[]
     >([])
     const [isSuccessFallback, setIsSuccessFallback] = useState(false)
+    const [isErrorFallback, setIsErrorFallback] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+
     const [openCategories, setOpenCategories] = useState(false)
     const queryClient = useQueryClient()
 
@@ -71,6 +73,7 @@ export default function CreateLAddElements({
             id?: number
             nameCategory?: string
         }) => {
+            setErrorMessage("")
             if (id) {
                 return deleteElementsAction(id)
             } else if (nameToCreate) {
@@ -114,12 +117,24 @@ export default function CreateLAddElements({
             }
         },
         onError: (error, variables) => {
+            setErrorMessage(
+                (error as ErrorResponse)?.response?.data?.message ?? ""
+            )
+
+            setIsErrorFallback(true)
             const text = variables.id ? "usunąć elementu" : "utworzyć elementu"
+
             Toastify({
                 className: "toastify-error",
                 text: `Nie udało się ${text} ${variables.nameToCreate}`,
                 duration: 2000,
             }).showToast()
+
+            setTimeout(() => {
+                setIsErrorFallback(false)
+            }, 1500)
+
+            console.log(isError)
         },
     })
 
@@ -167,16 +182,18 @@ export default function CreateLAddElements({
             <ModalTitleSample
                 titleData={{ title: listName, titleColor: listColor }}
             />
-            <ModalTitle>Dodaj element do listy</ModalTitle>
-
             {openCategories ? (
-                <SearchByCategories
-                    elements={itemsByCategory ?? []}
-                    addElement={addElement}
-                    deleteElement={deleteElement}
-                />
+                <>
+                    <ModalTitle>Dodaj element do listy z katgorii</ModalTitle>
+                    <SearchByCategories
+                        elements={itemsByCategory ?? []}
+                        addElement={addElement}
+                        deleteElement={deleteElement}
+                    />
+                </>
             ) : (
                 <>
+                    <ModalTitle>Dodaj element do listy</ModalTitle>
                     <form
                         ref={formRef}
                         onSubmit={handleSubmit}
@@ -196,8 +213,11 @@ export default function CreateLAddElements({
                             />
                             <button
                                 type="submit"
-                                className={`flex justify-center items-center btn btn-primary ${
+                                className={`flex justify-center items-center btn btn-primary min-w-[46px] rounded-full ${
                                     isSuccessFallback && "btn-green"
+                                } ${
+                                    isErrorFallback &&
+                                    "bg-[var(--red)] border-[var(--red)] shake"
                                 }`}
                                 disabled={isPending}
                             >
@@ -211,11 +231,8 @@ export default function CreateLAddElements({
                             </button>
                         </div>
                         {isError && (
-                            <div className="text-red-600 text-sm">
-                                {!name
-                                    ? "Uzupełnij nazwę"
-                                    : "Nie zapisano zmian. Spróbuj ponownie"}
-                                .
+                            <div className="text-red-600 text-sm text-center">
+                                {errorMessage}
                             </div>
                         )}
                     </form>

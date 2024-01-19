@@ -151,7 +151,7 @@ const SampleOn = () => {
                             </>
                         ) : (
                             <>
-                                Stwórz listę z szablonu
+                                Stwórz listę
                                 <ArrowRight className="ml-2" />
                             </>
                         )}
