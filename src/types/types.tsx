@@ -227,9 +227,15 @@ export type TSearchItemCategory = {
 export type TSearchItemCategoryChangedItem = {
     name: string
     id: number | null
+    nameCategory?: string
 }
 
 export type TSearchItemCategoryChanged = {
     name: string
     items: TSearchItemCategoryChangedItem[]
+}
+
+export type TActionsAddElementByCategory = {
+    addElement: (name: string, clear?: boolean, nameCategory?: string) => void
+    deleteElement: (id: number) => void
 }

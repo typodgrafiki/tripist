@@ -6,13 +6,13 @@
  */
 
 import { NextResponse, NextRequest } from "next/server"
-import { useAuth } from "@/lib/auth"
+import { useAuth } from "@/hooks/useAuth"
 import prisma from "@/lib/prismaClient"
 import { IApiContext } from "@/types/types"
 
 export async function POST(request: Request, context: IApiContext) {
     const { userId } = await useAuth()
-    const { name } = await request.json()
+    const { name, nameCategory } = await request.json()
 
     try {
         if (!userId)
@@ -29,12 +29,43 @@ export async function POST(request: Request, context: IApiContext) {
                 { status: 402 }
             )
 
-        const newItem = await prisma.listItem.create({
-            data: {
-                name: name,
-                listId: listId,
-            },
-        })
+        let newItem
+        let category
+
+        if (nameCategory) {
+            // Sprawdzanie, czy istnieje kategoria o podanej nazwie
+            category = await prisma.category.findFirst({
+                where: {
+                    name: nameCategory,
+                },
+            })
+
+            if (!category) {
+                category = await prisma.category.create({
+                    data: {
+                        name: nameCategory,
+                        userId: userId,
+                    },
+                })
+            }
+
+            newItem = await prisma.listItem.create({
+                data: {
+                    name: name,
+                    listId: listId,
+                    categories: {
+                        connect: [{ id: category.id }],
+                    },
+                },
+            })
+        } else {
+            newItem = await prisma.listItem.create({
+                data: {
+                    name: name,
+                    listId: listId,
+                },
+            })
+        }
 
         return NextResponse.json({ body: newItem }, { status: 200 })
     } catch (error) {

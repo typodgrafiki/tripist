@@ -63,16 +63,18 @@ export default function CreateLAddElements({
         mutationFn: async ({
             nameToCreate,
             clear,
+            nameCategory,
             id,
         }: {
             nameToCreate?: string
             clear: boolean
             id?: number
+            nameCategory?: string
         }) => {
             if (id) {
                 return deleteElementsAction(id)
             } else if (nameToCreate) {
-                return createItem(nameToCreate, listId)
+                return createItem(nameToCreate, listId, nameCategory)
             }
         },
         onSuccess: async (response, variables) => {
@@ -80,11 +82,12 @@ export default function CreateLAddElements({
                 const { clear, id } = variables
                 const newElement = response.data.body
 
+                queryClient.invalidateQueries({
+                    queryKey: ["elements", listId],
+                })
+
                 if (id) {
                     // Jeśli delete
-                    queryClient.invalidateQueries({
-                        queryKey: ["elements", listId],
-                    })
                     Toastify({
                         className: "toastify-success",
                         text: `Usunięto element`,
@@ -94,14 +97,6 @@ export default function CreateLAddElements({
                     // Jesli add
                     const newId = response.data.body.id
                     setIsSuccessFallback(true)
-
-                    // TODO Podczas szybkiego pisania nie nadąża. Nalezy dodac Optimistic
-                    queryClient.setQueryData(
-                        ["elements", listId],
-                        (oldData: IElements[]) => {
-                            return [...oldData, newElement]
-                        }
-                    )
                     if (clear) {
                         setName("")
                         focusInput(inputRef)
@@ -128,8 +123,16 @@ export default function CreateLAddElements({
         },
     })
 
-    const addElement = async (nameToCreate: string, clear: boolean = false) => {
-        mutate({ nameToCreate: nameToCreate, clear: clear })
+    const addElement = async (
+        nameToCreate: string,
+        clear: boolean = false,
+        nameCategory: string = ""
+    ) => {
+        mutate({
+            nameToCreate: nameToCreate,
+            clear: clear,
+            nameCategory: nameCategory,
+        })
     }
 
     const deleteElement = async (id: number) => {

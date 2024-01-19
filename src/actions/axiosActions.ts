@@ -128,12 +128,17 @@ export const deleteList = async (id: string) => {
     return response
 }
 
-export const createItem = async (name: string, listId: string) => {
+export const createItem = async (
+    name: string,
+    listId: string,
+    nameCategory: string = ""
+) => {
     if (!name) {
         throw "Nie uzupełniono nazwy"
     }
     const response = await axios.post(`/api/lists/${listId}/items`, {
         name: name,
+        nameCategory: nameCategory,
     })
     return response
 }

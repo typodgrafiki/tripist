@@ -1,9 +1,10 @@
-import { usePanelControl, usePanel } from "@/lib/usePanels"
+import { usePanelControl, usePanel } from "@/hooks/usePanels"
 import ArrowDown from "../../icons/arrowDown"
 import {
     TPanelsCollapsedTypeProps,
     TSearchItemCategoryChanged,
     TSearchItemCategoryChangedItem,
+    TActionsAddElementByCategory,
 } from "@/types/types"
 
 export default function SearchByCategories({
@@ -12,9 +13,7 @@ export default function SearchByCategories({
     deleteElement,
 }: {
     elements: TSearchItemCategoryChanged[]
-    addElement: (name: string) => void
-    deleteElement: (id: number) => void
-}) {
+} & TActionsAddElementByCategory) {
     const { activePanel, togglePanel } = usePanelControl(0)
 
     return (
@@ -43,10 +42,8 @@ const Category = ({
     addElement,
     deleteElement,
 }: TPanelsCollapsedTypeProps &
-    TSearchItemCategoryChanged & {
-        addElement: (name: string) => void
-        deleteElement: (id: number) => void
-    }) => {
+    TSearchItemCategoryChanged &
+    TActionsAddElementByCategory) => {
     const { panelContentRef, maxHeight, isOpen } = usePanel(
         activePanel === index
     )
@@ -92,6 +89,7 @@ const Category = ({
                             key={element.name.trim() + index}
                             addElement={addElement}
                             deleteElement={deleteElement}
+                            nameCategory={name}
                             {...element}
                         />
                     ))}
@@ -104,17 +102,15 @@ const Category = ({
 const Items = ({
     name,
     id,
+    nameCategory,
     addElement,
     deleteElement,
-}: TSearchItemCategoryChangedItem & {
-    addElement: (name: string) => void
-    deleteElement: (id: number) => void
-}) => {
+}: TSearchItemCategoryChangedItem & TActionsAddElementByCategory) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked, value } = e.target
 
         if (checked) {
-            addElement(value)
+            addElement(value, false, nameCategory)
         } else if (id) {
             deleteElement(id)
         }
