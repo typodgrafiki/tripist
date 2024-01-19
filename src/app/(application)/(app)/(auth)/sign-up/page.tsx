@@ -187,7 +187,7 @@ export default function RegisterForm() {
                                 className={`flex justify-center items-center btn btn-primary mt-4`}
                                 isLoading={loading}
                             >
-                                Zarejestruj się
+                                {loading ? "Rejestrowanie..." : "Zarejestruj się"}
                             </Button>
                         </div>
                         {errorMessege && (
