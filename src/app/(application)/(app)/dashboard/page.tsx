@@ -1,31 +1,22 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import ContentEmpty from "@/components/application/content/ContentEmpty"
-import { useMediaQuery } from 'react-responsive'
-import { useModal } from "@/context/ModalContext"
-import MobileLists from "@/components/application/modals/mobile/MobileLists"
+import { useMediaQuery } from "react-responsive"
+import Lists from "@/components/application/aside/Lists"
 
 export default function Dashboard() {
-    const [firstRender, setFirstRender] = useState(true)
-    const {setIsModalOpen, setModalContent} = useModal()
+    const [isMobile, setIsMobile] = useState(false)
 
-    const isMobile = useMediaQuery({
-        query: '(max-width: 639px)'
+    const mobile = useMediaQuery({
+        query: "(max-width: 639px)",
     })
 
     useEffect(() => {
-        if (isMobile && firstRender) {
-            setModalContent(<MobileLists />)
-            setIsModalOpen(true)
-            setFirstRender(false)
+        if (mobile) {
+            setIsMobile(true)
         }
-    })
+    }, [])
 
-
-    return (
-        <>
-            <ContentEmpty dashboard />
-        </>
-    )
+    return <>{isMobile ? <Lists /> : <ContentEmpty dashboard />}</>
 }

@@ -4,8 +4,8 @@ import Button from "@/components/ui/Button"
 import React from "react"
 import IconMore from "../icons/more"
 import { useModal } from "@/context/ModalContext"
-import MobileSort from "../modals/mobile/MobileSort"
-import { ISortChangeProp } from "./Sort"
+import MobileSort from "./MobileSort"
+import { ISortChangeProp } from "../buttons/Sort"
 
 type IListActions = {
     listId: string
@@ -36,7 +36,7 @@ export default function MobileMore({
 
     return (
         <Button
-            className="px-3 pr-5 sm:hidden"
+            className="px-3 text-gray-400 sm:hidden"
             onClick={handleClick}
         >
             <IconMore />

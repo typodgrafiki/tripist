@@ -23,6 +23,17 @@ export async function GET() {
             where: {
                 userId: userId,
             },
+            select: {
+                id: true,
+                name: true,
+                settingColor: true,
+                lastChangeAt: true,
+                elements: {
+                    select: {
+                        status: true || false,
+                    },
+                },
+            },
         })
 
         return NextResponse.json({ body: lists }, { status: 200 })
