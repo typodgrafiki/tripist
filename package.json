@@ -1,6 +1,6 @@
 {
     "name": "tripist",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -23,6 +23,8 @@
         "@types/react-dom": "18.2.7",
         "@types/toastify-js": "^1.12.2",
         "@use-gesture/react": "^10.3.0",
+        "@vercel/analytics": "^1.1.2",
+        "@vercel/speed-insights": "^1.0.5",
         "autoprefixer": "10.4.15",
         "axios": "^1.6.0",
         "bcrypt": "^5.1.1",
@@ -62,7 +64,7 @@
         "ts-jest": "^29.1.1",
         "ts-node": "^10.9.1"
     },
-    "description": "## Introduction",
+    "description": "",
     "main": "next.config.js",
     "keywords": [],
     "author": "",
