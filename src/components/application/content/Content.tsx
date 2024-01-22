@@ -132,7 +132,7 @@ export default function Content({ id }: { id: string }) {
     const percentagePackedItems = calculateStatusPercentage(elements)
 
     return (
-        <div className="pb-4 sm:pb-0">
+        <div className="pb-24 sm:pb-0">
             {/* Header view */}
             <div className="flex justify-between ml-5 mr-1 my-2 sm:hidden">
                 <Link
@@ -198,11 +198,20 @@ export default function Content({ id }: { id: string }) {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex justify-between px-5 pb-4 items-end gap-4 sticky bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
+                    {/* <div className="flex justify-between px-5 pb-4 items-end gap-4 sticky bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
                         <ButtonDisableAll listId={listId} />
                         <button
                             onClick={handleOpenModal}
                             className="btn-add-element btn btn-primary fixed text-[0] w-[60px] h-[60px] mr-3 bottom-6 z-1 text-white block rounded-full right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] sm:relative sm:bottom-auto sm:right-auto z-10 sm:-mt-7"
+                        >
+                            Dodaj element
+                        </button>
+                    </div> */}
+                    <div className="flex items-center justify-between px-5 pb-6 sm:items-end gap-4 fixed bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
+                        <ButtonDisableAll listId={listId} />
+                        <button
+                            onClick={handleOpenModal}
+                            className="btn-add-element btn btn-primary text-[0] w-[60px] h-[60px] z-1 text-white block rounded-full right-0 sm:top-0 sm:mr-7 sm:w-[80px] sm:h-[80px] relative sm:bottom-auto sm:right-auto z-10 sm:-mt-7"
                         >
                             Dodaj element
                         </button>
