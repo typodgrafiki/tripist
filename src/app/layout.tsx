@@ -1,6 +1,6 @@
 import React from "react"
 import { Poppins } from "next/font/google"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/react'
 import "@/assets/styles/globals.css"
@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     keywords:
         "lista pakowania, aplikacja do pakowania, lista na wycieczkę, porady do pakowania, aplikacja do treningu, organizacja wyjazdu, personalizowane listy pakowania, kreator list pakowania",
 }
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    // userScalable: 'no',
+  }
 
 export default function RootLayout({
     children,

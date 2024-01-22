@@ -68,7 +68,7 @@ export default function ButtonDelete({
                 type="button"
                 className={`${
                     icon
-                        ? "px-2 hover:text-[var(--primary)] sm:px-1"
+                        ? "px-3 bg-red-600 text-white sm:hover:text-[var(--primary)] sm:text-[var(--dark)] sm:px-1 sm:bg-transparent"
                         : "btn btn-error btn-error-no-border"
                 } ${!icon && isPending ? "bg-red-600 text-white" : ""}`}
                 onClick={() => mutate()}
@@ -78,7 +78,7 @@ export default function ButtonDelete({
                     isPending ? (
                         <div className="loader small"></div>
                     ) : (
-                        <IconBin />
+                        <IconBin className="w-[23px] h-[23px] sm:w-[15px] sm:h-[16px]" />
                     )
                 ) : isPending ? (
                     <>

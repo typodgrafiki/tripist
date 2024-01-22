@@ -102,10 +102,6 @@ body {
     opacity: 0;
 }
 
-.element-row:hover .element-edit {
-    opacity: 1;
-}
-
 .category-list {
     padding: 2px 0;
     display: inline-block;
@@ -301,8 +297,16 @@ select.dark {
         border-radius: 0 5px 5px 0;
     }
 
+    .list-link.active {
+        background-color: var(--primary);
+    }
+
     .element-row:not(:has(.element-categories)) {
         padding-right: 4rem;
+    }
+
+    .element-row:hover .element-edit {
+        opacity: 1;
     }
 }
 
