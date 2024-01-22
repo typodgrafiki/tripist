@@ -1,12 +1,12 @@
 import { useModal } from "@/context/ModalContext"
-import { SortDropdown } from "../../buttons/Sort"
+import { SortDropdown } from "../buttons/Sort"
 import { sortTypes } from "@/utils/utils"
-import IconCopy from "../../icons/copy"
+import IconCopy from "../icons/copy"
 import Button from "@/components/ui/Button"
-import IconBin from "../../icons/bin"
-import { IMobileSortProps } from "../../buttons/MobileMore"
+import IconBin from "../icons/bin"
+import { IMobileSortProps } from "./MobileMore"
 import CreateListModal from "@/components/application/modals/CreateList"
-import DeleteList from "../DeleteList"
+import DeleteList from "../modals/DeleteList"
 
 export default function MobileSort({
     handleSortChange,

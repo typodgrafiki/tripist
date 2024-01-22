@@ -280,3 +280,19 @@ export function checkElementIsOnList(
         }),
     }))
 }
+
+export function formatDate(inputDate: Date) {
+    const dateObject = new Date(inputDate)
+
+    // Pobierz elementy daty (dzień, miesiąc, rok)
+    const day = dateObject.getUTCDate()
+    const month = dateObject.getUTCMonth() + 1
+    const year = dateObject.getUTCFullYear()
+
+    // Sformatuj elementy daty na oczekiwany format
+    const formattedDate = `${day < 10 ? "0" : ""}${day}-${
+        month < 10 ? "0" : ""
+    }${month}-${year}`
+
+    return formattedDate
+}

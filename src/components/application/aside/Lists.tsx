@@ -18,6 +18,7 @@ import IconPlus from "../icons/plus"
 import arrowDown from "@/assets/images/dashboard/arrow-down.svg"
 import Image from "next/image"
 import ListsErrorLoading from "./Error"
+import IconList from "../icons/list"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -52,34 +53,39 @@ export default function Lists() {
         <div>
             {lists && lists.length > 0 && (
                 <div className="my-lists grow pb-20">
-                    <p className="font-semibold uppercase px-6 pt-7 pb-6 ">
+                    <p className="text-xl font-semibold  px-6 pt-7 pb-6 sm:uppercase sm:text-sm">
                         Twoje listy
                         <Image
                             src={arrowDown}
                             width={10}
                             height={5}
                             alt="arrow down"
-                            className="inline-block ml-2 relative -top-[1px]"
+                            className="hidden sm:inline-block ml-2 relative -top-[1px]"
                         />
                     </p>
-                    <ul>
+                    <ul className="mx-6 sm:mx-0">
                         {sortedLists?.map((element) => (
                             <ListsRow
                                 key={element.id}
                                 id={element.id}
                                 settingColor={element.settingColor}
                                 name={element.name}
+                                elements={element.elements}
+                                lastChangeAt={element.lastChangeAt}
                             />
                         ))}
                     </ul>
                 </div>
             )}
             <Button
-                className="hidden fixed bottom-6 left-5 sm:inline-block btn btn-white "
+                className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:left-5 sm:right-auto"
                 onClick={handleOpenModal}
             >
-                Dodaj listę
-                <IconPlus className="ml-2 relative -top-[1px]" />
+                <span className="hidden">
+                    Dodaj listę
+                    <IconPlus className="ml-2 relative -top-[1px]" />
+                </span>
+                <IconList className="" />
             </Button>
         </div>
     )

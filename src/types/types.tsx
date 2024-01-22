@@ -2,10 +2,16 @@
  * Komponent przechowujący typy typescript, które są wykorzystywane w oprogramowaniu
  */
 
+type TCheckElements = {
+    status: boolean
+}
+
 export interface IListBasic {
     id: string
     name: string
     settingColor: string
+    elements: TCheckElements[]
+    lastChangeAt: Date
 }
 
 export interface ILists extends IListBasic {

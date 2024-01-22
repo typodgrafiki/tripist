@@ -3,16 +3,37 @@
 export default function IconMore() {
     return (
         <svg
-            width="15"
-            height="3"
-            viewBox="0 0 15 3"
+            width="20"
+            height="20"
+            viewBox="0 0 43 43"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="svg-fill"
         >
-            <path d="M3 1.5C3 2.32843 2.32843 3 1.5 3C0.671573 3 0 2.32843 0 1.5C0 0.671573 0.671573 0 1.5 0C2.32843 0 3 0.671573 3 1.5Z" />
-            <path d="M9 1.5C9 2.32843 8.32843 3 7.5 3C6.67157 3 6 2.32843 6 1.5C6 0.671573 6.67157 0 7.5 0C8.32843 0 9 0.671573 9 1.5Z" />
-            <path d="M15 1.5C15 2.32843 14.3284 3 13.5 3C12.6716 3 12 2.32843 12 1.5C12 0.671573 12.6716 0 13.5 0C14.3284 0 15 0.671573 15 1.5Z" />
+            <circle
+                cx="21.5"
+                cy="21.5"
+                r="20.5"
+                strokeWidth="2"
+                className="svg-stroke"
+            />
+            <circle
+                cx="13"
+                cy="22"
+                r="3"
+                className="svg-fill"
+            />
+            <circle
+                cx="22"
+                cy="22"
+                r="3"
+                className="svg-fill"
+            />
+            <circle
+                cx="31"
+                cy="22"
+                r="3"
+                className="svg-fill"
+            />
         </svg>
     )
 }

@@ -7,7 +7,7 @@ export default async function UserButton() {
     const user = await useAuth()
 
     return (
-        <div className="w-full bg-[var(--primary)] h-[35px] flex justify-between items-center pr-8 pl-6">
+        <div className="w-full pr-3 bg-[var(--primary)] h-[35px] flex justify-between items-center sm:pr-8 pl-6">
             <Image
                 alt="tripist logo"
                 src={logo}

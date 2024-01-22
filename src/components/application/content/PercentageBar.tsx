@@ -5,7 +5,7 @@ export default function PercentageBar({ percent }: { percent: number }) {
 
     return (
         <div
-            className="percentage-items-track flex rounded-full"
+            className="hidden percentage-items-track sm:flex rounded-full"
             role="progressbar"
             aria-label="Progress bar"
             aria-valuemin={parseInt("0")}
