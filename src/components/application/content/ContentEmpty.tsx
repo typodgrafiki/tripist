@@ -9,6 +9,7 @@ import { LoadingContentEmpty } from "./LoadingContent"
 import ContentNoData from "./NoDataContent"
 import CreateList from "@/components/application/modals/CreateList"
 import { useModal } from "@/context/ModalContext"
+import TestGesture from "@/test"
 
 export default function ContentEmpty({
     handleOpenModal,
@@ -101,6 +102,7 @@ export default function ContentEmpty({
                         </Button>
                     </>
                 )}
+                <TestGesture />
             </div>
         </div>
     )
