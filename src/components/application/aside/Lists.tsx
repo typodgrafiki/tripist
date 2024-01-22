@@ -78,14 +78,14 @@ export default function Lists() {
                 </div>
             )}
             <Button
-                className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:left-5 sm:right-auto"
+                className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:text-gray-900 sm:left-5 sm:right-auto sm:rounded-[7px] sm:border-white sm:px-[15px] sm:py-[10px]"
                 onClick={handleOpenModal}
             >
-                <span className="hidden">
+                <span className="hidden sm:inline">
                     Dodaj listę
                     <IconPlus className="ml-2 relative -top-[1px]" />
                 </span>
-                <IconList className="" />
+                <IconList className="sm:hidden" />
             </Button>
         </div>
     )

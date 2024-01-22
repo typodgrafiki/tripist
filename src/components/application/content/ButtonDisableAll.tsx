@@ -27,7 +27,7 @@ export default function ButtonDisableAll({ listId }: { listId: string }) {
     return (
         <>
             <button
-                className="animated btn btn-default bg-white bg-opacity-70 backdrop-blur-[2px] sm:bg-transparent smbackdrop-blur-none"
+                className="animated btn btn-default bg-white mt-1 bg-opacity-70 backdrop-blur-[2px] sm:bg-transparent sm:backdrop-blur-none sm:mt-0"
                 onClick={() => mutate()}
                 disabled={isPending}
             >

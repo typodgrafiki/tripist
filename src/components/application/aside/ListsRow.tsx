@@ -46,7 +46,7 @@ export default function ListsRow({
                     <span className="block text-gray-500 focus-text text-xs mb-3 parent-focus:text-white sm:hidden">
                         {elements.length} przedmiotów
                     </span>
-                    <span className="block w-full bg-[#DCDFE5] rounded-xl">
+                    <span className="block w-full bg-[#DCDFE5] rounded-xl sm:hidden">
                         <span
                             className={`block h-2 rounded-xl ${settingColor}`}
                             style={{
