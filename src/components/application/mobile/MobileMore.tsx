@@ -66,7 +66,7 @@ export default function MobileMore({
                 aria-haspopup="true"
                 onClick={() => toggleDropdown()}
             >
-                <IconMore />
+                <IconMore className="w-[25px] h-[25px]" />
             </Button>
             {isOpen && (
                 <DropdownTemplate>
