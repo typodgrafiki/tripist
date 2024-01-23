@@ -53,7 +53,7 @@ export default function Lists() {
         <div>
             {lists && lists.length > 0 && (
                 <div className="my-lists grow pb-20">
-                    <p className="text-xl font-semibold  px-6 pt-7 pb-6 sm:uppercase sm:text-sm">
+                    <p className="text-2xl font-semibold px-6 pt-7 pb-6 sm:uppercase sm:text-sm">
                         Twoje listy
                         <Image
                             src={arrowDown}

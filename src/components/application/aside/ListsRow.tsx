@@ -37,7 +37,7 @@ export default function ListsRow({
                         ></span>
                     )}
                     <span className="flex justify-between items-center mb-2 sm:inline sm:mb-0">
-                        <span className="font-semibold text-[1.06rem] sm:font-normal sm:text-sm">
+                        <span className="font-semibold text-[1.2rem] sm:font-normal sm:text-sm">
                             {name}
                         </span>
                         <span className="text-gray-400 focus-text text-xs italic sm:hidden">
