@@ -130,7 +130,7 @@ export default function ContentElement({
                             />
                             <span className="label"></span>
                         </span>
-                        <span className="grow">{name} {editElementId}</span>
+                        <span className="grow">{name}</span>
                     </label>
                     <Categories categories={categories} />
                     <div
