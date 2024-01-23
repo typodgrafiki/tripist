@@ -32,6 +32,9 @@ export async function GET() {
                     },
                 },
             },
+            orderBy: {
+                id: "asc",
+            },
         })
 
         const filteredGender = lists
