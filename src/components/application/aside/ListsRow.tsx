@@ -49,7 +49,7 @@ export default function ListsRow({
                     </span>
                     <span className="block w-full bg-[#DCDFE5] rounded-xl overflow-hidden sm:hidden">
                         <span
-                            className={`block h-2 rounded-xl ${settingColor}`}
+                            className={`block h-2 rounded-xl animated ${settingColor}`}
                             style={{
                                 width: `${
                                     (elementsWithTrueStatus.length /

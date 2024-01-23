@@ -43,6 +43,7 @@ export default function Content({ id }: { id: string }) {
         sortBy: "createdAt",
         sortDirection: "desc",
     })
+    const [editElementId, setEditElementId] = useState<number | null>(null)
 
     const {
         data: listData,
@@ -181,7 +182,6 @@ export default function Content({ id }: { id: string }) {
                             selectedCategory={selectedCategory}
                             count={sortedAndFilteredElements.length}
                         />
-
                         <Sort
                             handleSortChange={handleSortChange}
                             sortCriteria={sortCriteria}
@@ -189,14 +189,16 @@ export default function Content({ id }: { id: string }) {
                     </div>
                     <PercentageBar percent={percentagePackedItems} />
                     <div className="text-gray-600 pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
-                        <ul>
-                            {sortedAndFilteredElements.map((element) => (
-                                <ContentElement
-                                    key={element.id}
-                                    {...element}
-                                />
-                            ))}
-                        </ul>
+                            <ul>
+                                {sortedAndFilteredElements.map((element) => (
+                                    <ContentElement
+                                        key={element.id}
+                                        editElementId={editElementId}
+                                        setEditElementId={setEditElementId}
+                                        {...element}
+                                    />
+                                ))}
+                            </ul>
                     </div>
                     {/* <div className="flex justify-between px-5 pb-4 items-end gap-4 sticky bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
                         <ButtonDisableAll listId={listId} />

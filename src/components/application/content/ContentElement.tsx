@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import { useDrag } from "@use-gesture/react"
 import { animated, useSpring } from "@react-spring/web"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -21,8 +20,10 @@ export default function ContentElement({
     status,
     listId,
     categories,
-}: IElements) {
-    const [isSwiped, setIsSwiped] = useState(false)
+    editElementId,
+    setEditElementId
+}: IElements & { editElementId: number | null, setEditElementId: (id: number | null) => void }) {
+    const isSwiped = editElementId === id
     const queryClient = useQueryClient()
     const { setModalContent, setIsModalOpen } = useModal()
 
@@ -85,20 +86,22 @@ export default function ContentElement({
     // GESTY
     const [{ x }, api] = useSpring(() => ({ x: 0 }))
 
-    // Set the drag hook and define component movement based on gesture data
     const bind = useDrag(({ down, movement: [mx], swipe }) => {
-        api.start({ x: down ? mx : 0, immediate: down })
-
+        // Ograniczenie przesunięcia do zakresu od -55 do 0
+        const limitedX = Math.min(Math.max(mx, -65), 0);
+    
+        api.start({ x: down ? limitedX : 0, immediate: down });
+    
         if (swipe) {
             if (swipe[0] === -1) {
                 // Jeżeli wykonano swipe w lewo, ustaw stan, że element został przesunięty
-                setIsSwiped(true)
+                setEditElementId(id)
             } else if (swipe[0] === 1) {
                 // Jeżeli wykonano swipe w prawo, zresetuj stan przesunięcia
-                setIsSwiped(false)
+                setEditElementId(null)
             }
         }
-    })
+    });
 
     return (
         <>
@@ -116,7 +119,7 @@ export default function ContentElement({
                         touchAction: "pan-y",
                     }}
                 >
-                    <label className="flex items-center px-5 py-4 gap-2 grow text-sm cursor-pointer sm:hover:text-[var(--primary)] sm:px-0 sm:py-2">
+                    <label className="flex items-center px-5 py-4 gap-2 grow cursor-pointer sm:text-sm sm:hover:text-[var(--primary)] sm:px-0 sm:py-2">
                         <span className="relative round w-[21px] h-[21px]">
                             <input
                                 type="checkbox"
@@ -127,7 +130,7 @@ export default function ContentElement({
                             />
                             <span className="label"></span>
                         </span>
-                        <span className="grow">{name}</span>
+                        <span className="grow">{name} {editElementId}</span>
                     </label>
                     <Categories categories={categories} />
                     <div

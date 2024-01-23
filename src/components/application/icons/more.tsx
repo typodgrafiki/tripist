@@ -1,6 +1,6 @@
 "use client"
 
-export default function IconMore() {
+export default function IconMore({className}: {className?: string}) {
     return (
         <svg
             width="20"
@@ -8,6 +8,7 @@ export default function IconMore() {
             viewBox="0 0 43 43"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className={className}
         >
             <circle
                 cx="21.5"
