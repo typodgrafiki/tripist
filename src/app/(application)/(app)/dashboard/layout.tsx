@@ -10,7 +10,7 @@ export default function DashboardLayout({
 }) {
     return (
         <>
-            <div className="dashboard flex flex-col min-h-screen sm:h-screen">
+            <div className="dashboard pt-[35px] flex flex-col min-h-screen sm:h-screen sm:pt-0">
                 <Top />
                 <div className="flex grow gap-8 sm:max-h-[calc(100vh-35px)]">
                     <aside className="hidden sm:w-3/12 sm:min-w-[200px] sm:max-w-[300px] sm:flex flex-col pr-5 bg-[var(--gray)] sm:overflow-y-auto relative">

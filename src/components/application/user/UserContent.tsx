@@ -14,7 +14,7 @@ import IconLogout from "@/assets/images/user/iconLogout.svg"
 import IconCategories from "@/assets/images/user/iconCategories.svg"
 import Image from "next/image"
 import EditCategories from "../modals/EditCategories"
-import useDropdown from "@/hooks/useDropdown"
+import useDropdown, { DropdownTemplate } from "@/hooks/useDropdown"
 
 export default function UserContent({ user }: { user: IUserData }) {
     const router = useRouter()
@@ -81,45 +81,32 @@ export default function UserContent({ user }: { user: IUserData }) {
             />
 
             {isOpen && (
-                <div
-                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex={-1}
-                >
-                    <div
-                        className="py-1"
-                        role="none"
-                    >
-                        <div className="flex gap-2 items-center px-4 py-2">
-                            <UserImage firstLetterName={firstLetterName} />
-                            <div>
-                                <div className="font-semibold">{name}</div>
-                                <div className="text-gray-500 text-xs">
-                                    {email}
-                                </div>
-                            </div>
+                <DropdownTemplate>
+                    <div className="flex gap-2 items-center px-4 py-2">
+                        <UserImage firstLetterName={firstLetterName} />
+                        <div>
+                            <div className="font-semibold">{name}</div>
+                            <div className="text-gray-500 text-xs">{email}</div>
                         </div>
-                        {accountActions.map((element, index) => (
-                            <Element
-                                key={index}
-                                action={element.action}
-                                closeDropdown={closeDropdown}
-                            >
-                                <span className="flex justify-center items-center w-[28px] text-center mr-2">
-                                    <Image
-                                        src={element.icon}
-                                        alt="lll"
-                                        width={17}
-                                        height={17}
-                                    />
-                                </span>
-                                {element.name}
-                            </Element>
-                        ))}
                     </div>
-                </div>
+                    {accountActions.map((element, index) => (
+                        <Element
+                            key={index}
+                            action={element.action}
+                            closeDropdown={closeDropdown}
+                        >
+                            <span className="flex justify-center items-center w-[28px] text-center mr-2">
+                                <Image
+                                    src={element.icon}
+                                    alt="lll"
+                                    width={17}
+                                    height={17}
+                                />
+                            </span>
+                            {element.name}
+                        </Element>
+                    ))}
+                </DropdownTemplate>
             )}
         </div>
     )

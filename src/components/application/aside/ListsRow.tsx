@@ -18,6 +18,7 @@ export default function ListsRow({
     const elementsWithTrueStatus = elements.filter(
         (element) => element.status === true
     )
+    const isComplete = elementsWithTrueStatus.length === elements.length
 
     return (
         <>
@@ -26,7 +27,7 @@ export default function ListsRow({
                     href={thisUrl}
                     className={`bg-[#ECEEF2] px-5 py-4 list-link animated block hover:bg-[#f4f4f5] sm:px-6 sm:py-2 relative truncate ${
                         pathname === thisUrl
-                            ? "font-medium text-white bg-[var(--primary)]"
+                            ? "font-medium text-white active"
                             : "hover:text-gray-900 focus:font-medium focus:bg-[var(--primary)] focus:text-white"
                     }`}
                 >
@@ -46,7 +47,7 @@ export default function ListsRow({
                     <span className="block text-gray-500 focus-text text-xs mb-3 parent-focus:text-white sm:hidden">
                         {elements.length} przedmiotów
                     </span>
-                    <span className="block w-full bg-[#DCDFE5] rounded-xl sm:hidden">
+                    <span className="block w-full bg-[#DCDFE5] rounded-xl overflow-hidden sm:hidden">
                         <span
                             className={`block h-2 rounded-xl ${settingColor}`}
                             style={{

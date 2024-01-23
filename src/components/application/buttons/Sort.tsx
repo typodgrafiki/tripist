@@ -8,7 +8,7 @@
 import Button from "@/components/ui/Button"
 import { SortBy, SortDirection, ISortTypes } from "@/types/types"
 import { TSortProps } from "../content/Content"
-import useDropdown from "@/hooks/useDropdown"
+import useDropdown, { DropdownTemplate } from "@/hooks/useDropdown"
 import { sortTypes } from "@/utils/utils"
 
 export interface ISortChangeProp {
@@ -62,26 +62,15 @@ export default function Sort({
                     </Button>
                 </div>
                 {isOpen && (
-                    <div
-                        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu"
-                        aria-orientation="vertical"
-                        aria-labelledby="menu-button"
-                        tabIndex={-1}
-                    >
-                        <div
-                            className="py-1"
-                            role="none"
-                        >
-                            <SortDropdown
-                                sortTypes={sortTypes}
-                                handleSortChange={handleSortChange}
-                                closeDropdown={closeDropdown}
-                                sortCriteria={sortCriteria}
-                                classNames="w-full"
-                            />
-                        </div>
-                    </div>
+                    <DropdownTemplate>
+                        <SortDropdown
+                            sortTypes={sortTypes}
+                            handleSortChange={handleSortChange}
+                            closeDropdown={closeDropdown}
+                            sortCriteria={sortCriteria}
+                            classNames="w-full"
+                        />
+                    </DropdownTemplate>
                 )}
             </div>
         </>
