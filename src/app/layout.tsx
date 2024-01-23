@@ -2,7 +2,7 @@ import React from "react"
 import { Poppins } from "next/font/google"
 import type { Metadata, Viewport } from "next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from "@vercel/analytics/react"
 import "@/assets/styles/globals.css"
 import "@/assets/styles/app-loading.css"
 
@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 1,
     // userScalable: 'no',
-  }
+}
 
 export default function RootLayout({
     children,
@@ -40,7 +40,7 @@ export default function RootLayout({
         >
             <body>
                 {children}
-                <SpeedInsights/>
+                <SpeedInsights />
                 <Analytics />
             </body>
         </html>

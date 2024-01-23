@@ -132,7 +132,7 @@ export default function Content({ id }: { id: string }) {
     const percentagePackedItems = calculateStatusPercentage(elements)
 
     return (
-        <div className="pb-24 sm:pb-0">
+        <>
             {/* Header view */}
             <div className="flex justify-between ml-5 mr-1 my-2 sm:hidden">
                 <Link
@@ -188,7 +188,7 @@ export default function Content({ id }: { id: string }) {
                         />
                     </div>
                     <PercentageBar percent={percentagePackedItems} />
-                    <div className="text-gray-600 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
+                    <div className="text-gray-600 pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
                         <ul>
                             {sortedAndFilteredElements.map((element) => (
                                 <ContentElement
@@ -220,6 +220,6 @@ export default function Content({ id }: { id: string }) {
             ) : elements?.length === 0 ? (
                 <ContentEmpty handleOpenModal={handleOpenModal} />
             ) : null}
-        </div>
+        </>
     )
 }
