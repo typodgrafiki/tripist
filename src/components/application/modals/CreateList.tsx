@@ -29,6 +29,7 @@ import ArrowRight from "../icons/arrowRight"
 import SampleProvider from "@/context/SampleListContext"
 import ModalLoading from "@/components/ui/ModalLoading"
 import ModalSuccess from "@/components/ui/ModalSuccess"
+import ArrowDown from "../icons/arrowDown"
 
 export default function CreateList({ duplicate, editList }: TDuplicatProps) {
     const initialTitle = editList ? editList.name : ""
@@ -204,28 +205,47 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 )}
                 {!duplicate && !editList && <Sample />}
                 {!isCreateSample && (
-                    <button
-                        type="submit"
-                        className={`flex justify-center items-center w-full btn btn-big btn-primary ${
-                            isSuccess && "btn-green"
+                    <div
+                        className={`flex flex-wrap gap-3 animated overflow-hidden ${
+                            !duplicate && !editList ? "justify-between" : ""
+                        } ${
+                            title ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
                         }`}
-                        disabled={titleIsEmpty}
                     >
-                        {isPending ? (
-                            <div className="loader small"></div>
-                        ) : isSuccess ? (
-                            "Dodano"
-                        ) : duplicate ? (
-                            "Duplikuj listę"
-                        ) : editList ? (
-                            "Zapisz"
-                        ) : (
-                            <>
-                                Stwórz pustą listę
-                                <ArrowRight className="ml-2" />
-                            </>
+                        {!duplicate && !editList && (
+                            <button
+                                type="button"
+                                className="btn btn-big btn-default flex-1 whitespace-nowrap"
+                                onClick={() => setIsCreateSample(true)}
+                                disabled={titleIsEmpty}
+                            >
+                                Przejrzyj gotowe listy
+                                <ArrowDown className="ml-2" />
+                            </button>
                         )}
-                    </button>
+                        <button
+                            type="submit"
+                            className={`flex flex-1 whitespace-nowrap justify-center items-center btn btn-big btn-primary ${
+                                duplicate || editList ? "w-full" : ""
+                            } ${isSuccess && "btn-green"}`}
+                            disabled={titleIsEmpty}
+                        >
+                            {isPending ? (
+                                <div className="loader small"></div>
+                            ) : isSuccess ? (
+                                "Dodano"
+                            ) : duplicate ? (
+                                "Duplikuj listę"
+                            ) : editList ? (
+                                "Zapisz"
+                            ) : (
+                                <>
+                                    Stwórz pustą listę
+                                    <ArrowRight className="ml-2" />
+                                </>
+                            )}
+                        </button>
+                    </div>
                 )}
                 {isError && (
                     <div className="text-red-600 text-sm mt-2 text-center">
