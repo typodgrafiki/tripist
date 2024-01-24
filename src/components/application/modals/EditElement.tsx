@@ -121,7 +121,7 @@ export default function EditElement({
                         </div>
                     )}
                 </div>
-                <ul className="mb-5">
+                <ul className="mb-5 hidden sm:block">
                     {/* 
                     // TODO dodać loading kategorii 
                     */}
