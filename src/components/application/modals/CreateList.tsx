@@ -206,16 +206,16 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                 {!duplicate && !editList && <Sample />}
                 {!isCreateSample && (
                     <div
-                        className={`flex gap-3 animated overflow-hidden ${
+                        className={`flex flex-wrap gap-3 animated overflow-hidden ${
                             !duplicate && !editList ? "justify-between" : ""
                         } ${
-                            title ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
+                            title ? "max-h-100 opacity-100" : "max-h-0 opacity-0"
                         }`}
                     >
                         {!duplicate && !editList && (
                             <button
                                 type="button"
-                                className="btn btn-big btn-default"
+                                className="btn btn-big btn-default flex-1 whitespace-nowrap"
                                 onClick={() => setIsCreateSample(true)}
                                 disabled={titleIsEmpty}
                             >
@@ -225,7 +225,7 @@ export default function CreateList({ duplicate, editList }: TDuplicatProps) {
                         )}
                         <button
                             type="submit"
-                            className={`flex justify-center items-center btn btn-big btn-primary ${
+                            className={`flex flex-1 whitespace-nowrap justify-center items-center btn btn-big btn-primary ${
                                 duplicate || editList ? "w-full" : ""
                             } ${isSuccess && "btn-green"}`}
                             disabled={titleIsEmpty}

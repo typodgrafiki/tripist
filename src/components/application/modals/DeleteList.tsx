@@ -40,15 +40,15 @@ export default function DeleteList({ listId }: { listId: string }) {
                     Czy na pewno chcesz usunąć listę?
                 </span>
             </h3>
-            <div className="flex justify-between">
+            <div className="flex flex-wrap gap-3 justify-between">
                 <Button
-                    className="btn btn-default"
+                    className="btn btn-default flex justify-center flex-1 whitespace-nowrap "
                     onClick={closeModal}
                 >
                     Anuluj
                 </Button>
                 <Button
-                    className="btn btn-primary"
+                    className="btn btn-primary flex justify-center flex-1 whitespace-nowrap"
                     onClick={() => mutate()}
                     isLoading={isPending}
                     isSuccess={isSuccess}

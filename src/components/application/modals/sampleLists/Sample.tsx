@@ -111,15 +111,15 @@ const SampleOn = () => {
                 <>
                     <SampleTypes data={sampleLists} />
                     <div
-                        className={`flex gap-3 justify-between pt-3 animated overflow-hidden ${
+                        className={`flex flex-wrap gap-3 justify-between pt-3 animated overflow-hidden ${
                             importedList.id !== 0
-                                ? "max-h-20 opacity-100"
+                                ? "max-h-100 opacity-100"
                                 : "max-h-0 opacity-0"
                         }`}
                     >
                         <Button
                             type="button"
-                            className="btn btn-big btn-default justify-center"
+                            className="btn btn-big btn-default justify-center flex-1 whitespace-nowrap"
                             isDisabled={importedList.id == 0 || isPending}
                             onClick={() => setCustomList(true)}
                         >
@@ -127,7 +127,7 @@ const SampleOn = () => {
                             <ArrowDown className="ml-2" />
                         </Button>
                         <Button
-                            className="btn btn-big btn-primary justify-center"
+                            className="btn btn-big btn-primary justify-center flex-1 whitespace-nowrap"
                             type="submit"
                             isLoading={isPending}
                             isDisabled={importedList.id == 0}
