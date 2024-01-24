@@ -42,21 +42,6 @@ export default function Sample() {
                 <SampleOn />
             </>
         )
-
-    return (
-        <>
-            <button
-                type="button"
-                className="btn btn-big btn-default w-full"
-                onClick={() => setIsCreateSample(true)}
-                disabled={titleIsEmpty}
-            >
-                Przejrzyj gotowe listy
-                <ArrowDown className="ml-2" />
-            </button>
-            <p className="text-center my-3">lub</p>
-        </>
-    )
 }
 
 const SampleOn = () => {
@@ -125,37 +110,38 @@ const SampleOn = () => {
             ) : (
                 <>
                     <SampleTypes data={sampleLists} />
-
-                    <Button
-                        type="button"
-                        className="btn btn-big btn-default w-full justify-center mt-3"
-                        isDisabled={importedList.id == 0 || isPending}
-                        onClick={() => setCustomList(true)}
+                    <div
+                        className={`flex gap-3 justify-between pt-3 animated overflow-hidden ${
+                            importedList.id !== 0
+                                ? "max-h-20 opacity-100"
+                                : "max-h-0 opacity-0"
+                        }`}
                     >
-                        Dostosuj wybraną listę
-                        <ArrowDown className="ml-2" />
-                    </Button>
-                    <p className="text-center my-3">lub</p>
-                    <Button
-                        className="btn btn-big btn-primary w-full justify-center"
-                        type="submit"
-                        isLoading={isPending}
-                        isDisabled={importedList.id == 0}
-                    >
-                        {isPending ? (
-                            "Tworzenie listy"
-                        ) : customList ? (
-                            <>
-                                Stwórz listę
-                                <ArrowRight className="ml-2" />
-                            </>
-                        ) : (
-                            <>
-                                Stwórz listę
-                                <ArrowRight className="ml-2" />
-                            </>
-                        )}
-                    </Button>
+                        <Button
+                            type="button"
+                            className="btn btn-big btn-default justify-center"
+                            isDisabled={importedList.id == 0 || isPending}
+                            onClick={() => setCustomList(true)}
+                        >
+                            Dostosuj wybraną listę
+                            <ArrowDown className="ml-2" />
+                        </Button>
+                        <Button
+                            className="btn btn-big btn-primary justify-center"
+                            type="submit"
+                            isLoading={isPending}
+                            isDisabled={importedList.id == 0}
+                        >
+                            {isPending ? (
+                                "Tworzenie listy"
+                            ) : (
+                                <>
+                                    Stwórz listę
+                                    <ArrowRight className="ml-2" />
+                                </>
+                            )}
+                        </Button>
+                    </div>
                 </>
             )}
         </>

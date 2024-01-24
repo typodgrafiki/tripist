@@ -48,7 +48,7 @@ export default function Modal() {
                 >
                     ESC
                 </div>
-                <div className="modal bg-white rounded-xl shadow-2xl p-5 mx-3 max-h-[98%] sm:rounded-3xl sm:px-9 sm:pt-8 sm:pb-10">
+                <div className="modal bg-white rounded-xl shadow-2xl p-7 mx-3 max-h-[98%] sm:rounded-3xl sm:px-9 sm:pt-8 sm:pb-10">
                     {modalContent}
                 </div>
             </div>
