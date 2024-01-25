@@ -15,6 +15,7 @@ import DeleteAccount from "./DeleteAccount"
 import Label from "@/components/ui/Label"
 import IconFemale from "@/assets/images/user/Female"
 import IconMale from "@/assets/images/user/Male"
+import PasswordInput from "@/components/ui/PasswordInput"
 
 type EditAccountProps = {
     data: IUserData
@@ -178,14 +179,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         name="Hasło"
                         htmlFor="formPassword"
                     />
-                    <input
-                        type="text"
-                        className={`form-control w-full ${
-                            errors.password ? "error" : ""
-                        }`}
-                        id="formPassword"
-                        disabled={loading}
-                        {...register("password")}
+                    <PasswordInput
+                        register={register}
+                        errors={errors}
+                        loading={loading}
                     />
                 </div>
                 <Button

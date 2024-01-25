@@ -292,7 +292,7 @@ select.dark {
     body {
         @apply text-sm;
     }
-    
+
     .list-link {
         border-radius: 0 5px 5px 0;
     }

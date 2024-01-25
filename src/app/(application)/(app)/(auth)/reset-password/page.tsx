@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import Toastify from "toastify-js"
 import Button from "@/components/ui/Button"
 import ModalTitle from "@/components/ui/ModalTitle"
+import PasswordInput from "@/components/ui/PasswordInput"
 
 export default function RemindPassword() {
     const router = useRouter()
@@ -43,7 +44,12 @@ export default function RemindPassword() {
         }
     }
 
-    if (!userEmail || !userToken) return <>Niepoprawny link zmiany hasła</>
+    if (!userEmail || !userToken)
+        return (
+            <div className="text-center mt-8 mb-10">
+                Niepoprawny link zmiany hasła
+            </div>
+        )
 
     return (
         <>
@@ -76,21 +82,11 @@ export default function RemindPassword() {
                     >
                         Hasło
                     </label>
-                    <input
-                        type="password"
-                        className={`form-control grow w-full ${
-                            errors.password ? "error" : ""
-                        }`}
-                        {...register("password", {
-                            required: {
-                                value: true,
-                                message: "Hasło jest wymagane",
-                            },
-                        })}
-                        placeholder="**********"
-                        id="formPassword"
-                        disabled={loading}
-                        autoComplete="new-password"
+                    <PasswordInput
+                        register={register}
+                        errors={errors}
+                        loading={loading}
+                        changePassword
                     />
                     {errors.password && (
                         <div className="error-message">

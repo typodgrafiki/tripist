@@ -12,6 +12,7 @@ import ModalTitle from "@/components/ui/ModalTitle"
 import Label from "@/components/ui/Label"
 import IconFemale from "@/assets/images/user/Female"
 import IconMale from "@/assets/images/user/Male"
+import PasswordInput from "@/components/ui/PasswordInput"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -101,22 +102,38 @@ export default function RegisterForm() {
                                         name="Płeć"
                                         htmlFor="formGender"
                                     />
-                                     <div className="flex gap-2 genderSignUpForm">
-                                        <label className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${errors.gender ? "border-red-500" : "text-slate-500"}`}>
+                                    <div className="flex gap-2 genderSignUpForm">
+                                        <label
+                                            className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${
+                                                errors.gender
+                                                    ? "border-red-500"
+                                                    : "text-slate-500"
+                                            }`}
+                                        >
                                             <input
                                                 type="radio"
                                                 value="FEMALE"
                                                 className="hidden"
-                                                {...register("gender", { required: "Wybierz płeć" })} 
+                                                {...register("gender", {
+                                                    required: "Wybierz płeć",
+                                                })}
                                             />
                                             <IconFemale />
                                         </label>
-                                        <label className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${errors.gender ? "border-red-500" : "text-slate-500"}`}>
+                                        <label
+                                            className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${
+                                                errors.gender
+                                                    ? "border-red-500"
+                                                    : "text-slate-500"
+                                            }`}
+                                        >
                                             <input
                                                 type="radio"
                                                 value="MALE"
                                                 className="hidden"
-                                                {...register("gender", { required: "Wybierz płeć" })} 
+                                                {...register("gender", {
+                                                    required: "Wybierz płeć",
+                                                })}
                                             />
                                             <IconMale />
                                         </label>
@@ -160,21 +177,10 @@ export default function RegisterForm() {
                                     name="Hasło"
                                     htmlFor="formPassword"
                                 />
-                                <input
-                                    type="password"
-                                    className={`form-control grow w-full ${
-                                        errors.password ? "error" : ""
-                                    }`}
-                                    {...register("password", {
-                                        required: {
-                                            value: true,
-                                            message: "Hasło jest wymagane",
-                                        },
-                                    })}
-                                    placeholder="**********"
-                                    id="formPassword"
-                                    autoComplete="current-password"
-                                    disabled={loading}
+                                <PasswordInput
+                                    register={register}
+                                    errors={errors}
+                                    loading={loading}
                                 />
                                 {errors.password && (
                                     <div className="error-message text-sm mt-1">
@@ -187,7 +193,9 @@ export default function RegisterForm() {
                                 className={`flex justify-center items-center btn btn-primary mt-4`}
                                 isLoading={loading}
                             >
-                                {loading ? "Rejestrowanie..." : "Zarejestruj się"}
+                                {loading
+                                    ? "Rejestrowanie..."
+                                    : "Zarejestruj się"}
                             </Button>
                         </div>
                         {errorMessege && (
