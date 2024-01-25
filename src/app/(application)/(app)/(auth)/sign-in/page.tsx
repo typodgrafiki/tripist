@@ -11,6 +11,7 @@ import ShowCode from "@/components/application/user/UserSignShowCode"
 import Button from "@/components/ui/Button"
 import ModalTitle from "@/components/ui/ModalTitle"
 import Label from "@/components/ui/Label"
+import PasswordInput from "@/components/ui/PasswordInput"
 
 export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
@@ -62,73 +63,62 @@ export default function RegisterForm() {
                 />
             ) : (
                 <>
-                <ModalTitle>Zaloguj się</ModalTitle>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex flex-col justify-between gap-3 mb-1">
-                        <div>
-                            <Label
-                                name="Email"
-                                htmlFor="formEmail"
-                            />
-                            <input
-                                type="email"
-                                className={`form-control grow w-full ${
-                                    errors.email ? "error" : ""
-                                }`}
-                                {...register("email", {
-                                    required: {
-                                        value: true,
-                                        message: "Email jest wymagany",
-                                    },
-                                })}
-                                placeholder="john@example.com"
-                                id="formEmail"
-                                autoComplete="username"
-                                disabled={loading}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {errors.email && (
-                                <div className="error-message">
-                                    {errors.email.message}
-                                </div>
-                            )}
+                    <ModalTitle>Zaloguj się</ModalTitle>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="flex flex-col justify-between gap-3 mb-1">
+                            <div>
+                                <Label
+                                    name="Email"
+                                    htmlFor="formEmail"
+                                />
+                                <input
+                                    type="email"
+                                    className={`form-control grow w-full ${
+                                        errors.email ? "error" : ""
+                                    }`}
+                                    {...register("email", {
+                                        required: {
+                                            value: true,
+                                            message: "Email jest wymagany",
+                                        },
+                                    })}
+                                    placeholder="john@example.com"
+                                    id="formEmail"
+                                    autoComplete="username"
+                                    disabled={loading}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                {errors.email && (
+                                    <div className="error-message">
+                                        {errors.email.message}
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <Label
+                                    name="Hasło"
+                                    htmlFor="formPassword"
+                                />
+                                <PasswordInput
+                                    register={register}
+                                    errors={errors}
+                                    loading={loading}
+                                />
+                                {errors.password && (
+                                    <div className="error-message">
+                                        {errors.password.message}
+                                    </div>
+                                )}
+                            </div>
+                            <Button
+                                type="submit"
+                                className={`flex justify-center items-center btn btn-primary mt-4`}
+                                isLoading={loading}
+                            >
+                                {loading ? "Logowanie..." : "Zaloguj się"}
+                            </Button>
                         </div>
-                        <div>
-                            <Label
-                                name="Hasło"
-                                htmlFor="formPassword"
-                            />
-                            <input
-                                type="password"
-                                className={`form-control grow w-full ${
-                                    errors.password ? "error" : ""
-                                }`}
-                                {...register("password", {
-                                    required: {
-                                        value: true,
-                                        message: "Hasło jest wymagane",
-                                    },
-                                })}
-                                placeholder="**********"
-                                id="formPassword"
-                                autoComplete="current-password"
-                                disabled={loading}
-                            />
-                            {errors.password && (
-                                <div className="error-message">
-                                    {errors.password.message}
-                                </div>
-                            )}
-                        </div>
-                        <Button
-                            type="submit"
-                            className={`flex justify-center items-center btn btn-primary mt-4`}
-                            isLoading={loading}
-                        >
-                            {loading ? "Logowanie..." : "Zaloguj się"}
-                        </Button>
-                    </div>
-                </form>
+                    </form>
                 </>
             )}
 
@@ -200,48 +190,50 @@ const ConfirmEmail = ({
                 />
             ) : (
                 <>
-                <ModalTitle>Wyślij kod email</ModalTitle>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex flex-col justify-between gap-3 mb-1">
-                        <div>
-                            <span className="text-red-500 text-sm">
-                                Twój email nie został potwierdzony.
-                            </span>
-                            <br />
-                            Wyślij ponownie kod na adres email:
+                    <ModalTitle>Wyślij kod email</ModalTitle>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="flex flex-col justify-between gap-3 mb-1">
+                            <div>
+                                <span className="text-red-500 text-sm">
+                                    Twój email nie został potwierdzony.
+                                </span>
+                                <br />
+                                Wyślij ponownie kod na adres email:
+                            </div>
+                            <div>
+                                <input
+                                    type="email"
+                                    className={`form-control grow w-full ${
+                                        errors.email ? "error" : ""
+                                    }`}
+                                    {...register("email", {
+                                        required: {
+                                            value: true,
+                                            message: "Email jest wymagany",
+                                        },
+                                    })}
+                                    placeholder="john@example.com"
+                                    id="formEmail"
+                                    autoComplete="username"
+                                    disabled={loading}
+                                />
+                                {errors.email && (
+                                    <div className="error-message">
+                                        {errors.email.message}
+                                    </div>
+                                )}
+                            </div>
+                            <Button
+                                type="submit"
+                                className={`flex justify-center items-center btn btn-primary`}
+                                isLoading={loading}
+                            >
+                                {loading
+                                    ? "Wysyłanie..."
+                                    : "Wyślij kod ponownie"}
+                            </Button>
                         </div>
-                        <div>
-                            <input
-                                type="email"
-                                className={`form-control grow w-full ${
-                                    errors.email ? "error" : ""
-                                }`}
-                                {...register("email", {
-                                    required: {
-                                        value: true,
-                                        message: "Email jest wymagany",
-                                    },
-                                })}
-                                placeholder="john@example.com"
-                                id="formEmail"
-                                autoComplete="username"
-                                disabled={loading}
-                            />
-                            {errors.email && (
-                                <div className="error-message">
-                                    {errors.email.message}
-                                </div>
-                            )}
-                        </div>
-                        <Button
-                            type="submit"
-                            className={`flex justify-center items-center btn btn-primary`}
-                            isLoading={loading}
-                        >
-                            {loading ? "Wysyłanie..." : "Wyślij kod ponownie"}
-                        </Button>
-                    </div>
-                </form>
+                    </form>
                 </>
             )}
         </>
