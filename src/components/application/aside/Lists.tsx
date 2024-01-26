@@ -19,6 +19,7 @@ import arrowDown from "@/assets/images/dashboard/arrow-down.svg"
 import Image from "next/image"
 import ListsErrorLoading from "./Error"
 import IconList from "../icons/list"
+import ContentEmpty from "../content/ContentEmpty"
 
 export default function Lists() {
     const { setModalContent, setIsModalOpen } = useModal()
@@ -50,8 +51,8 @@ export default function Lists() {
     if (isError) return <ListsErrorLoading />
 
     return (
-        <div>
-            {lists && lists.length > 0 && (
+        <div className={`${lists && lists.length > 0 ? "" : "h-full flex justify-center items-center"}`}>
+            {lists && lists.length > 0 ? (
                 <div className="my-lists grow pb-20">
                     <p className="text-2xl font-semibold px-6 pt-7 pb-6 sm:uppercase sm:text-sm">
                         Twoje listy
@@ -76,13 +77,15 @@ export default function Lists() {
                         ))}
                     </ul>
                 </div>
+            ) : (
+                <ContentEmpty dashboard />
             )}
             <Button
                 className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:text-gray-900 sm:left-5 sm:right-auto sm:rounded-[7px] sm:border-white sm:px-[15px] sm:py-[10px]"
                 onClick={handleOpenModal}
             >
                 <span className="hidden sm:inline">
-                    Dodaj listę
+                    Utwórz listę
                     <IconPlus className="ml-2 relative -top-[1px]" />
                 </span>
                 <IconList className="sm:hidden" />

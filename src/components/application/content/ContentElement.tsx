@@ -81,6 +81,7 @@ export default function ContentElement({
             />
         )
         setIsModalOpen(true)
+        setEditElementId(null)
     }
 
     // GESTY
@@ -106,20 +107,22 @@ export default function ContentElement({
     return (
         <>
             <li className="relative border-t border-gray-200 first:border-0 overflow-x-hidden sm:hover:shadow-md">
-                <animated.div
-                    className="element-row animated-fast flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 sm:hover:sm:pl-3 hover:rounded"
-                    {...bind()}
-                    style={{
-                        transform: x.interpolate(
-                            (val) =>
-                                `translate3d(${
-                                    val - (isSwiped ? 55 : 0)
-                                }px, 0, 0)`
-                        ),
-                        touchAction: "pan-y",
-                    }}
+                <div
+                    className="element-row flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 sm:hover:sm:pl-3 hover:rounded"
+                    
                 >
-                    <label className="flex items-center px-5 py-4 gap-2 grow cursor-pointer sm:text-sm sm:hover:text-[var(--primary)] sm:px-0 sm:py-2">
+                    <animated.label className="animated-fast flex items-center px-5 py-4 gap-2 grow cursor-pointer sm:text-sm sm:hover:text-[var(--primary)] sm:px-0 sm:py-2"
+                        {...bind()}
+                        style={{
+                            transform: x.interpolate(
+                                (val) =>
+                                    `translate3d(${
+                                        val - (isSwiped ? 30 : 0)
+                                    }px, 0, 0)`
+                            ),
+                            touchAction: "pan-y",
+                        }}
+                    >
                         <span className="relative round w-[21px] h-[21px]">
                             <input
                                 type="checkbox"
@@ -131,12 +134,12 @@ export default function ContentElement({
                             <span className="label"></span>
                         </span>
                         <span className="grow">{name}</span>
-                    </label>
+                    </animated.label>
                     <Categories categories={categories} />
                     <div
-                        className={`element-edit ${
-                            isSwiped ? "opacity-100" : "opacity-0"
-                        } flex absolute -right-[55px] top-0 bottom-0 sm:right-0 sm:left-auto sm:opacity-0 sm:pr-0`}
+                        className={`animated element-edit ${
+                            isSwiped ? "right-0" : "-right-[100px]"
+                        }  flex absolute top-0 bottom-0 sm:right-0 sm:left-auto sm:opacity-0 sm:pr-0`}
                     >
                         <Button
                             className="text-white bg-[var(--primary)] px-3 items-center sm:text-[var(--dark)] sm:hover:text-[var(--primary)] sm:px-1 sm:bg-transparent"
@@ -150,7 +153,7 @@ export default function ContentElement({
                             icon
                         />
                     </div>
-                </animated.div>
+                </div>
             </li>
         </>
     )

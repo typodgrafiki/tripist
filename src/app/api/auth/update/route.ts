@@ -51,3 +51,32 @@ export async function POST(request: Request) {
         )
     }
 }
+
+export async function GET(request: Request) {
+    const { userId } = await useAuth()
+
+    try {
+        if (!userId) {
+            return NextResponse.json(
+                { message: "Nie znaleziono użytkownika" },
+                { status: 400 }
+            )
+        }
+
+        const newUser = await prisma.user.findFirst({
+            where: {
+                id: userId,
+            },
+            select: {
+                isNewUser: true,
+            },
+        })
+
+        return NextResponse.json(newUser, { status: 200 })
+    } catch (e) {
+        return NextResponse.json(
+            { message: "Nie udało się znaleźć użytkownika" },
+            { status: 500 }
+        )
+    }   
+}

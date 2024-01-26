@@ -401,3 +401,22 @@ export const deleteAccount = async () => {
         }
     }
 }
+
+
+export const checkNewUser = async () => {
+    try {
+        const response = await axios.get(`/api/auth/update`)
+        return response
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError: AxiosError = error
+            if (axiosError.response) {
+                return axiosError.response
+            } else {
+                return null
+            }
+        } else {
+            return null
+        }
+    }
+}

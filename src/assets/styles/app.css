@@ -91,7 +91,7 @@
 
 .element-row .element-edit,
 .element-row .element-categories {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, right 0.2s ease;
 }
 
 .element-row:hover .element-categories {

@@ -17,7 +17,7 @@ export default function MobileMenu() {
         <div className="mobile-menu-bottom bg-gray-200 flex justify-between fixed bottom-0 left-0 right-0 sm:hidden">
             <Btn onClick={handleAddList}>
                 <IconPlus />
-                Dodaj listę
+                Utwórz listę
             </Btn>
         </div>
     )

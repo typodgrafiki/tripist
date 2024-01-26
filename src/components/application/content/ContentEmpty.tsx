@@ -47,6 +47,12 @@ export default function ContentEmpty({
                         <div className="text-center grow flex flex-col justify-center items-center">
                             <div className="max-w-[480px]">
                                 <h4 className="font-semibold text-[1.1rem] mb-3">
+                                    Witamy w aplikacji podróżniczej!
+                                </h4>
+                                <p className="mb-4 text-muted">
+                                    Aby zacząć, utwórz swoją pierwszą listę podróży i zorganizuj swoje plany. Twoje wyjazdy zasługują na indywidualne podejście!
+                                </p>
+                                {/* <h4 className="font-semibold text-[1.1rem] mb-3">
                                     Nie stworzyłeś jeszcze swoich list.
                                 </h4>
                                 <p className="mb-4 text-muted">
@@ -56,12 +62,12 @@ export default function ContentEmpty({
                                     bagaż w sposób, który najlepiej odpowiada
                                     Twojemu stylowi. Twoje wyjazdy zasługują na
                                     indywidualne podejście.
-                                </p>
+                                </p> */}
                                 <Button
                                     className="btn btn-primary mx-auto items-center"
                                     onClick={handleCreateListModal}
                                 >
-                                    Dodaj listę
+                                    Utwórz pierwszą listę
                                     <IconPlus className="ml-2" />
                                 </Button>
                             </div>

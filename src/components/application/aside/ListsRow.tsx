@@ -36,8 +36,8 @@ export default function ListsRow({
                             className={`hidden sm:inline-block h-[7px] w-[7px] rounded-full mr-2 relative -top-[1px] ${settingColor}`}
                         ></span>
                     )}
-                    <span className="flex justify-between items-center mb-2 sm:inline sm:mb-0">
-                        <span className="font-semibold text-[1.2rem] sm:font-normal sm:text-sm">
+                    <span className="flex justify-between items-center mb-2 gap-1 sm:inline sm:mb-0">
+                        <span className="font-semibold text-[1.2rem] truncate sm:font-normal sm:text-sm">
                             {name}
                         </span>
                         <span className="text-gray-400 focus-text text-xs italic sm:hidden">

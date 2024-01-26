@@ -81,7 +81,7 @@ export default function ShowCode({
         return (
             <ModalLoading>
                 <div className="text-center">
-                    <div>Trwa tworzenie konta i list przykładowych...</div>
+                    <div>Trwa tworzenie kont...</div>
                     <div className="text-xs mt-3">
                         Za chwilę zostaniesz przekierowany
                         <br />
