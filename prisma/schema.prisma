@@ -52,6 +52,7 @@ model User {
   lists           List[]       @relation("UserLists")
   changeLogs      ChangeLog[]
   sessions        Session[]
+  isNewUser       Boolean       @default(false)
   signUpCode      SignUpCodes?  @relation(fields: [signUpCodeId], references: [id])
   signUpCodeId    String? @unique
   remindPass      UserRemindPassword?  @relation(fields: [remindPassId], references: [id])

@@ -79,11 +79,26 @@ export async function getType(nameType: NameType, fullName: FullNameType) {
         where: { name: nameType },
     })
 
+    let idType
+
+    if (nameType == "summer") {
+        idType = 1
+    } else if (nameType == "winter") {
+        idType = 2
+    } else if (nameType == "active") {
+        idType = 3
+    } else if (nameType == "other") {
+        idType = 5
+    } else if (nameType == "training") {
+        idType = 4
+    }
+
     if (!templateType) {
         templateType = await prisma.listType.create({
             data: {
                 name: nameType,
                 fullName: fullName,
+                id: idType
             },
         })
     }

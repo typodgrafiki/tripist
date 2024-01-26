@@ -57,6 +57,7 @@ export async function POST(request: Request) {
                 email: email,
                 password: hashPassword,
                 gender: gender,
+                isNewUser: true,
             },
         })
 
@@ -96,6 +97,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(result, { status: 200 })
     } catch (e) {
+        console.log(e)
         return NextResponse.json(
             { message: "Nie udało się dodać użytkownika" },
             { status: 500 }

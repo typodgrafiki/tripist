@@ -10,9 +10,10 @@
         "test": "jest",
         "test:watch": "jest --watchAll",
         "seed:sample": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedSample.ts",
-        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedtemplates/seed.ts",
+        "seed:template": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seedTemplates/seed.ts",
         "seed:deleteAllUsers": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteAllUsers.ts",
-        "seed:deleteAllTemplates": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteAllTemplates.ts"
+        "seed:deleteAll": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteAll.ts",
+        "seed:deleteMyUsers": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/_delete/deleteMyUsers.ts"
     },
     "dependencies": {
         "@prisma/client": "^5.7.1",

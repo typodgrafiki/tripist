@@ -63,7 +63,7 @@ const functionsToExecute = [
     otherType,
 
     // Sample
-    sampleLists,
+    // sampleLists,
 ]
 
 async function executeFunctions() {
