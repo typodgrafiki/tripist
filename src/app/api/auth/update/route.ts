@@ -10,7 +10,9 @@ export async function POST(request: Request) {
     const { userId } = await useAuth()
 
     const data = await request.json()
-    const { name, surname, email, password, gender } = data
+    const { name, surname, email, password, gender, darkTheme } = data
+
+    const darkMode = darkTheme === "darkTheme" ? true : false
 
     await email.trim()
     await password.trim()
@@ -27,6 +29,7 @@ export async function POST(request: Request) {
             name: name,
             email: email,
             gender: gender,
+            darkTheme: darkMode,
         }
 
         if (password && password.trim() !== "") {

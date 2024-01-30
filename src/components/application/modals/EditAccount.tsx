@@ -1,21 +1,18 @@
 // TODO Dodac loading po zmianie danych lub wylogowaniu
 // TODO Po zmianie danych musza sie zaktualizowac w lewej kolumnie
 
-import { useForm, useFormState } from "react-hook-form"
-import Image from "next/image"
+import { useForm, useWatch } from "react-hook-form"
 import Button from "@/components/ui/Button"
 import { useModal } from "@/context/ModalContext"
 import Toastify from "toastify-js"
 import { IUserData } from "@/types/types"
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Dispatch, SetStateAction } from "react"
 import { updateUserFetch } from "@/actions/axiosActions"
-import iconUser from "@/assets/images/user/boy.png"
 import DeleteAccount from "./DeleteAccount"
 import Label from "@/components/ui/Label"
 import IconFemale from "@/assets/images/user/Female"
 import IconMale from "@/assets/images/user/Male"
-import PasswordInput from "@/components/ui/PasswordInput"
 
 type EditAccountProps = {
     data: IUserData
@@ -24,19 +21,26 @@ type EditAccountProps = {
 
 export default function EditAccount({ data, setData }: EditAccountProps) {
     const { closeModal } = useModal()
-    const { name, image, email, gender } = data
+    const { name, image, email, gender, darkTheme } = data
     const [loading, setLoading] = useState(false)
 
-    const { register, handleSubmit, formState } = useForm<IUserData>({
+    const { register, handleSubmit, formState, control } = useForm<IUserData>({
         defaultValues: {
             name: name,
             email: email,
             password: "",
             gender: gender,
+            darkTheme: darkTheme,
         },
     })
 
     const { errors } = formState
+
+    const darkThemeValue = useWatch({
+        control,
+        name: "darkTheme",
+        defaultValue: false,
+    })
 
     const onSubmit = async (data: IUserData) => {
         setLoading(true)
@@ -54,6 +58,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                 surname: result.data.surname,
                 gender: result.data.gender,
                 email: result.data.email,
+                darkTheme: result.data.darkTheme,
             })
             closeModal()
         } else {
@@ -65,6 +70,16 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
         }
     }
 
+    useEffect(() => {
+        if (darkThemeValue && darkThemeValue.toString() === "lightTheme") {
+            localStorage.setItem("tripist_darkMode", "off")
+            document.documentElement.setAttribute("data-theme", "light")
+        } else {
+            localStorage.setItem("tripist_darkMode", "on")
+            document.documentElement.setAttribute("data-theme", "dark")
+        }
+    }, [darkThemeValue])
+
     return (
         <div className="modal-account">
             <h3 className="flex mb-5 text-gray-400 truncate justify-between items-center">
@@ -72,6 +87,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                     Moje konto
                 </span>
             </h3>
+
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* <div className="flex justify-center mb-6">
                     <Image
@@ -82,7 +98,6 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         alt="Zdjęcie użytkownika"
                     />
                 </div> */}
-
                 <div className="flex gap-2 mb-4">
                     <div className="grow">
                         <Label
@@ -123,13 +138,11 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                                 }`}
                             >
                                 <input
+                                    {...register("gender", { required: true })}
                                     type="radio"
                                     value="FEMALE"
                                     defaultChecked={gender === "FEMALE"}
                                     className="hidden"
-                                    {...register("gender", {
-                                        required: "Wybierz płeć",
-                                    })}
                                 />
                                 <IconFemale />
                             </label>
@@ -141,13 +154,11 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                                 }`}
                             >
                                 <input
+                                    {...register("gender", { required: true })}
                                     type="radio"
                                     value="MALE"
                                     defaultChecked={gender === "MALE"}
                                     className="hidden"
-                                    {...register("gender", {
-                                        required: "Wybierz płeć",
-                                    })}
                                 />
                                 <IconMale />
                             </label>
@@ -174,7 +185,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         {...register("email")}
                     />
                 </div>
-                <div className="w-full mb-6">
+                {/* <div className="w-full mb-6">
                     <Label
                         name="Hasło"
                         htmlFor="formPassword"
@@ -185,6 +196,39 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         loading={loading}
                         registerUser
                     />
+                </div> */}
+                <div className="w-full mb-6">
+                    <Label
+                        name="Kolor motywu"
+                        htmlFor="formColorMode"
+                    />
+                    <div className="flex gap-2 darkModeForm">
+                        <label
+                            className={`flex grow justify-center items-center border border-slate-300 rounded-[7px] h-[46px] px-3 cursor-pointer  text-slate-500`}
+                        >
+                            <input
+                                {...register("darkTheme", { required: true })}
+                                type="radio"
+                                value="lightTheme"
+                                defaultChecked={darkTheme === false}
+                                className="hidden"
+                                // onChange={() => console.log("change mode")}
+                            />
+                            Jasny
+                        </label>
+                        <label
+                            className={`flex grow justify-center items-center border border-slate-300 rounded-[7px] h-[46px] px-3 cursor-pointer text-slate-500`}
+                        >
+                            <input
+                                {...register("darkTheme", { required: true })}
+                                type="radio"
+                                value="darkTheme"
+                                defaultChecked={darkTheme === true}
+                                className="hidden"
+                            />
+                            Ciemny
+                        </label>
+                    </div>
                 </div>
                 <Button
                     type="submit"
@@ -209,7 +253,7 @@ const ButtonDeleteAccount = ({ children }: { children: React.ReactNode }) => {
             className="error mt-3 text-red-500 hover:underline"
             onClick={handleDeleteAccount}
         >
-            Usuń konto
+            {children}
         </button>
     )
 }

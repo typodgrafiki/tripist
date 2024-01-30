@@ -102,6 +102,7 @@ export interface IUserData {
     surname?: string
     password?: string
     gender?: TGender
+    darkTheme?: boolean
 }
 
 export type TSampleTypeFull = {

@@ -1,3 +1,33 @@
+:root {
+    --darkMode: #0e0e0e;
+    --darkModeLight: #1c1c1e;
+    --darkModeText: #81838a;
+    --darkModeTitle: #d3d4d8;
+    --darkModeBtn: #2b2b2e;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #81838a;
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #e2e3e9;
+    border-radius: 10px;
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-thumb {
+    background: var(--darkModeBtn);
+}
+
+[data-theme="dark"] *::-webkit-scrollbar-track {
+    background: var(--darkModeLight);
+}
+
 .text-muted {
     color: #52545c;
 }
@@ -91,7 +121,9 @@
 
 .element-row .element-edit,
 .element-row .element-categories {
-    transition: opacity 0.2s ease, right 0.2s ease;
+    transition:
+        opacity 0.2s ease,
+        right 0.2s ease;
 }
 
 .element-row:hover .element-categories {
@@ -116,6 +148,9 @@
     animation: fade-in 0.1s ease;
 }
 
+[data-theme="dark"] .modal-overlay {
+    background-color: rgb(24 25 26 / 90%);
+}
 .modal {
     width: 100%;
     max-width: 600px;
@@ -259,11 +294,17 @@ select.dark {
     stroke: currentColor;
 }
 
-.genderSignUpForm label:has(input:checked) {
+.genderSignUpForm label:has(input:checked),
+.darkModeForm label:has(input:checked) {
     border-color: var(--primary);
     outline: var(--primary);
     outline-width: 2px;
     color: var(--primary);
+}
+
+[data-theme="dark"] .element-row .round .label {
+    background-color: transparent;
+    border-color: #424248;
 }
 
 *:focus .focus-text {

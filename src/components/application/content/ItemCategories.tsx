@@ -11,11 +11,11 @@ export default function Categories({
 
     return (
         <div className="element-categories hidden sm:flex sm:item-center sm:gap-1">
-            <span className="block text-xs bg-[var(--gray)] rounded-md self-center px-2 py-1 max-w-[7rem] text-ellipsis overflow-hidden whitespace-nowrap">
+            <span className="block text-xs bg-[var(--gray)] rounded-md self-center px-2 py-1 max-w-[7rem] text-ellipsis overflow-hidden whitespace-nowrap dark:bg-[var(--darkModeBtn)] dark:text-[var(--darkModeText)]">
                 {categories[0].name}
             </span>
             {categories.length > 1 && (
-                <span className="block text-xs bg-[var(--gray)] rounded-md self-center px-2 py-1">
+                <span className="block text-xs bg-[var(--gray)] rounded-md self-center px-2 py-1 dark:bg-[var(--darkModeBtn)] dark:text-[var(--darkModeText)]">
                     ...
                 </span>
             )}

@@ -160,7 +160,7 @@ export default function Content({ id }: { id: string }) {
                         className="hidden sm:flex mb-2 "
                     >
                         <Button
-                            className="animated px-3 hover:text-[var(--primary)] rounded-full"
+                            className="animated px-3 rounded-full dark:text-[var(--darkModeText)] hover:text-[var(--primary)]"
                             onClick={handleEditList}
                         >
                             <IconPen />
@@ -188,17 +188,17 @@ export default function Content({ id }: { id: string }) {
                         />
                     </div>
                     <PercentageBar percent={percentagePackedItems} />
-                    <div className="text-gray-600 pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6">
-                            <ul>
-                                {sortedAndFilteredElements.map((element) => (
-                                    <ContentElement
-                                        key={element.id}
-                                        editElementId={editElementId}
-                                        setEditElementId={setEditElementId}
-                                        {...element}
-                                    />
-                                ))}
-                            </ul>
+                    <div className="text-gray-600 dark:text-[#81838A] pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6 dark:sm:bg-[var(--darkModeLight)]">
+                        <ul>
+                            {sortedAndFilteredElements.map((element) => (
+                                <ContentElement
+                                    key={element.id}
+                                    editElementId={editElementId}
+                                    setEditElementId={setEditElementId}
+                                    {...element}
+                                />
+                            ))}
+                        </ul>
                     </div>
                     {/* <div className="flex justify-between px-5 pb-4 items-end gap-4 sticky bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
                         <ButtonDisableAll listId={listId} />
@@ -209,7 +209,7 @@ export default function Content({ id }: { id: string }) {
                             Dodaj element
                         </button>
                     </div> */}
-                    <div className="flex items-center justify-between px-5 pb-6 sm:items-end gap-4 fixed bottom-0 left-0 right-0 sm:static mt-3 sm:p-0">
+                    <div className="flex items-center justify-between px-5 pb-6 dark:bg-[#151516] dark:pt-4 dark:bg-opacity-80 dark:backdrop-blur-[2px] sm:items-end gap-4 fixed bottom-0 left-0 right-0 sm:static mt-3 sm:p-0 dark:sm:backdrop-blur-none, dark:sm:bg-transparent">
                         <ButtonDisableAll listId={listId} />
                         <button
                             onClick={handleOpenModal}

@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Toastify from "toastify-js"
 import { useModal } from "@/context/ModalContext"
 import EditAccount from "@/components/application/modals/EditAccount"
@@ -68,6 +68,15 @@ export default function UserContent({ user }: { user: IUserData }) {
             action: handleLogout,
         },
     ]
+
+    useEffect(() => {
+        const localStorageDarkMode = localStorage.getItem("tripist_darkMode")
+        if (localStorageDarkMode === "on") {
+            document.documentElement.setAttribute("data-theme", "dark")
+        } else {
+            document.documentElement.setAttribute("data-theme", "light")
+        }
+    }, [user.darkTheme])
 
     return (
         <div

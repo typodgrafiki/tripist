@@ -46,11 +46,13 @@ export default function DeleteAccount() {
                 <p>
                     <b>Czy na pewno chcesz usunąć swoje konto?</b>
                 </p>
-                <p>
+                <p className="text-gray-500">
                     Pamiętaj, że ta decyzja spowoduje trwałe usunięcie
                     wszystkich danych, w tym list, powiązanych z Twoim kontem.
                 </p>
-                <p>Jeśli jesteś pewien/pewna, potwierdź swoją decyzję.</p>
+                <p className="text-gray-500">
+                    Jeśli jesteś pewien/pewna, potwierdź swoją decyzję.
+                </p>
             </div>
             <div className="flex justify-between mt-5">
                 <Button

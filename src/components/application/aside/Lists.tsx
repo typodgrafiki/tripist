@@ -51,10 +51,16 @@ export default function Lists() {
     if (isError) return <ListsErrorLoading />
 
     return (
-        <div className={`${lists && lists.length > 0 ? "" : "h-full flex justify-center items-center"}`}>
+        <div
+            className={`${
+                lists && lists.length > 0
+                    ? ""
+                    : "h-full flex justify-center items-center"
+            }`}
+        >
             {lists && lists.length > 0 ? (
                 <div className="my-lists grow pb-20">
-                    <p className="text-2xl font-semibold px-6 pt-7 pb-6 sm:uppercase sm:text-sm">
+                    <p className="text-2xl font-semibold px-6 pt-7 pb-6 dark:text-[var(--darkModeTitle)] sm:uppercase sm:text-sm">
                         Twoje listy
                         <Image
                             src={arrowDown}
@@ -81,7 +87,7 @@ export default function Lists() {
                 <ContentEmpty dashboard />
             )}
             <Button
-                className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:text-gray-900 sm:left-5 sm:right-auto sm:rounded-[7px] sm:border-white sm:px-[15px] sm:py-[10px]"
+                className="btn btn-primary fixed bottom-6 right-3 rounded-full p-4 sm:inline-block sm:btn-white sm:text-gray-900 sm:left-5 sm:right-auto sm:rounded-[7px] sm:border-white sm:px-[15px] sm:py-[10px] dark:sm:bg-[var(--darkModeBtn)] dark:sm:text-[var(--darkModeTitle)] dark:sm:border-none"
                 onClick={handleOpenModal}
             >
                 <span className="hidden sm:inline">
