@@ -25,7 +25,7 @@ export default function ListsRow({
             <li className="relative mb-3 sm:mb-1">
                 <Link
                     href={thisUrl}
-                    className={`bg-[#ECEEF2] px-5 py-4 list-link animated block hover:bg-[#f4f4f5] sm:px-6 sm:py-2 relative truncate ${
+                    className={`bg-[#ECEEF2] px-5 py-4 list-link animated block hover:bg-[#f4f4f5] sm:px-6 sm:py-2 sm:bg-transparent relative truncate ${
                         pathname === thisUrl
                             ? "font-medium text-white active"
                             : "hover:text-gray-900 focus:font-medium focus:bg-[var(--primary)] focus:text-white"

@@ -78,5 +78,5 @@ export async function GET(request: Request) {
             { message: "Nie udało się znaleźć użytkownika" },
             { status: 500 }
         )
-    }   
+    }
 }

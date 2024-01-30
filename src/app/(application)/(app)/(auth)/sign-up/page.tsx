@@ -181,6 +181,7 @@ export default function RegisterForm() {
                                     register={register}
                                     errors={errors}
                                     loading={loading}
+                                    registerUser
                                 />
                                 {errors.password && (
                                     <div className="error-message text-sm mt-1">

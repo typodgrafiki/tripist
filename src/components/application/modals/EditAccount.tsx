@@ -183,6 +183,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         register={register}
                         errors={errors}
                         loading={loading}
+                        registerUser
                     />
                 </div>
                 <Button
