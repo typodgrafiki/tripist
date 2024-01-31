@@ -50,7 +50,9 @@ export default function ContentEmpty({
                                     Witamy w aplikacji podróżniczej!
                                 </h4>
                                 <p className="mb-4 text-muted">
-                                    Aby zacząć, utwórz swoją pierwszą listę podróży i zorganizuj swoje plany. Twoje wyjazdy zasługują na indywidualne podejście!
+                                    Aby zacząć, utwórz swoją pierwszą listę
+                                    podróży i zorganizuj swoje plany. Twoje
+                                    wyjazdy zasługują na indywidualne podejście!
                                 </p>
                                 {/* <h4 className="font-semibold text-[1.1rem] mb-3">
                                     Nie stworzyłeś jeszcze swoich list.
@@ -75,7 +77,7 @@ export default function ContentEmpty({
                     </>
                 ) : dashboard ? (
                     <>
-                        <h4 className="font-semibold text-[1.1rem] mb-3">
+                        <h4 className="font-semibold text-[1.1rem] mb-3 dark:text-[var(--darkModeTitle)]">
                             Nie wybrałeś jeszcze żadnej listy.
                         </h4>
                         <p className="mb-4 text-muted">

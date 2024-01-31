@@ -15,8 +15,6 @@ import CreateList from "@/components/application/modals/CreateList"
 import LoadingLists from "./Loading"
 import Button from "@/components/ui/Button"
 import IconPlus from "../icons/plus"
-import arrowDown from "@/assets/images/dashboard/arrow-down.svg"
-import Image from "next/image"
 import ListsErrorLoading from "./Error"
 import IconList from "../icons/list"
 import ContentEmpty from "../content/ContentEmpty"
@@ -62,13 +60,21 @@ export default function Lists() {
                 <div className="my-lists grow pb-20">
                     <p className="text-2xl font-semibold px-6 pt-7 pb-6 dark:text-[var(--darkModeTitle)] sm:uppercase sm:text-sm">
                         Twoje listy
-                        <Image
-                            src={arrowDown}
-                            width={10}
-                            height={5}
-                            alt="arrow down"
-                            className="hidden sm:inline-block ml-2 relative -top-[1px]"
-                        />
+                        <svg
+                            width="10"
+                            height="5"
+                            viewBox="0 0 13 8"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="hidden svg-stroke sm:inline-block ml-2 relative -top-[1px]"
+                        >
+                            <path
+                                d="M1.5 1.5L6.5 6.5L11.5 1.5"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
                     </p>
                     <ul className="mx-6 sm:mx-0">
                         {sortedLists?.map((element) => (

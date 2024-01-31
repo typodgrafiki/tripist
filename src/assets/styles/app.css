@@ -32,6 +32,10 @@
     color: #52545c;
 }
 
+[data-theme="dark"] .text-muted {
+    color: #81838a;
+}
+
 .btn-add-element::before,
 .btn-add-element::after {
     content: "";
@@ -59,6 +63,11 @@
     border-radius: 3px;
     margin-bottom: 26px;
     /* display: block; */
+}
+
+[data-theme="dark"] .my-lists-loading > li,
+[data-theme="dark"] .my-lists-loading > div {
+    background-color: #2b2b2e;
 }
 
 .my-lists-loading > .title {
@@ -294,6 +303,17 @@ select.dark {
     stroke: currentColor;
 }
 
+[data-theme="dark"] .modal-account .genderSignUpForm label svg {
+    stroke: #56585d;
+}
+[data-theme="dark"]
+    .modal-account
+    .genderSignUpForm
+    label:has(input:checked)
+    svg {
+    stroke: var(--darkModeText);
+}
+
 .genderSignUpForm label:has(input:checked),
 .darkModeForm label:has(input:checked) {
     border-color: var(--primary);
@@ -305,6 +325,20 @@ select.dark {
 [data-theme="dark"] .element-row .round .label {
     background-color: transparent;
     border-color: #424248;
+}
+
+[data-theme="dark"] .modal-account .genderSignUpForm label,
+[data-theme="dark"] .darkModeForm label {
+    border-color: transparent;
+    color: #56585d;
+}
+
+[data-theme="dark"] .modal-account .genderSignUpForm label:has(input:checked),
+[data-theme="dark"] .darkModeForm label:has(input:checked) {
+    border-color: transparent;
+    outline: var(--darkModeTitle);
+    color: var(--darkModeTitle);
+    background-color: var(--darkModeLight);
 }
 
 *:focus .focus-text {

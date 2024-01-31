@@ -25,9 +25,9 @@ export default function ListsRow({
             <li className="relative mb-3 sm:mb-1">
                 <Link
                     href={thisUrl}
-                    className={`bg-[#ECEEF2] dark:bg-[var(--darkModeLight)] px-5 py-4 list-link animated block hover:bg-[#f4f4f5] sm:px-6 sm:py-2 sm:bg-transparent relative truncate dark:sm:bg-transparent ${
+                    className={`bg-[#ECEEF2] dark:bg-[var(--darkModeLight)] dark:text-[var(--darkModeTitle)] px-5 py-4 list-link animated block hover:bg-[#f4f4f5] sm:px-6 sm:py-2 sm:bg-transparent relative truncate dark:sm:bg-transparent ${
                         pathname === thisUrl
-                            ? "font-medium text-white active"
+                            ? "font-medium text-white dark:text-white active"
                             : "hover:text-gray-900 focus:font-medium focus:bg-[var(--primary)] focus:text-white"
                     }`}
                 >
@@ -37,7 +37,7 @@ export default function ListsRow({
                         ></span>
                     )}
                     <span className="flex justify-between items-center mb-2 gap-1 sm:inline sm:mb-0">
-                        <span className="font-semibold text-[1.2rem] truncate dark:text-[var(--darkModeTitle)] sm:font-normal sm:text-sm">
+                        <span className="font-semibold text-[1.2rem] truncate sm:font-normal sm:text-sm">
                             {name}
                         </span>
                         <span className="text-gray-400 focus-text text-xs italic dark:text-[var(--darkModeText)] sm:hidden">

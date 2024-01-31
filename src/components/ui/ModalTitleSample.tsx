@@ -6,9 +6,9 @@ export default function ModalTitleSample({ titleData }: TSampleTitle) {
     if (!title) return null
 
     return (
-        <div className="border-b border-gray-300 -mt-1 mb-4 pb-4 flex flex-col gap-[2px]">
+        <div className="border-b border-gray-300 dark:border-[#212123] -mt-1 mb-4 pb-4 flex flex-col gap-[2px]">
             <div className="flex gap-1 items-center">
-                <span className="text-mute text-gray-500">Nazwa:</span>
+                <span className="text-muted">Nazwa:</span>
                 <span>{title}</span>
                 {titleColor && (
                     <span
@@ -19,7 +19,7 @@ export default function ModalTitleSample({ titleData }: TSampleTitle) {
             {custom && type && (
                 <>
                     <div className="flex gap-1 items-center">
-                        <span className="text-mute text-gray-500">Typ:</span>
+                        <span className="text-muted">Typ:</span>
                         <span>{type}</span>
                     </div>
                     {/* {length && (

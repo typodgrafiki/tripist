@@ -41,6 +41,7 @@ const config: Config = {
         "focus:outline-none",
         "bg-opacity-70",
         "backdrop-blur-sm",
+        "dark:bg-[#161616]",
     ],
 }
 export default config

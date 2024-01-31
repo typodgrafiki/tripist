@@ -70,6 +70,11 @@
         color: var(--dark);
     }
 
+    [data-theme="dark"] .btn-default {
+        border-color: #303133;
+        color: var(--darkModeTitle);
+    }
+
     .btn-primary {
         background-color: var(--primary);
         border-color: var(--primary);
@@ -129,6 +134,11 @@
         border-radius: 7px;
         padding: 10px 20px;
         font-size: 0.9rem;
+    }
+
+    [data-theme="dark"] .form-control {
+        background-color: var(--darkModeLight);
+        color: #fff;
     }
 
     .form-control.success:focus {

@@ -13,6 +13,7 @@ import DeleteAccount from "./DeleteAccount"
 import Label from "@/components/ui/Label"
 import IconFemale from "@/assets/images/user/Female"
 import IconMale from "@/assets/images/user/Male"
+import ModalTitle from "@/components/ui/ModalTitle"
 
 type EditAccountProps = {
     data: IUserData
@@ -82,11 +83,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
 
     return (
         <div className="modal-account">
-            <h3 className="flex mb-5 text-gray-400 truncate justify-between items-center">
-                <span className="title font-medium text-gray-900 text-xl">
-                    Moje konto
-                </span>
-            </h3>
+            <ModalTitle>Moje konto</ModalTitle>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 {/* <div className="flex justify-center mb-6">
@@ -131,10 +128,10 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         />
                         <div className="flex gap-2 genderSignUpForm">
                             <label
-                                className={`flex justify-center items-center border border-slate-300 rounded-[7px] h-[46px] aspect-square cursor-pointer ${
+                                className={`flex justify-center items-center border border-slate-300 dark:border-transparent rounded-[7px] h-[46px] aspect-square cursor-pointer ${
                                     errors.gender
                                         ? "border-red-500"
-                                        : "text-slate-500"
+                                        : "text-slate-500 dark:text-[var(--darkModeText)]"
                                 }`}
                             >
                                 <input
