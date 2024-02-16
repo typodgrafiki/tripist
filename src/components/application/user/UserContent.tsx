@@ -69,14 +69,14 @@ export default function UserContent({ user }: { user: IUserData }) {
         },
     ]
 
-    useEffect(() => {
-        const localStorageDarkMode = localStorage.getItem("tripist_darkMode")
-        if (localStorageDarkMode === "on") {
-            document.documentElement.setAttribute("data-theme", "dark")
-        } else {
-            document.documentElement.setAttribute("data-theme", "light")
-        }
-    }, [user.darkTheme])
+    // useEffect(() => {
+    //     const localStorageDarkMode = localStorage.getItem("tripist_darkMode")
+    //     if (localStorageDarkMode === "on") {
+    //         document.documentElement.setAttribute("data-theme", "dark")
+    //     } else {
+    //         document.documentElement.setAttribute("data-theme", "light")
+    //     }
+    // }, [user.darkTheme])
 
     return (
         <div

@@ -71,15 +71,15 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
         }
     }
 
-    useEffect(() => {
-        if (darkThemeValue && darkThemeValue.toString() === "lightTheme") {
-            localStorage.setItem("tripist_darkMode", "off")
-            document.documentElement.setAttribute("data-theme", "light")
-        } else {
-            localStorage.setItem("tripist_darkMode", "on")
-            document.documentElement.setAttribute("data-theme", "dark")
-        }
-    }, [darkThemeValue])
+    // useEffect(() => {
+    //     if (darkThemeValue && darkThemeValue.toString() === "lightTheme") {
+    //         localStorage.setItem("tripist_darkMode", "off")
+    //         document.documentElement.setAttribute("data-theme", "light")
+    //     } else {
+    //         localStorage.setItem("tripist_darkMode", "on")
+    //         document.documentElement.setAttribute("data-theme", "dark")
+    //     }
+    // }, [darkThemeValue])
 
     return (
         <div className="modal-account">
