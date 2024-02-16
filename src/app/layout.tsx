@@ -37,7 +37,6 @@ export default function RootLayout({
         <html
             lang="pl"
             className={`scroll-smooth ${poppins.className}`}
-            data-theme="dark"
         >
             <body>
                 {children}
