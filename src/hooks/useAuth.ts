@@ -37,5 +37,6 @@ export const useAuth = async () => {
         email: user.email,
         image: user.image,
         gender: user.gender,
+        darkTheme: user.darkTheme,
     } as IUserData
 }

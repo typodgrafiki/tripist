@@ -87,6 +87,7 @@ export default function RemindPassword() {
                         errors={errors}
                         loading={loading}
                         changePassword
+                        registerUser
                     />
                     {errors.password && (
                         <div className="error-message">

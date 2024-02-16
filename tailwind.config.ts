@@ -16,6 +16,7 @@ const config: Config = {
             },
         },
     },
+    darkMode: ["class", '[data-theme="dark"]'],
     plugins: [require("@tailwindcss/forms")],
     safelist: [
         "bg-red-500",
@@ -40,6 +41,7 @@ const config: Config = {
         "focus:outline-none",
         "bg-opacity-70",
         "backdrop-blur-sm",
+        "dark:bg-[#161616]",
     ],
 }
 export default config

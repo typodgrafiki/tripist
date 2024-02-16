@@ -16,10 +16,10 @@ export default function FilterCategories({
     }
 
     return (
-        <div className="flex flex-wrap  gap-y-2 gap-x-2 mx-5 sm:mx-0">
+        <div className="flex flex-wrap  gap-y-2 gap-x-2 mx-5 dark:text-[#6D6F77] sm:mx-0">
             <button
                 onClick={() => handleCategoryChange("")}
-                className={`text-xs font-semibold uppercase whitespace-nowrap ${
+                className={`text-xs font-semibold uppercase whitespace-nowrap dark:font-normal ${
                     isActive()
                         ? "text-[var(--primary)]"
                         : "hover:text-[var(--primary)]"
@@ -32,7 +32,7 @@ export default function FilterCategories({
                 <button
                     key={el + index}
                     onClick={() => handleCategoryChange(el)}
-                    className={`text-xs font-semibold uppercase whitespace-nowrap ${
+                    className={`text-xs font-semibold uppercase whitespace-nowrap dark:font-normal ${
                         selectedCategory === el
                             ? "text-[var(--primary)]"
                             : "hover:text-[var(--primary)]"

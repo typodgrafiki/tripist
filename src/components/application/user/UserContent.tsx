@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Toastify from "toastify-js"
 import { useModal } from "@/context/ModalContext"
 import EditAccount from "@/components/application/modals/EditAccount"
@@ -69,6 +69,15 @@ export default function UserContent({ user }: { user: IUserData }) {
         },
     ]
 
+    useEffect(() => {
+        const localStorageDarkMode = localStorage.getItem("tripist_darkMode")
+        if (localStorageDarkMode === "on") {
+            document.documentElement.setAttribute("data-theme", "dark")
+        } else {
+            document.documentElement.setAttribute("data-theme", "light")
+        }
+    }, [user.darkTheme])
+
     return (
         <div
             className="relative inline-block text-left"
@@ -85,8 +94,10 @@ export default function UserContent({ user }: { user: IUserData }) {
                     <div className="flex gap-2 items-center px-4 py-2">
                         <UserImage firstLetterName={firstLetterName} />
                         <div>
-                            <div className="font-semibold">{name}</div>
-                            <div className="text-gray-500 text-xs">{email}</div>
+                            <div className="font-semibold dark:text-[var(--darkModeTitle)]">
+                                {name}
+                            </div>
+                            <div className="text-muted text-xs">{email}</div>
                         </div>
                     </div>
                     {accountActions.map((element, index) => (

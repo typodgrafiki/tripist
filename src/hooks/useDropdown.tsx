@@ -34,7 +34,7 @@ export const DropdownTemplate = ({
 }) => {
     return (
         <div
-            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-opacity-70 backdrop-blur-sm"
+            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-[#161616] dark:text-[var(--darkModeText)] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-opacity-70 backdrop-blur-sm"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

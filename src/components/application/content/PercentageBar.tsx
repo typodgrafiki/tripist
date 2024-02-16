@@ -5,7 +5,7 @@ export default function PercentageBar({ percent }: { percent: number }) {
 
     return (
         <div
-            className="hidden percentage-items-track sm:flex rounded-full"
+            className="hidden percentage-items-track sm:flex rounded-full dark:bg-[var(--darkModeBtn)]"
             role="progressbar"
             aria-label="Progress bar"
             aria-valuemin={parseInt("0")}
@@ -17,7 +17,7 @@ export default function PercentageBar({ percent }: { percent: number }) {
                 style={{ width: `${validatedPercent}%` }}
                 className="percentage-items-inner relative rounded-full animated bg-[var(--primary)]"
             >
-                <span className="percentage-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500">
+                <span className="percentage-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500 dark:bg-[var(--primary)] dark:text-white">
                     {validatedPercent}%
                 </span>
             </div>

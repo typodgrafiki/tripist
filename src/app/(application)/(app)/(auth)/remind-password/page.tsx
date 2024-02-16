@@ -88,7 +88,7 @@ export default function RemindPassword() {
                             Wyślij link
                         </Button>
                     </form>
-                    <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300">
+                    <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-300 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-300 dark:before:bg-stone-700 dark:after:bg-stone-700">
                         lub
                     </div>
                     <p className="text-center text-sm text-gray-600 mt-2">

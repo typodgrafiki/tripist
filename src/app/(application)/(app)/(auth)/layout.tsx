@@ -23,7 +23,7 @@ export default function LoginLayout({
                 </Link>
             </h3>
             <div className="flex justify-center items-center">
-                <div className="modal modal-account bg-white rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
+                <div className="modal modal-account bg-white dark:bg-[#242529] dark:text-[var(--darkModeText)] rounded-3xl shadow-2xl p-5 mx-3 sm:px-9 sm:py-8">
                     {children}
                 </div>
             </div>

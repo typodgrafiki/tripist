@@ -19,7 +19,7 @@ export default function ButtonDelete({ listId }: { listId: string }) {
             className="hidden sm:flex mb-2"
         >
             <button
-                className="animated px-3 hover:text-[var(--primary)] rounded-full"
+                className="animated px-3 dark:text-[var(--darkModeText)] hover:text-[var(--primary)] rounded-full"
                 onClick={handleClick}
             >
                 <IconBin />

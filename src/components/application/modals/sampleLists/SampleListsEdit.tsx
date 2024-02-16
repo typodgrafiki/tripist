@@ -135,12 +135,12 @@ const SampleListsCategoryEdit = ({
 
     return (
         <div
-            className={`sample-list border-b border-gray-300 last:border-0 ${
+            className={`sample-list border-b border-gray-300 dark:border-[#212123] last:border-0 ${
                 isOpen ? "open" : ""
             }`}
         >
             <button
-                className="animated flex w-full justify-between items-center py-3 cursor-pointer"
+                className="animated flex w-full justify-between items-center py-3 cursor-pointer hover:text-[var(--primary)] dark:text-[var(--darkModeTitle)] dark:hover:text-[var(--darkModeTitle)]"
                 onClick={() => togglePanel(index)}
                 disabled={isPending}
                 type="button"
@@ -151,7 +151,7 @@ const SampleListsCategoryEdit = ({
                         [{checkedCount}/{totalCount}]
                     </span>
                 </span>
-                <span className="animated text-gray-500 hover:text-gray-950">
+                <span className="animated text-gray-500 hover:text-gray-950 dark:text-[var(--darkModeText)] dark:hover:text-[var(--darkModeTitle)]">
                     {isOpen ? "zwiń" : "rozwin"}
                     <ArrowDown
                         className={`ml-1 ${
@@ -167,7 +167,7 @@ const SampleListsCategoryEdit = ({
             >
                 <div
                     ref={panelContentRef}
-                    className={`bg-gray-100 rounded-lg px-4 py-1`}
+                    className={`bg-gray-100 dark:bg-[var(--darkModeLight)] rounded-lg px-4 py-1`}
                 >
                     {items.map((item, itemIndex) => (
                         <SampleListsElementEdit
@@ -193,7 +193,7 @@ const SampleListsElementEdit = ({
     handleItemToggle: HandleItemToggle
 }) => {
     return (
-        <li className="sample-select-type-row element-row flex justify-between items-center gap-2 border-t border-gray-300 first:border-0 sm:hover:text-[var(--primary)]">
+        <li className="sample-select-type-row animated element-row flex justify-between items-center gap-2 border-t border-gray-300 dark:border-[#212123] first:border-0 sm:hover:text-[var(--primary)]">
             <span className="relative round w-[21px] h-[21px]">
                 <input
                     id={`items[${item.name}]`}
