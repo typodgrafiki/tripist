@@ -164,6 +164,7 @@ export default function RegisterForm() {
                                     placeholder="john@example.com"
                                     id="formEmail"
                                     autoComplete="username"
+                                    autoCapitalize="none"
                                     disabled={loading}
                                 />
                                 {errors.email && (

@@ -57,6 +57,7 @@ const PasswordInput = ({
                     placeholder="**********"
                     id="formPassword"
                     autoComplete={autoComplete}
+                    autoCapitalize="none"
                     disabled={loading}
                     onChange={(e) => setPasswordLength(e.target.value.length)}
                 />
