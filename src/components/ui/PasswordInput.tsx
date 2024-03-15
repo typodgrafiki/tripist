@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import eyeOpen from "@/assets/images/dashboard/eye-open.svg"
 import eyeClose from "@/assets/images/dashboard/eye-close.svg"
 import { ICreateUser, ICreateRemindPassUser } from "@/types/types"
@@ -31,11 +31,24 @@ const PasswordInput = ({
     const [typePassword, setTypePassword] = useState<"password" | "text">(
         "password"
     )
+    const [manualInput, setManualInput] = useState(false)
+
+    useEffect(() => {
+        if (passwordLength > 0) {
+            setManualInput(true)
+        }
+    }, [passwordLength])
 
     const handleTogglePassword = () => {
         setTypePassword((prevType) =>
             prevType === "text" ? "password" : "text"
         )
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            setManualInput(true)
+        }
     }
 
     const autoComplete = changePassword ? "new-password" : "current-password"
@@ -50,7 +63,7 @@ const PasswordInput = ({
                     }`}
                     {...register("password", {
                         required: {
-                            value: true,
+                            value: !manualInput,
                             message: "Hasło jest wymagane",
                         },
                     })}
@@ -60,6 +73,7 @@ const PasswordInput = ({
                     autoCapitalize="none"
                     disabled={loading}
                     onChange={(e) => setPasswordLength(e.target.value.length)}
+                    onKeyDown={handleKeyDown}
                 />
                 <button
                     type="button"
