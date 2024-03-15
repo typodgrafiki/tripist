@@ -19,28 +19,28 @@ export async function GET(request: Request) {
             return NextResponse.json(false, { status: 401 })
         }
 
-        if (isSessionExpired(checkSession.expiresAt)) {
-            await prisma.session.delete({
-                where: {
-                    id: sessionId,
-                },
-            })
-            return NextResponse.json(false, { status: 401 })
-        }
+        // if (isSessionExpired(checkSession.expiresAt)) {
+        //     await prisma.session.delete({
+        //         where: {
+        //             id: sessionId,
+        //         },
+        //     })
+        //     return NextResponse.json(false, { status: 401 })
+        // }
 
-        const oneDay = 1000 * 60 * 60 * 24
-        const fiveDays = oneDay * 5
-        const expiryThreshold = new Date(Date.now() + oneDay)
+        // const oneDay = 1000 * 60 * 60 * 24
+        // const fiveDays = oneDay * 5
+        // const expiryThreshold = new Date(Date.now() + oneDay)
 
-        if (new Date(checkSession.expiresAt) < expiryThreshold) {
-            await prisma.session.update({
-                where: { id: sessionId },
-                data: {
-                    updatedAt: new Date(),
-                    expiresAt: new Date(Date.now() + fiveDays),
-                },
-            })
-        }
+        // if (new Date(checkSession.expiresAt) < expiryThreshold) {
+        //     await prisma.session.update({
+        //         where: { id: sessionId },
+        //         data: {
+        //             updatedAt: new Date(),
+        //             expiresAt: new Date(Date.now() + fiveDays),
+        //         },
+        //     })
+        // }
 
         return NextResponse.json(true, { status: 200 })
     } catch (error) {
