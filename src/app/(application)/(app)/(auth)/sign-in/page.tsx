@@ -215,6 +215,7 @@ const ConfirmEmail = ({
                                     placeholder="john@example.com"
                                     id="formEmail"
                                     autoComplete="username"
+                                    autoCapitalize="none"
                                     disabled={loading}
                                 />
                                 {errors.email && (
