@@ -32,6 +32,7 @@ export async function POST(request: Request, context: IApiContext) {
         const item = await prisma.listItem.findFirst({
             where: {
                 name: name,
+                listId: listId,
             },
         })
 
