@@ -17,7 +17,7 @@ export default function UserImage({
 
     return (
         <button
-            className="rounded-full h-[28px] w-[28px] bg-[#355BB1] dark:bg-[var(--primary)] text-white flex justify-center items-center cursor-pointer"
+            className="rounded-full h-[28px] w-[28px] min-w-[28px] bg-[#355BB1] dark:bg-[var(--primary)] text-white flex justify-center items-center cursor-pointer"
             aria-expanded="true"
             aria-haspopup="true"
             onClick={handleClick}

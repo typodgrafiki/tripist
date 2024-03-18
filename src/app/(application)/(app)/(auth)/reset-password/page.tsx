@@ -17,7 +17,7 @@ export default function RemindPassword() {
     const userEmail = searchParams.get("email")
     const userToken = searchParams.get("token")
     const [loading, setLoading] = useState(false)
-    const { register, handleSubmit, formState } =
+    const { register, handleSubmit, formState, setValue } =
         useForm<ICreateRemindPassUser>({
             defaultValues: {
                 password: "",
@@ -26,6 +26,10 @@ export default function RemindPassword() {
             },
         })
     const { errors } = formState
+
+    const changePass = (value: string) => {
+        setValue("password", value)
+    }
 
     const onSubmit = async (data: ICreateRemindPassUser) => {
         setLoading(true)
@@ -86,6 +90,7 @@ export default function RemindPassword() {
                         register={register}
                         errors={errors}
                         loading={loading}
+                        changePass={changePass}
                         changePassword
                         registerUser
                     />

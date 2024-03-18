@@ -194,7 +194,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         registerUser
                     />
                 </div> */}
-                <div className="w-full mb-6">
+                {/* <div className="w-full mb-6">
                     <Label
                         name="Kolor motywu"
                         htmlFor="formColorMode"
@@ -226,7 +226,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                             Ciemny
                         </label>
                     </div>
-                </div>
+                </div> */}
                 <Button
                     type="submit"
                     className="btn btn-primary w-full justify-center"

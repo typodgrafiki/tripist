@@ -21,16 +21,21 @@ export default function RegisterForm() {
     const [userEmail, setUserEmail] = useState("")
     const [errorMessege, setErrorMessege] = useState("")
 
-    const { register, handleSubmit, formState } = useForm<ICreateUser>({
-        defaultValues: {
-            name: "",
-            surname: "",
-            email: "",
-            password: "",
-            gender: "UNDEFINED",
-        },
-    })
+    const { register, handleSubmit, formState, setValue } =
+        useForm<ICreateUser>({
+            defaultValues: {
+                name: "",
+                surname: "",
+                email: "",
+                password: "",
+                gender: "UNDEFINED",
+            },
+        })
     const { errors } = formState
+
+    const changePass = (value: string) => {
+        setValue("password", value)
+    }
 
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
@@ -182,6 +187,7 @@ export default function RegisterForm() {
                                     register={register}
                                     errors={errors}
                                     loading={loading}
+                                    changePass={changePass}
                                     registerUser
                                 />
                                 {errors.password && (

@@ -93,11 +93,13 @@ export default function UserContent({ user }: { user: IUserData }) {
                 <DropdownTemplate>
                     <div className="flex gap-2 items-center px-4 py-2">
                         <UserImage firstLetterName={firstLetterName} />
-                        <div>
-                            <div className="font-semibold dark:text-[var(--darkModeTitle)]">
+                        <div className="overflow-hidden">
+                            <div className="font-semibold truncate dark:text-[var(--darkModeTitle)]">
                                 {name}
                             </div>
-                            <div className="text-muted text-xs">{email}</div>
+                            <div className="text-muted text-xs truncate">
+                                {email}
+                            </div>
                         </div>
                     </div>
                     {accountActions.map((element, index) => (
