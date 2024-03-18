@@ -18,6 +18,7 @@ interface PasswordInputProps {
     loading: boolean
     changePassword?: boolean
     registerUser?: boolean
+    changePass: (value: string) => void
 }
 
 const PasswordInput = ({
@@ -25,19 +26,13 @@ const PasswordInput = ({
     errors,
     loading,
     changePassword,
+    changePass,
     registerUser,
 }: PasswordInputProps) => {
     const [passwordLength, setPasswordLength] = useState(0)
     const [typePassword, setTypePassword] = useState<"password" | "text">(
         "password"
     )
-    const [manualInput, setManualInput] = useState(false)
-
-    useEffect(() => {
-        if (passwordLength > 0) {
-            setManualInput(true)
-        }
-    }, [passwordLength])
 
     const handleTogglePassword = () => {
         setTypePassword((prevType) =>
@@ -45,10 +40,9 @@ const PasswordInput = ({
         )
     }
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            setManualInput(true)
-        }
+    const changeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPasswordLength(e.target.value.length)
+        changePass(e.target.value)
     }
 
     const autoComplete = changePassword ? "new-password" : "current-password"
@@ -63,7 +57,7 @@ const PasswordInput = ({
                     }`}
                     {...register("password", {
                         required: {
-                            value: !manualInput,
+                            value: true,
                             message: "Hasło jest wymagane",
                         },
                     })}
@@ -72,8 +66,7 @@ const PasswordInput = ({
                     autoComplete={autoComplete}
                     autoCapitalize="none"
                     disabled={loading}
-                    onChange={(e) => setPasswordLength(e.target.value.length)}
-                    onKeyDown={handleKeyDown}
+                    onChange={changeData}
                 />
                 <button
                     type="button"

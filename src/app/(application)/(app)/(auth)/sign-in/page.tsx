@@ -19,13 +19,18 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("")
     const router = useRouter()
 
-    const { register, handleSubmit, formState } = useForm<ICreateUser>({
-        defaultValues: {
-            email: "",
-            password: "",
-        },
-    })
+    const { register, handleSubmit, formState, setValue } =
+        useForm<ICreateUser>({
+            defaultValues: {
+                email: "",
+                password: "",
+            },
+        })
     const { errors } = formState
+
+    const changePass = (value: string) => {
+        setValue("password", value)
+    }
 
     const onSubmit = async (data: ICreateUser) => {
         setLoading(true)
@@ -33,7 +38,6 @@ export default function RegisterForm() {
         const result = await loginUserFetch(data)
 
         if (result?.status === 200) {
-            setLoading(false)
             router.push("/dashboard")
         } else if (result?.status === 403) {
             const { message } = result?.data
@@ -103,6 +107,7 @@ export default function RegisterForm() {
                                     register={register}
                                     errors={errors}
                                     loading={loading}
+                                    changePass={changePass}
                                 />
                                 {errors.password && (
                                     <div className="error-message">

@@ -15,8 +15,10 @@ export default function Dashboard() {
     useEffect(() => {
         if (mobile) {
             setIsMobile(true)
+        } else {
+            setIsMobile(false)
         }
-    }, [])
+    }, [mobile])
 
     return <>{isMobile ? <Lists /> : <ContentEmpty dashboard />}</>
 }
