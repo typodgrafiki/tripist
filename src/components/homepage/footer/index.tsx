@@ -51,12 +51,20 @@ export default function Footer() {
                                 O nas
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link
                                 href="/blog"
                                 className="block py-1 hover:text-white"
                             >
                                 Blog
+                            </Link>
+                        </li> */}
+                        <li>
+                            <Link
+                                href="/faq"
+                                className="block py-1 hover:text-white"
+                            >
+                                FAQ
                             </Link>
                         </li>
                         <li>
@@ -69,17 +77,17 @@ export default function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className="text-center md:w-3/12 md:text-left">
+                {/* <div className="text-center md:w-3/12 md:text-left">
                     <p className="font-semibold text-white mb-4">SUPPORT</p>
                     <ul>
-                        {/* <li>
+                        <li>
                             <Link
                                 href="/pomoc"
                                 className="block py-1 hover:text-white"
                             >
                                 Pomoc
                             </Link>
-                        </li> */}
+                        </li>
                         <li>
                             <Link
                                 href="/dokumentacja"
@@ -97,10 +105,10 @@ export default function Footer() {
                             </Link>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
             <p className="copyright text-center text-gray-600 p-6 text-sm">
-                © 2023 — Tripist. All Rights Reserved.
+                © 2024 — Tripist. All Rights Reserved.
             </p>
         </footer>
     )

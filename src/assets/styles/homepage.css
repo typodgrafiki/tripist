@@ -86,3 +86,20 @@ body {
         opacity: 1;
     }
 }
+
+@keyframes fadeInFaq {
+    from {
+        opacity: 0;
+        position: relative;
+        top: -10px;
+    }
+    to {
+        opacity: 1;
+        position: relative;
+        top: 0;
+    }
+}
+
+.faq-content {
+    animation: fadeInFaq 0.15s ease-out;
+}

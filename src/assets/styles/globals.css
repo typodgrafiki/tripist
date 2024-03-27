@@ -20,7 +20,7 @@
         color: var(--dark);
         background: linear-gradient(
             180deg,
-            #e0e7f7 0,
+            #f1f2f3 0,
             rgba(229, 238, 255, 0.262661) 1000px,
             rgba(229, 236, 255, 0) 1186px
         );
