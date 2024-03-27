@@ -36,14 +36,14 @@ function Menu() {
                             Gdzie używać?
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link
                             href="/blog"
                             className="transition-colors hover:text-blue-600 block py-1"
                         >
                             Blog
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
                     {/* <SignBtn /> */}

@@ -22,3 +22,9 @@ export default function DokumentationPage() {
         </>
     )
 }
+
+// Dokumentacja:
+
+// Szczegółowe instrukcje dotyczące korzystania z aplikacji Tripist, obejmujące kroki od rejestracji konta po tworzenie, edycję i zarządzanie listami.
+// Omówienie funkcji zaawansowanych i mniej oczywistych, które mogą być pomocne dla użytkowników bardziej zaawansowanych lub poszukujących bardziej niestandardowych rozwiązań.
+// Linki do plików do pobrania, takich jak podręczniki użytkownika w formacie PDF lub materiały instruktażowe wideo.
