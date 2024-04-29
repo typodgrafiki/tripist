@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
         if (checkEmailExist) {
             return NextResponse.json(
-                { message: "Użytkownik o takim email już istnieje" },
+                { message: "Użytkownik o takim email już istnieje. Skorzystaj z formularza logowania lub przypomnienia hasła" },
                 { status: 409 }
             )
         }
