@@ -7,7 +7,7 @@ export default function AboutUsPage() {
             <h1 className="font-bold text-2xl mb-5 md:text-3xl">O nas</h1>
             <div className="content text-sm">
                 <div className="flex gap-10 mb-10">
-                    <div className="min-w-min">
+                    <div className="sm:min-w-min sm:block">
                         <Image
                             src={aboutUs}
                             width={383}
@@ -16,8 +16,7 @@ export default function AboutUsPage() {
                             className="shadow-2xl rounded-2xl h-full object-cover"
                         />
                     </div>
-                    <div className="w-2/3">
-                        <h3 className="font-semibold text-lg mb-3">Zespół</h3>
+                    <div className="sm:w-2/3">
                         <p className="mb-3">
                             Witaj na Tripist.pl - miejscu, gdzie podróże stają
                             się jeszcze bardziej ekscytujące i przyjemne dzięki
