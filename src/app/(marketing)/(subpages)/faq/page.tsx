@@ -87,7 +87,7 @@ const Faq = ({ title, text }: { title: string; text: string }) => {
                 className="flex font-semibold py-3 px-5 w-full justify-between items-center cursor-pointer hover:text-[var(--primary)]"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span>{title}</span>
+                <span className="text-left">{title}</span>
                 <Image
                     src={arrowDown}
                     width={15}
