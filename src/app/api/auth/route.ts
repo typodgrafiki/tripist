@@ -30,14 +30,15 @@ export async function GET(request: Request) {
 
         const oneDay = 1000 * 60 * 60 * 24
         const fiveDays = oneDay * 5
-        const expiryThreshold = new Date(Date.now() + oneDay)
+        const year = oneDay * 365
+        const expiryThreshold = new Date(Date.now() + year)
 
         if (new Date(checkSession.expiresAt) < expiryThreshold) {
             await prisma.session.update({
                 where: { id: sessionId },
                 data: {
                     updatedAt: new Date(),
-                    expiresAt: new Date(Date.now() + fiveDays),
+                    expiresAt: expiryThreshold,
                 },
             })
         }

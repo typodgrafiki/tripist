@@ -43,7 +43,10 @@ export async function POST(request: Request) {
 
         if (checkEmailExist) {
             return NextResponse.json(
-                { message: "Użytkownik o takim email już istnieje. Skorzystaj z formularza logowania lub przypomnienia hasła" },
+                {
+                    message:
+                        "Użytkownik o takim email już istnieje. Skorzystaj z formularza logowania lub przypomnienia hasła",
+                },
                 { status: 409 }
             )
         }
@@ -148,6 +151,8 @@ export async function PATCH(request: Request) {
                     value: newSession.id,
                     httpOnly: true,
                     path: "/",
+                    maxAge: 365 * 24 * 60 * 60, // 1 rok w sekundach
+                    secure: true,
                 })
             }
 

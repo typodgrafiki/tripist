@@ -57,6 +57,8 @@ export async function POST(request: Request) {
                 value: newSession.id,
                 httpOnly: true,
                 path: "/",
+                maxAge: 365 * 24 * 60 * 60, // 1 rok w sekundach
+                secure: true,
             })
         }
 
