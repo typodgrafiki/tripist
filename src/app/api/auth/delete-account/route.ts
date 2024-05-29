@@ -67,7 +67,7 @@ export async function DELETE(request: Request) {
 
         // usuniecie ciasteczka z przegladarki
         cookies().delete({
-            name: "tripist_auth",
+            name: "auth",
         })
 
         // delete signUpCodes

@@ -38,7 +38,7 @@ export default function Sort({
                 <div>
                     <Button
                         type="button"
-                        className="btn btn-small btn-gray dark:text-[var(--darkModeText)] dark:bg-[var(--darkModeLight)] dark:border-none"
+                        className="btn btn-small btn-gray dark:text-[var(--darkModeText)] dark:bg-[var(--darkModeLight)] dark:border-none dark:sm:bg-[var(--darkModeBtn)] dark:sm:text-[var(--darkModeTitle)] dark:sm:border-none"
                         id="menu-button"
                         aria-expanded="true"
                         aria-haspopup="true"

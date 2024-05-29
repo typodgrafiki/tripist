@@ -5,7 +5,7 @@ import prisma from "@/lib/prismaClient"
 import { IUserData } from "@/types/types"
 
 export const useAuth = async () => {
-    const sessionToken = cookies().get("tripist_auth")
+    const sessionToken = cookies().get("auth")
 
     if (!sessionToken) {
         return {

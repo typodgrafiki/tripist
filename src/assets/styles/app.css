@@ -3,7 +3,8 @@
     --darkModeLight: #1c1c1e;
     --darkModeText: #81838a;
     --darkModeTitle: #d3d4d8;
-    --darkModeBtn: #2b2b2e;
+    /* --darkModeBtn: #2b2b2e; */
+    --darkModeBtn: #25262c;
 }
 
 *::-webkit-scrollbar {
@@ -368,12 +369,8 @@ select.dark {
         @apply text-sm;
     }
 
-    .list-link {
-        border-radius: 0 5px 5px 0;
-    }
-
     .list-link.active {
-        background-color: var(--primary);
+        background-color: #3968d0;
     }
 
     .element-row:not(:has(.element-categories)) {

@@ -5,7 +5,7 @@ const baseUrl = process.env.BASE_URL
 
 export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
-    const sessionCookie = request.cookies.get("tripist_auth")?.value || null
+    const sessionCookie = request.cookies.get("auth")?.value || null
 
     if (path === "/sign-in" || path === "/sign-up") {
         if (sessionCookie) {

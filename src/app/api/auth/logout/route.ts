@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         )
 
     cookies().delete({
-        name: "tripist_auth",
+        name: "auth",
     })
 
     try {
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 }
 
 const sessionTokenFromHeader = (cookiesString: string) => {
-    const cookieName = "tripist_auth"
+    const cookieName = "auth"
 
     const cookies = cookiesString.split("; ")
     const cookie = cookies.find((cookie) => cookie.startsWith(`${cookieName}=`))
