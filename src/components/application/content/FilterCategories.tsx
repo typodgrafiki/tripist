@@ -21,7 +21,7 @@ export default function FilterCategories({
                 onClick={() => handleCategoryChange("")}
                 className={`text-xs font-semibold uppercase whitespace-nowrap dark:font-normal ${
                     isActive()
-                        ? "text-[var(--primary)]"
+                        ? "text-[var(--primary)] dark:text-white"
                         : "hover:text-[var(--primary)]"
                 }`}
             >
@@ -34,7 +34,7 @@ export default function FilterCategories({
                     onClick={() => handleCategoryChange(el)}
                     className={`text-xs font-semibold uppercase whitespace-nowrap dark:font-normal ${
                         selectedCategory === el
-                            ? "text-[var(--primary)]"
+                            ? "text-[var(--primary)] dark:text-white"
                             : "hover:text-[var(--primary)]"
                     }`}
                 >
@@ -55,7 +55,7 @@ const Count = ({
 }) => {
     return (
         <span
-            className={`inline-block px-[5px] text-[0.65rem] font-normal rounded-full relative -top-[1px] ml-1 animated bg-[var(--primary)] text-white`}
+            className={`inline-block px-[5px] text-[0.65rem] font-normal rounded-full relative -top-[1px] ml-1 animated bg-[var(--primary)] text-white dark:text-[#D3D4D8] dark:bg-[#242426]`}
         >
             {children}
         </span>

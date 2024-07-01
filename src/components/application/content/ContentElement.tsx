@@ -110,7 +110,7 @@ export default function ContentElement({
     return (
         <>
             <li className="relative border-t border-gray-200 dark:border-transparent first:border-0 overflow-x-hidden sm:hover:shadow-md dark:sm:border-[#212123]">
-                <div className="element-row flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 dark:hover:bg-transparent dark:hover:text-[var(--darkModeTitle)] sm:hover:sm:pl-3 hover:rounded sm:animated">
+                <div className="element-row flex gap-3 items-stretch sm:px-1 hover:bg-slate-50 dark:hover:bg-transparent dark:hover:text-[var(--darkModeTitle)] sm:hover:sm:pl-3 hover:rounded sm:animated dark:sm:bg-[#25262C] dark:sm:mt-1 dark:sm:mr-2 dark:sm:hover:bg-[#191B1F] dark:sm:px-3">
                     <animated.label
                         className="animated-fast flex items-center px-5 py-4 gap-2 grow cursor-pointer sm:text-sm sm:hover:text-[var(--primary)] dark:sm:hover:text-white sm:px-0 sm:py-2"
                         {...bind()}
@@ -140,7 +140,7 @@ export default function ContentElement({
                     <div
                         className={`animated element-edit ${
                             isSwiped ? "right-0" : "-right-[100px]"
-                        }  flex absolute top-0 bottom-0 sm:right-0 sm:left-auto sm:opacity-0 sm:pr-0`}
+                        }  flex absolute top-0 bottom-0 sm:right-0 sm:left-auto sm:opacity-0 sm:pr-0 dark:sm:right-4`}
                     >
                         <Button
                             className="text-white bg-[var(--primary)] px-3 items-center sm:text-[var(--dark)] sm:hover:text-[var(--primary)] sm:px-1 sm:bg-transparent dark:sm:text-[var(--darkModeText)] dark:sm:hover:text-[var(--darkModeTitle)]"

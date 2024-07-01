@@ -74,7 +74,7 @@ export default function Lists() {
             {lists && lists.length > 0 ? (
                 <div className="my-lists grow pb-20">
                     <TitleAside />
-                    <ul className="mx-6 sm:mx-0">
+                    <ul className="mx-6 sm:mr-0 sm:ml-3">
                         {sortedLists?.map((element) => (
                             <ListsRow
                                 key={element.id}
@@ -110,7 +110,7 @@ export default function Lists() {
 
 const TitleAside = () => {
     return (
-        <p className="text-2xl font-semibold px-6 pt-7 pb-6 dark:text-[var(--darkModeTitle)] sm:uppercase sm:text-sm">
+        <p className="text-2xl font-semibold px-8 pt-7 pb-6 dark:text-[#44464C] sm:uppercase sm:text-sm">
             Twoje listy
             <svg
                 width="10"
@@ -122,9 +122,9 @@ const TitleAside = () => {
             >
                 <path
                     d="M1.5 1.5L6.5 6.5L11.5 1.5"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                 />
             </svg>
         </p>

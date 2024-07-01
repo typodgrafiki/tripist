@@ -71,15 +71,15 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
         }
     }
 
-    // useEffect(() => {
-    //     if (darkThemeValue && darkThemeValue.toString() === "lightTheme") {
-    //         localStorage.setItem("tripist_darkMode", "off")
-    //         document.documentElement.setAttribute("data-theme", "light")
-    //     } else {
-    //         localStorage.setItem("tripist_darkMode", "on")
-    //         document.documentElement.setAttribute("data-theme", "dark")
-    //     }
-    // }, [darkThemeValue])
+    const changeTheme = (theme: string) => {
+        if (theme === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark")
+            // localStorage.setItem("darkMode", "true")
+        } else {
+            document.documentElement.removeAttribute("data-theme")
+            // localStorage.setItem("darkMode", "false")
+        }
+    }
 
     return (
         <div className="modal-account">
@@ -194,7 +194,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                         registerUser
                     />
                 </div> */}
-                {/* <div className="w-full mb-6">
+                <div className="w-full mb-6">
                     <Label
                         name="Kolor motywu"
                         htmlFor="formColorMode"
@@ -209,7 +209,7 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                                 value="lightTheme"
                                 defaultChecked={darkTheme === false}
                                 className="hidden"
-                                // onChange={() => console.log("change mode")}
+                                onChange={() => changeTheme("light")}
                             />
                             Jasny
                         </label>
@@ -222,11 +222,12 @@ export default function EditAccount({ data, setData }: EditAccountProps) {
                                 value="darkTheme"
                                 defaultChecked={darkTheme === true}
                                 className="hidden"
+                                onChange={() => changeTheme("dark")}
                             />
                             Ciemny
                         </label>
                     </div>
-                </div> */}
+                </div>
                 <Button
                     type="submit"
                     className="btn btn-primary w-full justify-center"

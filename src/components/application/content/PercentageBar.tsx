@@ -17,7 +17,7 @@ export default function PercentageBar({ percent }: { percent: number }) {
                 style={{ width: `${validatedPercent}%` }}
                 className="percentage-items-inner relative rounded-full animated bg-[var(--primary)]"
             >
-                <span className="percentage-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500 dark:bg-[var(--primary)] dark:text-white">
+                <span className="percentage-items-tick absolute inline-block px-[6px] text-xs font-normal rounded-full animated left-full z-10 text-gray-500 dark:bg-[#44464c] dark:text-[#a9abb0]">
                     {validatedPercent}%
                 </span>
             </div>

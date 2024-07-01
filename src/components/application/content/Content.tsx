@@ -188,7 +188,7 @@ export default function Content({ id }: { id: string }) {
                         />
                     </div>
                     <PercentageBar percent={percentagePackedItems} />
-                    <div className="text-gray-600 dark:text-[#81838A] pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6 dark:sm:bg-[var(--darkModeLight)]">
+                    <div className="text-gray-600 dark:text-[#D3D4D8] pb-24 sm:bg-white sm:shadow-lg sm:rounded-md sm:overflow-y-auto sm:pb-5 sm:pt-4 sm:px-6 dark:sm:bg-transparent dark:sm:shadow-none dark:sm:rounded-none dark:sm:p-0 dark:sm:pt-3">
                         <ul>
                             {sortedAndFilteredElements.map((element) => (
                                 <ContentElement

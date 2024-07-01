@@ -147,7 +147,7 @@ export async function PATCH(request: Request) {
             const newSession = await createSession(user.id)
             if ("id" in newSession) {
                 cookies().set({
-                    name: "tripist_auth",
+                    name: "auth",
                     value: newSession.id,
                     httpOnly: true,
                     path: "/",

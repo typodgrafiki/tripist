@@ -53,7 +53,7 @@ export async function POST(request: Request) {
 
         if ("id" in newSession) {
             cookies().set({
-                name: "tripist_auth",
+                name: "auth",
                 value: newSession.id,
                 httpOnly: true,
                 path: "/",
