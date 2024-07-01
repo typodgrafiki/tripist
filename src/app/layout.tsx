@@ -1,7 +1,6 @@
 import React from "react"
 import { Poppins } from "next/font/google"
 import type { Metadata, Viewport } from "next"
-import Head from "next/head";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import "@/assets/styles/globals.css"
@@ -20,6 +19,9 @@ export const metadata: Metadata = {
         "Niezależnie od celu podróży – Tripist zapewnia idealną listę pakowania. Korzystaj z naszych podpowiedzi i zaznaczaj spakowane przedmioty. Pobierz aplikację i zorganizuj się na każdą przygodę!",
     keywords:
         "lista pakowania, aplikacja do pakowania, lista na wycieczkę, porady do pakowania, aplikacja do treningu, organizacja wyjazdu, personalizowane listy pakowania, kreator list pakowania",
+    other: {
+        "google-site-verification": "ZzcSobh-CIKL21v2CRAm3lE-8yYvgvdG0oPvRvFInqQ"
+    }
 }
 
 export const viewport: Viewport = {
@@ -35,13 +37,6 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <>
-        <Head>
-                <meta
-                    name="google-site-verification"
-                    content="ZzcSobh-CIKL21v2CRAm3lE-8yYvgvdG0oPvRvFInqQ"
-                />
-            </Head>
         <html
             lang="pl"
             className={`scroll-smooth ${poppins.className}`}
@@ -53,6 +48,5 @@ export default function RootLayout({
                 <Analytics />
             </body>
         </html>
-        </>
     )
 }
